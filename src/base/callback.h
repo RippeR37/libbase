@@ -4,6 +4,8 @@
 #include <memory>
 #include <type_traits>
 
+#include "base/type_traits.h"
+
 namespace base {
 
 namespace detail {
@@ -350,18 +352,20 @@ template <typename ReturnType, typename... ArgumentTypes>
 class OnceCallback<ReturnType(ArgumentTypes...)> {
  public:
   template <typename... BoundArgumentTypes>
-  OnceCallback(ReturnType (*function_ptr)(BoundArgumentTypes...,
-                                          ArgumentTypes...),
-               std::tuple<BoundArgumentTypes...> bound_arguments =
-                   std::tuple<BoundArgumentTypes...>{})
+  OnceCallback(
+      ReturnType (*function_ptr)(traits::IdentityT<BoundArgumentTypes>...,
+                                 ArgumentTypes...),
+      std::tuple<BoundArgumentTypes...> bound_arguments =
+          std::tuple<BoundArgumentTypes...>{})
       : impl_(new detail::FreeFunctionOnceCallback<
               ReturnType,
               std::tuple<BoundArgumentTypes...>,
               ArgumentTypes...>(function_ptr, std::move(bound_arguments))) {}
 
   template <typename Class, typename... BoundArgumentTypes>
-  OnceCallback(ReturnType (Class::*member_function_ptr)(BoundArgumentTypes...,
-                                                        ArgumentTypes...),
+  OnceCallback(ReturnType (Class::*member_function_ptr)(
+                   traits::IdentityT<BoundArgumentTypes>...,
+                   ArgumentTypes...),
                Class* object,
                std::tuple<BoundArgumentTypes...> bound_arguments =
                    std::tuple<BoundArgumentTypes...>{})
@@ -374,7 +378,7 @@ class OnceCallback<ReturnType(ArgumentTypes...)> {
                                 std::move(bound_arguments))) {}
 
   template <typename... BoundArgumentTypes>
-  OnceCallback(OnceCallback<ReturnType(BoundArgumentTypes...,
+  OnceCallback(OnceCallback<ReturnType(traits::IdentityT<BoundArgumentTypes>...,
                                        ArgumentTypes...)>&& callback,
                std::tuple<BoundArgumentTypes...> bound_arguments)
       : impl_(new detail::BoundCallbackOnceCallback<
@@ -419,7 +423,8 @@ template <typename ReturnType, typename... ArgumentTypes>
 class RepeatingCallback<ReturnType(ArgumentTypes...)> {
  public:
   template <typename... BoundArgumentTypes>
-  RepeatingCallback(ReturnType (*func)(BoundArgumentTypes..., ArgumentTypes...),
+  RepeatingCallback(ReturnType (*func)(traits::IdentityT<BoundArgumentTypes>...,
+                                       ArgumentTypes...),
                     std::tuple<BoundArgumentTypes...> bound_arguments =
                         std::tuple<BoundArgumentTypes...>{})
       : impl_(new detail::FreeFunctionRepeatingCallback<
@@ -428,11 +433,12 @@ class RepeatingCallback<ReturnType(ArgumentTypes...)> {
               ArgumentTypes...>(func, std::move(bound_arguments))) {}
 
   template <typename Class, typename... BoundArgumentTypes>
-  RepeatingCallback(ReturnType (Class::*member_func)(BoundArgumentTypes...,
-                                                     ArgumentTypes...),
-                    Class* obj,
-                    std::tuple<BoundArgumentTypes...> bound_arguments =
-                        std::tuple<BoundArgumentTypes...>{})
+  RepeatingCallback(
+      ReturnType (Class::*member_func)(traits::IdentityT<BoundArgumentTypes>...,
+                                       ArgumentTypes...),
+      Class* obj,
+      std::tuple<BoundArgumentTypes...> bound_arguments =
+          std::tuple<BoundArgumentTypes...>{})
       : impl_(new detail::MemberFunctionRepeatingCallback<
               Class,
               ReturnType,
@@ -441,10 +447,10 @@ class RepeatingCallback<ReturnType(ArgumentTypes...)> {
   }
 
   template <typename... BoundArgumentTypes>
-  RepeatingCallback(
-      const RepeatingCallback<ReturnType(BoundArgumentTypes...,
-                                         ArgumentTypes...)>& callback,
-      std::tuple<BoundArgumentTypes...> bound_arguments)
+  RepeatingCallback(const RepeatingCallback<
+                        ReturnType(traits::IdentityT<BoundArgumentTypes>...,
+                                   ArgumentTypes...)>& callback,
+                    std::tuple<BoundArgumentTypes...> bound_arguments)
       : impl_(new detail::BoundCallbackRepeatingCallback<
               ReturnType,
               std::tuple<BoundArgumentTypes...>,

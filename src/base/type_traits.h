@@ -9,6 +9,22 @@ namespace base {
 namespace traits {
 
 /*
+ * Identity<T>
+ *
+ *   ::type - will hold T
+ *
+ * Helper, used sometimes to disable template argument deduction on specific
+ * arguments.
+ */
+template <typename T>
+struct IdentityType {
+  using type = T;
+};
+
+template <typename T>
+using IdentityT = typename IdentityType<T>::type;
+
+/*
  * TypesRange<Offset, std::tuple<T0, T1, ..., TN>, IndexSequence<M>
  *
  *   ::type - will hold std::tuple<T0, T1, ..., TM>  (M <= N)
