@@ -1,0 +1,29 @@
+dist: bionic
+
+language: cpp
+
+compiler:
+  - gcc
+  - clang
+
+addons:
+  apt:
+    packages: lcov
+
+before_install:
+  - $CC --version
+  - $CXX --version
+  - cmake --version
+  - pip install --user cpp-coveralls
+
+script:
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make
+  - ctest --extra-verbose
+  - cd ..
+
+after_success:
+  - if [[ $CXX == g++* ]]; then coveralls --verbose -E ".*/third_party/.*" -E "/usr/.*" -E ".*CMakeFiles.*" -E ".*/main.cc"; fi
+
