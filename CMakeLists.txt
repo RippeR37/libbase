@@ -18,7 +18,7 @@ project(${PROJECT_NAME} CXX)
 #
 
 set(CMAKE_CXX_STANDARD 17)
-#set(CMAKE_CXX_FLAGS "-Wall -Wpedantic -Werror")
+set(CMAKE_CXX_FLAGS "-Wall -Wpedantic -Werror")
 
 #
 # Library files
@@ -58,9 +58,6 @@ file(GLOB_RECURSE TEST_SRC_FILES ${PROJECT_SOURCE_DIR}/tests/*.cc)
 
 add_executable(unit_tests ${TEST_SRC_FILES} ${LIBBASE_HEADERS} ${LIBBASE_SOURCES})
 target_link_libraries(unit_tests gtest gtest_main)
-
-target_compile_options(unit_tests PUBLIC --coverage)
-target_link_libraries(unit_tests D:/Programy/LLVM/lib/clang/8.0.1/lib/windows/clang_rt.profile-x86_64.lib)
 
 #target_link_libraries(unit_tests libbase)
 
