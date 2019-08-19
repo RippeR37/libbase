@@ -93,7 +93,7 @@ if(BUILD_TESTS)
     if(CMAKE_COMPILER_IS_GNUCXX)
         include(CodeCoverage)
         APPEND_COVERAGE_COMPILER_FLAGS()
-        set(COVERAGE_LCOV_EXCLUDES '/usr/*' '*/third_party/googletest/*')
+        set(COVERAGE_LCOV_EXCLUDES '/usr/*' '*/third_party/*' '*/main.cc')
         SETUP_TARGET_FOR_COVERAGE_LCOV(
                 NAME coverage
                 EXECUTABLE ctest -j ${n_cores}
