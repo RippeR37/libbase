@@ -56,6 +56,7 @@ TEST(RepeatingCallbackTest, CopyRepeatingCallback) {
   Counter counter;
   base::RepeatingCallback<void(int)> cb_1(&Counter::add, &counter);
   base::RepeatingCallback<void(int)> cb_2(cb_1, std::make_tuple());
+  base::RepeatingCallback<void(int)> cb_3(cb_1);
 
   ASSERT_EQ(counter.sum, 0);
   cb_1.Run(11);

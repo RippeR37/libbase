@@ -387,6 +387,8 @@ class OnceCallback<ReturnType(ArgumentTypes...)> {
               ArgumentTypes...>(std::move(callback.impl_),
                                 std::move(bound_arguments))) {}
 
+  OnceCallback(OnceCallback&& other) = default;
+
   operator bool() const { return !!impl_; }
 
   ReturnType Run(ArgumentTypes... arguments) && {
@@ -456,6 +458,10 @@ class RepeatingCallback<ReturnType(ArgumentTypes...)> {
               std::tuple<BoundArgumentTypes...>,
               ArgumentTypes...>(callback.impl_->Clone(),
                                 std::move(bound_arguments))) {}
+
+  RepeatingCallback(const RepeatingCallback& other)
+      : impl_(other.impl_->Clone()) {}
+  RepeatingCallback(RepeatingCallback&& other) = default;
 
   operator OnceCallback<ReturnType(ArgumentTypes...)>() const {
     return OnceCallback<ReturnType(ArgumentTypes...)>{impl_->Clone()};
