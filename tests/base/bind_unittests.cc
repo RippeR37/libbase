@@ -52,6 +52,18 @@ TEST(RepeatingCallbackTest, ClassMethod) {
   EXPECT_EQ(counter.sum, 42);
 }
 
+TEST(RepeatingCallbackTest, CopyRepeatingCallback) {
+  Counter counter;
+  base::RepeatingCallback<void(int)> cb_1(&Counter::add, &counter);
+  base::RepeatingCallback<void(int)> cb_2(cb_1, std::make_tuple());
+
+  ASSERT_EQ(counter.sum, 0);
+  cb_1.Run(11);
+  EXPECT_EQ(counter.sum, 11);
+  cb_2.Run(-4);
+  EXPECT_EQ(counter.sum, 7);
+}
+
 TEST(RepeatingCallbackTest, FreeFunctionWithArg) {
   global_int_arg = -1;
 
