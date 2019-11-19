@@ -14,7 +14,6 @@ project(${PROJECT_NAME} CXX)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
 
-
 #
 # Build options
 #
@@ -25,6 +24,8 @@ option(BUILD_TESTS "Build all tests." ON)
 #
 # Compiler setup
 #
+
+find_package(Threads REQUIRED)
 
 set(CMAKE_CXX_STANDARD 17)
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
@@ -67,6 +68,7 @@ file(GLOB_RECURSE LIBBASE_SOURCES ${PROJECT_SOURCE_DIR}/src/base/*.h)
 #
 
 add_executable(libbase_exe ${PROJECT_SOURCE_DIR}/src/main.cc ${LIBBASE_HEADERS} ${LIBBASE_SOURCES})
+target_link_libraries(libbase_exe Threads::Threads)
 #target_link_libraries(libbase_exe libbase)
 
 
@@ -84,7 +86,7 @@ if(BUILD_TESTS)
     file(GLOB_RECURSE TEST_SRC_FILES ${PROJECT_SOURCE_DIR}/tests/*.cc)
 
     add_executable(unit_tests ${TEST_SRC_FILES} ${LIBBASE_HEADERS} ${LIBBASE_SOURCES})
-    target_link_libraries(unit_tests gtest gtest_main)
+    target_link_libraries(unit_tests gtest gtest_main Threads::Threads)
 
     #target_link_libraries(unit_tests libbase)
 
