@@ -111,10 +111,31 @@ TEST(BindTest, FreeFunc) {
   EXPECT_EQ(global_int_arg, 12);
 }
 
-TEST(BindTest, FreeFundWithArgs) {
+TEST(BindTest, Lambda) {
+  global_int_arg = -1;
+
+  auto cb = base::BindRepeating([](int x) { SetGlobalIntArg(x); });
+  cb.Run(11);
+  EXPECT_EQ(global_int_arg, 11);
+  cb.Run(12);
+  EXPECT_EQ(global_int_arg, 12);
+}
+
+TEST(BindTest, FreeFuncWithArgs) {
   global_int_arg = -1;
 
   auto cb = base::BindRepeating(&SetGlobalIntArg, 15);
+  cb.Run();
+  EXPECT_EQ(global_int_arg, 15);
+  global_int_arg = -1;
+  cb.Run();
+  EXPECT_EQ(global_int_arg, 15);
+}
+
+TEST(BindTest, LambdaWithArgs) {
+  global_int_arg = -1;
+
+  auto cb = base::BindRepeating([](int x) { SetGlobalIntArg(x); }, 15);
   cb.Run();
   EXPECT_EQ(global_int_arg, 15);
   global_int_arg = -1;
@@ -156,7 +177,89 @@ TEST(BindTest, MultiArgFreeFuncWithSomeArgs) {
   EXPECT_EQ(cb.Run(0), 3);
 }
 
-TEST(AdvancedBindTest, AnotherCallbackToFreeFunction) {
+TEST(BindOnceTest, FreeFunc) {
+  global_int_arg = -1;
+
+  auto cb = base::BindOnce(&SetGlobalIntArg);
+  std::move(cb).Run(11);
+  EXPECT_EQ(global_int_arg, 11);
+  EXPECT_FALSE(cb);
+}
+
+TEST(BindOnceTest, Lambda) {
+  global_int_arg = -1;
+
+  auto cb = base::BindOnce([](int x) { SetGlobalIntArg(x); });
+  std::move(cb).Run(11);
+  EXPECT_EQ(global_int_arg, 11);
+  EXPECT_FALSE(cb);
+}
+
+TEST(BindOnceTest, FreeFuncWithArgs) {
+  global_int_arg = -1;
+
+  auto cb = base::BindOnce(&SetGlobalIntArg, 15);
+  std::move(cb).Run();
+  EXPECT_EQ(global_int_arg, 15);
+  EXPECT_FALSE(cb);
+}
+
+TEST(BindOnceTest, LambdaWithArgs) {
+  global_int_arg = -1;
+
+  auto cb = base::BindOnce([](int x) { SetGlobalIntArg(x); }, 15);
+  std::move(cb).Run();
+  EXPECT_EQ(global_int_arg, 15);
+  EXPECT_FALSE(cb);
+}
+
+TEST(BindOnceTest, ClassMethod) {
+  Counter counter;
+  auto cb = base::BindOnce(&Counter::add, &counter);
+  ASSERT_EQ(counter.sum, 0);
+  std::move(cb).Run(7);
+  EXPECT_EQ(counter.sum, 7);
+  EXPECT_FALSE(cb);
+}
+
+TEST(BindOnceTest, ClassMethodWithArgs) {
+  Counter counter;
+  auto cb = base::BindOnce(&Counter::add, &counter, 21);
+  ASSERT_EQ(counter.sum, 0);
+  std::move(cb).Run();
+  EXPECT_EQ(counter.sum, 21);
+  EXPECT_FALSE(cb);
+}
+
+TEST(BindOnceTest, MultiArgFreeFunc) {
+  auto cb = base::BindOnce(&add);
+  EXPECT_EQ(std::move(cb).Run(11, -3), 8);
+  EXPECT_FALSE(cb);
+}
+
+TEST(BindOnceTest, MultiArgFreeFuncWithSomeArgs) {
+  auto cb = base::BindOnce(&add, 3);
+  EXPECT_EQ(std::move(cb).Run(11), 14);
+  EXPECT_FALSE(cb);
+}
+
+TEST(BindOnceTest, BindUniquePtrAndMove) {
+  global_int_arg = -1;
+
+  auto cb_1 =
+      base::BindOnce(&SetGlobalIntFromUniquePtrArg, std::make_unique<int>(3));
+  auto cb_2 = std::move(cb_1);
+  auto cb_3 = base::BindOnce(std::move(cb_2));
+
+  EXPECT_FALSE(cb_1);
+  EXPECT_FALSE(cb_2);
+  ASSERT_TRUE(cb_3);
+
+  std::move(cb_3).Run();
+  EXPECT_EQ(global_int_arg, 3);
+}
+
+TEST(AdvancedBindTest, RepeatingToRepeatingCallbackToFreeFunction) {
   auto cb_1 = base::BindRepeating(&add);
   auto cb_2 = base::BindRepeating(cb_1);
   EXPECT_EQ(cb_1.Run(3, 7), 10);
@@ -169,6 +272,52 @@ TEST(AdvancedBindTest, AnotherCallbackToFreeFunction) {
   auto cb_4 = base::BindRepeating(cb_3, 3);
   EXPECT_EQ(cb_4.Run(), 4);
   EXPECT_EQ(cb_4.Run(), 4);
+}
+
+TEST(AdvancedBindTest, OnceToRepeatingCallbackToFreeFunction) {
+  auto cb_1 = base::BindRepeating(&add);
+  auto cb_2 = base::BindOnce(cb_1);
+  EXPECT_EQ(cb_1.Run(3, 7), 10);
+  EXPECT_EQ(std::move(cb_2).Run(3, 7), 10);
+  EXPECT_FALSE(cb_2);
+
+  auto cb_3 = base::BindOnce(cb_1);
+  EXPECT_EQ(std::move(cb_3).Run(3, 7), 10);
+  EXPECT_TRUE(cb_1);
+  EXPECT_FALSE(cb_3);
+
+  auto cb_4 = base::BindOnce(cb_1, 1);
+  EXPECT_EQ(std::move(cb_4).Run(3), 4);
+  EXPECT_TRUE(cb_1);
+  EXPECT_FALSE(cb_4);
+
+  auto cb_5 = base::BindRepeating(cb_1, 1);
+  auto cb_6 = base::BindOnce(cb_5, 3);
+  EXPECT_EQ(std::move(cb_6).Run(), 4);
+  EXPECT_TRUE(cb_5);
+  EXPECT_FALSE(cb_6);
+}
+
+TEST(AdvancedBindTest, OnceToOnceCallbackToFreeFunction) {
+  auto cb_1 = base::BindOnce(&add);
+  auto cb_2 = base::BindOnce(std::move(cb_1));
+  EXPECT_EQ(std::move(cb_2).Run(3, 7), 10);
+  EXPECT_FALSE(cb_1);
+  EXPECT_FALSE(cb_2);
+
+  auto cb_3 = base::BindOnce(&add);
+  auto cb_4 = base::BindOnce(std::move(cb_3), 1);
+  EXPECT_EQ(std::move(cb_4).Run(3), 4);
+  EXPECT_FALSE(cb_3);
+  EXPECT_FALSE(cb_4);
+
+  auto cb_5 = base::BindOnce(&add);
+  auto cb_6 = base::BindOnce(std::move(cb_5), 1);
+  auto cb_7 = base::BindOnce(std::move(cb_6), 3);
+  EXPECT_EQ(std::move(cb_7).Run(), 4);
+  EXPECT_FALSE(cb_5);
+  EXPECT_FALSE(cb_6);
+  EXPECT_FALSE(cb_7);
 }
 
 TEST(OnceCallbackTest, FreeFuncTakingUniquePtr) {
