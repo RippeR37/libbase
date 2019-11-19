@@ -351,6 +351,8 @@ class OnceCallback {
 template <typename ReturnType, typename... ArgumentTypes>
 class OnceCallback<ReturnType(ArgumentTypes...)> {
  public:
+  OnceCallback() = default;
+
   template <typename... BoundArgumentTypes>
   OnceCallback(
       ReturnType (*function_ptr)(traits::IdentityT<BoundArgumentTypes>...,
@@ -424,6 +426,8 @@ class RepeatingCallback {
 template <typename ReturnType, typename... ArgumentTypes>
 class RepeatingCallback<ReturnType(ArgumentTypes...)> {
  public:
+  RepeatingCallback() = default;
+
   template <typename... BoundArgumentTypes>
   RepeatingCallback(ReturnType (*func)(traits::IdentityT<BoundArgumentTypes>...,
                                        ArgumentTypes...),
