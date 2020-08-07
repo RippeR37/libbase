@@ -16,6 +16,7 @@ class SequenceId {
   SequenceId(const SequenceId&) = default;
 
   bool operator==(const SequenceId& other) const;
+  bool operator!=(const SequenceId& other) const;
 
  private:
   friend class detail::SequenceIdGenerator;
