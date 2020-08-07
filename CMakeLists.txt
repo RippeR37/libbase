@@ -29,7 +29,7 @@ find_package(Threads REQUIRED)
 
 set(CMAKE_CXX_STANDARD 17)
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-    set(WARNINGS "-Wall -Wextra -Wpedantic -Werror")
+    set(WARNINGS "-Wall -Wextra -Wpedantic -Werror -Wold-style-cast -Wshadow -Wunreachable-code")
 elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
     set(WARNINGS "/W4 /WX /EHsc")
 endif()
