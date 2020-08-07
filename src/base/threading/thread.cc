@@ -43,9 +43,13 @@ class ThreadTaskRunnerImpl : public SingleThreadTaskRunner {
 
 Thread::Thread() {}
 
+Thread::~Thread() {
+  Join();
+}
+
 std::thread::id Thread::Id() const {
   if (!thread_) {
-    return std::thread::id{};
+    return {};
   }
   return thread_->get_id();
 }
@@ -65,8 +69,12 @@ void Thread::Start() {
 }
 
 void Thread::Join() {
-  message_loop_->Stop();
-  thread_->join();
+  if (message_loop_) {
+    message_loop_->Stop();
+  }
+  if (thread_) {
+    thread_->join();
+  }
 
   thread_.reset();
   message_loop_.reset();

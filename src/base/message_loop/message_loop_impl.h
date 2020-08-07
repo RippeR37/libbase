@@ -16,9 +16,9 @@ class MessageLoopImpl : public MessageLoop {
                   std::shared_ptr<MessagePumpImpl> pump);
   ~MessageLoopImpl() override;
 
+  // MessageLoop
   bool RunOnce() override;
   void RunUntilIdle() override;
-
   void Run() override;
   void Stop() override;
 

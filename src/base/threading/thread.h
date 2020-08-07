@@ -11,6 +11,7 @@ namespace base {
 class Thread {
  public:
   Thread();
+  ~Thread();
 
   void Start();
   void Join();

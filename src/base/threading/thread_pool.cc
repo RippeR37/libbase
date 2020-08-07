@@ -10,6 +10,7 @@ namespace base {
 
 namespace {
 // TODO: move into separate classes (& try to solve DRY)
+// TODO: it shouldn't always inherit from `SingleThreadTaskRunner`
 class ThreadPoolTaskRunnerImpl : public SingleThreadTaskRunner {
  public:
   ThreadPoolTaskRunnerImpl(std::weak_ptr<MessagePump> pump,
@@ -51,7 +52,9 @@ struct ThreadPool::ThreadData {
 
 ThreadPool::ThreadPool(size_t initial_size) : initial_size_(initial_size) {}
 
-ThreadPool::~ThreadPool() = default;
+ThreadPool::~ThreadPool() {
+  Join();
+}
 
 void ThreadPool::Start() {
   auto message_pump = std::make_shared<MessagePumpImpl>();

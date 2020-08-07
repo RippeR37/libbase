@@ -4,15 +4,24 @@
 
 namespace base {
 
+namespace detail {
+class SequenceIdGenerator;
+}
+
 /**
- * This class represents an Id of a sequence for SequencedTaskRunner.
+ * This class represents an id of a sequence for SequencedTaskRunner.
  */
 class SequenceId {
  public:
-  SequenceId(uint64_t id);
+  SequenceId(const SequenceId&) = default;
+
   bool operator==(const SequenceId& other) const;
 
  private:
+  friend class detail::SequenceIdGenerator;
+
+  SequenceId(uint64_t id);
+
   uint64_t id_;
 };
 
