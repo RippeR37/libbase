@@ -51,8 +51,8 @@ endif()
 # Library files
 #
 
-file(GLOB_RECURSE LIBBASE_HEADERS ${PROJECT_SOURCE_DIR}/src/base/*.cc)
-file(GLOB_RECURSE LIBBASE_SOURCES ${PROJECT_SOURCE_DIR}/src/base/*.h)
+file(GLOB_RECURSE LIBBASE_HEADERS ${PROJECT_SOURCE_DIR}/src/base/*.h)
+file(GLOB_RECURSE LIBBASE_SOURCES ${PROJECT_SOURCE_DIR}/src/base/*.cc)
 
 
 #
@@ -77,15 +77,17 @@ target_link_libraries(libbase_exe Threads::Threads)
 #
 
 if(BUILD_TESTS)
+
     add_subdirectory(third_party/googletest)
     enable_testing()
     set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
     include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
     include_directories(${PROJECT_SOURCE_DIR}/src/)
 
-    file(GLOB_RECURSE TEST_SRC_FILES ${PROJECT_SOURCE_DIR}/tests/*.cc)
+    file(GLOB_RECURSE LIBBASE_TEST_HEADERS ${PROJECT_SOURCE_DIR}/tests/*.h)
+    file(GLOB_RECURSE LIBBASE_TEST_SOURCES ${PROJECT_SOURCE_DIR}/tests/*.cc)
 
-    add_executable(unit_tests ${TEST_SRC_FILES} ${LIBBASE_HEADERS} ${LIBBASE_SOURCES})
+    add_executable(unit_tests ${LIBBASE_TEST_HEADERS} ${LIBBASE_TEST_SOURCES} ${LIBBASE_HEADERS} ${LIBBASE_SOURCES})
     target_link_libraries(unit_tests gtest gtest_main Threads::Threads)
 
     #target_link_libraries(unit_tests libbase)
