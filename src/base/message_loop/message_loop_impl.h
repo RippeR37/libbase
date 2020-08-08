@@ -24,11 +24,10 @@ class MessageLoopImpl : public MessageLoop {
 
  private:
   void RunUntilIdleOrStop();
-
   void RunTask(MessagePump::PendingTask&& pending_task) const;
 
   const MessagePump::ExecutorId executor_id_;
-  std::shared_ptr<MessagePumpImpl> pump_;
+  std::shared_ptr<MessagePumpImpl> message_pump_;
   std::atomic_bool is_stopped_;
 };
 

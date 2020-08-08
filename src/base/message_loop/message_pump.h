@@ -12,9 +12,9 @@ class MessagePump {
   using ExecutorId = uintptr_t;  // TODO: make it better!
 
   struct PendingTask {
-    operator bool() const { return !!callback; }
+    operator bool() const { return !!task; }
 
-    OnceCallback<void()> callback;
+    OnceClosure task;
     std::optional<SequenceId> sequence_id;
     std::optional<ExecutorId> allowed_executor_id;
   };

@@ -491,4 +491,11 @@ class RepeatingCallback<ReturnType(ArgumentTypes...)> {
       impl_;
 };
 
+/*
+ * Closure aliases.
+ */
+
+using OnceClosure = OnceCallback<void()>;
+using RepeatingClosure = RepeatingCallback<void()>;
+
 }  // namespace base

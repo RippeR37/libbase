@@ -8,14 +8,16 @@ namespace base {
 
 MessageLoopImpl::MessageLoopImpl(MessagePump::ExecutorId executor_id,
                                  std::shared_ptr<MessagePumpImpl> pump)
-    : executor_id_(executor_id), pump_(std::move(pump)), is_stopped_(false) {}
+    : executor_id_(executor_id),
+      message_pump_(std::move(pump)),
+      is_stopped_(false) {}
 
 MessageLoopImpl::~MessageLoopImpl() {
   // TODO: maybe should RunUntilIdle() based on input options?
 }
 
 bool MessageLoopImpl::RunOnce() {
-  if (auto pending_task = pump_->GetNextPendingTask(executor_id_)) {
+  if (auto pending_task = message_pump_->GetNextPendingTask(executor_id_)) {
     RunTask(std::move(pending_task));
     return true;
   }
@@ -35,7 +37,7 @@ void MessageLoopImpl::Run() {
 
 void MessageLoopImpl::Stop() {
   is_stopped_ = true;
-  pump_->Stop();
+  message_pump_->Stop();
 }
 
 void MessageLoopImpl::RunUntilIdleOrStop() {
@@ -47,9 +49,9 @@ void MessageLoopImpl::RunTask(MessagePump::PendingTask&& pending_task) const {
   if (pending_task.sequence_id) {
     const auto scoped_sequence_id =
         detail::ScopedSequenceIdSetter{*pending_task.sequence_id};
-    std::move(pending_task.callback).Run();
+    std::move(pending_task.task).Run();
   } else {
-    std::move(pending_task.callback).Run();
+    std::move(pending_task.task).Run();
   }
 }
 

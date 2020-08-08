@@ -17,7 +17,7 @@ class ThreadTaskRunnerImpl : public SingleThreadTaskRunner {
         executor_id_(std::move(executor_id)) {}
 
   // TaskRunner
-  bool PostTask(SourceLocation location, OnceCallback<void()> task) override {
+  bool PostTask(SourceLocation location, OnceClosure task) override {
     (void)location;
 
     if (auto pump = pump_.lock()) {
