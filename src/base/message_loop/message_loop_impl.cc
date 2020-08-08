@@ -1,15 +1,14 @@
 #include "base/message_loop/message_loop_impl.h"
 
 #include "base/bind.h"
-#include "base/message_loop/message_pump_impl.h"
 #include "base/sequenced_task_runner_helpers.h"
 
 namespace base {
 
 MessageLoopImpl::MessageLoopImpl(MessagePump::ExecutorId executor_id,
-                                 std::shared_ptr<MessagePumpImpl> pump)
+                                 std::shared_ptr<MessagePump> message_pump)
     : executor_id_(executor_id),
-      message_pump_(std::move(pump)),
+      message_pump_(std::move(message_pump)),
       is_stopped_(false) {}
 
 MessageLoopImpl::~MessageLoopImpl() {
