@@ -82,13 +82,15 @@ if(BUILD_TESTS)
     enable_testing()
     set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
     include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+    include_directories(${gmock_SOURCE_DIR}/include ${gmock_SOURCE_DIR})
     include_directories(${PROJECT_SOURCE_DIR}/src/)
+    include_directories(${PROJECT_SOURCE_DIR}/tests/mock/)
 
     file(GLOB_RECURSE LIBBASE_TEST_HEADERS ${PROJECT_SOURCE_DIR}/tests/*.h)
     file(GLOB_RECURSE LIBBASE_TEST_SOURCES ${PROJECT_SOURCE_DIR}/tests/*.cc)
 
     add_executable(unit_tests ${LIBBASE_TEST_HEADERS} ${LIBBASE_TEST_SOURCES} ${LIBBASE_HEADERS} ${LIBBASE_SOURCES})
-    target_link_libraries(unit_tests gtest gtest_main Threads::Threads)
+    target_link_libraries(unit_tests gtest gtest_main gmock gmock_main Threads::Threads)
 
     #target_link_libraries(unit_tests libbase)
 
