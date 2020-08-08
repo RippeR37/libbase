@@ -7,6 +7,7 @@
 #include "base/bind.h"
 #include "base/message_loop/message_loop_impl.h"
 #include "base/message_loop/mock_message_pump.h"
+#include "base/sequenced_task_runner_helpers.h"
 
 #include "gtest/gtest.h"
 
@@ -43,8 +44,14 @@ class MessageLoopImplTest : public Test {
         .RetiresOnSaturation();
   }
 
+  base::MessagePump::PendingTask CreateSequencedPendingTask(
+      base::OnceClosure task,
+      std::optional<base::SequenceId> sequence_id) {
+    return {std::move(task), std::move(sequence_id), {}};
+  }
+
   base::MessagePump::PendingTask CreatePendingTask(base::OnceClosure task) {
-    return {std::move(task), {}, {}};
+    return CreateSequencedPendingTask(std::move(task), {});
   }
 
   base::MessagePump::PendingTask CreateEmptyPendingTask() {
@@ -85,6 +92,34 @@ TEST_F(MessageLoopImplTest, RunOnceExecutesOnlyOneTask) {
   ExpectTaskExecution(task_executed);
 
   EXPECT_TRUE(message_loop_impl_->RunOnce());
+}
+
+TEST_F(MessageLoopImplTest, CurrentSequenceSetWhenRunning) {
+  const auto sequence_id =
+      base::detail::SequenceIdGenerator::GetNextSequenceId();
+  bool was_current_sequence_set = false;
+
+  auto task = CreateSequencedPendingTask(
+      base::BindOnce(
+          [](base::SequenceId target_seq_id, bool* flag) {
+            ASSERT_NE(flag, nullptr);
+            if (base::detail::CurrentSequenceIdHelper::IsCurrentSequence(
+                    target_seq_id)) {
+              *flag = true;
+            }
+          },
+          sequence_id, &was_current_sequence_set),
+      sequence_id);
+  EXPECT_CALL(*mock_message_pump_, GetNextPendingTask)
+      .WillOnce(Return(ByMove(std::move(task))));
+
+  EXPECT_FALSE(
+      base::detail::CurrentSequenceIdHelper::IsCurrentSequence(sequence_id));
+  EXPECT_TRUE(message_loop_impl_->RunOnce());
+  EXPECT_FALSE(
+      base::detail::CurrentSequenceIdHelper::IsCurrentSequence(sequence_id));
+
+  EXPECT_TRUE(was_current_sequence_set);
 }
 
 TEST_F(MessageLoopImplTest, RunUntilIdleFinishesWithoutAnyTasks) {
