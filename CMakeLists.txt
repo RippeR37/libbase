@@ -29,7 +29,10 @@ find_package(Threads REQUIRED)
 
 set(CMAKE_CXX_STANDARD 17)
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-    set(WARNINGS "-Wall -Wextra -Wpedantic -Werror -Wold-style-cast -Wunreachable-code")
+    # Some warnings are enabled per-target because third-party code might not
+    # build with them.
+    set(WARNINGS "-Wall -Wextra -Wpedantic -Werror -Wunreachable-code")
+
     if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
       set(WARNINGS "${WARNINGS} -Wshadow")
     else()
@@ -76,12 +79,18 @@ add_executable(libbase_exe ${PROJECT_SOURCE_DIR}/src/main.cc ${LIBBASE_HEADERS} 
 target_link_libraries(libbase_exe Threads::Threads)
 #target_link_libraries(libbase_exe libbase)
 
+target_compile_options(libbase_exe PRIVATE "-Wold-style-cast")
+
 
 #
 # Setup testing
 #
 
 if(BUILD_TESTS)
+
+    #
+    # Unit-testing
+    #
 
     add_subdirectory(third_party/googletest)
     enable_testing()
@@ -91,13 +100,22 @@ if(BUILD_TESTS)
     include_directories(${PROJECT_SOURCE_DIR}/src/)
     include_directories(${PROJECT_SOURCE_DIR}/tests/mock/)
 
-    file(GLOB_RECURSE LIBBASE_TEST_HEADERS ${PROJECT_SOURCE_DIR}/tests/*.h)
-    file(GLOB_RECURSE LIBBASE_TEST_SOURCES ${PROJECT_SOURCE_DIR}/tests/*.cc)
+    file(GLOB_RECURSE LIBBASE_TEST_HEADERS ${PROJECT_SOURCE_DIR}/tests/src/*.h)
+    file(GLOB_RECURSE LIBBASE_TEST_SOURCES ${PROJECT_SOURCE_DIR}/tests/src/*.cc)
+    file(GLOB_RECURSE LIBBASE_MOCK_HEADERS ${PROJECT_SOURCE_DIR}/tests/mock/*.h)
+    file(GLOB_RECURSE LIBBASE_MOCK_SOURCES ${PROJECT_SOURCE_DIR}/tests/mock/*.cc)
 
-    add_executable(unit_tests ${LIBBASE_TEST_HEADERS} ${LIBBASE_TEST_SOURCES} ${LIBBASE_HEADERS} ${LIBBASE_SOURCES})
+    add_executable(unit_tests
+      ${LIBBASE_TEST_HEADERS}
+      ${LIBBASE_TEST_SOURCES}
+      ${LIBBASE_MOCK_HEADERS}
+      ${LIBBASE_MOCK_SOURCES}
+      ${LIBBASE_HEADERS}
+      ${LIBBASE_SOURCES})
     target_link_libraries(unit_tests gtest gtest_main gmock gmock_main Threads::Threads)
-
     #target_link_libraries(unit_tests libbase)
+
+    target_compile_options(libbase_exe PRIVATE "-Wold-style-cast")
 
     add_test(UnitTests unit_tests)
 
@@ -112,5 +130,29 @@ if(BUILD_TESTS)
                     unit_tests)
     endif()
 
-endif()
+    #
+    # Performance testing
+    #
 
+    # Google Benchmark setup
+    SET(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL "")
+    SET(BENCHMARK_ENABLE_INSTALL OFF CACHE BOOL "")
+    SET(BENCHMARK_ENABLE_GTEST_TESTS OFF CACHE BOOL "")
+    SET(BENCHMARK_ENABLE_ASSEMBLY_TESTS OFF CACHE BOOL "")
+    add_subdirectory(third_party/googlebenchmark)
+
+    # Performance tests
+    include_directories(${benchmark_SOURCE_DIR}/include ${benchmark_SOURCE_DIR})
+    file(GLOB_RECURSE LIBBASE_PERF_TEST_HEADERS ${PROJECT_SOURCE_DIR}/tests/perf/*.h)
+    file(GLOB_RECURSE LIBBASE_PERF_TEST_SOURCES ${PROJECT_SOURCE_DIR}/tests/perf/*.cc)
+    add_executable(perf_tests
+      ${LIBBASE_PERF_TEST_HEADERS}
+      ${LIBBASE_PERF_TEST_SOURCES}
+      ${LIBBASE_HEADERS}
+      ${LIBBASE_SOURCES})
+    target_link_libraries(perf_tests
+      benchmark::benchmark
+      benchmark::benchmark_main
+      Threads::Threads)
+
+endif()
