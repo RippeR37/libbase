@@ -3,7 +3,7 @@
 
 #include "base/bind.h"
 #include "base/callback.h"
-
+#include "base/synchronization/waitable_event.h"
 #include "base/threading/thread.h"
 #include "base/threading/thread_pool.h"
 
@@ -14,14 +14,19 @@ std::shared_ptr<base::SequencedTaskRunner> tr2;
 
 void Task1(std::shared_ptr<base::TaskRunner> current,
            std::shared_ptr<base::TaskRunner> next,
+           base::WaitableEvent* event,
            int n) {
   std::cout << "Writing from thread " << std::this_thread::get_id()
             << " with n=" << n << "(tr1: " << tr1->RunsTasksInCurrentSequence()
             << ", tr2: " << tr2->RunsTasksInCurrentSequence() << ")"
             << std::endl;
 
+  if (n == 5) {
+    event->Signal();
+  }
   if (n > 0) {
-    next->PostTask(FROM_HERE, base::BindOnce(&Task1, next, current, n - 1));
+    next->PostTask(FROM_HERE,
+                   base::BindOnce(&Task1, next, current, event, n - 1));
   }
 }
 
@@ -35,7 +40,12 @@ void ThreadExample() {
   tr1 = t1.TaskRunner();
   tr2 = t2.TaskRunner();
 
-  tr1->PostTask(FROM_HERE, base::BindOnce(&Task1, tr1, tr2, 10));
+  base::WaitableEvent event{base::WaitableEvent::ResetPolicy::kAutomatic,
+                            base::WaitableEvent::InitialState::kNotSignaled};
+  tr1->PostTask(FROM_HERE, base::BindOnce(&Task1, tr1, tr2, &event, 10));
+
+  event.Wait();
+  std::cout << "(at most 5 calls left)...\n";
 
   std::this_thread::sleep_for(std::chrono::seconds(1));
 
