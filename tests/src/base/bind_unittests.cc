@@ -1,5 +1,8 @@
 #include "base/bind.h"
 
+#include "base/sequenced_task_runner_helpers.h"
+#include "base/threading/thread.h"
+
 #include "gtest/gtest.h"
 
 namespace {
@@ -414,6 +417,199 @@ TEST(BindOnceCallbackTest, WithArg) {
   std::move(cb).Run();
   EXPECT_EQ(global_int_arg, 25);
   EXPECT_TRUE(!cb);
+}
+
+class WeakClass {
+ public:
+  WeakClass() : value_(0u), weak_factory_(this) {}
+
+  base::WeakPtr<WeakClass> GetWeakPtr() const {
+    return weak_factory_.GetWeakPtr();
+  }
+  void InvalidateWeakPtrs() { weak_factory_.InvalidateWeakPtrs(); }
+
+  size_t GetValue() { return value_; }
+  void IncrementValue() { ++value_; }
+  void IncrementBy(size_t increment_value) { value_ += increment_value; }
+  size_t IncrementAndGetValue() { return ++value_; }
+
+  void VerifyExpectation(size_t expected_value) {
+    EXPECT_EQ(GetValue(), expected_value);
+  }
+
+ private:
+  size_t value_;
+  base::WeakPtrFactory<WeakClass> weak_factory_;
+};
+
+class WeakCallbackTest : public ::testing::Test {
+ public:
+  WeakCallbackTest()
+      : sequence_id_setter_(
+            base::detail::SequenceIdGenerator::GetNextSequenceId()) {}
+
+ protected:
+  // We need to emulate that we're on some sequence for DCHECKs to work
+  // correctly.
+  base::detail::ScopedSequenceIdSetter sequence_id_setter_;
+  WeakClass weak_object_;
+};
+
+TEST_F(WeakCallbackTest, EmptyWeakOnceCallback) {
+  base::WeakPtr<WeakClass> weak_object = nullptr;
+  auto callback = base::BindOnce(&WeakClass::IncrementValue, weak_object);
+
+  EXPECT_EQ(weak_object_.GetValue(), 0u);
+  std::move(callback).Run();
+  EXPECT_EQ(weak_object_.GetValue(), 0u);
+}
+
+TEST_F(WeakCallbackTest, InvalidatedWeakOnceCallback) {
+  auto callback =
+      base::BindOnce(&WeakClass::IncrementValue, weak_object_.GetWeakPtr());
+
+  EXPECT_EQ(weak_object_.GetValue(), 0u);
+  weak_object_.InvalidateWeakPtrs();
+  std::move(callback).Run();
+  EXPECT_EQ(weak_object_.GetValue(), 0u);
+}
+
+TEST_F(WeakCallbackTest, ValidWeakOnceCallback) {
+  auto callback =
+      base::BindOnce(&WeakClass::IncrementValue, weak_object_.GetWeakPtr());
+
+  EXPECT_EQ(weak_object_.GetValue(), 0u);
+  std::move(callback).Run();
+  EXPECT_EQ(weak_object_.GetValue(), 1u);
+}
+
+TEST_F(WeakCallbackTest, ValidWeakOnceCallbackWithArg) {
+  const auto kIncrementByValue = 5u;
+  auto callback = base::BindOnce(&WeakClass::IncrementBy,
+                                 weak_object_.GetWeakPtr(), kIncrementByValue);
+
+  EXPECT_EQ(weak_object_.GetValue(), 0u);
+  std::move(callback).Run();
+  EXPECT_EQ(weak_object_.GetValue(), kIncrementByValue);
+}
+
+TEST_F(WeakCallbackTest, EmptyWeakRepeatingCallback) {
+  base::WeakPtr<WeakClass> weak_object = nullptr;
+  auto callback = base::BindRepeating(&WeakClass::IncrementValue, weak_object);
+
+  EXPECT_EQ(weak_object_.GetValue(), 0u);
+  callback.Run();
+  EXPECT_EQ(weak_object_.GetValue(), 0u);
+  callback.Run();
+  EXPECT_EQ(weak_object_.GetValue(), 0u);
+  callback.Run();
+  EXPECT_EQ(weak_object_.GetValue(), 0u);
+}
+
+TEST_F(WeakCallbackTest, InvalidatedWeakRepeatingCallback) {
+  auto callback = base::BindRepeating(&WeakClass::IncrementValue,
+                                      weak_object_.GetWeakPtr());
+
+  EXPECT_EQ(weak_object_.GetValue(), 0u);
+  weak_object_.InvalidateWeakPtrs();
+  callback.Run();
+  EXPECT_EQ(weak_object_.GetValue(), 0u);
+  callback.Run();
+  EXPECT_EQ(weak_object_.GetValue(), 0u);
+  callback.Run();
+  EXPECT_EQ(weak_object_.GetValue(), 0u);
+}
+
+TEST_F(WeakCallbackTest, ValidThenInvalidatedWeakRepeatingCallback) {
+  auto callback = base::BindRepeating(&WeakClass::IncrementValue,
+                                      weak_object_.GetWeakPtr());
+
+  EXPECT_EQ(weak_object_.GetValue(), 0u);
+  callback.Run();
+  EXPECT_EQ(weak_object_.GetValue(), 1u);
+  callback.Run();
+  EXPECT_EQ(weak_object_.GetValue(), 2u);
+  callback.Run();
+  EXPECT_EQ(weak_object_.GetValue(), 3u);
+
+  weak_object_.InvalidateWeakPtrs();
+
+  callback.Run();
+  EXPECT_EQ(weak_object_.GetValue(), 3u);
+  callback.Run();
+  EXPECT_EQ(weak_object_.GetValue(), 3u);
+}
+
+TEST_F(WeakCallbackTest, ValidThenInvalidatedWeakRepeatingCallbackWithArg) {
+  const auto kIncrementByValue = 5u;
+  auto callback = base::BindRepeating(
+      &WeakClass::IncrementBy, weak_object_.GetWeakPtr(), kIncrementByValue);
+
+  EXPECT_EQ(weak_object_.GetValue(), 0u);
+  callback.Run();
+  EXPECT_EQ(weak_object_.GetValue(), 1u * kIncrementByValue);
+  callback.Run();
+  EXPECT_EQ(weak_object_.GetValue(), 2u * kIncrementByValue);
+  callback.Run();
+  EXPECT_EQ(weak_object_.GetValue(), 3u * kIncrementByValue);
+
+  weak_object_.InvalidateWeakPtrs();
+
+  callback.Run();
+  EXPECT_EQ(weak_object_.GetValue(), 3u * kIncrementByValue);
+  callback.Run();
+  EXPECT_EQ(weak_object_.GetValue(), 3u * kIncrementByValue);
+}
+
+class ThreadedWeakCallbackTest : public WeakCallbackTest {
+ public:
+  void SetUp() override { thread_.Start(); }
+  void TearDown() override {
+    thread_.FlushForTesting();
+    thread_.Join();
+  }
+
+  std::shared_ptr<base::SequencedTaskRunner> TaskRunner() {
+    return thread_.TaskRunner();
+  }
+
+  void VerifyExpectation(size_t expected_value) {
+    EXPECT_TRUE(TaskRunner()->RunsTasksInCurrentSequence());
+    EXPECT_EQ(weak_object_.GetValue(), expected_value);
+  }
+
+ protected:
+  base::Thread thread_;
+};
+
+TEST_F(ThreadedWeakCallbackTest, UseWeakPtrOnAnotherSequence) {
+  auto weak_ptr = weak_object_.GetWeakPtr();
+  TaskRunner()->PostTask(
+      FROM_HERE, base::BindOnce(&WeakClass::VerifyExpectation, weak_ptr, 0u));
+
+  // Increment twice
+  TaskRunner()->PostTask(FROM_HERE,
+                         base::BindOnce(&WeakClass::IncrementValue, weak_ptr));
+  TaskRunner()->PostTask(
+      FROM_HERE, base::BindOnce(&WeakClass::VerifyExpectation, weak_ptr, 1u));
+  TaskRunner()->PostTask(FROM_HERE,
+                         base::BindOnce(&WeakClass::IncrementValue, weak_ptr));
+  TaskRunner()->PostTask(
+      FROM_HERE, base::BindOnce(&WeakClass::VerifyExpectation, weak_ptr, 2u));
+
+  // Invalidate
+  TaskRunner()->PostTask(
+      FROM_HERE, base::BindOnce(&WeakClass::InvalidateWeakPtrs, weak_ptr));
+
+  // Increment twice with no effect
+  TaskRunner()->PostTask(FROM_HERE,
+                         base::BindOnce(&WeakClass::IncrementValue, weak_ptr));
+  TaskRunner()->PostTask(
+      FROM_HERE, base::BindOnce(&WeakClass::VerifyExpectation, weak_ptr, 2u));
+  TaskRunner()->PostTask(FROM_HERE,
+                         base::BindOnce(&WeakClass::IncrementValue, weak_ptr));
+  TaskRunner()->PostTask(
+      FROM_HERE, base::BindOnce(&WeakClass::VerifyExpectation, weak_ptr, 2u));
 }
 
 }  // namespace

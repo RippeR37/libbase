@@ -4,6 +4,7 @@
 #include <memory>
 #include <type_traits>
 
+#include "base/memory/weak_ptr.h"
 #include "base/type_traits.h"
 
 namespace base {
@@ -162,6 +163,52 @@ class MemberFunctionOnceCallback<Class,
   std::tuple<BoundArgumentTypes...> bound_arguments_;
 };
 
+template <typename Class,
+          typename ReturnType,
+          typename BoundArgumentsTupleType,
+          typename... RunArgumentTypes>
+class MemberFunctionWeakPtrOnceCallback {
+  static_assert(!sizeof(Class), "xxx");
+};
+
+template <typename Class,
+          typename ReturnType,
+          typename... BoundArgumentTypes,
+          typename... RunArgumentTypes>
+class MemberFunctionWeakPtrOnceCallback<Class,
+                                        ReturnType,
+                                        std::tuple<BoundArgumentTypes...>,
+                                        RunArgumentTypes...>
+    : public OnceCallbackInterface<ReturnType, RunArgumentTypes...> {
+ public:
+  static_assert(std::is_same_v<ReturnType, void>,
+                "Cannot bind function with return value to base::WeakPtr");
+
+  MemberFunctionWeakPtrOnceCallback(
+      ReturnType (Class::*member_function_ptr)(BoundArgumentTypes...,
+                                               RunArgumentTypes...),
+      WeakPtr<Class> object,
+      std::tuple<BoundArgumentTypes...> bound_arguments)
+      : member_function_ptr_(member_function_ptr),
+        object_(std::move(object)),
+        bound_arguments_(std::move(bound_arguments)) {}
+
+  ReturnType Run(RunArgumentTypes... arguments) override {
+    if (object_) {
+      return ApplyBoundAndVariadicArgumentsToMemberFunction(
+          member_function_ptr_, object_.Get(), std::move(bound_arguments_),
+          std::make_index_sequence<sizeof...(BoundArgumentTypes)>{},
+          std::forward<RunArgumentTypes>(arguments)...);
+    }
+  }
+
+ private:
+  ReturnType (Class::*member_function_ptr_)(BoundArgumentTypes...,
+                                            RunArgumentTypes...);
+  WeakPtr<Class> object_;
+  std::tuple<BoundArgumentTypes...> bound_arguments_;
+};
+
 template <typename ReturnType,
           typename BoundArgumentsTupleType,
           typename... RunArgumentTypes>
@@ -292,6 +339,59 @@ class MemberFunctionRepeatingCallback<Class,
   std::tuple<BoundArgumentTypes...> bound_arguments_;
 };
 
+template <typename Class,
+          typename ReturnType,
+          typename BoundArgumentsTupleType,
+          typename... RunArgumentTypes>
+class MemberFunctionWeakPtrRepeatingCallback {
+  static_assert(!sizeof(Class), "");
+};
+
+template <typename Class,
+          typename ReturnType,
+          typename... BoundArgumentTypes,
+          typename... RunArgumentTypes>
+class MemberFunctionWeakPtrRepeatingCallback<Class,
+                                             ReturnType,
+                                             std::tuple<BoundArgumentTypes...>,
+                                             RunArgumentTypes...>
+    : public RepeatingCallbackInterface<ReturnType, RunArgumentTypes...> {
+ public:
+  static_assert(std::is_same_v<ReturnType, void>,
+                "Cannot bind function with return value to base::WeakPtr");
+
+  MemberFunctionWeakPtrRepeatingCallback(
+      ReturnType (Class::*member_function_ptr)(BoundArgumentTypes...,
+                                               RunArgumentTypes...),
+      WeakPtr<Class> object,
+      std::tuple<BoundArgumentTypes...> bound_arguments)
+      : member_function_ptr_(member_function_ptr),
+        object_(std::move(object)),
+        bound_arguments_(std::move(bound_arguments)) {}
+
+  ReturnType Run(RunArgumentTypes... arguments) override {
+    if (object_) {
+      return ApplyBoundAndVariadicArgumentsToMemberFunction(
+          member_function_ptr_, object_.Get(), bound_arguments_,
+          std::make_index_sequence<sizeof...(BoundArgumentTypes)>{},
+          std::forward<RunArgumentTypes>(arguments)...);
+    }
+  }
+
+  std::unique_ptr<RepeatingCallbackInterface<ReturnType, RunArgumentTypes...>>
+  Clone() const override {
+    return std::make_unique<MemberFunctionWeakPtrRepeatingCallback<
+        Class, ReturnType, std::tuple<BoundArgumentTypes...>,
+        RunArgumentTypes...>>(member_function_ptr_, object_, bound_arguments_);
+  }
+
+ private:
+  ReturnType (Class::*member_function_ptr_)(BoundArgumentTypes...,
+                                            RunArgumentTypes...);
+  WeakPtr<Class> object_;
+  std::tuple<BoundArgumentTypes...> bound_arguments_;
+};
+
 template <typename ReturnType,
           typename BoundArgumentsTupleType,
           typename... RunArgumentTypes>
@@ -379,6 +479,21 @@ class OnceCallback<ReturnType(ArgumentTypes...)> {
                                 object,
                                 std::move(bound_arguments))) {}
 
+  template <typename Class, typename... BoundArgumentTypes>
+  OnceCallback(ReturnType (Class::*member_function_ptr)(
+                   traits::IdentityT<BoundArgumentTypes>...,
+                   ArgumentTypes...),
+               WeakPtr<Class> object,
+               std::tuple<BoundArgumentTypes...> bound_arguments =
+                   std::tuple<BoundArgumentTypes...>{})
+      : impl_(new detail::MemberFunctionWeakPtrOnceCallback<
+              Class,
+              ReturnType,
+              std::tuple<BoundArgumentTypes...>,
+              ArgumentTypes...>(member_function_ptr,
+                                std::move(object),
+                                std::move(bound_arguments))) {}
+
   template <typename... BoundArgumentTypes>
   OnceCallback(OnceCallback<ReturnType(traits::IdentityT<BoundArgumentTypes>...,
                                        ArgumentTypes...)>&& callback,
@@ -414,10 +529,6 @@ class OnceCallback<ReturnType(ArgumentTypes...)> {
       impl_;
 };
 
-//
-//
-//
-
 template <typename Signature>
 class RepeatingCallback {
   static_assert(!sizeof(Signature), "xxx");
@@ -451,6 +562,21 @@ class RepeatingCallback<ReturnType(ArgumentTypes...)> {
               std::tuple<BoundArgumentTypes...>,
               ArgumentTypes...>(member_func, obj, std::move(bound_arguments))) {
   }
+
+  template <typename Class, typename... BoundArgumentTypes>
+  RepeatingCallback(
+      ReturnType (Class::*member_func)(traits::IdentityT<BoundArgumentTypes>...,
+                                       ArgumentTypes...),
+      WeakPtr<Class> obj,
+      std::tuple<BoundArgumentTypes...> bound_arguments =
+          std::tuple<BoundArgumentTypes...>{})
+      : impl_(new detail::MemberFunctionWeakPtrRepeatingCallback<
+              Class,
+              ReturnType,
+              std::tuple<BoundArgumentTypes...>,
+              ArgumentTypes...>(member_func,
+                                std::move(obj),
+                                std::move(bound_arguments))) {}
 
   template <typename... BoundArgumentTypes>
   RepeatingCallback(const RepeatingCallback<

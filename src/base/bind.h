@@ -78,6 +78,35 @@ auto BindOnce(
   return ResultType{member_function_ptr, object, std::move(bounded_args)};
 }
 
+template <typename Class,
+          typename ReturnType,
+          typename... FunctionArgumentTypes,
+          typename... BindArgumentTypes>
+auto BindOnce(
+    ReturnType (Class::*member_function_ptr)(FunctionArgumentTypes...),
+    WeakPtr<Class> object,
+    BindArgumentTypes&&... bind_args) {
+  static_assert(std::is_same_v<ReturnType, void>,
+                "Cannot bind function with return value to base::WeakPtr");
+  constexpr size_t func_arg_cnt = sizeof...(FunctionArgumentTypes);
+  constexpr size_t bind_arg_cnt = sizeof...(BindArgumentTypes);
+  static_assert(bind_arg_cnt <= func_arg_cnt,
+                "Cannot bind more more arguments than the function takes");
+
+  using BoundArgumentsType =
+      traits::HeadTypesRangeT<bind_arg_cnt, FunctionArgumentTypes...>;
+  using RemainingArgumentsType =
+      traits::TypesRangeT<bind_arg_cnt, func_arg_cnt - bind_arg_cnt,
+                          FunctionArgumentTypes...>;
+  using ResultType =
+      detail::BindResultType<OnceCallback, ReturnType, RemainingArgumentsType>;
+
+  BoundArgumentsType bounded_args{
+      std::forward<BindArgumentTypes>(bind_args)...};
+  return ResultType{member_function_ptr, std::move(object),
+                    std::move(bounded_args)};
+}
+
 template <typename LambdaType,
           typename... BindArgumentTypes,
           typename = std::enable_if_t<!std::is_pointer_v<LambdaType>>,
@@ -182,6 +211,35 @@ auto BindRepeating(
   BoundArgumentsType bounded_args{
       std::forward<BindArgumentTypes>(bind_args)...};
   return ResultType{member_function_ptr, object, std::move(bounded_args)};
+}
+
+template <typename Class,
+          typename ReturnType,
+          typename... FunctionArgumentTypes,
+          typename... BindArgumentTypes>
+auto BindRepeating(
+    ReturnType (Class::*member_function_ptr)(FunctionArgumentTypes...),
+    WeakPtr<Class> object,
+    BindArgumentTypes&&... bind_args) {
+  static_assert(std::is_same_v<ReturnType, void>,
+                "Cannot bind function with return value to base::WeakPtr");
+  constexpr size_t func_arg_cnt = sizeof...(FunctionArgumentTypes);
+  constexpr size_t bind_arg_cnt = sizeof...(BindArgumentTypes);
+  static_assert(bind_arg_cnt <= func_arg_cnt,
+                "Cannot bind more more arguments than the function takes");
+
+  using BoundArgumentsType =
+      traits::HeadTypesRangeT<bind_arg_cnt, FunctionArgumentTypes...>;
+  using RemainingArgumentsType =
+      traits::TypesRangeT<bind_arg_cnt, func_arg_cnt - bind_arg_cnt,
+                          FunctionArgumentTypes...>;
+  using ResultType = detail::BindResultType<RepeatingCallback, ReturnType,
+                                            RemainingArgumentsType>;
+
+  BoundArgumentsType bounded_args{
+      std::forward<BindArgumentTypes>(bind_args)...};
+  return ResultType{member_function_ptr, std::move(object),
+                    std::move(bounded_args)};
 }
 
 template <

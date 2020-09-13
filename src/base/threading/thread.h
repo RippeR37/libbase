@@ -19,6 +19,8 @@ class Thread {
   std::thread::id Id() const;
   std::shared_ptr<SingleThreadTaskRunner> TaskRunner();
 
+  void FlushForTesting();
+
  private:
   std::unique_ptr<MessageLoop> message_loop_;
   std::unique_ptr<std::thread> thread_;

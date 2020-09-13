@@ -1,8 +1,10 @@
 #include "base/threading/thread.h"
 
+#include "base/bind.h"
 #include "base/message_loop/message_loop_impl.h"
 #include "base/message_loop/message_pump_impl.h"
 #include "base/sequenced_task_runner_helpers.h"
+#include "base/synchronization/waitable_event.h"
 
 namespace base {
 
@@ -82,6 +84,19 @@ void Thread::Join() {
 
 std::shared_ptr<SingleThreadTaskRunner> Thread::TaskRunner() {
   return task_runner_;
+}
+
+void Thread::FlushForTesting() {
+  if (!thread_) {
+    return;
+  }
+
+  WaitableEvent waitable_event{WaitableEvent::ResetPolicy::kAutomatic,
+                               WaitableEvent::InitialState::kNotSignaled};
+  TaskRunner()->PostTask(
+      FROM_HERE, base::BindOnce([](WaitableEvent* event) { event->Signal(); },
+                                &waitable_event));
+  waitable_event.Wait();
 }
 
 }  // namespace base
