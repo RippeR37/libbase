@@ -2,6 +2,8 @@
 
 #include <memory>
 
+#include "base/sequenced_task_runner_helpers.h"
+
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
@@ -42,7 +44,19 @@ class WeakPtrFactoryOwner {
   base::WeakPtrFactory<WeakPtrFactoryOwner> weak_factory{this};
 };
 
-class WeakPtrFactoryTest : public Test {
+class BaseWeakPtrFactoryTest : public Test {
+ public:
+  BaseWeakPtrFactoryTest()
+      : sequence_id_setter_(
+            base::detail::SequenceIdGenerator::GetNextSequenceId()) {}
+
+ protected:
+  // We need to emulate that we're on some sequence for DCHECKs to work
+  // correctly.
+  base::detail::ScopedSequenceIdSetter sequence_id_setter_;
+};
+
+class WeakPtrFactoryTest : public BaseWeakPtrFactoryTest {
  public:
   void CreateWeakPtrFactoryOwner() {
     weak_class_ = std::make_unique<WeakPtrFactoryOwner>();
@@ -200,7 +214,9 @@ class Derived : public Base {
   void Bar() {}
 };
 
-TEST(WeakPtrFactoryUpcastingTest, UpcastingCopyCtor) {
+class WeakPtrFactoryUpcastingTest : public BaseWeakPtrFactoryTest {};
+
+TEST_F(WeakPtrFactoryUpcastingTest, UpcastingCopyCtor) {
   Derived derived;
   base::WeakPtrFactory<Derived> weak_factory{&derived};
 
@@ -221,7 +237,7 @@ TEST(WeakPtrFactoryUpcastingTest, UpcastingCopyCtor) {
   EXPECT_EQ(weak_base.Get(), nullptr);
 }
 
-TEST(WeakPtrFactoryUpcastingTest, UpcastingMoveCtor) {
+TEST_F(WeakPtrFactoryUpcastingTest, UpcastingMoveCtor) {
   Derived derived;
   base::WeakPtrFactory<Derived> weak_factory{&derived};
 
@@ -242,7 +258,7 @@ TEST(WeakPtrFactoryUpcastingTest, UpcastingMoveCtor) {
   EXPECT_EQ(weak_base.Get(), nullptr);
 }
 
-TEST(WeakPtrFactoryUpcastingTest, UpcastingCopyAssign) {
+TEST_F(WeakPtrFactoryUpcastingTest, UpcastingCopyAssign) {
   Base base;
   Derived derived;
   base::WeakPtrFactory<Base> weak_base_factory{&base};
@@ -272,7 +288,7 @@ TEST(WeakPtrFactoryUpcastingTest, UpcastingCopyAssign) {
   EXPECT_EQ(weak_base.Get(), nullptr);
 }
 
-TEST(WeakPtrFactoryUpcastingTest, UpcastingMoveAssign) {
+TEST_F(WeakPtrFactoryUpcastingTest, UpcastingMoveAssign) {
   Base base;
   Derived derived;
   base::WeakPtrFactory<Base> weak_base_factory{&base};
@@ -325,7 +341,10 @@ class MultiDerived : public MultiBase1, public MultiBase2 {
   int n3 = 0;
 };
 
-TEST(WeakPtrFactoryMultiInheritanceUpcastingTest, UpcastingCopyCtor) {
+class WeakPtrFactoryMultiInheritanceUpcastingTest
+    : public BaseWeakPtrFactoryTest {};
+
+TEST_F(WeakPtrFactoryMultiInheritanceUpcastingTest, UpcastingCopyCtor) {
   MultiDerived derived;
   base::WeakPtrFactory<MultiDerived> weak_factory{&derived};
 
@@ -351,7 +370,7 @@ TEST(WeakPtrFactoryMultiInheritanceUpcastingTest, UpcastingCopyCtor) {
   EXPECT_EQ(weak_base2.Get(), nullptr);
 }
 
-TEST(WeakPtrFactoryMultiInheritanceUpcastingTest, UpcastingMoveCtor) {
+TEST_F(WeakPtrFactoryMultiInheritanceUpcastingTest, UpcastingMoveCtor) {
   MultiDerived derived;
   base::WeakPtrFactory<MultiDerived> weak_factory{&derived};
 
@@ -384,7 +403,7 @@ TEST(WeakPtrFactoryMultiInheritanceUpcastingTest, UpcastingMoveCtor) {
   EXPECT_EQ(weak_base2.Get(), nullptr);
 }
 
-TEST(WeakPtrFactoryMultiInheritanceUpcastingTest, UpcastingCopyAssign) {
+TEST_F(WeakPtrFactoryMultiInheritanceUpcastingTest, UpcastingCopyAssign) {
   MultiBase1 base1;
   MultiBase2 base2;
   MultiDerived derived;
@@ -425,7 +444,7 @@ TEST(WeakPtrFactoryMultiInheritanceUpcastingTest, UpcastingCopyAssign) {
   EXPECT_EQ(weak_base2.Get(), nullptr);
 }
 
-TEST(WeakPtrFactoryMultiInheritanceUpcastingTest, UpcastingMoveAssign) {
+TEST_F(WeakPtrFactoryMultiInheritanceUpcastingTest, UpcastingMoveAssign) {
   MultiBase1 base1;
   MultiBase2 base2;
   MultiDerived derived;

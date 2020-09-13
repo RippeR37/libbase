@@ -5,12 +5,25 @@
 #include <memory>
 #include <utility>
 
+#include "base/sequence_checker.h"
+
 namespace base {
 
 template <typename T>
 class WeakPtr;
 template <typename T>
 class WeakPtrFactory;
+
+namespace detail {
+struct WeakPtrControlBlock {
+  WeakPtrControlBlock() : weak_count(0) {
+    DETACH_FROM_SEQUENCE(sequence_checker);
+  }
+
+  std::atomic_size_t weak_count;
+  SEQUENCE_CHECKER(sequence_checker);
+};
+}  // namespace detail
 
 template <typename T>
 class WeakPtr {
@@ -21,14 +34,14 @@ class WeakPtr {
 
   template <typename U>
   WeakPtr(const WeakPtr<U>& other)
-      : ptr_(other.ptr_), weak_count_(other.weak_count_) {
+      : ptr_(other.ptr_), control_block_(other.control_block_) {
     IncreaseWeakCount();
   }
 
   template <typename U>
   WeakPtr(WeakPtr<U>&& other)
       : ptr_(std::exchange(other.ptr_, nullptr)),
-        weak_count_(std::exchange(other.weak_count_, {})) {}
+        control_block_(std::exchange(other.control_block_, {})) {}
 
   template <typename U>
   WeakPtr& operator=(const WeakPtr<U>& other) {
@@ -36,7 +49,7 @@ class WeakPtr {
         reinterpret_cast<uintptr_t>(&other)) {
       DecreaseWeakCount();
       ptr_ = other.ptr_;
-      weak_count_ = other.weak_count_;
+      control_block_ = other.control_block_;
       IncreaseWeakCount();
     }
     return *this;
@@ -48,36 +61,39 @@ class WeakPtr {
         reinterpret_cast<uintptr_t>(&other)) {
       DecreaseWeakCount();
       ptr_ = std::exchange(other.ptr_, nullptr);
-      weak_count_ = std::exchange(other.weak_count_, {});
+      control_block_ = std::exchange(other.control_block_, {});
     }
     return *this;
   }
 
   T* operator->() const {
-    // DCHECK(Get());
+    DCHECK(Get());
     return Get();
   }
 
   T& operator*() const {
-    // DCHECK(Get());
+    DCHECK(Get());
     return *Get();
   }
 
   explicit operator bool() const { return (Get() != nullptr); }
 
   T* Get() const {
-    // DCHECK_CALLED_ON_VALID_SEQUENCE()
-    if (auto weak_count = weak_count_.lock()) {
+    if (auto control_block = control_block_.lock()) {
+      DCHECK_CALLED_ON_VALID_SEQUENCE(control_block->sequence_checker);
       return ptr_;
     }
     return nullptr;
   }
 
-  bool MaybeValid() const { return !!(weak_count_.lock()); }
+  bool MaybeValid() const { return !control_block_.expired(); }
 
   bool WasInvalidated() const {
-    // DCHECK_CALLED_ON_VALID_SEQUENCE
-    return ptr_ && !weak_count_.lock();
+    if (auto control_block = control_block_.lock()) {
+      DCHECK_CALLED_ON_VALID_SEQUENCE(control_block->sequence_checker);
+      return false;
+    }
+    return !!ptr_;
   }
 
  private:
@@ -85,25 +101,25 @@ class WeakPtr {
   template <typename U>
   friend class WeakPtr;
 
-  WeakPtr(T* ptr, std::weak_ptr<std::atomic_size_t> weak_count)
-      : ptr_(ptr), weak_count_(std::move(weak_count)) {
+  WeakPtr(T* ptr, std::weak_ptr<detail::WeakPtrControlBlock> control_block)
+      : ptr_(ptr), control_block_(std::move(control_block)) {
     IncreaseWeakCount();
   }
 
   void IncreaseWeakCount() {
-    if (auto count = weak_count_.lock()) {
-      ++(*count);
+    if (auto control_block = control_block_.lock()) {
+      ++(control_block->weak_count);
     }
   }
 
   void DecreaseWeakCount() {
-    if (auto weak_count = weak_count_.lock()) {
-      --(*weak_count);
+    if (auto control_block = control_block_.lock()) {
+      --(control_block->weak_count);
     }
   }
 
   T* ptr_;
-  std::weak_ptr<std::atomic_size_t> weak_count_;
+  std::weak_ptr<detail::WeakPtrControlBlock> control_block_;
 };
 
 template <typename T>
@@ -130,29 +146,37 @@ template <typename T>
 class WeakPtrFactory {
  public:
   explicit WeakPtrFactory(T* ptr)
-      : ptr_(ptr), weak_count_(std::make_shared<std::atomic_size_t>(0)) {}
+      : ptr_(ptr),
+        control_block_(std::make_shared<detail::WeakPtrControlBlock>()) {
+    DCHECK(ptr_);
+  }
 
   WeakPtrFactory(const WeakPtrFactory&) = delete;
   WeakPtrFactory(WeakPtrFactory&&) = delete;
   WeakPtrFactory& operator=(const WeakPtrFactory&) = delete;
   WeakPtrFactory& operator=(WeakPtrFactory&&) = delete;
 
-  WeakPtr<T> GetWeakPtr() const { return WeakPtr<T>{ptr_, weak_count_}; }
+  WeakPtr<T> GetWeakPtr() const {
+    if (!HasWeakPtrs()) {
+      DETACH_FROM_SEQUENCE(control_block_->sequence_checker);
+    }
+    return WeakPtr<T>{ptr_, control_block_};
+  }
 
   void InvalidateWeakPtrs() {
-    // DCHECK_CALLED_ON_VALID_SEQUENCE
-    // DCHECK(ptr_);
-    weak_count_ = std::make_shared<std::atomic_size_t>(0);
+    DCHECK(control_block_);
+    DCHECK_CALLED_ON_VALID_SEQUENCE(control_block_->sequence_checker);
+    control_block_ = std::make_shared<detail::WeakPtrControlBlock>();
   }
 
   bool HasWeakPtrs() const {
-    // DCHECK_CALLED_ON_VALID_SEQUENCE
-    return weak_count_ && (*weak_count_ > 0);
+    DCHECK(control_block_);
+    return (control_block_->weak_count > 0);
   }
 
  protected:
   T* const ptr_;
-  std::shared_ptr<std::atomic_size_t> weak_count_;
+  std::shared_ptr<detail::WeakPtrControlBlock> control_block_;
 };
 
 }  // namespace base
