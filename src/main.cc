@@ -1,11 +1,12 @@
-#include <iostream>
 #include <thread>
 
 #include "base/bind.h"
 #include "base/callback.h"
+#include "base/logging.h"
 #include "base/synchronization/waitable_event.h"
 #include "base/threading/thread.h"
 #include "base/threading/thread_pool.h"
+#include "base/vlog_is_on.h"
 
 namespace {
 std::shared_ptr<base::SequencedTaskRunner> tr1;
@@ -16,8 +17,10 @@ void Task1(std::shared_ptr<base::TaskRunner> current,
            std::shared_ptr<base::TaskRunner> next,
            base::WaitableEvent* event,
            int n) {
-  std::cout << "Writing from thread " << std::this_thread::get_id()
-            << " with n=" << n << "(tr1: " << tr1->RunsTasksInCurrentSequence()
+  CHECK_GE(n, 0) << "`n` must be greater or equal to 0";
+  LOG(INFO) << __FUNCTION__ << "() Writing from thread "
+            << std::this_thread::get_id() << " with n=" << n
+            << "(tr1: " << tr1->RunsTasksInCurrentSequence()
             << ", tr2: " << tr2->RunsTasksInCurrentSequence() << ")"
             << std::endl;
 
@@ -45,7 +48,7 @@ void ThreadExample() {
   tr1->PostTask(FROM_HERE, base::BindOnce(&Task1, tr1, tr2, &event, 10));
 
   event.Wait();
-  std::cout << "(at most 5 calls left)...\n";
+  LOG(INFO) << __FUNCTION__ << "() (at most 5 calls left)...";
 
   std::this_thread::sleep_for(std::chrono::seconds(1));
 
@@ -81,11 +84,18 @@ void ThreadPoolSingleThreadExample() {
   pool.Join();
 }
 
-int main() {
+int main(int /*argc*/, char* argv[]) {
+  FLAGS_logtostderr = true;
+  FLAGS_v = 3;
+  google::InitGoogleLogging(argv[0]);
+  google::InstallFailureSignalHandler();
+
   ThreadExample();
   ThreadPoolNonSequencedExample();
   ThreadPoolSequencedExample();
   ThreadPoolSingleThreadExample();
+
+  google::ShutdownGoogleLogging();
 
   return 0;
 }

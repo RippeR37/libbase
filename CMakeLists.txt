@@ -14,6 +14,7 @@ project(${PROJECT_NAME} CXX)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
 
+
 #
 # Build options
 #
@@ -29,30 +30,48 @@ find_package(Threads REQUIRED)
 
 set(CMAKE_CXX_STANDARD 17)
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-    # Some warnings are enabled per-target because third-party code might not
-    # build with them.
-    set(WARNINGS "-Wall -Wextra -Wpedantic -Werror -Wunreachable-code")
+    # -Wold-style-cast
+    set(WARNINGS "-Wall;-Wextra;-Wpedantic;-Werror;-Wunreachable-code")
 
     if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-      set(WARNINGS "${WARNINGS} -Wshadow")
+      set(WARNINGS "${WARNINGS};-Wshadow")
     else()
-      set(WARNINGS "${WARNINGS} -Wshadow=local")
+      set(WARNINGS "${WARNINGS};-Wshadow=local")
     endif()
 elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
     set(WARNINGS "/W4 /WX /EHsc")
 endif()
 
 if(BUILD_TESTS AND "${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-   set(COVERAGE_FLAGS "-g -fprofile-arcs -ftest-coverage -fno-inline -fno-inline-small-functions -fno-default-inline -fno-elide-constructors")
+   set(COVERAGE_FLAGS "-g;-fprofile-arcs;-ftest-coverage;-fno-inline;-fno-inline-small-functions;-fno-default-inline;-fno-elide-constructors")
 endif()
 
 if (NOT CONFIGURED_ONCE)
-    set(CMAKE_CXX_FLAGS "${WARNINGS} ${EXTRA_FLAGS} ${COVERAGE_FLAGS}"
-    CACHE STRING "Flags used by the compiler during all build types." FORCE)
+    set(
+      LIBBASE_FLAGS_PROGRAM
+      "${WARNINGS}"
+      CACHE STRING "Flags used by the compiler during normal build types."
+      FORCE)
+    set(
+      LIBBASE_FLAGS_TESTS
+      "${WARNINGS};${COVERAGE_FLAGS}"
+      CACHE STRING "Flags used by the compiler during test build types."
+      FORCE)
 
     message(STATUS "Compiler: ${CMAKE_CXX_COMPILER}")
-    message(STATUS "Compiler flags: '${CMAKE_CXX_FLAGS}'")
+    message(STATUS "Compiler flags (normal): '${LIBBASE_FLAGS_PROGRAM}'")
+    message(STATUS "Compiler flags (tests):  '${LIBBASE_FLAGS_TESTS}'")
 endif()
+
+
+#
+# Dependencies
+#
+
+set(BUILD_TESTING OFF CACHE STRING "Override GLOG not to build its unit tests")
+add_subdirectory(third_party/glog)
+include_directories(${glog_SOURCE_DIR}/include ${glog_SOURCE_DIR})
+unset(BUILD_TESTING CACHE)
 
 
 #
@@ -76,10 +95,10 @@ file(GLOB_RECURSE LIBBASE_SOURCES ${PROJECT_SOURCE_DIR}/src/base/*.cc)
 #
 
 add_executable(libbase_exe ${PROJECT_SOURCE_DIR}/src/main.cc ${LIBBASE_HEADERS} ${LIBBASE_SOURCES})
-target_link_libraries(libbase_exe Threads::Threads)
+target_link_libraries(libbase_exe Threads::Threads glog::glog)
 #target_link_libraries(libbase_exe libbase)
 
-target_compile_options(libbase_exe PRIVATE "-Wold-style-cast")
+target_compile_options(libbase_exe PRIVATE "${LIBBASE_FLAGS_PROGRAM}")
 
 
 #
@@ -112,10 +131,10 @@ if(BUILD_TESTS)
       ${LIBBASE_MOCK_SOURCES}
       ${LIBBASE_HEADERS}
       ${LIBBASE_SOURCES})
-    target_link_libraries(unit_tests gtest gtest_main gmock gmock_main Threads::Threads)
+    target_link_libraries(unit_tests gtest gtest_main gmock gmock_main glog::glog Threads::Threads)
     #target_link_libraries(unit_tests libbase)
 
-    target_compile_options(libbase_exe PRIVATE "-Wold-style-cast")
+    target_compile_options(unit_tests PRIVATE "${LIBBASE_FLAGS_TESTS}")
 
     add_test(UnitTests unit_tests)
 
@@ -153,6 +172,7 @@ if(BUILD_TESTS)
     target_link_libraries(perf_tests
       benchmark::benchmark
       benchmark::benchmark_main
+      glog::glog
       Threads::Threads)
 
 endif()
