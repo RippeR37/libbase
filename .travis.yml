@@ -25,5 +25,4 @@ script:
   - cd ..
 
 after_success:
-  - if [[ $CXX == g++* ]]; then coveralls --verbose -E ".*/third_party/.*" -E "/usr/.*" -E ".*CMakeFiles.*" -E ".*/main.cc"; fi
-
+  - if [[ $CXX == g++* ]]; then coveralls --verbose -E ".*/third_party/.*" -E "/usr/.*" -E ".*CMakeFiles.*" -E ".*/main.cc" -E ".*/tests/.*"; fi
