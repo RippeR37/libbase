@@ -128,7 +128,7 @@ TEST_F(MessagePumpImplTest, DequeueOnlyForAllowedExecutor) {
 }
 
 TEST_F(MessagePumpImplTest, DequeueOnEmptyPumpWaitsForStop) {
-  using std::chrono_literals::operator""ms;
+  using namespace std::chrono_literals;
 
   std::atomic_bool dequeue_finished = false;
   const auto async_result = std::async(std::launch::async, [&]() {
@@ -142,7 +142,7 @@ TEST_F(MessagePumpImplTest, DequeueOnEmptyPumpWaitsForStop) {
 }
 
 TEST_F(MessagePumpImplTest, DequeueOnEmptyPumpWaitsForEnqueue) {
-  using std::chrono_literals::operator""ms;
+  using namespace std::chrono_literals;
 
   bool task_executed = false;
   std::atomic_bool dequeue_finished = false;

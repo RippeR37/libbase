@@ -145,7 +145,7 @@ TEST_F(MessageLoopImplTest, StopIsForwarded) {
 }
 
 TEST_F(MessageLoopImplTest, RunIsExecutedUntilStopIsCalled) {
-  using std::chrono_literals::operator""ms;
+  using namespace std::chrono_literals;
 
   EXPECT_CALL(*mock_message_pump_, Stop);
   EXPECT_CALL(*mock_message_pump_, GetNextPendingTask).WillRepeatedly([&]() {
