@@ -17,7 +17,7 @@ namespace base {
 
 #else
 
-#define SEQUENCE_CHECKER(name)
+#define SEQUENCE_CHECKER(name) static_assert(true, "")
 #define DCHECK_CALLED_ON_VALID_SEQUENCE(sequence_checker)
 #define DETACH_FROM_SEQUENCE(sequence_checker)
 

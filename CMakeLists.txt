@@ -20,6 +20,8 @@ set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
 #
 
 option(BUILD_TESTS "Build all tests." ON)
+option(CODE_COVERAGE "Compute code coverage." OFF)
+option(PERFORMANCE_TESTS "Build performance tests." ON)
 
 
 #
@@ -42,7 +44,7 @@ elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
     set(WARNINGS "/W4 /WX /EHsc")
 endif()
 
-if(BUILD_TESTS AND "${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+if(BUILD_TESTS AND CODE_COVERAGE AND CMAKE_COMPILER_IS_GNUCXX)
    set(COVERAGE_FLAGS "-g;-fprofile-arcs;-ftest-coverage;-fno-inline;-fno-inline-small-functions;-fno-default-inline;-fno-elide-constructors")
 endif()
 
@@ -61,6 +63,7 @@ if (NOT CONFIGURED_ONCE)
     message(STATUS "Compiler: ${CMAKE_CXX_COMPILER}")
     message(STATUS "Compiler flags (normal): '${LIBBASE_FLAGS_PROGRAM}'")
     message(STATUS "Compiler flags (tests):  '${LIBBASE_FLAGS_TESTS}'")
+    message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 endif()
 
 
@@ -68,6 +71,7 @@ endif()
 # Dependencies
 #
 
+# GLOG
 set(BUILD_TESTING OFF CACHE STRING "Override GLOG not to build its unit tests")
 add_subdirectory(third_party/glog)
 include_directories(${glog_SOURCE_DIR}/include ${glog_SOURCE_DIR})
@@ -80,7 +84,7 @@ unset(BUILD_TESTING CACHE)
 
 file(GLOB_RECURSE LIBBASE_HEADERS ${PROJECT_SOURCE_DIR}/src/base/*.h)
 file(GLOB_RECURSE LIBBASE_SOURCES ${PROJECT_SOURCE_DIR}/src/base/*.cc)
-
+include_directories(${PROJECT_SOURCE_DIR}/src/)
 
 #
 # Compile library
@@ -94,36 +98,34 @@ file(GLOB_RECURSE LIBBASE_SOURCES ${PROJECT_SOURCE_DIR}/src/base/*.cc)
 # Setup executable
 #
 
-add_executable(libbase_exe ${PROJECT_SOURCE_DIR}/src/main.cc ${LIBBASE_HEADERS} ${LIBBASE_SOURCES})
-target_link_libraries(libbase_exe Threads::Threads glog::glog)
-#target_link_libraries(libbase_exe libbase)
-
+add_executable(libbase_exe ${PROJECT_SOURCE_DIR}/src/main.cc
+  ${LIBBASE_HEADERS}
+  ${LIBBASE_SOURCES})
+target_link_libraries(libbase_exe
+  glog::glog
+  Threads::Threads)
 target_compile_options(libbase_exe PRIVATE "${LIBBASE_FLAGS_PROGRAM}")
 
 
 #
-# Setup testing
+# Unit testing
 #
 
 if(BUILD_TESTS)
 
-    #
-    # Unit-testing
-    #
-
+    # Google Test setup
     add_subdirectory(third_party/googletest)
     enable_testing()
     set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
     include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
     include_directories(${gmock_SOURCE_DIR}/include ${gmock_SOURCE_DIR})
-    include_directories(${PROJECT_SOURCE_DIR}/src/)
     include_directories(${PROJECT_SOURCE_DIR}/tests/mock/)
 
+    # Unit tests
     file(GLOB_RECURSE LIBBASE_TEST_HEADERS ${PROJECT_SOURCE_DIR}/tests/src/*.h)
     file(GLOB_RECURSE LIBBASE_TEST_SOURCES ${PROJECT_SOURCE_DIR}/tests/src/*.cc)
     file(GLOB_RECURSE LIBBASE_MOCK_HEADERS ${PROJECT_SOURCE_DIR}/tests/mock/*.h)
     file(GLOB_RECURSE LIBBASE_MOCK_SOURCES ${PROJECT_SOURCE_DIR}/tests/mock/*.cc)
-
     add_executable(unit_tests
       ${LIBBASE_TEST_HEADERS}
       ${LIBBASE_TEST_SOURCES}
@@ -131,14 +133,18 @@ if(BUILD_TESTS)
       ${LIBBASE_MOCK_SOURCES}
       ${LIBBASE_HEADERS}
       ${LIBBASE_SOURCES})
-    target_link_libraries(unit_tests gtest gtest_main gmock gmock_main glog::glog Threads::Threads)
-    #target_link_libraries(unit_tests libbase)
-
+    target_link_libraries(unit_tests
+      gtest
+      gtest_main
+      gmock
+      gmock_main
+      glog::glog
+      Threads::Threads)
     target_compile_options(unit_tests PRIVATE "${LIBBASE_FLAGS_TESTS}")
-
     add_test(UnitTests unit_tests)
 
-    if(CMAKE_COMPILER_IS_GNUCXX)
+    # Code coverage
+    if(CODE_COVERAGE AND CMAKE_COMPILER_IS_GNUCXX)
         include(CodeCoverage)
         APPEND_COVERAGE_COMPILER_FLAGS()
         set(COVERAGE_LCOV_EXCLUDES '/usr/*' '*/third_party/*' '*/main.cc' '*/tests/*')
@@ -149,9 +155,13 @@ if(BUILD_TESTS)
                     unit_tests)
     endif()
 
-    #
-    # Performance testing
-    #
+endif()
+
+#
+# Performance testing
+#
+
+if(PERFORMANCE_TESTS)
 
     # Google Benchmark setup
     SET(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL "")

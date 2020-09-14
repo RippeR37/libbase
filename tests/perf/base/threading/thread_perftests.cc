@@ -57,7 +57,7 @@ static void BM_TestDoubleThreaded(benchmark::State& state) {
 #define LIBBASE_BENCHMARK(x)                                                  \
   BENCHMARK(x)                                                                \
       ->Unit(::benchmark::TimeUnit::kMicrosecond)                             \
-      ->Repetitions(10)                                                       \
+      ->Repetitions(2)                                                        \
       ->ComputeStatistics(                                                    \
           "min",                                                              \
           [](auto& values) {                                                  \
