@@ -50,7 +50,10 @@ struct ThreadPool::ThreadData {
   std::unique_ptr<std::thread> thread;
 };
 
-ThreadPool::ThreadPool(size_t initial_size) : initial_size_(initial_size) {}
+ThreadPool::ThreadPool(size_t initial_size)
+    : initial_size_(initial_size), random_generator_(std::random_device{}()) {
+  DCHECK_GT(initial_size_, 0u);
+}
 
 ThreadPool::~ThreadPool() {
   Join();
@@ -93,8 +96,10 @@ std::shared_ptr<SequencedTaskRunner> ThreadPool::CreateSequencedTaskRunner() {
 
 std::shared_ptr<SingleThreadTaskRunner>
 ThreadPool::CreateSingleThreadTaskRunner() {
-  MessagePump::ExecutorId allowed_executor_id =
-      0;  // TODO: should be random from existing threads!
+  std::uniform_int_distribution<MessagePump::ExecutorId>
+      executor_id_distribution(0, initial_size_ - 1);
+  const MessagePump::ExecutorId allowed_executor_id =
+      executor_id_distribution(random_generator_);
 
   return std::make_shared<ThreadPoolTaskRunnerImpl>(
       pump_, detail::SequenceIdGenerator::GetNextSequenceId(),

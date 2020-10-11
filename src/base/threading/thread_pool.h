@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <random>
 #include <vector>
 
 #include "base/single_thread_task_runner.h"
@@ -28,6 +29,7 @@ class ThreadPool {
   std::weak_ptr<MessagePump> pump_;
   std::vector<ThreadData> threads_;
   std::shared_ptr<TaskRunner> task_runner_;
+  std::mt19937 random_generator_;
 };
 
 }  // namespace base
