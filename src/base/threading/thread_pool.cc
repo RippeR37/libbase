@@ -5,45 +5,9 @@
 #include "base/message_loop/message_loop_impl.h"
 #include "base/message_loop/message_pump_impl.h"
 #include "base/sequenced_task_runner_helpers.h"
+#include "base/threading/task_runner_impl.h"
 
 namespace base {
-
-namespace {
-// TODO: move into separate classes (& try to solve DRY)
-// TODO: it shouldn't always inherit from `SingleThreadTaskRunner`
-class ThreadPoolTaskRunnerImpl : public SingleThreadTaskRunner {
- public:
-  ThreadPoolTaskRunnerImpl(std::weak_ptr<MessagePump> pump,
-                           std::optional<SequenceId> sequence_id,
-                           std::optional<MessagePump::ExecutorId> executor_id)
-      : pump_(std::move(pump)),
-        sequence_id_(std::move(sequence_id)),
-        executor_id_(std::move(executor_id)) {}
-
-  // TaskRunner
-  bool PostTask(SourceLocation location, OnceClosure task) override {
-    (void)location;
-
-    if (auto pump = pump_.lock()) {
-      pump->QueuePendingTask({std::move(task), sequence_id_, executor_id_});
-      return true;
-    }
-
-    return false;
-  }
-
-  // SequencedTaskRunner
-  bool RunsTasksInCurrentSequence() const override {
-    return sequence_id_ &&
-           detail::CurrentSequenceIdHelper::IsCurrentSequence(*sequence_id_);
-  }
-
- private:
-  const std::weak_ptr<MessagePump> pump_;
-  const std::optional<SequenceId> sequence_id_;
-  const std::optional<MessagePump::ExecutorId> executor_id_;
-};
-}  // namespace
 
 struct ThreadPool::ThreadData {
   std::unique_ptr<MessageLoop> message_loop;
@@ -73,8 +37,7 @@ void ThreadPool::Start() {
   }
 
   std::weak_ptr<MessagePump> weak_message_pump = message_pump;
-  task_runner_ = std::make_shared<ThreadPoolTaskRunnerImpl>(
-      weak_message_pump, std::nullopt, std::nullopt);
+  task_runner_ = std::make_shared<TaskRunnerImpl>(std::move(weak_message_pump));
 }
 
 void ThreadPool::Join() {
@@ -90,8 +53,8 @@ std::shared_ptr<TaskRunner> ThreadPool::GetTaskRunner() const {
 }
 
 std::shared_ptr<SequencedTaskRunner> ThreadPool::CreateSequencedTaskRunner() {
-  return std::make_shared<ThreadPoolTaskRunnerImpl>(
-      pump_, detail::SequenceIdGenerator::GetNextSequenceId(), std::nullopt);
+  return std::make_shared<SequencedTaskRunnerImpl>(
+      pump_, detail::SequenceIdGenerator::GetNextSequenceId());
 }
 
 std::shared_ptr<SingleThreadTaskRunner>
@@ -101,7 +64,7 @@ ThreadPool::CreateSingleThreadTaskRunner() {
   const MessagePump::ExecutorId allowed_executor_id =
       executor_id_distribution(random_generator_);
 
-  return std::make_shared<ThreadPoolTaskRunnerImpl>(
+  return std::make_shared<SingleThreadTaskRunnerImpl>(
       pump_, detail::SequenceIdGenerator::GetNextSequenceId(),
       allowed_executor_id);
 }

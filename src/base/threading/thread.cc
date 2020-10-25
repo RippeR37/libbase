@@ -5,43 +5,9 @@
 #include "base/message_loop/message_pump_impl.h"
 #include "base/sequenced_task_runner_helpers.h"
 #include "base/synchronization/waitable_event.h"
+#include "base/threading/task_runner_impl.h"
 
 namespace base {
-
-namespace {
-class ThreadTaskRunnerImpl : public SingleThreadTaskRunner {
- public:
-  ThreadTaskRunnerImpl(std::weak_ptr<MessagePump> pump,
-                       std::optional<SequenceId> sequence_id,
-                       std::optional<MessagePump::ExecutorId> executor_id)
-      : pump_(std::move(pump)),
-        sequence_id_(std::move(sequence_id)),
-        executor_id_(std::move(executor_id)) {}
-
-  // TaskRunner
-  bool PostTask(SourceLocation location, OnceClosure task) override {
-    (void)location;
-
-    if (auto pump = pump_.lock()) {
-      pump->QueuePendingTask({std::move(task), sequence_id_, executor_id_});
-      return true;
-    }
-
-    return false;
-  }
-
-  // SequencedTaskRunner
-  bool RunsTasksInCurrentSequence() const override {
-    return sequence_id_ &&
-           detail::CurrentSequenceIdHelper::IsCurrentSequence(*sequence_id_);
-  }
-
- private:
-  const std::weak_ptr<MessagePump> pump_;
-  const std::optional<SequenceId> sequence_id_;
-  const std::optional<MessagePump::ExecutorId> executor_id_;
-};
-}  // namespace
 
 Thread::Thread() {}
 
@@ -65,7 +31,7 @@ void Thread::Start() {
       std::make_unique<std::thread>(&MessageLoop::Run, message_loop_.get());
 
   std::weak_ptr<MessagePump> weak_message_pump = message_pump;
-  task_runner_ = std::make_unique<ThreadTaskRunnerImpl>(
+  task_runner_ = std::make_unique<SingleThreadTaskRunnerImpl>(
       weak_message_pump, detail::SequenceIdGenerator::GetNextSequenceId(),
       executor_id);
 }
