@@ -13,17 +13,23 @@ using namespace ::testing;
 
 const base::MessagePump::ExecutorId kExecutorId = 0;
 const base::MessagePump::ExecutorId kOtherExecutorId = 1;
+const base::MessagePump::ExecutorId kHighestExecutorId = kOtherExecutorId;
+const size_t kExecutorCount = kHighestExecutorId + 1;
 
 class MessagePumpImplTest : public Test {
  public:
-  void SetUp() override {
-    //
-  }
+  MessagePumpImplTest() : pump(kExecutorCount) {}
 
   base::MessagePump::PendingTask CreateExecutorTask(
       base::OnceClosure task,
       std::optional<base::MessagePump::ExecutorId> executor_id) {
     return {std::move(task), {}, std::move(executor_id)};
+  }
+
+  base::MessagePump::PendingTask CreateSequenceTask(
+      base::OnceClosure task,
+      std::optional<base::SequenceId> sequence_id) {
+    return {std::move(task), std::move(sequence_id), {}};
   }
 
   base::MessagePump::PendingTask CreateTask(base::OnceClosure task) {
@@ -45,6 +51,15 @@ class MessagePumpImplTest : public Test {
     return CreateExecutorTask(
         base::BindOnce([](bool& ext_flag) { ext_flag = true; }, flag),
         std::move(executor_id));
+  }
+
+  base::MessagePump::PendingTask CreateSetterSequenceTask(
+      std::optional<base::SequenceId> sequence_id,
+      bool& flag) {
+    EXPECT_FALSE(flag);
+    return CreateSequenceTask(
+        base::BindOnce([](bool& ext_flag) { ext_flag = true; }, flag),
+        std::move(sequence_id));
   }
 
   base::MessagePumpImpl pump;
@@ -127,6 +142,38 @@ TEST_F(MessagePumpImplTest, DequeueOnlyForAllowedExecutor) {
   EXPECT_TRUE(any_executor_task_executed);
 }
 
+TEST_F(MessagePumpImplTest, DequeueSkipsTasksFromActiveSequences) {
+  const auto sequence_1 =
+      base::detail::SequenceIdGenerator::GetNextSequenceId();
+  const auto sequence_2 =
+      base::detail::SequenceIdGenerator::GetNextSequenceId();
+
+  bool task1_sequence1 = false;
+  bool task2_sequence1 = false;
+  bool task3_sequence2 = false;
+
+  pump.QueuePendingTask(CreateSetterSequenceTask(sequence_1, task1_sequence1));
+  pump.QueuePendingTask(CreateSetterSequenceTask(sequence_1, task2_sequence1));
+  pump.QueuePendingTask(CreateSetterSequenceTask(sequence_2, task3_sequence2));
+
+  auto task1 = pump.GetNextPendingTask(kExecutorId);
+  EXPECT_FALSE(task1.allowed_executor_id);
+  ASSERT_TRUE(task1.task);
+  std::move(task1.task).Run();
+  EXPECT_TRUE(task1_sequence1);
+  EXPECT_FALSE(task2_sequence1);
+  EXPECT_FALSE(task3_sequence2);
+
+  // This simulates another executor thread asking for available work.
+  auto task2 = pump.GetNextPendingTask(kOtherExecutorId);
+  EXPECT_FALSE(task2.allowed_executor_id);
+  ASSERT_TRUE(task2.task);
+  std::move(task2.task).Run();
+  EXPECT_TRUE(task1_sequence1);
+  EXPECT_FALSE(task2_sequence1);
+  EXPECT_TRUE(task3_sequence2);
+}
+
 TEST_F(MessagePumpImplTest, DequeueOnEmptyPumpWaitsForStop) {
   using namespace std::chrono_literals;
 
@@ -160,6 +207,26 @@ TEST_F(MessagePumpImplTest, DequeueOnEmptyPumpWaitsForEnqueue) {
   EXPECT_FALSE(task_executed);
   std::move(result.task).Run();
   EXPECT_TRUE(task_executed);
+}
+
+TEST_F(MessagePumpImplTest, DequeueOnBlockedSequencedWaitsForStop) {
+  using namespace std::chrono_literals;
+
+  const auto sequence_id =
+      base::detail::SequenceIdGenerator::GetNextSequenceId();
+  pump.QueuePendingTask(CreateSequenceTask(base::DoNothing{}, sequence_id));
+  pump.QueuePendingTask(CreateSequenceTask(base::DoNothing{}, sequence_id));
+
+  auto task1 = pump.GetNextPendingTask(kExecutorId);
+  std::atomic_bool dequeue_finished = false;
+  const auto async_result = std::async(std::launch::async, [&]() {
+    std::this_thread::sleep_for(20ms);
+    EXPECT_FALSE(dequeue_finished);
+    pump.Stop();
+  });
+  const auto result = pump.GetNextPendingTask(kOtherExecutorId);
+  dequeue_finished = true;
+  EXPECT_FALSE(result);
 }
 
 }  // namespace

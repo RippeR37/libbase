@@ -24,7 +24,7 @@ ThreadPool::~ThreadPool() {
 }
 
 void ThreadPool::Start() {
-  auto message_pump = std::make_shared<MessagePumpImpl>();
+  auto message_pump = std::make_shared<MessagePumpImpl>(initial_size_);
 
   for (size_t thread_idx = 0; thread_idx < initial_size_; ++thread_idx) {
     const MessagePump::ExecutorId executor_id = thread_idx;

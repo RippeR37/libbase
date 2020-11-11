@@ -23,7 +23,8 @@ std::thread::id Thread::Id() const {
 }
 
 void Thread::Start() {
-  auto message_pump = std::make_shared<MessagePumpImpl>();
+  const size_t executor_count = 1;
+  auto message_pump = std::make_shared<MessagePumpImpl>(executor_count);
 
   const MessagePump::ExecutorId executor_id = 0;
   message_loop_ = std::make_unique<MessageLoopImpl>(executor_id, message_pump);
