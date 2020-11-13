@@ -1,15 +1,14 @@
 #pragma once
 
-#include <string>
+#include <cstddef>
 
 namespace base {
 
 class SourceLocation {
  public:
-  SourceLocation(std::string file, size_t line)
-      : file(std::move(file)), line(line) {}
+  SourceLocation(const char* file, size_t line) : file(file), line(line) {}
 
-  std::string file;
+  const char* file;
   size_t line;
 };
 
