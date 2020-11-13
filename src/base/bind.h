@@ -39,10 +39,17 @@ auto BindOnce(ReturnType (*function_ptr)(FunctionArgumentTypes...),
   static_assert(bind_arg_cnt <= func_arg_cnt,
                 "Cannot bind more more arguments than the function takes");
 
+  // This is a workaround for a Clang bug. If |bind_arg_cnt > func_arg_cnt|,
+  // then even though the above assert will fail, Clang will still process the
+  // below typedefs which might instantiate std::index_sequence with huge count
+  // which can crash the compiler.
+  constexpr size_t remaining_arg_count =
+      func_arg_cnt - std::min(bind_arg_cnt, func_arg_cnt);
+
   using BoundArgumentsType =
       traits::HeadTypesRangeT<bind_arg_cnt, FunctionArgumentTypes...>;
   using RemainingArgumentsType =
-      traits::TypesRangeT<bind_arg_cnt, func_arg_cnt - bind_arg_cnt,
+      traits::TypesRangeT<bind_arg_cnt, remaining_arg_count,
                           FunctionArgumentTypes...>;
   using ResultType =
       detail::BindResultType<OnceCallback, ReturnType, RemainingArgumentsType>;
@@ -65,10 +72,17 @@ auto BindOnce(
   static_assert(bind_arg_cnt <= func_arg_cnt,
                 "Cannot bind more more arguments than the function takes");
 
+  // This is a workaround for a Clang bug. If |bind_arg_cnt > func_arg_cnt|,
+  // then even though the above assert will fail, Clang will still process the
+  // below typedefs which might instantiate std::index_sequence with huge count
+  // which can crash the compiler.
+  constexpr size_t remaining_arg_count =
+      func_arg_cnt - std::min(bind_arg_cnt, func_arg_cnt);
+
   using BoundArgumentsType =
       traits::HeadTypesRangeT<bind_arg_cnt, FunctionArgumentTypes...>;
   using RemainingArgumentsType =
-      traits::TypesRangeT<bind_arg_cnt, func_arg_cnt - bind_arg_cnt,
+      traits::TypesRangeT<bind_arg_cnt, remaining_arg_count,
                           FunctionArgumentTypes...>;
   using ResultType =
       detail::BindResultType<OnceCallback, ReturnType, RemainingArgumentsType>;
@@ -93,10 +107,17 @@ auto BindOnce(
   static_assert(bind_arg_cnt <= func_arg_cnt,
                 "Cannot bind more more arguments than the function takes");
 
+  // This is a workaround for a Clang bug. If |bind_arg_cnt > func_arg_cnt|,
+  // then even though the above assert will fail, Clang will still process the
+  // below typedefs which might instantiate std::index_sequence with huge count
+  // which can crash the compiler.
+  constexpr size_t remaining_arg_count =
+      func_arg_cnt - std::min(bind_arg_cnt, func_arg_cnt);
+
   using BoundArgumentsType =
       traits::HeadTypesRangeT<bind_arg_cnt, FunctionArgumentTypes...>;
   using RemainingArgumentsType =
-      traits::TypesRangeT<bind_arg_cnt, func_arg_cnt - bind_arg_cnt,
+      traits::TypesRangeT<bind_arg_cnt, remaining_arg_count,
                           FunctionArgumentTypes...>;
   using ResultType =
       detail::BindResultType<OnceCallback, ReturnType, RemainingArgumentsType>;
@@ -127,10 +148,17 @@ auto BindOnce(OnceCallback<ReturnType(FunctionArgumentTypes...)>&& callback,
   static_assert(bind_arg_cnt <= func_arg_cnt,
                 "Cannot bind more more arguments than the function takes");
 
+  // This is a workaround for a Clang bug. If |bind_arg_cnt > func_arg_cnt|,
+  // then even though the above assert will fail, Clang will still process the
+  // below typedefs which might instantiate std::index_sequence with huge count
+  // which can crash the compiler.
+  constexpr size_t remaining_arg_count =
+      func_arg_cnt - std::min(bind_arg_cnt, func_arg_cnt);
+
   using BoundArgumentsType =
       traits::HeadTypesRangeT<bind_arg_cnt, FunctionArgumentTypes...>;
   using RemainingArgumentsType =
-      traits::TypesRangeT<bind_arg_cnt, func_arg_cnt - bind_arg_cnt,
+      traits::TypesRangeT<bind_arg_cnt, remaining_arg_count,
                           FunctionArgumentTypes...>;
   using ResultType =
       detail::BindResultType<OnceCallback, ReturnType, RemainingArgumentsType>;
@@ -151,10 +179,17 @@ auto BindOnce(
   static_assert(bind_arg_cnt <= func_arg_cnt,
                 "Cannot bind more more arguments than the function takes");
 
+  // This is a workaround for a Clang bug. If |bind_arg_cnt > func_arg_cnt|,
+  // then even though the above assert will fail, Clang will still process the
+  // below typedefs which might instantiate std::index_sequence with huge count
+  // which can crash the compiler.
+  constexpr size_t remaining_arg_count =
+      func_arg_cnt - std::min(bind_arg_cnt, func_arg_cnt);
+
   using BoundArgumentsType =
       traits::HeadTypesRangeT<bind_arg_cnt, FunctionArgumentTypes...>;
   using RemainingArgumentsType =
-      traits::TypesRangeT<bind_arg_cnt, func_arg_cnt - bind_arg_cnt,
+      traits::TypesRangeT<bind_arg_cnt, remaining_arg_count,
                           FunctionArgumentTypes...>;
   using ResultType =
       detail::BindResultType<OnceCallback, ReturnType, RemainingArgumentsType>;
@@ -174,10 +209,17 @@ auto BindRepeating(ReturnType (*function_ptr)(FunctionArgumentTypes...),
   static_assert(bind_arg_cnt <= func_arg_cnt,
                 "Cannot bind more more arguments than the function takes");
 
+  // This is a workaround for a Clang bug. If |bind_arg_cnt > func_arg_cnt|,
+  // then even though the above assert will fail, Clang will still process the
+  // below typedefs which might instantiate std::index_sequence with huge count
+  // which can crash the compiler.
+  constexpr size_t remaining_arg_count =
+      func_arg_cnt - std::min(bind_arg_cnt, func_arg_cnt);
+
   using BoundArgumentsType =
       traits::HeadTypesRangeT<bind_arg_cnt, FunctionArgumentTypes...>;
   using RemainingArgumentsType =
-      traits::TypesRangeT<bind_arg_cnt, func_arg_cnt - bind_arg_cnt,
+      traits::TypesRangeT<bind_arg_cnt, remaining_arg_count,
                           FunctionArgumentTypes...>;
   using ResultType = detail::BindResultType<RepeatingCallback, ReturnType,
                                             RemainingArgumentsType>;
@@ -200,10 +242,17 @@ auto BindRepeating(
   static_assert(bind_arg_cnt <= func_arg_cnt,
                 "Cannot bind more more arguments than the function takes");
 
+  // This is a workaround for a Clang bug. If |bind_arg_cnt > func_arg_cnt|,
+  // then even though the above assert will fail, Clang will still process the
+  // below typedefs which might instantiate std::index_sequence with huge count
+  // which can crash the compiler.
+  constexpr size_t remaining_arg_count =
+      func_arg_cnt - std::min(bind_arg_cnt, func_arg_cnt);
+
   using BoundArgumentsType =
       traits::HeadTypesRangeT<bind_arg_cnt, FunctionArgumentTypes...>;
   using RemainingArgumentsType =
-      traits::TypesRangeT<bind_arg_cnt, func_arg_cnt - bind_arg_cnt,
+      traits::TypesRangeT<bind_arg_cnt, remaining_arg_count,
                           FunctionArgumentTypes...>;
   using ResultType = detail::BindResultType<RepeatingCallback, ReturnType,
                                             RemainingArgumentsType>;
@@ -228,10 +277,17 @@ auto BindRepeating(
   static_assert(bind_arg_cnt <= func_arg_cnt,
                 "Cannot bind more more arguments than the function takes");
 
+  // This is a workaround for a Clang bug. If |bind_arg_cnt > func_arg_cnt|,
+  // then even though the above assert will fail, Clang will still process the
+  // below typedefs which might instantiate std::index_sequence with huge count
+  // which can crash the compiler.
+  constexpr size_t remaining_arg_count =
+      func_arg_cnt - std::min(bind_arg_cnt, func_arg_cnt);
+
   using BoundArgumentsType =
       traits::HeadTypesRangeT<bind_arg_cnt, FunctionArgumentTypes...>;
   using RemainingArgumentsType =
-      traits::TypesRangeT<bind_arg_cnt, func_arg_cnt - bind_arg_cnt,
+      traits::TypesRangeT<bind_arg_cnt, remaining_arg_count,
                           FunctionArgumentTypes...>;
   using ResultType = detail::BindResultType<RepeatingCallback, ReturnType,
                                             RemainingArgumentsType>;
@@ -264,10 +320,17 @@ auto BindRepeating(
   static_assert(bind_arg_cnt <= func_arg_cnt,
                 "Cannot bind more more arguments than the function takes");
 
+  // This is a workaround for a Clang bug. If |bind_arg_cnt > func_arg_cnt|,
+  // then even though the above assert will fail, Clang will still process the
+  // below typedefs which might instantiate std::index_sequence with huge count
+  // which can crash the compiler.
+  constexpr size_t remaining_arg_count =
+      func_arg_cnt - std::min(bind_arg_cnt, func_arg_cnt);
+
   using BoundArgumentsType =
       traits::HeadTypesRangeT<bind_arg_cnt, FunctionArgumentTypes...>;
   using RemainingArgumentsType =
-      traits::TypesRangeT<bind_arg_cnt, func_arg_cnt - bind_arg_cnt,
+      traits::TypesRangeT<bind_arg_cnt, remaining_arg_count,
                           FunctionArgumentTypes...>;
   using ResultType = detail::BindResultType<RepeatingCallback, ReturnType,
                                             RemainingArgumentsType>;
