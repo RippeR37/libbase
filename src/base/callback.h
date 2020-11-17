@@ -506,6 +506,8 @@ class OnceCallback<ReturnType(ArgumentTypes...)> {
 
   OnceCallback(OnceCallback&& other) = default;
 
+  OnceCallback& operator=(OnceCallback&&) = default;
+
   operator bool() const { return !!impl_; }
 
   ReturnType Run(ArgumentTypes... arguments) && {
@@ -583,18 +585,25 @@ class RepeatingCallback<ReturnType(ArgumentTypes...)> {
                         ReturnType(traits::IdentityT<BoundArgumentTypes>...,
                                    ArgumentTypes...)>& callback,
                     std::tuple<BoundArgumentTypes...> bound_arguments)
-      : impl_(new detail::BoundCallbackRepeatingCallback<
-              ReturnType,
-              std::tuple<BoundArgumentTypes...>,
-              ArgumentTypes...>(callback.impl_->Clone(),
-                                std::move(bound_arguments))) {}
+      : impl_(callback ? new detail::BoundCallbackRepeatingCallback<
+                             ReturnType,
+                             std::tuple<BoundArgumentTypes...>,
+                             ArgumentTypes...>(callback.impl_->Clone(),
+                                               std::move(bound_arguments))
+                       : nullptr) {}
 
   RepeatingCallback(const RepeatingCallback& other)
-      : impl_(other.impl_->Clone()) {}
-  RepeatingCallback(RepeatingCallback&& other) = default;
+      : impl_(CloneImpl(other.impl_)) {}
+  RepeatingCallback(RepeatingCallback&&) = default;
+
+  RepeatingCallback& operator=(const RepeatingCallback& other) {
+    impl_ = CloneImpl(other.impl_);
+    return *this;
+  }
+  RepeatingCallback& operator=(RepeatingCallback&&) = default;
 
   operator OnceCallback<ReturnType(ArgumentTypes...)>() const {
-    return OnceCallback<ReturnType(ArgumentTypes...)>{impl_->Clone()};
+    return OnceCallback<ReturnType(ArgumentTypes...)>{CloneImpl(impl_)};
   }
 
   operator bool() const { return !!impl_; }
@@ -605,16 +614,24 @@ class RepeatingCallback<ReturnType(ArgumentTypes...)> {
 
   ReturnType Run(ArgumentTypes... arguments) && {
     RepeatingCallback callback = std::move(*this);
-    callback->Run(std::forward<ArgumentTypes>(arguments)...);
+    callback.Run(std::forward<ArgumentTypes>(arguments)...);
   }
 
  private:
+  using ImplPtr = std::unique_ptr<
+      detail::RepeatingCallbackInterface<ReturnType, ArgumentTypes...>>;
+
   template <typename FuncSig>
   friend class RepeatingCallback;
 
-  std::unique_ptr<
-      detail::RepeatingCallbackInterface<ReturnType, ArgumentTypes...>>
-      impl_;
+  static ImplPtr CloneImpl(const ImplPtr& impl) {
+    if (impl) {
+      return impl->Clone();
+    }
+    return {};
+  }
+
+  ImplPtr impl_;
 };
 
 /*
