@@ -2,7 +2,7 @@
 #include <future>
 #include <thread>
 
-#include "base/bind_helpers.h"
+#include "base/callback_helpers.h"
 #include "base/message_loop/message_pump_impl.h"
 
 #include "gtest/gtest.h"
