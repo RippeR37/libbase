@@ -4,6 +4,25 @@
 
 namespace base {
 
+class ScopedClosureRunner {
+ public:
+  ScopedClosureRunner();
+  explicit ScopedClosureRunner(OnceClosure closure);
+  ScopedClosureRunner(ScopedClosureRunner&&);
+  ~ScopedClosureRunner();
+
+  ScopedClosureRunner& operator=(ScopedClosureRunner&& other);
+
+  explicit operator bool() const;
+
+  void RunAndReset();
+  void ReplaceClosure(OnceClosure new_closure);
+  OnceClosure Release();
+
+ private:
+  OnceClosure closure_;
+};
+
 class DoNothing {
  public:
   template <typename... Args>
