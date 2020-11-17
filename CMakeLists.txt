@@ -122,11 +122,15 @@ if(BUILD_TESTS)
     include_directories(${PROJECT_SOURCE_DIR}/tests/mock/)
 
     # Unit tests
+    set(LIBBASE_TEST_ENTRY ${PROJECT_SOURCE_DIR}/tests/src/main.cc)
     file(GLOB_RECURSE LIBBASE_TEST_HEADERS ${PROJECT_SOURCE_DIR}/tests/src/*.h)
     file(GLOB_RECURSE LIBBASE_TEST_SOURCES ${PROJECT_SOURCE_DIR}/tests/src/*.cc)
     file(GLOB_RECURSE LIBBASE_MOCK_HEADERS ${PROJECT_SOURCE_DIR}/tests/mock/*.h)
     file(GLOB_RECURSE LIBBASE_MOCK_SOURCES ${PROJECT_SOURCE_DIR}/tests/mock/*.cc)
+
+
     add_executable(unit_tests
+      ${LIBBASE_TEST_ENTRY}
       ${LIBBASE_TEST_HEADERS}
       ${LIBBASE_TEST_SOURCES}
       ${LIBBASE_MOCK_HEADERS}
@@ -135,9 +139,7 @@ if(BUILD_TESTS)
       ${LIBBASE_SOURCES})
     target_link_libraries(unit_tests
       gtest
-      gtest_main
       gmock
-      gmock_main
       glog::glog
       Threads::Threads)
     target_compile_options(unit_tests PRIVATE "${LIBBASE_FLAGS_TESTS}")
