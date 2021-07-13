@@ -73,9 +73,11 @@ endif()
 
 # GLOG
 set(BUILD_TESTING OFF CACHE STRING "Override GLOG not to build its unit tests")
+set(BUILD_SHARED_LIBS OFF CACHE STRING "Override GLOG not to build as shared library")
 add_subdirectory(third_party/glog)
 include_directories(${glog_SOURCE_DIR}/include ${glog_SOURCE_DIR})
 unset(BUILD_TESTING CACHE)
+unset(BUILD_SHARED_LIBS CACHE)
 
 
 #
