@@ -1,5 +1,7 @@
 #include "base/message_loop/message_pump_impl.h"
 
+#include <algorithm>
+
 namespace base {
 
 MessagePumpImpl::MessagePumpImpl(size_t executors_count) : stopped_(false) {
