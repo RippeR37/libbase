@@ -34,7 +34,8 @@ target_link_libraries(libbase_unittests PRIVATE
   gtest
   gmock)
 
-add_test(libbase_unittests libbase_unittests)
+include(GoogleTest)
+gtest_discover_tests(libbase_unittests)
 
 
 #
