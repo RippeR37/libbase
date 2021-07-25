@@ -2,6 +2,8 @@
 
 #include <algorithm>
 
+#include "base/logging.h"
+
 namespace base {
 
 MessagePumpImpl::MessagePumpImpl(size_t executors_count) : stopped_(false) {

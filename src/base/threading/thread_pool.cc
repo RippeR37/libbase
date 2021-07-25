@@ -2,6 +2,7 @@
 
 #include <thread>
 
+#include "base/logging.h"
 #include "base/message_loop/message_loop_impl.h"
 #include "base/message_loop/message_pump_impl.h"
 #include "base/sequenced_task_runner_helpers.h"

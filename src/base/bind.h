@@ -1,33 +1,14 @@
 #pragma once
 
-#include <tuple>
-
-#include "callback.h"
-#include "type_traits.h"
+#include "base/bind_internals.h"
+#include "base/callback.h"
+#include "base/type_traits.h"
 
 namespace base {
 
-namespace detail {
-
-template <template <typename> class CallbackType,
-          typename ReturnType,
-          typename ArgumentsTupleType>
-struct BindResult {};
-
-template <template <typename> class CallbackType,
-          typename ReturnType,
-          typename... ArgumentTypes>
-struct BindResult<CallbackType, ReturnType, std::tuple<ArgumentTypes...>> {
-  using type = CallbackType<ReturnType(ArgumentTypes...)>;
-};
-
-template <template <typename> class CallbackType,
-          typename ReturnType,
-          typename... ArgumentTypes>
-using BindResultType =
-    typename BindResult<CallbackType, ReturnType, ArgumentTypes...>::type;
-
-}  // namespace detail
+//
+// BindOnce()
+//
 
 template <typename ReturnType,
           typename... FunctionArgumentTypes,
@@ -56,7 +37,11 @@ auto BindOnce(ReturnType (*function_ptr)(FunctionArgumentTypes...),
 
   BoundArgumentsType bounded_args{
       std::forward<BindArgumentTypes>(bind_args)...};
-  return ResultType{function_ptr, std::move(bounded_args)};
+
+  return detail::BindAccessHelper::Create<ResultType>(
+      std::make_unique<detail::FreeFunctionOnceCallback<
+          ReturnType, BoundArgumentsType, RemainingArgumentsType>>(
+          function_ptr, std::move(bounded_args)));
 }
 
 template <typename Class,
@@ -89,7 +74,10 @@ auto BindOnce(
 
   BoundArgumentsType bounded_args{
       std::forward<BindArgumentTypes>(bind_args)...};
-  return ResultType{member_function_ptr, object, std::move(bounded_args)};
+  return detail::BindAccessHelper::Create<ResultType>(
+      std::make_unique<detail::MemberFunctionOnceCallback<
+          Class, ReturnType, BoundArgumentsType, RemainingArgumentsType>>(
+          member_function_ptr, object, std::move(bounded_args)));
 }
 
 template <typename Class,
@@ -124,8 +112,10 @@ auto BindOnce(
 
   BoundArgumentsType bounded_args{
       std::forward<BindArgumentTypes>(bind_args)...};
-  return ResultType{member_function_ptr, std::move(object),
-                    std::move(bounded_args)};
+  return detail::BindAccessHelper::Create<ResultType>(
+      std::make_unique<detail::MemberFunctionWeakPtrOnceCallback<
+          Class, ReturnType, BoundArgumentsType, RemainingArgumentsType>>(
+          member_function_ptr, std::move(object), std::move(bounded_args)));
 }
 
 template <typename LambdaType,
@@ -165,7 +155,11 @@ auto BindOnce(OnceCallback<ReturnType(FunctionArgumentTypes...)>&& callback,
 
   BoundArgumentsType bounded_args{
       std::forward<BindArgumentTypes>(bind_args)...};
-  return ResultType{std::move(callback), std::move(bounded_args)};
+  return detail::BindAccessHelper::Create<ResultType>(
+      std::make_unique<detail::BoundCallbackOnceCallback<
+          ReturnType, BoundArgumentsType, RemainingArgumentsType>>(
+          detail::BindAccessHelper::ExtractImpl(std::move(callback)),
+          std::move(bounded_args)));
 }
 
 template <typename ReturnType,
@@ -196,8 +190,16 @@ auto BindOnce(
 
   BoundArgumentsType bounded_args{
       std::forward<BindArgumentTypes>(bind_args)...};
-  return ResultType{std::move(callback), std::move(bounded_args)};
+  return detail::BindAccessHelper::Create<ResultType>(
+      std::make_unique<detail::BoundCallbackOnceCallback<
+          ReturnType, BoundArgumentsType, RemainingArgumentsType>>(
+          detail::BindAccessHelper::CloneImpl(callback),
+          std::move(bounded_args)));
 }
+
+//
+// BindRepeating()
+//
 
 template <typename ReturnType,
           typename... FunctionArgumentTypes,
@@ -226,7 +228,10 @@ auto BindRepeating(ReturnType (*function_ptr)(FunctionArgumentTypes...),
 
   BoundArgumentsType bounded_args{
       std::forward<BindArgumentTypes>(bind_args)...};
-  return ResultType{function_ptr, std::move(bounded_args)};
+  return detail::BindAccessHelper::Create<ResultType>(
+      std::make_unique<detail::FreeFunctionRepeatingCallback<
+          ReturnType, BoundArgumentsType, RemainingArgumentsType>>(
+          function_ptr, std::move(bounded_args)));
 }
 
 template <typename Class,
@@ -259,7 +264,10 @@ auto BindRepeating(
 
   BoundArgumentsType bounded_args{
       std::forward<BindArgumentTypes>(bind_args)...};
-  return ResultType{member_function_ptr, object, std::move(bounded_args)};
+  return detail::BindAccessHelper::Create<ResultType>(
+      std::make_unique<detail::MemberFunctionRepeatingCallback<
+          Class, ReturnType, BoundArgumentsType, RemainingArgumentsType>>(
+          member_function_ptr, object, std::move(bounded_args)));
 }
 
 template <typename Class,
@@ -294,8 +302,10 @@ auto BindRepeating(
 
   BoundArgumentsType bounded_args{
       std::forward<BindArgumentTypes>(bind_args)...};
-  return ResultType{member_function_ptr, std::move(object),
-                    std::move(bounded_args)};
+  return detail::BindAccessHelper::Create<ResultType>(
+      std::make_unique<detail::MemberFunctionWeakPtrRepeatingCallback<
+          Class, ReturnType, BoundArgumentsType, RemainingArgumentsType>>(
+          member_function_ptr, std::move(object), std::move(bounded_args)));
 }
 
 template <
@@ -337,7 +347,11 @@ auto BindRepeating(
 
   BoundArgumentsType bounded_args{
       std::forward<BindArgumentTypes>(bind_args)...};
-  return ResultType{callback, std::move(bounded_args)};
+  return detail::BindAccessHelper::Create<ResultType>(
+      std::make_unique<detail::BoundCallbackRepeatingCallback<
+          ReturnType, BoundArgumentsType, RemainingArgumentsType>>(
+          detail::BindAccessHelper::CloneImpl(callback),
+          std::move(bounded_args)));
 }
 
 }  // namespace base
