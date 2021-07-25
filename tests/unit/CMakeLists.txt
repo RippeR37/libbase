@@ -7,8 +7,8 @@ endif()
 # Google Test setup
 #
 
-add_subdirectory(${PROJECT_SOURCE_DIR}/third_party/googletest build_gtest)
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+add_subdirectory(${PROJECT_SOURCE_DIR}/third_party/googletest build_gtest)
 
 
 #

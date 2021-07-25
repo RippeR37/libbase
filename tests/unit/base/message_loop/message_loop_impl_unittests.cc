@@ -136,7 +136,7 @@ TEST_F(MessageLoopImplTest, RunUntilIdleExecutesAllPendingTasks) {
       .WillOnce(Return(ByMove(CreateCountingPendingTask(counter))))
       .WillOnce(Return(ByMove(CreateEmptyPendingTask())));
   message_loop_impl_->RunUntilIdle();
-  EXPECT_EQ(counter, 3);
+  EXPECT_EQ(counter, 3u);
 }
 
 TEST_F(MessageLoopImplTest, StopIsForwarded) {

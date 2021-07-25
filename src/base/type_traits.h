@@ -58,5 +58,24 @@ using TypesRangeT = typename TypesRange<Offset,
 template <size_t Count, typename... Types>
 using HeadTypesRangeT = TypesRangeT<0, Count, Types...>;
 
+//
+// IsFunctionPointer<T>
+//
+template <typename T>
+struct IsFunctionPointer : std::false_type {};
+
+template <typename T, typename... Args>
+struct IsFunctionPointer<T (*)(Args...)> : std::true_type {};
+
+template <typename T>
+inline constexpr bool IsFunctionPointerV = IsFunctionPointer<T>::value;
+
+//
+// IsCapturelessLambdaV<T>
+//
+template <typename T, typename = decltype(+std::declval<T>())>
+inline constexpr bool IsCapturelessLambdaV =
+    !std::is_pointer_v<T> && IsFunctionPointerV<decltype(+std::declval<T>())>;
+
 }  // namespace traits
 }  // namespace base

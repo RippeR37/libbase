@@ -89,9 +89,9 @@ TEST_F(WeakPtrFactoryTest, InvalidationFactoryWeakPtrByDestruction) {
   EXPECT_EQ(&(*weak_ptr), weak_class_.get());
   EXPECT_TRUE(HasWeakPtrs());
 
-  EXPECT_EQ(weak_class_->GetCallCount(), 0);
+  EXPECT_EQ(weak_class_->GetCallCount(), 0u);
   weak_ptr->Call();
-  EXPECT_EQ(weak_class_->GetCallCount(), 1);
+  EXPECT_EQ(weak_class_->GetCallCount(), 1u);
 
   DestroyWeakPtrFactoryOwner();
   EXPECT_FALSE(weak_ptr);
@@ -113,9 +113,9 @@ TEST_F(WeakPtrFactoryTest, InvalidationFactoryWeakPtrByMethodCall) {
   EXPECT_EQ(&(*weak_ptr), weak_class_.get());
   EXPECT_TRUE(HasWeakPtrs());
 
-  EXPECT_EQ(weak_class_->GetCallCount(), 0);
+  EXPECT_EQ(weak_class_->GetCallCount(), 0u);
   weak_ptr->Call();
-  EXPECT_EQ(weak_class_->GetCallCount(), 1);
+  EXPECT_EQ(weak_class_->GetCallCount(), 1u);
 
   InvalidateWeakPtrs();
   EXPECT_FALSE(HasWeakPtrs());
@@ -148,7 +148,7 @@ TEST_F(WeakPtrFactoryTest, WeakPtrCopyBehavesTheSame) {
 
   weak_ptr1->Call();
   weak_ptr2->Call();
-  EXPECT_EQ(weak_class_->GetCallCount(), 2);
+  EXPECT_EQ(weak_class_->GetCallCount(), 2u);
 
   DestroyWeakPtrFactoryOwner();
 

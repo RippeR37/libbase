@@ -9,7 +9,7 @@ function (SETUP_COMPILE_FLAGS)
         set(WARNINGS "${WARNINGS};-Wshadow=local")
       endif()
   elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
-      set(WARNINGS "/W4 /WX /EHsc")
+      set(WARNINGS "/W4;/WX;/EHsc;/permissive-")
   endif()
 
   if(LIBBASE_BUILD_TESTS AND LIBBASE_CODE_COVERAGE AND CMAKE_COMPILER_IS_GNUCXX)

@@ -120,9 +120,7 @@ auto BindOnce(
 
 template <typename LambdaType,
           typename... BindArgumentTypes,
-          typename = std::enable_if_t<!std::is_pointer_v<LambdaType>>,
-          typename = decltype(BindOnce(+std::declval<LambdaType>(),
-                                       std::declval<BindArgumentTypes>()...))>
+          typename = std::enable_if_t<traits::IsCapturelessLambdaV<LambdaType>>>
 auto BindOnce(LambdaType&& lambda_type, BindArgumentTypes&&... args) {
   return BindOnce(+std::forward<LambdaType>(lambda_type),
                   std::forward<BindArgumentTypes>(args)...);
@@ -308,12 +306,9 @@ auto BindRepeating(
           member_function_ptr, std::move(object), std::move(bounded_args)));
 }
 
-template <
-    typename LambdaType,
-    typename... BindArgumentTypes,
-    typename = std::enable_if_t<!std::is_pointer_v<LambdaType>>,
-    typename = decltype(BindRepeating(+std::declval<LambdaType>(),
-                                      std::declval<BindArgumentTypes>()...))>
+template <typename LambdaType,
+          typename... BindArgumentTypes,
+          typename = std::enable_if_t<traits::IsCapturelessLambdaV<LambdaType>>>
 auto BindRepeating(LambdaType&& lambda_type, BindArgumentTypes&&... args) {
   return BindRepeating(+std::forward<LambdaType>(lambda_type),
                        std::forward<BindArgumentTypes>(args)...);
