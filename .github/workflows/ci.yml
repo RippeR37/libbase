@@ -5,9 +5,18 @@ on:
   pull_request:
 
 jobs:
+  clang-format-check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: DoozyX/clang-format-lint-action@v0.12
+      with:
+        source: '.'
+        exclude: './third_party'
+        clangFormatVersion: 12
+
   build-ubuntu:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
         with:
@@ -21,7 +30,6 @@ jobs:
 
   build-windows:
     runs-on: windows-latest
-   
     steps:
       - uses: actions/checkout@v2
         with:
