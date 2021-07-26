@@ -1,47 +1,57 @@
 ## `libbase`
 
-| Branch | Linux | Windows | Coverage |
-| :----: | :---: | :-----: | :------: |
-| `master` | [![Build Status](https://travis-ci.org/RippeR37/libbase.svg?branch=master)](https://travis-ci.org/RippeR37/libbase) | TO-DO | [![Coverage Status](https://coveralls.io/repos/RippeR37/libbase/badge.svg?branch=master)](https://coveralls.io/github/RippeR37/libbase?branch=master) |
-| `develop` | [![Build Status](https://travis-ci.org/RippeR37/libbase.svg?branch=develop)](https://travis-ci.org/RippeR37/libbase) | TO-DO | [![Coverage Status](https://coveralls.io/repos/RippeR37/libbase/badge.svg?branch=develop)](https://coveralls.io/github/RippeR37/libbase?branch=develop) |
+| Branch | Ubuntu | Windows | MacOS | Coverage |
+| :----: | :----: | :-----: | :---: | :------: |
+| **`master`** | [![Ubuntu](https://github.com/RippeR37/libbase/actions/workflows/ubuntu.yml/badge.svg?branch=master)](https://github.com/RippeR37/libbase/actions/workflows/ubuntu.yml) | [![Windows](https://github.com/RippeR37/libbase/actions/workflows/windows.yml/badge.svg?branch=master)](https://github.com/RippeR37/libbase/actions/workflows/windows.yml) | [![MacOS](https://github.com/RippeR37/libbase/actions/workflows/macos.yml/badge.svg?branch=master)](https://github.com/RippeR37/libbase/actions/workflows/macos.yml) | [![codecov](https://codecov.io/gh/RippeR37/libbase/branch/master/graph/badge.svg?token=RT0JTLDPJE)](https://codecov.io/gh/RippeR37/libbase) |
+| `develop` | [![Ubuntu](https://github.com/RippeR37/libbase/actions/workflows/ubuntu.yml/badge.svg?branch=develop)](https://github.com/RippeR37/libbase/actions/workflows/ubuntu.yml) | [![Windows](https://github.com/RippeR37/libbase/actions/workflows/windows.yml/badge.svg?branch=develop)](https://github.com/RippeR37/libbase/actions/workflows/windows.yml) | [![MacOS](https://github.com/RippeR37/libbase/actions/workflows/macos.yml/badge.svg?branch=develop)](https://github.com/RippeR37/libbase/actions/workflows/macos.yml) | [![codecov](https://codecov.io/gh/RippeR37/libbase/branch/develop/graph/badge.svg?token=RT0JTLDPJE)](https://codecov.io/gh/RippeR37/libbase) |
 
 
 ### Project description
 
 To-do...
 
+### Building `libbase`
 
-### Building
+#### Building with CMake
 
-#### Windows
+```bash
+git clone --recurse-submodules https://github.com/RippeR37/libbase.git
+cd libbase
+cmake -S . -B build
+cmake --build build
+```
 
-* To-do...
+#### Running unit tests
 
-#### Linux
-
-* To-do...
-
+```bash
+ctest --test-dir build
+```
 
 #### Requirements
 
-* To-do...
+* Compiler with C++17 support
+* CMake (>= v3.11)
 
+#### Platforms tested
 
-### Platforms tested
+* Linux
+* Windows
+* MacOS
 
-* To-do...
+#### Compilers tested
 
+* GCC (7 through 10)
+* Clang (9 through 12)
+* MSVC (2019 19.29)
 
-### Compilers tested
+#### Dependencies
 
-- To-do...
+All dependencies are managed as submodules within `third_party/` directory.
 
+- [GLOG](https://github.com/google/glog)
+- (Optional) [GTest and GMock](https://github.com/google/googletest)
+- (Optional) [Google Benchmark](https://github.com/google/benchmark)
 
-### Dependencies
-
-- To-do...
-
-
-### License
+#### License
 
 This project is licensed under the [MIT License](LICENSE).
