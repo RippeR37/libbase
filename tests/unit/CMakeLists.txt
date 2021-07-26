@@ -15,7 +15,7 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/third_party/googletest build_gtest)
 # Unittests target
 #
 
-file(GLOB_RECURSE LIBBASE_UNITTESTS_SRC CONFIGURE_DEPENDS 
+file(GLOB_RECURSE LIBBASE_UNITTESTS_SRC CONFIGURE_DEPENDS
   ${PROJECT_SOURCE_DIR}/tests/unit/main.cc
   ${PROJECT_SOURCE_DIR}/tests/unit/*.h
   ${PROJECT_SOURCE_DIR}/tests/unit/*.cc
@@ -24,9 +24,9 @@ file(GLOB_RECURSE LIBBASE_UNITTESTS_SRC CONFIGURE_DEPENDS
 
 add_executable(libbase_unittests ${LIBBASE_UNITTESTS_SRC})
 
-target_compile_options(libbase_unittests PRIVATE "${LIBBASE_FLAGS_TESTS}")
+target_compile_options(libbase_unittests PRIVATE "${LIBBASE_COMPILE_FLAGS}")
 
-target_include_directories(libbase_unittests PRIVATE 
+target_include_directories(libbase_unittests PRIVATE
   ${PROJECT_SOURCE_DIR}/tests/unit/mock/)
 
 target_link_libraries(libbase_unittests PRIVATE
@@ -42,7 +42,7 @@ gtest_discover_tests(libbase_unittests)
 # Code coverage
 #
 
-if(CODE_COVERAGE AND CMAKE_COMPILER_IS_GNUCXX)
+if(LIBBASE_CODE_COVERAGE AND CMAKE_COMPILER_IS_GNUCXX)
   include(CodeCoverage)
   APPEND_COVERAGE_COMPILER_FLAGS()
   set(COVERAGE_LCOV_EXCLUDES '/usr/*' '*/third_party/*' '*/main.cc' '*/tests/*')

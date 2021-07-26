@@ -1,0 +1,26 @@
+name: Windows
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    name: MSVC ${{ matrix.build_type }} (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2019]
+        build_type: [Release, Debug]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - name: CMake configuration
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+      - name: Building
+        run: cmake --build build
+      - name: Testing
+        run: ctest --test-dir build

@@ -4,8 +4,8 @@ cmake_minimum_required(VERSION 3.11)
 # Project setup
 #
 
-project(libbase 
-        VERSION 0.1 
+project(libbase
+        VERSION 0.1
         LANGUAGES CXX)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
@@ -33,11 +33,11 @@ endif()
 #
 
 include(SetupCompileFlags)
-setup_compile_flags() # sets LIBBASE_FLAGS_PROGRAM and LIBBASE_FLAGS_TESTS
+setup_compile_flags() # sets LIBBASE_COMPILE_FLAGS and LIBBASE_LINK_FLAGS
 
 message(STATUS "Compiler: ${CMAKE_CXX_COMPILER}")
-message(STATUS "Compiler flags (normal): '${LIBBASE_FLAGS_PROGRAM}'")
-message(STATUS "Compiler flags (tests):  '${LIBBASE_FLAGS_TESTS}'")
+message(STATUS "Compiler flags: '${LIBBASE_COMPILE_FLAGS}'")
+message(STATUS "Linker flags: '${LIBBASE_LINK_FLAGS}'")
 message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 
 

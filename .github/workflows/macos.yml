@@ -1,0 +1,36 @@
+name: MacOS
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    name: ${{ matrix.compiler.name }} ${{ matrix.build_type }} (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-10.15]
+        build_type: [Release, Debug]
+        compiler: [
+          {name: GCC 9, cc: gcc-9, cxx: g++-9},
+          {name: GCC 10, cc: gcc-10, cxx: g++-10},
+          {name: GCC 11, cc: gcc-11, cxx: g++-11},
+          {name: Clang 12, cc: clang, cxx: clang++}
+        ]
+
+    env:
+      CC: ${{ matrix.compiler.cc }}
+      CXX: ${{ matrix.compiler.cxx }}
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - name: CMake configuration
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+      - name: Building
+        run: cmake --build build
+      - name: Testing
+        run: ctest --test-dir build

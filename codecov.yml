@@ -1,0 +1,6 @@
+ignore:
+  - "/usr/"
+  - "build/"
+  - "tests/"
+  - "third_party/"
+  - "**/main.cc"
