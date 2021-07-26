@@ -29,7 +29,7 @@ int add(int x, int y) {
 TEST(BindTest, FreeFunc) {
   global_int_arg = -1;
 
-  auto cb = base::BindRepeating(&SetGlobalIntArg); 
+  auto cb = base::BindRepeating(&SetGlobalIntArg);
   cb.Run(11);
   EXPECT_EQ(global_int_arg, 11);
   cb.Run(12);
@@ -96,7 +96,7 @@ TEST(BindTest, MultiArgFreeFunc) {
 }
 
 TEST(BindTest, MultiArgFreeFuncWithSomeArgs) {
-  auto cb = base::BindRepeating(&add, 3); 
+  auto cb = base::BindRepeating(&add, 3);
   EXPECT_EQ(cb.Run(11), 14);
   EXPECT_EQ(cb.Run(-3), 0);
   EXPECT_EQ(cb.Run(0), 3);
@@ -201,7 +201,7 @@ TEST(AdvancedBindTest, RepeatingToRepeatingCallbackToFreeFunction) {
 
 TEST(AdvancedBindTest, OnceToRepeatingCallbackToFreeFunction) {
   auto cb_1 = base::BindRepeating(&add);
-  auto cb_2 = base::BindOnce(cb_1); 
+  auto cb_2 = base::BindOnce(cb_1);
   EXPECT_EQ(cb_1.Run(3, 7), 10);
   EXPECT_EQ(std::move(cb_2).Run(3, 7), 10);
   EXPECT_FALSE(cb_2);
