@@ -29,7 +29,7 @@ template <typename T>
 class WeakPtr {
  public:
   WeakPtr() : ptr_(nullptr) {}
-  WeakPtr(std::nullptr_t) : WeakPtr() {}
+  explicit WeakPtr(std::nullptr_t) : WeakPtr() {}
   ~WeakPtr() { DecreaseWeakCount(); }
 
   template <typename U>

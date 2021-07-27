@@ -282,7 +282,7 @@ class WeakCallbackTest : public ::testing::Test {
 };
 
 TEST_F(WeakCallbackTest, EmptyWeakOnceCallback) {
-  base::WeakPtr<WeakClass> weak_object = nullptr;
+  base::WeakPtr<WeakClass> weak_object{nullptr};
   auto callback = base::BindOnce(&WeakClass::IncrementValue, weak_object);
 
   EXPECT_EQ(weak_object_.GetValue(), 0u);
@@ -320,7 +320,7 @@ TEST_F(WeakCallbackTest, ValidWeakOnceCallbackWithArg) {
 }
 
 TEST_F(WeakCallbackTest, EmptyWeakRepeatingCallback) {
-  base::WeakPtr<WeakClass> weak_object = nullptr;
+  base::WeakPtr<WeakClass> weak_object{nullptr};
   auto callback = base::BindRepeating(&WeakClass::IncrementValue, weak_object);
 
   EXPECT_EQ(weak_object_.GetValue(), 0u);

@@ -26,7 +26,7 @@ class OnceCallback<ReturnType(ArgumentTypes...)> {
   OnceCallback(OnceCallback&& other) = default;
   OnceCallback& operator=(OnceCallback&&) = default;
 
-  operator bool() const { return !!impl_; }
+  explicit operator bool() const { return !!impl_; }
 
   ReturnType Run(ArgumentTypes... arguments) && {
     OnceCallback callback = std::move(*this);
@@ -36,7 +36,7 @@ class OnceCallback<ReturnType(ArgumentTypes...)> {
  private:
   friend class detail::BindAccessHelper;
 
-  OnceCallback(
+  explicit OnceCallback(
       std::unique_ptr<
           detail::OnceCallbackInterface<ReturnType, ArgumentTypes...>> impl)
       : impl_(std::move(impl)) {}
@@ -69,11 +69,11 @@ class RepeatingCallback<ReturnType(ArgumentTypes...)> {
     return *this;
   }
 
-  operator OnceCallback<ReturnType(ArgumentTypes...)>() const {
+  explicit operator OnceCallback<ReturnType(ArgumentTypes...)>() const {
     return OnceCallback<ReturnType(ArgumentTypes...)>{CloneImpl(impl_)};
   }
 
-  operator bool() const { return !!impl_; }
+  explicit operator bool() const { return !!impl_; }
 
   ReturnType Run(ArgumentTypes... arguments) const& {
     return impl_->Run(std::forward<ArgumentTypes>(arguments)...);
@@ -87,7 +87,7 @@ class RepeatingCallback<ReturnType(ArgumentTypes...)> {
  private:
   friend class detail::BindAccessHelper;
 
-  RepeatingCallback(
+  explicit RepeatingCallback(
       std::unique_ptr<
           detail::RepeatingCallbackInterface<ReturnType, ArgumentTypes...>>
           impl)

@@ -30,7 +30,7 @@ class CurrentSequenceIdHelper {
 
 class ScopedSequenceIdSetter {
  public:
-  ScopedSequenceIdSetter(SequenceId current_sequence_id);
+  explicit ScopedSequenceIdSetter(SequenceId current_sequence_id);
   ~ScopedSequenceIdSetter();
 };
 

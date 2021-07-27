@@ -22,7 +22,6 @@ class MessageLoopImpl : public MessageLoop {
 
  private:
   void RunUntilIdleOrStop();
-  void RunTask(MessagePump::PendingTask&& pending_task) const;
 
   const MessagePump::ExecutorId executor_id_;
   std::shared_ptr<MessagePump> message_pump_;

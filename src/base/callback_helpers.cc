@@ -24,7 +24,7 @@ ScopedClosureRunner& ScopedClosureRunner::operator=(
 }
 
 ScopedClosureRunner::operator bool() const {
-  return closure_;
+  return !!closure_;
 }
 
 void ScopedClosureRunner::RunAndReset() {

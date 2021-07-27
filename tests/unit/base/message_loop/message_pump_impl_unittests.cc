@@ -9,58 +9,54 @@
 
 namespace {
 
-using namespace ::testing;
-
 const base::MessagePump::ExecutorId kExecutorId = 0;
 const base::MessagePump::ExecutorId kOtherExecutorId = 1;
 const base::MessagePump::ExecutorId kHighestExecutorId = kOtherExecutorId;
 const size_t kExecutorCount = kHighestExecutorId + 1;
 
-class MessagePumpImplTest : public Test {
+base::MessagePump::PendingTask CreateExecutorTask(
+    base::OnceClosure task,
+    std::optional<base::MessagePump::ExecutorId> executor_id) {
+  return {std::move(task), {}, std::move(executor_id)};
+}
+
+base::MessagePump::PendingTask CreateSequenceTask(
+    base::OnceClosure task,
+    std::optional<base::SequenceId> sequence_id) {
+  return {std::move(task), std::move(sequence_id), {}};
+}
+
+base::MessagePump::PendingTask CreateTask(base::OnceClosure task) {
+  return CreateExecutorTask(std::move(task), {});
+}
+
+base::MessagePump::PendingTask CreateSetterTask(bool& flag) {
+  EXPECT_FALSE(flag);
+  return CreateTask(
+      base::BindOnce([](bool& ext_flag) { ext_flag = true; }, flag));
+}
+
+base::MessagePump::PendingTask CreateSetterExecutorTask(
+    std::optional<base::MessagePump::ExecutorId> executor_id,
+    bool& flag) {
+  EXPECT_FALSE(flag);
+  return CreateExecutorTask(
+      base::BindOnce([](bool& ext_flag) { ext_flag = true; }, flag),
+      std::move(executor_id));
+}
+
+base::MessagePump::PendingTask CreateSetterSequenceTask(
+    std::optional<base::SequenceId> sequence_id,
+    bool& flag) {
+  EXPECT_FALSE(flag);
+  return CreateSequenceTask(
+      base::BindOnce([](bool& ext_flag) { ext_flag = true; }, flag),
+      std::move(sequence_id));
+}
+
+class MessagePumpImplTest : public ::testing::Test {
  public:
   MessagePumpImplTest() : pump(kExecutorCount) {}
-
-  base::MessagePump::PendingTask CreateExecutorTask(
-      base::OnceClosure task,
-      std::optional<base::MessagePump::ExecutorId> executor_id) {
-    return {std::move(task), {}, std::move(executor_id)};
-  }
-
-  base::MessagePump::PendingTask CreateSequenceTask(
-      base::OnceClosure task,
-      std::optional<base::SequenceId> sequence_id) {
-    return {std::move(task), std::move(sequence_id), {}};
-  }
-
-  base::MessagePump::PendingTask CreateTask(base::OnceClosure task) {
-    return CreateExecutorTask(std::move(task), {});
-  }
-
-  base::MessagePump::PendingTask CreateEmptyTask() { return CreateTask({}); }
-
-  base::MessagePump::PendingTask CreateSetterTask(bool& flag) {
-    EXPECT_FALSE(flag);
-    return CreateTask(
-        base::BindOnce([](bool& ext_flag) { ext_flag = true; }, flag));
-  }
-
-  base::MessagePump::PendingTask CreateSetterExecutorTask(
-      std::optional<base::MessagePump::ExecutorId> executor_id,
-      bool& flag) {
-    EXPECT_FALSE(flag);
-    return CreateExecutorTask(
-        base::BindOnce([](bool& ext_flag) { ext_flag = true; }, flag),
-        std::move(executor_id));
-  }
-
-  base::MessagePump::PendingTask CreateSetterSequenceTask(
-      std::optional<base::SequenceId> sequence_id,
-      bool& flag) {
-    EXPECT_FALSE(flag);
-    return CreateSequenceTask(
-        base::BindOnce([](bool& ext_flag) { ext_flag = true; }, flag),
-        std::move(sequence_id));
-  }
 
   base::MessagePumpImpl pump;
 };

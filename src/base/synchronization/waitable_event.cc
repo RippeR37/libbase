@@ -7,9 +7,7 @@ WaitableEvent::WaitableEvent(ResetPolicy reset_policy,
     : reset_policy_(reset_policy),
       is_signaled_(initial_state == InitialState::kSignaled) {}
 
-WaitableEvent::~WaitableEvent() {
-  //
-}
+WaitableEvent::~WaitableEvent() = default;
 
 void WaitableEvent::Reset() {
   std::lock_guard<std::mutex> guard{mutex_};

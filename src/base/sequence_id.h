@@ -21,7 +21,7 @@ class SequenceId {
  private:
   friend class detail::SequenceIdGenerator;
 
-  SequenceId(uint64_t id);
+  explicit SequenceId(uint64_t id);
 
   uint64_t id_;
 };

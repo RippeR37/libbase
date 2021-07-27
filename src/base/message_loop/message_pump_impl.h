@@ -12,7 +12,7 @@ namespace base {
 
 class MessagePumpImpl : public MessagePump {
  public:
-  MessagePumpImpl(size_t executors_count);
+  explicit MessagePumpImpl(size_t executors_count);
 
   // MessagePump
   PendingTask GetNextPendingTask(ExecutorId executor_id) override;

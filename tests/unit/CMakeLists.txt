@@ -42,7 +42,7 @@ gtest_discover_tests(libbase_unittests)
 # Code coverage
 #
 
-if(LIBBASE_CODE_COVERAGE AND CMAKE_COMPILER_IS_GNUCXX)
+if(LIBBASE_CODE_COVERAGE AND "${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
   include(CodeCoverage)
   APPEND_COVERAGE_COMPILER_FLAGS()
   set(COVERAGE_LCOV_EXCLUDES '/usr/*' '*/third_party/*' '*/main.cc' '*/tests/*')

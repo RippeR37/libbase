@@ -21,8 +21,9 @@ class WaitableEvent {
     kNotSignaled,
   };
 
-  WaitableEvent(ResetPolicy reset_policy = ResetPolicy::kManual,
-                InitialState initial_state = InitialState::kNotSignaled);
+  explicit WaitableEvent(
+      ResetPolicy reset_policy = ResetPolicy::kManual,
+      InitialState initial_state = InitialState::kNotSignaled);
   ~WaitableEvent();
 
   // Resets event's state to not-signaled state.

@@ -6,8 +6,6 @@ namespace base {
 
 class SequencedTaskRunner : public TaskRunner {
  public:
-  virtual ~SequencedTaskRunner() = default;
-
   // Returns true if:
   // - this is a SequencedTaskRunner to which the current task was posted,
   // - this is a SequencedTaskRunner bound to the same sequence as the

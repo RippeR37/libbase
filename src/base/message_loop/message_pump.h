@@ -12,7 +12,7 @@ class MessagePump {
   using ExecutorId = uintptr_t;  // TODO: make it better!
 
   struct PendingTask {
-    operator bool() const { return !!task; }
+    explicit operator bool() const { return !!task; }
 
     OnceClosure task;
     std::optional<SequenceId> sequence_id;

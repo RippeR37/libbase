@@ -12,7 +12,7 @@ class MessagePump;
 
 class ThreadPool {
  public:
-  ThreadPool(size_t initial_size);
+  explicit ThreadPool(size_t initial_size);
   ~ThreadPool();
 
   void Start();

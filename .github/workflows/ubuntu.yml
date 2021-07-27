@@ -66,6 +66,9 @@ jobs:
           then
             sudo apt install ${{ matrix.compiler.cc }} ${{ matrix.compiler.cxx }}
           fi
+      - name: (Optional) Clang-tidy installation
+        if: ${{ startsWith(matrix.compiler.cc, 'clang') }}
+        run: if ! command -v clang-tidy-10 &> /dev/null; then sudo apt install clang-tidy-10; fi
       - name: (Optional) Lcov installation
         if: ${{ matrix.code_coverage }}
         run: if ! command -v lcov &> /dev/null; then sudo apt install lcov; fi

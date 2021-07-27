@@ -9,7 +9,7 @@
 
 namespace base {
 
-Thread::Thread() {}
+Thread::Thread() = default;
 
 Thread::~Thread() {
   Join();

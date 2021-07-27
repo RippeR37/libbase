@@ -11,7 +11,7 @@ namespace base {
 
 #define SEQUENCE_CHECKER(name) ::base::SequenceChecker name
 #define DCHECK_CALLED_ON_VALID_SEQUENCE(sequence_checker) \
-  DCHECK(sequence_checker.CalledOnValidSequence());
+  DCHECK((sequence_checker).CalledOnValidSequence());
 #define DETACH_FROM_SEQUENCE(sequence_checker) \
   (sequence_checker).DetachFromSequence()
 

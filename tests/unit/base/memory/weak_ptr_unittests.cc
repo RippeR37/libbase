@@ -9,8 +9,6 @@
 
 namespace {
 
-using namespace ::testing;
-
 TEST(WeakPtrTest, Empty) {
   base::WeakPtr<bool> weak_ptr;
   EXPECT_FALSE(weak_ptr);
@@ -44,7 +42,7 @@ class WeakPtrFactoryOwner {
   base::WeakPtrFactory<WeakPtrFactoryOwner> weak_factory{this};
 };
 
-class BaseWeakPtrFactoryTest : public Test {
+class BaseWeakPtrFactoryTest : public ::testing::Test {
  public:
   BaseWeakPtrFactoryTest()
       : sequence_id_setter_(
@@ -224,7 +222,7 @@ TEST_F(WeakPtrFactoryUpcastingTest, UpcastingCopyCtor) {
   EXPECT_TRUE(weak_derived);
   EXPECT_EQ(weak_derived.Get(), &derived);
 
-  base::WeakPtr<Base> weak_base = weak_derived;
+  base::WeakPtr<Base> weak_base{weak_derived};
   EXPECT_TRUE(weak_base);
   EXPECT_EQ(weak_base.Get(), static_cast<Base*>(&derived));
   EXPECT_TRUE(weak_derived);
@@ -245,7 +243,7 @@ TEST_F(WeakPtrFactoryUpcastingTest, UpcastingMoveCtor) {
   EXPECT_TRUE(weak_derived);
   EXPECT_EQ(weak_derived.Get(), &derived);
 
-  base::WeakPtr<Base> weak_base = std::move(weak_derived);
+  base::WeakPtr<Base> weak_base{std::move(weak_derived)};
   EXPECT_TRUE(weak_base);
   EXPECT_EQ(weak_base.Get(), static_cast<Base*>(&derived));
   EXPECT_FALSE(weak_derived);
@@ -352,8 +350,8 @@ TEST_F(WeakPtrFactoryMultiInheritanceUpcastingTest, UpcastingCopyCtor) {
   EXPECT_TRUE(weak_derived);
   EXPECT_EQ(weak_derived.Get(), &derived);
 
-  base::WeakPtr<MultiBase1> weak_base1 = weak_derived;
-  base::WeakPtr<MultiBase2> weak_base2 = weak_derived;
+  base::WeakPtr<MultiBase1> weak_base1{weak_derived};
+  base::WeakPtr<MultiBase2> weak_base2{weak_derived};
   EXPECT_TRUE(weak_derived);
   EXPECT_EQ(weak_derived.Get(), &derived);
   EXPECT_TRUE(weak_base1);
@@ -381,8 +379,8 @@ TEST_F(WeakPtrFactoryMultiInheritanceUpcastingTest, UpcastingMoveCtor) {
   EXPECT_TRUE(weak_derived2);
   EXPECT_EQ(weak_derived2.Get(), &derived);
 
-  base::WeakPtr<MultiBase1> weak_base1 = std::move(weak_derived1);
-  base::WeakPtr<MultiBase2> weak_base2 = std::move(weak_derived2);
+  base::WeakPtr<MultiBase1> weak_base1{std::move(weak_derived1)};
+  base::WeakPtr<MultiBase2> weak_base2{std::move(weak_derived2)};
   EXPECT_FALSE(weak_derived1);
   EXPECT_EQ(weak_derived1.Get(), nullptr);
   EXPECT_FALSE(weak_derived2);

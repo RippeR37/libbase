@@ -20,11 +20,13 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
   option(LIBBASE_BUILD_TESTS "Build unit tests." ON)
   option(LIBBASE_CODE_COVERAGE "Compute code coverage." OFF)
   option(LIBBASE_BUILD_PERFORMANCE_TESTS "Build performance tests." ON)
+  option(LIBBASE_CLANG_TIDY "Build with clang-tidy" ON)
 else()
   option(LIBBASE_BUILD_EXAMPLES "Build examples." OFF)
   option(LIBBASE_BUILD_TESTS "Build unit tests." OFF)
   option(LIBBASE_CODE_COVERAGE "Compute code coverage." OFF)
   option(LIBBASE_BUILDPERFORMANCE_TESTS "Build performance tests." OFF)
+  option(LIBBASE_CLANG_TIDY "Build with clang-tidy" OFF)
 endif()
 
 
@@ -33,11 +35,17 @@ endif()
 #
 
 include(SetupCompileFlags)
-setup_compile_flags() # sets LIBBASE_COMPILE_FLAGS and LIBBASE_LINK_FLAGS
+
+# This sets:
+# - LIBBASE_COMPILE_FLAGS,
+# - LIBBASE_LINK_FLAGS
+# - LIBBASE_OPT_CLANG_TIDY_PROPERTIES - optional C++ property for clang-tidy use
+setup_compile_flags()
 
 message(STATUS "Compiler: ${CMAKE_CXX_COMPILER}")
 message(STATUS "Compiler flags: '${LIBBASE_COMPILE_FLAGS}'")
 message(STATUS "Linker flags: '${LIBBASE_LINK_FLAGS}'")
+message(STATUS "Clang-tidy property: '${LIBBASE_OPT_CLANG_TIDY_PROPERTIES}'")
 message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 
 

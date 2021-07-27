@@ -12,7 +12,7 @@ namespace base {
 
 class TaskRunnerImpl : public TaskRunner {
  public:
-  TaskRunnerImpl(std::weak_ptr<MessagePump> pump);
+  explicit TaskRunnerImpl(std::weak_ptr<MessagePump> pump);
 
   // TaskRunner
   bool PostTask(SourceLocation location, OnceClosure task) override;

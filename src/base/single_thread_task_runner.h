@@ -6,8 +6,6 @@ namespace base {
 
 class SingleThreadTaskRunner : public SequencedTaskRunner {
  public:
-  virtual ~SingleThreadTaskRunner() = default;
-
   // Alias for `RunsTasksInCurrentSequence()`.
   bool BelongsToCurrentThread() const { return RunsTasksInCurrentSequence(); }
 };
