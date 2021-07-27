@@ -5,9 +5,7 @@ namespace base {
 SequenceChecker::SequenceChecker()
     : sequence_id_(detail::CurrentSequenceIdHelper::current_sequence_id_) {}
 
-SequenceChecker::~SequenceChecker() {
-  CHECK(CalledOnValidSequence());
-}
+SequenceChecker::~SequenceChecker() = default;
 
 SequenceChecker::SequenceChecker(SequenceChecker&& other) {
   const bool other_moved_on_valid_sequence = other.CalledOnValidSequence();
