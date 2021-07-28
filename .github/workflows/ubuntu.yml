@@ -37,7 +37,12 @@ jobs:
         code_coverage: [false]
         include:
           - os: ubuntu-20.04
-            compiler: {name: CodeCoverage (GCC 10), cc: gcc-10, cxx: g++-10}
+            compiler: {name: CodeCoverage (gcov), cc: gcc-10, cxx: g++-10}
+            build_type: Debug
+            cmake_args: "-DLIBBASE_CODE_COVERAGE=ON"
+            code_coverage: true
+          - os: ubuntu-20.04
+            compiler: {name: CodeCoverage (llvm-cov), cc: clang-12, cxx: clang++-12}
             build_type: Debug
             cmake_args: "-DLIBBASE_CODE_COVERAGE=ON"
             code_coverage: true
@@ -70,8 +75,13 @@ jobs:
         if: ${{ startsWith(matrix.compiler.cc, 'clang') }}
         run: if ! command -v clang-tidy-10 &> /dev/null; then sudo apt install clang-tidy-10; fi
       - name: (Optional) Lcov installation
-        if: ${{ matrix.code_coverage }}
+        if: ${{ matrix.code_coverage && startsWith(matrix.compiler.cc, 'gcc') }}
         run: if ! command -v lcov &> /dev/null; then sudo apt install lcov; fi
+      - name: (Optional) llvm-cov & llvm-profdata installation
+        if: ${{ matrix.code_coverage && startsWith(matrix.compiler.cc, 'clang') }}
+        run: |
+          if ! command -v llvm-cov-12 &> /dev/null; then sudo apt install llvm-cov-12; fi
+          if ! command -v llvm-profdata-12 &> /dev/null; then sudo apt install llvm-profdata-12; fi
 
       # Build and test
       - name: CMake configuration
@@ -81,13 +91,21 @@ jobs:
       - name: Testing
         run: ctest --test-dir build
 
-      # Collect code coverage
+      # Generate code coverage report and upload it
+      # - 'gcov'-based is used with CI
+      # - 'llvm-cov'-based is uploaded as artifact
       - name: (Optional) Generate code coverage
         if: ${{ matrix.code_coverage }}
         run: cmake --build build --target coverage
-      - name: (Optional) Collect and upload code coverage
-        if: ${{ matrix.code_coverage }}
+      - name: (Optional) Upload code coverage to CI
+        if: ${{ matrix.code_coverage && startsWith(matrix.compiler.cc, 'gcc') }}
         uses: codecov/codecov-action@v2
         with:
           fail_ci_if_error: true
           verbose: true
+      - name: (Optional) Upload code coverage as artifact
+        if: ${{ matrix.code_coverage && startsWith(matrix.compiler.cc, 'clang') }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: llvm-cov-code-coverage-report
+          path: build/coverage/

@@ -42,12 +42,20 @@ gtest_discover_tests(libbase_unittests)
 # Code coverage
 #
 
-if(LIBBASE_CODE_COVERAGE AND "${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-  include(CodeCoverage)
-  APPEND_COVERAGE_COMPILER_FLAGS()
-  set(COVERAGE_LCOV_EXCLUDES '/usr/*' '*/third_party/*' '*/main.cc' '*/tests/*')
-  SETUP_TARGET_FOR_COVERAGE_LCOV(
-    NAME coverage
-    EXECUTABLE ctest -j ${n_cores}
-    DEPENDENCIES libbase_unittests)
+if(LIBBASE_CODE_COVERAGE)
+  include(SetupCodeCoverage)
+
+  if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+    setup_coverage_target_gcc(
+      NAME coverage
+      TEST_TARGET libbase_unittests
+      EXCLUDE_PATHS '/usr/*' '*/third_party/*' '*/main.cc' '*/tests/*')
+  elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    setup_coverage_target_clang(
+      NAME coverage
+      TEST_TARGET libbase_unittests
+      EXCLUDE_PATHS "third_party|tests")
+  else()
+    message(FATAL_ERROR "Code coverage supported only with GCC and Clang compilers")
+  endif()
 endif()
