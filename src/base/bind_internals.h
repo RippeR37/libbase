@@ -3,13 +3,16 @@
 #include <cstddef>
 #include <functional>
 #include <tuple>
+#include <type_traits>
 #include <utility>
 
+#include "base/callback.h"
 #include "base/callback_iface.h"
 #include "base/memory/weak_ptr.h"
 #include "base/type_traits.h"
 
 namespace base {
+
 namespace detail {
 
 //
@@ -44,19 +47,6 @@ class BindAccessHelper {
   static CallbackType Create(ImplType impl) {
     return CallbackType{std::move(impl)};
   }
-
-  template <typename CallbackType>
-  static auto ExtractImpl(CallbackType&& callback) {
-    return std::move(callback.impl_);
-  }
-
-  template <typename CallbackType>
-  static auto CloneImpl(const CallbackType& callback) {
-    if (callback) {
-      return callback.impl_->Clone();
-    }
-    return decltype(callback.impl_->Clone()){};
-  }
 };
 
 //
@@ -73,28 +63,21 @@ constexpr decltype(auto) ApplyBoundAndVariadicArgumentsToFreeFunction(
     BoundArgumentsTupleType&& bound_arguments,
     std::index_sequence<Indexes...>,
     RunArgumentTypes&&... run_arguments) {
+  if constexpr (std::is_member_function_pointer_v<
+                    traits::RemoveCVRefT<FunctionType>>) {
+    if constexpr (sizeof...(Indexes) > 0) {
+      if constexpr (!std::is_pointer_v<
+                        std::tuple_element_t<0, BoundArgumentsTupleType>>) {
+        if (!std::get<0>(bound_arguments)) {
+          return;
+        }
+      }
+    }
+  }
   return std::invoke(std::forward<FunctionType>(function),
                      std::get<Indexes>(std::forward<BoundArgumentsTupleType>(
                          bound_arguments))...,
                      std::forward<RunArgumentTypes>(run_arguments)...);
-}
-
-template <class FunctionType,
-          class Class,
-          class BoundArgumentsTupleType,
-          std::size_t... Indexes,
-          typename... RunArgumentTypes>
-constexpr decltype(auto) ApplyBoundAndVariadicArgumentsToMemberFunction(
-    FunctionType&& function,
-    Class&& object,
-    BoundArgumentsTupleType&& bound_arguments,
-    std::index_sequence<Indexes...>,
-    RunArgumentTypes&&... run_arguments) {
-  return std::invoke(
-      std::forward<FunctionType>(function), std::forward<Class>(object),
-      std::get<Indexes>(
-          std::forward<BoundArgumentsTupleType>(bound_arguments))...,
-      std::forward<RunArgumentTypes>(run_arguments)...);
 }
 
 template <class CallbackType,
@@ -106,365 +89,205 @@ constexpr decltype(auto) ApplyBoundAndVariadicArgumentsToCallback(
     BoundArgumentsTupleType&& bound_arguments,
     std::index_sequence<Indexes...>,
     RunArgumentTypes&&... run_arguments) {
-  return std::forward<CallbackType>(callback)->Run(
+  return std::forward<CallbackType>(callback).Run(
       std::get<Indexes>(
           std::forward<BoundArgumentsTupleType>(bound_arguments))...,
       std::forward<RunArgumentTypes>(run_arguments)...);
 }
 
 //
-// Implementations of OnceCallbackInterface.
+// Functor traits
 //
 
-template <typename ReturnType,
-          typename BoundArgumentsTupleType,
-          typename... RunArgumentTypes>
-class FreeFunctionOnceCallback {
+template <typename ReturnTypeParam,
+          typename ArgumentsTypeParam,
+          size_t ArgumentsCountParam>
+struct FunctorTraitsImpl {
+  using ReturnType = ReturnTypeParam;
+  using ArgumentsType = ArgumentsTypeParam;
+  static constexpr size_t ArgumentsCount = ArgumentsCountParam;
+};
+
+template <typename Functor, typename InstancePointer>
+struct FunctorTraits {
+  static_assert(!sizeof(Functor), "Invalid instantiation");
+};
+
+// Function
+template <typename ReturnType, typename... ArgumentTypes>
+struct FunctorTraits<ReturnType (*)(ArgumentTypes...), void>
+    : FunctorTraitsImpl<ReturnType,
+                        std::tuple<ArgumentTypes...>,
+                        sizeof...(ArgumentTypes)> {};
+
+// Member functions
+#define LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(...)                       \
+  template <typename ReturnType, typename ClassType,                         \
+            typename InstancePointerType, typename... ArgumentTypes>         \
+  struct FunctorTraits<ReturnType (ClassType::*)(ArgumentTypes...)           \
+                           __VA_ARGS__,                                      \
+                       InstancePointerType>                                  \
+      : FunctorTraitsImpl<ReturnType,                                        \
+                          std::tuple<InstancePointerType, ArgumentTypes...>, \
+                          1 + sizeof...(ArgumentTypes)> {}
+
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT();
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const);
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(volatile);
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const volatile);
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(&);
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const&);
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(volatile&);
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const volatile&);
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(&&);
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const&&);
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(volatile&&);
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const volatile&&);
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(noexcept);
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const noexcept);
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(volatile noexcept);
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const volatile noexcept);
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(&noexcept);
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const& noexcept);
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(volatile& noexcept);
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const volatile& noexcept);
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(&&noexcept);
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const&& noexcept);
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(volatile&& noexcept);
+LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const volatile&& noexcept);
+
+#undef LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT
+
+// Callbacks
+template <typename ReturnType, typename... ArgumentTypes>
+struct FunctorTraits<::base::OnceCallback<ReturnType(ArgumentTypes...)>, void>
+    : FunctorTraitsImpl<ReturnType,
+                        std::tuple<ArgumentTypes...>,
+                        sizeof...(ArgumentTypes)> {};
+
+template <typename ReturnType, typename... ArgumentTypes>
+struct FunctorTraits<::base::RepeatingCallback<ReturnType(ArgumentTypes...)>,
+                     void> : FunctorTraitsImpl<ReturnType,
+                                               std::tuple<ArgumentTypes...>,
+                                               sizeof...(ArgumentTypes)> {};
+
+//
+// Callback implementation
+//
+
+template <typename DerivedType, typename ReturnType, typename... ArgumentTypes>
+class RepeatingCallbackCrtpImpl
+    : public RepeatingCallbackInterface<ReturnType, ArgumentTypes...> {
+ public:
+  std::unique_ptr<RepeatingCallbackInterface<ReturnType, ArgumentTypes...>>
+  Clone() const override {
+    const auto* this_derived = static_cast<const DerivedType*>(this);
+    return std::make_unique<DerivedType>(*this_derived);
+  }
+};
+
+template <bool is_repeating,
+          typename FunctorType,
+          typename ReturnType,
+          typename BoundArgumentTupleType,
+          typename RunArgumentTypes>
+class FunctorCallback {
   static_assert(!sizeof(ReturnType), "Invalid template instantiation");
 };
 
-template <typename ReturnType,
-          typename... BoundArgumentTypes,
-          typename... RunArgumentTypes>
-class FreeFunctionOnceCallback<ReturnType,
-                               std::tuple<BoundArgumentTypes...>,
-                               std::tuple<RunArgumentTypes...>>
-    : public OnceCallbackInterface<ReturnType, RunArgumentTypes...> {
- public:
-  FreeFunctionOnceCallback(ReturnType (*function_ptr)(BoundArgumentTypes...,
-                                                      RunArgumentTypes...),
-                           std::tuple<BoundArgumentTypes...> bound_arguments)
-      : function_ptr_(function_ptr),
-        bound_arguments_(std::move(bound_arguments)) {}
-
-  ReturnType Run(RunArgumentTypes... arguments) override {
-    return ApplyBoundAndVariadicArgumentsToFreeFunction(
-        function_ptr_, std::move(bound_arguments_),
-        std::make_index_sequence<sizeof...(BoundArgumentTypes)>{},
-        std::forward<RunArgumentTypes>(arguments)...);
-  }
-
- private:
-  ReturnType (*function_ptr_)(BoundArgumentTypes..., RunArgumentTypes...);
-  std::tuple<BoundArgumentTypes...> bound_arguments_;
-};
-
-template <typename Class,
-          typename ReturnType,
-          typename BoundArgumentsTupleType,
-          typename... RunArgumentTypes>
-class MemberFunctionOnceCallback {
-  static_assert(!sizeof(Class), "Invalid template instantiation");
-};
-
-template <typename Class,
+template <bool is_repeating,
+          typename FunctorType,
           typename ReturnType,
           typename... BoundArgumentTypes,
           typename... RunArgumentTypes>
-class MemberFunctionOnceCallback<Class,
-                                 ReturnType,
-                                 std::tuple<BoundArgumentTypes...>,
-                                 std::tuple<RunArgumentTypes...>>
-    : public OnceCallbackInterface<ReturnType, RunArgumentTypes...> {
+class FunctorCallback<is_repeating,
+                      FunctorType,
+                      ReturnType,
+                      std::tuple<BoundArgumentTypes...>,
+                      std::tuple<RunArgumentTypes...>>
+    : public std::conditional_t<
+          is_repeating,
+          RepeatingCallbackCrtpImpl<
+              FunctorCallback<is_repeating,
+                              FunctorType,
+                              ReturnType,
+                              std::tuple<BoundArgumentTypes...>,
+                              std::tuple<RunArgumentTypes...>>,
+              ReturnType,
+              RunArgumentTypes...>,
+          OnceCallbackInterface<ReturnType, RunArgumentTypes...>> {
  public:
-  MemberFunctionOnceCallback(
-      ReturnType (Class::*member_function_ptr)(BoundArgumentTypes...,
-                                               RunArgumentTypes...),
-      Class* object,
-      std::tuple<BoundArgumentTypes...> bound_arguments)
-      : member_function_ptr_(member_function_ptr),
-        object_(object),
+  using RawFunctorType = traits::RemoveCVRefT<FunctorType>;
+
+  FunctorCallback(FunctorType&& functor,
+                  std::tuple<BoundArgumentTypes...>&& bound_arguments)
+      : functor_(std::forward<FunctorType>(functor)),
         bound_arguments_(std::move(bound_arguments)) {}
 
   ReturnType Run(RunArgumentTypes... arguments) override {
-    return ApplyBoundAndVariadicArgumentsToMemberFunction(
-        member_function_ptr_, object_, std::move(bound_arguments_),
-        std::make_index_sequence<sizeof...(BoundArgumentTypes)>{},
-        std::forward<RunArgumentTypes>(arguments)...);
-  }
-
- private:
-  ReturnType (Class::*member_function_ptr_)(BoundArgumentTypes...,
-                                            RunArgumentTypes...);
-  Class* object_;
-  std::tuple<BoundArgumentTypes...> bound_arguments_;
-};
-
-template <typename Class,
-          typename ReturnType,
-          typename BoundArgumentsTupleType,
-          typename... RunArgumentTypes>
-class MemberFunctionWeakPtrOnceCallback {
-  static_assert(!sizeof(Class), "Invalid template instantiation");
-};
-
-template <typename Class,
-          typename ReturnType,
-          typename... BoundArgumentTypes,
-          typename... RunArgumentTypes>
-class MemberFunctionWeakPtrOnceCallback<Class,
-                                        ReturnType,
-                                        std::tuple<BoundArgumentTypes...>,
-                                        std::tuple<RunArgumentTypes...>>
-    : public OnceCallbackInterface<ReturnType, RunArgumentTypes...> {
- public:
-  static_assert(std::is_same_v<ReturnType, void>,
-                "Cannot bind function with return value to base::WeakPtr");
-
-  MemberFunctionWeakPtrOnceCallback(
-      ReturnType (Class::*member_function_ptr)(BoundArgumentTypes...,
-                                               RunArgumentTypes...),
-      WeakPtr<Class> object,
-      std::tuple<BoundArgumentTypes...> bound_arguments)
-      : member_function_ptr_(member_function_ptr),
-        object_(std::move(object)),
-        bound_arguments_(std::move(bound_arguments)) {}
-
-  ReturnType Run(RunArgumentTypes... arguments) override {
-    if (object_) {
-      return ApplyBoundAndVariadicArgumentsToMemberFunction(
-          member_function_ptr_, object_.Get(), std::move(bound_arguments_),
+    if constexpr (traits::IsOnceCallbackV<RawFunctorType>) {
+      return ApplyBoundAndVariadicArgumentsToCallback(
+          std::move(functor_), std::move(bound_arguments_),
+          std::make_index_sequence<sizeof...(BoundArgumentTypes)>{},
+          std::forward<RunArgumentTypes>(arguments)...);
+    } else if constexpr (traits::IsRepeatingCallbackV<RawFunctorType>) {
+      return ApplyBoundAndVariadicArgumentsToCallback(
+          functor_, bound_arguments_,
+          std::make_index_sequence<sizeof...(BoundArgumentTypes)>{},
+          std::forward<RunArgumentTypes>(arguments)...);
+    } else {
+      return ApplyBoundAndVariadicArgumentsToFreeFunction(
+          functor_, std::move(bound_arguments_),
           std::make_index_sequence<sizeof...(BoundArgumentTypes)>{},
           std::forward<RunArgumentTypes>(arguments)...);
     }
   }
 
  private:
-  ReturnType (Class::*member_function_ptr_)(BoundArgumentTypes...,
-                                            RunArgumentTypes...);
-  WeakPtr<Class> object_;
+  RawFunctorType functor_;
   std::tuple<BoundArgumentTypes...> bound_arguments_;
 };
 
-template <typename ReturnType,
-          typename BoundArgumentsTupleType,
-          typename... RunArgumentTypes>
-class BoundCallbackOnceCallback {
-  static_assert(!sizeof(ReturnType), "Invalid template instantiation");
-};
+template <template <typename> class CallbackType,
+          bool is_repeating,
+          typename Functor,
+          typename... Arguments>
+auto Bind(Functor&& functor, Arguments&&... arguments) {
+  using InstancePointerType = std::conditional_t<
+      std::is_member_function_pointer_v<Functor>,
+      std::tuple_element_t<0, std::tuple<Arguments..., void>>, void>;
+  using FunctorTraits =
+      FunctorTraits<traits::RemoveCVRefT<Functor>,
+                    traits::RemoveCVRefT<InstancePointerType>>;
 
-template <typename ReturnType,
-          typename... BoundArgumentTypes,
-          typename... RunArgumentTypes>
-class BoundCallbackOnceCallback<ReturnType,
-                                std::tuple<BoundArgumentTypes...>,
-                                std::tuple<RunArgumentTypes...>>
-    : public OnceCallbackInterface<ReturnType, RunArgumentTypes...> {
- public:
-  BoundCallbackOnceCallback(
-      std::unique_ptr<OnceCallbackInterface<ReturnType,
-                                            BoundArgumentTypes...,
-                                            RunArgumentTypes...>> callback,
-      std::tuple<BoundArgumentTypes...> bound_arguments)
-      : callback_(std::move(callback)),
-        bound_arguments_(std::move(bound_arguments)) {}
+  constexpr size_t func_arg_cnt = FunctorTraits::ArgumentsCount;
+  constexpr size_t bind_arg_cnt = sizeof...(Arguments);
+  static_assert(bind_arg_cnt <= func_arg_cnt,
+                "Cannot bind more more arguments than the function takes");
 
-  ReturnType Run(RunArgumentTypes... run_arguments) override {
-    return ApplyBoundAndVariadicArgumentsToCallback(
-        std::move(callback_), std::move(bound_arguments_),
-        std::make_index_sequence<sizeof...(BoundArgumentTypes)>{},
-        std::forward<RunArgumentTypes>(run_arguments)...);
-  }
+  // 1. Bind arguments
+  using BoundArgumentsType =
+      traits::HeadTypesRangeT<bind_arg_cnt,
+                              typename FunctorTraits::ArgumentsType>;
+  BoundArgumentsType bound_args{std::forward<Arguments>(arguments)...};
 
- private:
-  std::unique_ptr<OnceCallbackInterface<ReturnType,
-                                        BoundArgumentTypes...,
-                                        RunArgumentTypes...>>
-      callback_;
-  std::tuple<BoundArgumentTypes...> bound_arguments_;
-};
+  // 2. Compute values and types of the result
+  constexpr size_t remaining_arg_cnt =
+      func_arg_cnt - std::min(bind_arg_cnt, func_arg_cnt);
+  using RemainingArgumentsType =
+      traits::TypesRangeT<bind_arg_cnt, remaining_arg_cnt,
+                          typename FunctorTraits::ArgumentsType>;
+  using ResultType =
+      BindResultType<CallbackType, typename FunctorTraits::ReturnType,
+                     RemainingArgumentsType>;
 
-//
-// Implementations of RepeatingCallbackInterface.
-//
-
-template <typename ReturnType,
-          typename BoundArgumentsTupleType,
-          typename... RunArgumentTypes>
-class FreeFunctionRepeatingCallback {
-  static_assert(!sizeof(ReturnType), "Invalid template instantiation");
-};
-
-template <typename ReturnType,
-          typename... BoundArgumentTypes,
-          typename... RunArgumentTypes>
-class FreeFunctionRepeatingCallback<ReturnType,
-                                    std::tuple<BoundArgumentTypes...>,
-                                    std::tuple<RunArgumentTypes...>>
-    : public RepeatingCallbackInterface<ReturnType, RunArgumentTypes...> {
- public:
-  FreeFunctionRepeatingCallback(
-      ReturnType (*function_ptr)(BoundArgumentTypes..., RunArgumentTypes...),
-      std::tuple<BoundArgumentTypes...> bound_arguments)
-      : function_ptr_(function_ptr),
-        bound_arguments_(std::move(bound_arguments)) {}
-
-  ReturnType Run(RunArgumentTypes... arguments) override {
-    return ApplyBoundAndVariadicArgumentsToFreeFunction(
-        function_ptr_, bound_arguments_,
-        std::make_index_sequence<sizeof...(BoundArgumentTypes)>{},
-        std::forward<RunArgumentTypes>(arguments)...);
-  }
-
-  std::unique_ptr<RepeatingCallbackInterface<ReturnType, RunArgumentTypes...>>
-  Clone() const override {
-    return std::make_unique<FreeFunctionRepeatingCallback<
-        ReturnType, std::tuple<BoundArgumentTypes...>,
-        std::tuple<RunArgumentTypes...>>>(function_ptr_, bound_arguments_);
-  }
-
- private:
-  ReturnType (*function_ptr_)(BoundArgumentTypes..., RunArgumentTypes...);
-  std::tuple<BoundArgumentTypes...> bound_arguments_;
-};
-
-template <typename Class,
-          typename ReturnType,
-          typename BoundArgumentsTupleType,
-          typename... RunArgumentTypes>
-class MemberFunctionRepeatingCallback {
-  static_assert(!sizeof(Class), "Invalid template instantiation");
-};
-
-template <typename Class,
-          typename ReturnType,
-          typename... BoundArgumentTypes,
-          typename... RunArgumentTypes>
-class MemberFunctionRepeatingCallback<Class,
-                                      ReturnType,
-                                      std::tuple<BoundArgumentTypes...>,
-                                      std::tuple<RunArgumentTypes...>>
-    : public RepeatingCallbackInterface<ReturnType, RunArgumentTypes...> {
- public:
-  MemberFunctionRepeatingCallback(
-      ReturnType (Class::*member_function_ptr)(BoundArgumentTypes...,
-                                               RunArgumentTypes...),
-      Class* object,
-      std::tuple<BoundArgumentTypes...> bound_arguments)
-      : member_function_ptr_(member_function_ptr),
-        object_(object),
-        bound_arguments_(std::move(bound_arguments)) {}
-
-  ReturnType Run(RunArgumentTypes... arguments) override {
-    return ApplyBoundAndVariadicArgumentsToMemberFunction(
-        member_function_ptr_, object_, bound_arguments_,
-        std::make_index_sequence<sizeof...(BoundArgumentTypes)>{},
-        std::forward<RunArgumentTypes>(arguments)...);
-  }
-
-  std::unique_ptr<RepeatingCallbackInterface<ReturnType, RunArgumentTypes...>>
-  Clone() const override {
-    return std::make_unique<MemberFunctionRepeatingCallback<
-        Class, ReturnType, std::tuple<BoundArgumentTypes...>,
-        std::tuple<RunArgumentTypes...>>>(member_function_ptr_, object_,
-                                          bound_arguments_);
-  }
-
- private:
-  ReturnType (Class::*member_function_ptr_)(BoundArgumentTypes...,
-                                            RunArgumentTypes...);
-  Class* object_;
-  std::tuple<BoundArgumentTypes...> bound_arguments_;
-};
-
-template <typename Class,
-          typename ReturnType,
-          typename BoundArgumentsTupleType,
-          typename... RunArgumentTypes>
-class MemberFunctionWeakPtrRepeatingCallback {
-  static_assert(!sizeof(Class), "Invalid template instantiation");
-};
-
-template <typename Class,
-          typename ReturnType,
-          typename... BoundArgumentTypes,
-          typename... RunArgumentTypes>
-class MemberFunctionWeakPtrRepeatingCallback<Class,
-                                             ReturnType,
-                                             std::tuple<BoundArgumentTypes...>,
-                                             std::tuple<RunArgumentTypes...>>
-    : public RepeatingCallbackInterface<ReturnType, RunArgumentTypes...> {
- public:
-  static_assert(std::is_same_v<ReturnType, void>,
-                "Cannot bind function with return value to base::WeakPtr");
-
-  MemberFunctionWeakPtrRepeatingCallback(
-      ReturnType (Class::*member_function_ptr)(BoundArgumentTypes...,
-                                               RunArgumentTypes...),
-      WeakPtr<Class> object,
-      std::tuple<BoundArgumentTypes...> bound_arguments)
-      : member_function_ptr_(member_function_ptr),
-        object_(std::move(object)),
-        bound_arguments_(std::move(bound_arguments)) {}
-
-  ReturnType Run(RunArgumentTypes... arguments) override {
-    if (object_) {
-      return ApplyBoundAndVariadicArgumentsToMemberFunction(
-          member_function_ptr_, object_.Get(), bound_arguments_,
-          std::make_index_sequence<sizeof...(BoundArgumentTypes)>{},
-          std::forward<RunArgumentTypes>(arguments)...);
-    }
-  }
-
-  std::unique_ptr<RepeatingCallbackInterface<ReturnType, RunArgumentTypes...>>
-  Clone() const override {
-    return std::make_unique<MemberFunctionWeakPtrRepeatingCallback<
-        Class, ReturnType, std::tuple<BoundArgumentTypes...>,
-        std::tuple<RunArgumentTypes...>>>(member_function_ptr_, object_,
-                                          bound_arguments_);
-  }
-
- private:
-  ReturnType (Class::*member_function_ptr_)(BoundArgumentTypes...,
-                                            RunArgumentTypes...);
-  WeakPtr<Class> object_;
-  std::tuple<BoundArgumentTypes...> bound_arguments_;
-};
-
-template <typename ReturnType,
-          typename BoundArgumentsTupleType,
-          typename... RunArgumentTypes>
-class BoundCallbackRepeatingCallback {
-  static_assert(!sizeof(ReturnType), "Invalid template instantiation");
-};
-
-template <typename ReturnType,
-          typename... BoundArgumentTypes,
-          typename... RunArgumentTypes>
-class BoundCallbackRepeatingCallback<ReturnType,
-                                     std::tuple<BoundArgumentTypes...>,
-                                     std::tuple<RunArgumentTypes...>>
-    : public RepeatingCallbackInterface<ReturnType, RunArgumentTypes...> {
- public:
-  BoundCallbackRepeatingCallback(
-      std::unique_ptr<RepeatingCallbackInterface<ReturnType,
-                                                 BoundArgumentTypes...,
-                                                 RunArgumentTypes...>> callback,
-      std::tuple<BoundArgumentTypes...> bound_arguments)
-      : callback_(std::move(callback)),
-        bound_arguments_(std::move(bound_arguments)) {}
-
-  ReturnType Run(RunArgumentTypes... run_arguments) override {
-    return ApplyBoundAndVariadicArgumentsToCallback(
-        callback_, bound_arguments_,
-        std::make_index_sequence<sizeof...(BoundArgumentTypes)>{},
-        std::forward<RunArgumentTypes>(run_arguments)...);
-  }
-
-  std::unique_ptr<RepeatingCallbackInterface<ReturnType, RunArgumentTypes...>>
-  Clone() const override {
-    return std::make_unique<BoundCallbackRepeatingCallback<
-        ReturnType, std::tuple<BoundArgumentTypes...>,
-        std::tuple<RunArgumentTypes...>>>(callback_->Clone(), bound_arguments_);
-  }
-
- private:
-  std::unique_ptr<RepeatingCallbackInterface<ReturnType,
-                                             BoundArgumentTypes...,
-                                             RunArgumentTypes...>>
-      callback_;
-  std::tuple<BoundArgumentTypes...> bound_arguments_;
-};
+  // 3. Create the callback object.
+  return BindAccessHelper::Create<ResultType>(
+      std::make_unique<FunctorCallback<
+          is_repeating, Functor, typename FunctorTraits::ReturnType,
+          BoundArgumentsType, RemainingArgumentsType>>(
+          std::forward<Functor>(functor), std::move(bound_args)));
+}
 
 }  // namespace detail
 }  // namespace base

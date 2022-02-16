@@ -26,6 +26,7 @@ void SetGlobalIntFromUniquePtrArg(std::unique_ptr<int> x) {
 int add(int x, int y) {
   return x + y;
 }
+
 TEST(BindTest, FreeFunc) {
   global_int_arg = -1;
 
@@ -243,6 +244,100 @@ TEST(AdvancedBindTest, OnceToOnceCallbackToFreeFunction) {
   EXPECT_FALSE(cb_5);
   EXPECT_FALSE(cb_6);
   EXPECT_FALSE(cb_7);
+}
+
+class MemberFunctionsSimple {
+ public:
+  void Function01() { value |= (1 << 0); }
+  void Function02() const { value |= (1 << 1); }
+  void Function03() volatile { value |= (1 << 2); }
+  void Function04() const volatile { value |= (1 << 3); }
+  mutable int value = 0;
+};
+
+TEST(MemberFunctionsExhaustionTest, SimpleFunctions) {
+  MemberFunctionsSimple obj;
+
+  base::BindOnce(&MemberFunctionsSimple::Function01, &obj).Run();
+  base::BindOnce(&MemberFunctionsSimple::Function02, &obj).Run();
+  base::BindOnce(&MemberFunctionsSimple::Function03, &obj).Run();
+  base::BindOnce(&MemberFunctionsSimple::Function04, &obj).Run();
+
+  EXPECT_EQ(obj.value, 0b1111);
+}
+
+class MemberFunctionsOverloaded {
+ public:
+  void Function05() & { value |= (1 << 0); }
+  void Function06() const& { value |= (1 << 1); }
+  void Function07() volatile& { value |= (1 << 2); }
+  void Function08() const volatile& { value |= (1 << 3); }
+  void Function09() && { value |= (1 << 4); }
+  void Function10() const&& { value |= (1 << 5); }
+  void Function11() volatile&& { value |= (1 << 6); }
+  void Function12() const volatile&& { value |= (1 << 7); }
+  mutable int value = 0;
+};
+
+TEST(MemberFunctionsExhaustionTest, OverloadedFunctions) {
+  MemberFunctionsOverloaded obj;
+
+  base::BindOnce(&MemberFunctionsOverloaded::Function05, &obj).Run();
+  base::BindOnce(&MemberFunctionsOverloaded::Function06, &obj).Run();
+  base::BindOnce(&MemberFunctionsOverloaded::Function07, &obj).Run();
+  base::BindOnce(&MemberFunctionsOverloaded::Function08, &obj).Run();
+
+  // Functions 09-12 are non-bindable to pointers since pointers cannot transfer
+  // r-valueness
+
+  EXPECT_EQ(obj.value, 0b0000'1111);
+}
+
+class MemberFunctionsNoexcept {
+ public:
+  void Function13() noexcept { value |= (1 << 0); }
+  void Function14() const noexcept { value |= (1 << 1); }
+  void Function15() volatile noexcept { value |= (1 << 2); }
+  void Function16() const volatile noexcept { value |= (1 << 3); }
+  mutable int value = 0;
+};
+
+TEST(MemberFunctionsExhaustionTest, NoexceptFunctions) {
+  MemberFunctionsNoexcept obj;
+
+  base::BindOnce(&MemberFunctionsNoexcept::Function13, &obj).Run();
+  base::BindOnce(&MemberFunctionsNoexcept::Function14, &obj).Run();
+  base::BindOnce(&MemberFunctionsNoexcept::Function15, &obj).Run();
+  base::BindOnce(&MemberFunctionsNoexcept::Function16, &obj).Run();
+
+  EXPECT_EQ(obj.value, 0b1111);
+}
+
+class MemberFunctionsNoexceptOverloaded {
+ public:
+  void Function17() & noexcept { value |= (1 << 0); }
+  void Function18() const& noexcept { value |= (1 << 1); }
+  void Function19() volatile& noexcept { value |= (1 << 2); }
+  void Function20() const volatile& noexcept { value |= (1 << 3); }
+  void Function21() && noexcept { value |= (1 << 4); }
+  void Function22() const&& noexcept { value |= (1 << 5); }
+  void Function23() volatile&& noexcept { value |= (1 << 6); }
+  void Function24() const volatile&& noexcept { value |= (1 << 7); }
+  mutable int value = 0;
+};
+
+TEST(MemberFunctionsExhaustionTest, NoexceptOverloadedFunctions) {
+  MemberFunctionsNoexceptOverloaded obj;
+
+  base::BindOnce(&MemberFunctionsNoexceptOverloaded::Function17, &obj).Run();
+  base::BindOnce(&MemberFunctionsNoexceptOverloaded::Function18, &obj).Run();
+  base::BindOnce(&MemberFunctionsNoexceptOverloaded::Function19, &obj).Run();
+  base::BindOnce(&MemberFunctionsNoexceptOverloaded::Function20, &obj).Run();
+
+  // Functions 21-24 are non-bindable to pointers since pointers cannot transfer
+  // r-valueness
+
+  EXPECT_EQ(obj.value, 0b0000'1111);
 }
 
 class WeakClass {

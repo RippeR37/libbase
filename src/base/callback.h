@@ -113,4 +113,42 @@ class RepeatingCallback<ReturnType(ArgumentTypes...)> {
 using OnceClosure = OnceCallback<void()>;
 using RepeatingClosure = RepeatingCallback<void()>;
 
+//
+// Callback traits
+//
+
+namespace traits {
+
+template <typename CallbackType>
+struct IsOnceCallbackType {
+  static constexpr bool value = false;
+};
+
+template <typename CallbackSignatureType>
+struct IsOnceCallbackType<::base::OnceCallback<CallbackSignatureType>> {
+  static constexpr bool value = true;
+};
+
+template <typename CallbackType>
+struct IsRepeatingCallbackType {
+  static constexpr bool value = false;
+};
+
+template <typename CallbackSignatureType>
+struct IsRepeatingCallbackType<
+    ::base::RepeatingCallback<CallbackSignatureType>> {
+  static constexpr bool value = true;
+};
+
+template <typename CallbackType>
+inline constexpr bool IsOnceCallbackV = IsOnceCallbackType<CallbackType>::value;
+template <typename CallbackType>
+inline constexpr bool IsRepeatingCallbackV =
+    IsRepeatingCallbackType<CallbackType>::value;
+template <typename CallbackType>
+inline constexpr bool IsCallbackV =
+    IsOnceCallbackV<CallbackType> || IsRepeatingCallbackV<CallbackType>;
+
+}  // namespace traits
+
 }  // namespace base
