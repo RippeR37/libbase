@@ -1,4 +1,14 @@
 function(SETUP_COMPILE_FLAGS)
+  set(DEFINES "")
+
+  if("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux")
+    string(APPEND DEFINES "LIBBASE_IS_LINUX")
+  elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "Windows")
+    string(APPEND DEFINES "LIBBASE_IS_WINDOWS")
+  elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "Darwin")
+    string(APPEND DEFINES "LIBBASE_IS_MACOS")
+  endif()
+
   if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
       # -Wold-style-cast
       set(WARNINGS "-Wall;-Wextra;-Wpedantic;-Werror;-Wunreachable-code")
@@ -39,6 +49,12 @@ function(SETUP_COMPILE_FLAGS)
       "${COVERAGE_LINK_FLAGS}"
       CACHE STRING "Flags used by the linker to link targets"
       FORCE)
+    set(
+      LIBBASE_DEFINES
+      "${DEFINES}"
+      CACHE STRING "Preprocessor defines"
+      FORCE
+    )
     set(
       LIBBASE_OPT_CLANG_TIDY_PROPERTIES
       "${CLANG_TIDY_PROPERTIES}"

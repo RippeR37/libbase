@@ -45,6 +45,7 @@ setup_compile_flags()
 message(STATUS "Compiler: ${CMAKE_CXX_COMPILER}")
 message(STATUS "Compiler flags: '${LIBBASE_COMPILE_FLAGS}'")
 message(STATUS "Linker flags: '${LIBBASE_LINK_FLAGS}'")
+message(STATUS "Preprocesor defines: '${LIBBASE_DEFINES}'")
 message(STATUS "Clang-tidy property: '${LIBBASE_OPT_CLANG_TIDY_PROPERTIES}'")
 message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 
