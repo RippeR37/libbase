@@ -14,9 +14,8 @@ bool DoPostTask(
   (void)location;
 
   if (auto pump = weak_pump.lock()) {
-    pump->QueuePendingTask(
+    return pump->QueuePendingTask(
         {std::move(task), std::move(sequence_id), executor_id});
-    return true;
   }
 
   return false;

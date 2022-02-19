@@ -22,7 +22,7 @@ class MessagePump {
   virtual ~MessagePump() = default;
 
   virtual PendingTask GetNextPendingTask(ExecutorId executor_id) = 0;
-  virtual void QueuePendingTask(PendingTask pending_task) = 0;
+  virtual bool QueuePendingTask(PendingTask pending_task) = 0;
 
   virtual void Stop() = 0;
 };

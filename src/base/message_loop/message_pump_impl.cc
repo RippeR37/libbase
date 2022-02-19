@@ -20,10 +20,6 @@ MessagePumpImpl::PendingTask MessagePumpImpl::GetNextPendingTask(
   DCHECK_LT(executor_id, active_sequences_.size());
   active_sequences_[executor_id].reset();
 
-  if (stopped_) {
-    return {};
-  }
-
   if (auto pending_task = GetNextPendingTask_Locked(executor_id)) {
     return pending_task;
   }
@@ -34,15 +30,20 @@ MessagePumpImpl::PendingTask MessagePumpImpl::GetNextPendingTask(
   return GetNextPendingTask_Locked(executor_id);
 }
 
-void MessagePumpImpl::QueuePendingTask(PendingTask pending_task) {
+bool MessagePumpImpl::QueuePendingTask(PendingTask pending_task) {
+  bool task_queued = false;
+
   {
     std::lock_guard<std::mutex> guard(mutex_);
     if (!stopped_) {
       pending_tasks_.push_back(std::move(pending_task));
+      task_queued = true;
     }
   }
 
   cond_var_.notify_one();
+
+  return task_queued;
 }
 
 void MessagePumpImpl::Stop() {
@@ -56,10 +57,6 @@ void MessagePumpImpl::Stop() {
 
 MessagePumpImpl::PendingTask MessagePumpImpl::GetNextPendingTask_Locked(
     ExecutorId executor_id) {
-  if (stopped_) {
-    return {};
-  }
-
   const auto allowed_pending_task_iter =
       FindFirstAllowedPendingTaskIter_Locked(executor_id);
   if (allowed_pending_task_iter == pending_tasks_.end()) {

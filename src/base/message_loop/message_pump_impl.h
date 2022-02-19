@@ -16,7 +16,7 @@ class MessagePumpImpl : public MessagePump {
 
   // MessagePump
   PendingTask GetNextPendingTask(ExecutorId executor_id) override;
-  void QueuePendingTask(PendingTask pending_task) override;
+  bool QueuePendingTask(PendingTask pending_task) override;
   void Stop() override;
 
  private:

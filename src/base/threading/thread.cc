@@ -47,6 +47,7 @@ void Thread::Join() {
 
   thread_.reset();
   message_loop_.reset();
+  task_runner_.reset();
 }
 
 std::shared_ptr<SingleThreadTaskRunner> Thread::TaskRunner() {

@@ -43,6 +43,7 @@ void MessageLoopImpl::Run() {
   while (!is_stopped_) {
     RunUntilIdleOrStop();
   }
+  RunUntilIdle();
 }
 
 void MessageLoopImpl::Stop() {
