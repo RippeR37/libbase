@@ -2,20 +2,10 @@
 
 #include "base/bind.h"
 #include "base/sequenced_task_runner_helpers.h"
+#include "base/threading/sequenced_task_runner_handle.h"
+#include "base/threading/task_runner_impl.h"
 
 namespace base {
-
-namespace {
-void RunTask(MessagePump::PendingTask&& pending_task) {
-  if (pending_task.sequence_id) {
-    const auto scoped_sequence_id =
-        detail::ScopedSequenceIdSetter{*pending_task.sequence_id};
-    std::move(pending_task.task).Run();
-  } else {
-    std::move(pending_task.task).Run();
-  }
-}
-}  // namespace
 
 MessageLoopImpl::MessageLoopImpl(MessagePump::ExecutorId executor_id,
                                  std::shared_ptr<MessagePump> message_pump)
@@ -53,6 +43,22 @@ void MessageLoopImpl::Stop() {
 
 void MessageLoopImpl::RunUntilIdleOrStop() {
   while (!is_stopped_ && RunOnce()) {
+  }
+}
+
+void MessageLoopImpl::RunTask(MessagePump::PendingTask&& pending_task) {
+  if (pending_task.sequence_id) {
+    const auto scoped_sequence_id =
+        detail::ScopedSequenceIdSetter{*pending_task.sequence_id};
+
+    const auto scoped_task_runner_handle = base::SequencedTaskRunnerHandle{
+        std::make_shared<SequencedTaskRunnerImpl>(
+            std::weak_ptr<MessagePump>(message_pump_),
+            *pending_task.sequence_id)};
+
+    std::move(pending_task.task).Run();
+  } else {
+    std::move(pending_task.task).Run();
   }
 }
 

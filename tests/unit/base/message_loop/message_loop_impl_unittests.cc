@@ -8,12 +8,15 @@
 #include "base/message_loop/message_loop_impl.h"
 #include "base/message_loop/mock_message_pump.h"
 #include "base/sequenced_task_runner_helpers.h"
+#include "base/threading/sequenced_task_runner_handle.h"
 
 #include "gtest/gtest.h"
 
 namespace {
 
-using namespace ::testing;
+using ::testing::ByMove;
+using ::testing::Return;
+using ::testing::Test;
 
 class MessageLoopImplTest : public Test {
  public:
@@ -98,17 +101,20 @@ TEST_F(MessageLoopImplTest, CurrentSequenceSetWhenRunning) {
   const auto sequence_id =
       base::detail::SequenceIdGenerator::GetNextSequenceId();
   bool was_current_sequence_set = false;
+  bool was_task_runner_handle_set = false;
 
   auto task = CreateSequencedPendingTask(
       base::BindOnce(
-          [](base::SequenceId target_seq_id, bool* flag) {
-            ASSERT_NE(flag, nullptr);
+          [](base::SequenceId target_seq_id, bool* flag1, bool* flag2) {
+            ASSERT_NE(flag1, nullptr);
+            ASSERT_NE(flag2, nullptr);
             if (base::detail::CurrentSequenceIdHelper::IsCurrentSequence(
                     target_seq_id)) {
-              *flag = true;
+              *flag1 = true;
+              *flag2 = true;
             }
           },
-          sequence_id, &was_current_sequence_set),
+          sequence_id, &was_current_sequence_set, &was_task_runner_handle_set),
       sequence_id);
   EXPECT_CALL(*mock_message_pump_, GetNextPendingTask)
       .WillOnce(Return(ByMove(std::move(task))));
@@ -120,6 +126,7 @@ TEST_F(MessageLoopImplTest, CurrentSequenceSetWhenRunning) {
       base::detail::CurrentSequenceIdHelper::IsCurrentSequence(sequence_id));
 
   EXPECT_TRUE(was_current_sequence_set);
+  EXPECT_TRUE(was_task_runner_handle_set);
 }
 
 TEST_F(MessageLoopImplTest, RunUntilIdleFinishesWithoutAnyTasks) {
