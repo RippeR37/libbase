@@ -3,6 +3,7 @@
 #include "base/bind.h"
 #include "base/callback.h"
 #include "base/logging.h"
+#include "base/synchronization/auto_signaller.h"
 #include "base/synchronization/waitable_event.h"
 #include "base/threading/thread.h"
 #include "base/threading/thread_pool.h"
@@ -15,7 +16,8 @@ std::shared_ptr<base::SequencedTaskRunner> tr2;
 
 void Task1(std::shared_ptr<base::TaskRunner> current,
            std::shared_ptr<base::TaskRunner> next,
-           base::WaitableEvent* event,
+           base::WaitableEvent* five_left_event,
+           base::AutoSignaller finished_event,
            int n) {
   CHECK_GE(n, 0) << "`n` must be greater or equal to 0";
   LOG(INFO) << __FUNCTION__ << "() Writing from thread "
@@ -25,11 +27,12 @@ void Task1(std::shared_ptr<base::TaskRunner> current,
             << std::endl;
 
   if (n == 5) {
-    event->Signal();
+    five_left_event->Signal();
   }
   if (n > 0) {
     next->PostTask(FROM_HERE,
-                   base::BindOnce(&Task1, next, current, event, n - 1));
+                   base::BindOnce(&Task1, next, current, five_left_event,
+                                  std::move(finished_event), n - 1));
   }
 }
 
@@ -43,14 +46,16 @@ void ThreadExample() {
   tr1 = t1.TaskRunner();
   tr2 = t2.TaskRunner();
 
-  base::WaitableEvent event{base::WaitableEvent::ResetPolicy::kAutomatic,
-                            base::WaitableEvent::InitialState::kNotSignaled};
-  tr1->PostTask(FROM_HERE, base::BindOnce(&Task1, tr1, tr2, &event, 10));
+  base::WaitableEvent five_left_event{};
+  base::WaitableEvent finished_event{};
+  tr1->PostTask(FROM_HERE,
+                base::BindOnce(&Task1, tr1, tr2, &five_left_event,
+                               base::AutoSignaller{&finished_event}, 10));
 
-  event.Wait();
+  five_left_event.Wait();
   LOG(INFO) << __FUNCTION__ << "() (at most 5 calls left)...";
-
-  std::this_thread::sleep_for(std::chrono::seconds(1));
+  finished_event.Wait();
+  LOG(INFO) << __FUNCTION__ << "() finished";
 
   t2.Join();
   t1.Join();
