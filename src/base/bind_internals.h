@@ -171,6 +171,20 @@ struct FunctorTraits<::base::RepeatingCallback<ReturnType(ArgumentTypes...)>,
                                                std::tuple<ArgumentTypes...>,
                                                sizeof...(ArgumentTypes)> {};
 
+// Lambda
+template <typename LambdaType>
+struct FunctorTraits<
+    LambdaType,
+    std::enable_if_t<traits::IsCapturelessLambdaV<LambdaType>, void>> {
+  using FunctionPointerType = decltype(+std::declval<LambdaType>());
+  using FunctionPointerTraits = FunctorTraits<FunctionPointerType, void>;
+
+  using ReturnType = typename FunctionPointerTraits::ReturnType;
+  using ArgumentsType = typename FunctionPointerTraits::ArgumentsType;
+  static constexpr size_t ArgumentsCount =
+      FunctionPointerTraits::ArgumentsCount;
+};
+
 //
 // Callback implementation
 //
