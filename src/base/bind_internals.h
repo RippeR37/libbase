@@ -108,14 +108,16 @@ struct FunctorTraitsImpl {
   static constexpr size_t ArgumentsCount = ArgumentsCountParam;
 };
 
-template <typename Functor, typename InstancePointer>
+template <typename Functor, typename InstancePointer, typename = void>
 struct FunctorTraits {
   static_assert(!sizeof(Functor), "Invalid instantiation");
 };
 
 // Function
-template <typename ReturnType, typename... ArgumentTypes>
-struct FunctorTraits<ReturnType (*)(ArgumentTypes...), void>
+template <typename ReturnType,
+          typename... ArgumentTypes,
+          typename InstancePointer>
+struct FunctorTraits<ReturnType (*)(ArgumentTypes...), InstancePointer>
     : FunctorTraitsImpl<ReturnType,
                         std::tuple<ArgumentTypes...>,
                         sizeof...(ArgumentTypes)> {};
@@ -159,25 +161,33 @@ LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const volatile&& noexcept);
 #undef LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT
 
 // Callbacks
-template <typename ReturnType, typename... ArgumentTypes>
-struct FunctorTraits<::base::OnceCallback<ReturnType(ArgumentTypes...)>, void>
+template <typename ReturnType,
+          typename... ArgumentTypes,
+          typename InstancePointer>
+struct FunctorTraits<::base::OnceCallback<ReturnType(ArgumentTypes...)>,
+                     InstancePointer>
     : FunctorTraitsImpl<ReturnType,
                         std::tuple<ArgumentTypes...>,
                         sizeof...(ArgumentTypes)> {};
 
-template <typename ReturnType, typename... ArgumentTypes>
+template <typename ReturnType,
+          typename... ArgumentTypes,
+          typename InstancePointer>
 struct FunctorTraits<::base::RepeatingCallback<ReturnType(ArgumentTypes...)>,
-                     void> : FunctorTraitsImpl<ReturnType,
-                                               std::tuple<ArgumentTypes...>,
-                                               sizeof...(ArgumentTypes)> {};
+                     InstancePointer>
+    : FunctorTraitsImpl<ReturnType,
+                        std::tuple<ArgumentTypes...>,
+                        sizeof...(ArgumentTypes)> {};
 
 // Lambda
-template <typename LambdaType>
+template <typename LambdaType, typename InstancePointer>
 struct FunctorTraits<
     LambdaType,
+    InstancePointer,
     std::enable_if_t<traits::IsCapturelessLambdaV<LambdaType>, void>> {
   using FunctionPointerType = decltype(+std::declval<LambdaType>());
-  using FunctionPointerTraits = FunctorTraits<FunctionPointerType, void>;
+  using FunctionPointerTraits =
+      FunctorTraits<FunctionPointerType, InstancePointer>;
 
   using ReturnType = typename FunctionPointerTraits::ReturnType;
   using ArgumentsType = typename FunctionPointerTraits::ArgumentsType;
@@ -267,12 +277,12 @@ template <template <typename> class CallbackType,
           typename Functor,
           typename... Arguments>
 auto Bind(Functor&& functor, Arguments&&... arguments) {
-  using InstancePointerType = std::conditional_t<
-      std::is_member_function_pointer_v<Functor>,
-      std::tuple_element_t<0, std::tuple<Arguments..., void>>, void>;
-  using FunctorTraits =
-      FunctorTraits<traits::RemoveCVRefT<Functor>,
-                    traits::RemoveCVRefT<InstancePointerType>>;
+  constexpr bool has_arguments = sizeof...(Arguments) > 0;
+  using FirstArgumentType = std::conditional_t<
+      has_arguments, std::tuple_element_t<0, std::tuple<Arguments..., void>>,
+      void>;
+  using FunctorTraits = FunctorTraits<traits::RemoveCVRefT<Functor>,
+                                      traits::RemoveCVRefT<FirstArgumentType>>;
 
   constexpr size_t func_arg_cnt = FunctorTraits::ArgumentsCount;
   constexpr size_t bind_arg_cnt = sizeof...(Arguments);
