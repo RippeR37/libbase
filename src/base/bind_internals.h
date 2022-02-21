@@ -113,6 +113,17 @@ struct FunctorTraits {
   static_assert(!sizeof(Functor), "Invalid instantiation");
 };
 
+template <typename FunctorType>
+struct IgnoreResultType {
+  template <typename... ArgumentsType>
+  void operator()(ArgumentsType&&... arguments) {
+    static_cast<void>(
+        std::invoke(functor, std::forward<ArgumentsType>(arguments)...));
+  }
+
+  FunctorType functor;
+};
+
 // Function
 template <typename ReturnType,
           typename... ArgumentTypes,
@@ -193,6 +204,16 @@ struct FunctorTraits<
   using ArgumentsType = typename FunctionPointerTraits::ArgumentsType;
   static constexpr size_t ArgumentsCount =
       FunctionPointerTraits::ArgumentsCount;
+};
+
+// IgnoreResult
+template <typename Functor, typename InstancePointer>
+struct FunctorTraits<IgnoreResultType<Functor>, InstancePointer> {
+  using Traits = FunctorTraits<Functor, InstancePointer>;
+
+  using ReturnType = void;
+  using ArgumentsType = typename Traits::ArgumentsType;
+  static constexpr size_t ArgumentsCount = Traits::ArgumentsCount;
 };
 
 //

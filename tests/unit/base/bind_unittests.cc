@@ -246,63 +246,136 @@ TEST(AdvancedBindTest, OnceToOnceCallbackToFreeFunction) {
   EXPECT_FALSE(cb_7);
 }
 
+template <typename ReturnType>
 class MemberFunctions {
  public:
-  void Function01() { value |= (1 << 0); }
-  void Function02() const { value |= (1 << 1); }
-  void Function03() volatile { value |= (1 << 2); }
-  void Function04() const volatile { value |= (1 << 3); }
+  ReturnType Function01() {
+    value |= (1 << 0);
+    return static_cast<ReturnType>(value);
+  }
+  ReturnType Function02() const {
+    value |= (1 << 1);
+    return static_cast<ReturnType>(value);
+  }
+  ReturnType Function03() volatile {
+    value |= (1 << 2);
+    return static_cast<ReturnType>(value);
+  }
+  ReturnType Function04() const volatile {
+    value |= (1 << 3);
+    return static_cast<ReturnType>(value);
+  }
 
-  void Function05() & { value |= (1 << 4); }
-  void Function06() const& { value |= (1 << 5); }
-  void Function07() volatile& { value |= (1 << 6); }
-  void Function08() const volatile& { value |= (1 << 7); }
-  void Function09() && { value |= (1 << 8); }
-  void Function10() const&& { value |= (1 << 9); }
-  void Function11() volatile&& { value |= (1 << 10); }
-  void Function12() const volatile&& { value |= (1 << 11); }
+  ReturnType Function05() & {
+    value |= (1 << 4);
+    return static_cast<ReturnType>(value);
+  }
+  ReturnType Function06() const& {
+    value |= (1 << 5);
+    return static_cast<ReturnType>(value);
+  }
+  ReturnType Function07() volatile& {
+    value |= (1 << 6);
+    return static_cast<ReturnType>(value);
+  }
+  ReturnType Function08() const volatile& {
+    value |= (1 << 7);
+    return static_cast<ReturnType>(value);
+  }
+  ReturnType Function09() && {
+    value |= (1 << 8);
+    return static_cast<ReturnType>(value);
+  }
+  ReturnType Function10() const&& {
+    value |= (1 << 9);
+    return static_cast<ReturnType>(value);
+  }
+  ReturnType Function11() volatile&& {
+    value |= (1 << 10);
+    return static_cast<ReturnType>(value);
+  }
+  ReturnType Function12() const volatile&& {
+    value |= (1 << 11);
+    return static_cast<ReturnType>(value);
+  }
 
-  void Function13() noexcept { value |= (1 << 12); }
-  void Function14() const noexcept { value |= (1 << 13); }
-  void Function15() volatile noexcept { value |= (1 << 14); }
-  void Function16() const volatile noexcept { value |= (1 << 15); }
+  ReturnType Function13() noexcept {
+    value |= (1 << 12);
+    return static_cast<ReturnType>(value);
+  }
+  ReturnType Function14() const noexcept {
+    value |= (1 << 13);
+    return static_cast<ReturnType>(value);
+  }
+  ReturnType Function15() volatile noexcept {
+    value |= (1 << 14);
+    return static_cast<ReturnType>(value);
+  }
+  ReturnType Function16() const volatile noexcept {
+    value |= (1 << 15);
+    return static_cast<ReturnType>(value);
+  }
 
-  void Function17() & noexcept { value |= (1 << 16); }
-  void Function18() const& noexcept { value |= (1 << 17); }
-  void Function19() volatile& noexcept { value |= (1 << 18); }
-  void Function20() const volatile& noexcept { value |= (1 << 19); }
-  void Function21() && noexcept { value |= (1 << 20); }
-  void Function22() const&& noexcept { value |= (1 << 21); }
-  void Function23() volatile&& noexcept { value |= (1 << 22); }
-  void Function24() const volatile&& noexcept { value |= (1 << 23); }
+  ReturnType Function17() & noexcept {
+    value |= (1 << 16);
+    return static_cast<ReturnType>(value);
+  }
+  ReturnType Function18() const& noexcept {
+    value |= (1 << 17);
+    return static_cast<ReturnType>(value);
+  }
+  ReturnType Function19() volatile& noexcept {
+    value |= (1 << 18);
+    return static_cast<ReturnType>(value);
+  }
+  ReturnType Function20() const volatile& noexcept {
+    value |= (1 << 19);
+    return static_cast<ReturnType>(value);
+  }
+  ReturnType Function21() && noexcept {
+    value |= (1 << 20);
+    return static_cast<ReturnType>(value);
+  }
+  ReturnType Function22() const&& noexcept {
+    value |= (1 << 21);
+    return static_cast<ReturnType>(value);
+  }
+  ReturnType Function23() volatile&& noexcept {
+    value |= (1 << 22);
+    return static_cast<ReturnType>(value);
+  }
+  ReturnType Function24() const volatile&& noexcept {
+    value |= (1 << 23);
+    return static_cast<ReturnType>(value);
+  }
 
   mutable int value = 0;
 };
 
 TEST(MemberFunctionsExhaustionTest, ExhaustionTest) {
-  MemberFunctions obj;
+  MemberFunctions<void> obj;
 
-  base::BindOnce(&MemberFunctions::Function01, &obj).Run();
-  base::BindOnce(&MemberFunctions::Function02, &obj).Run();
-  base::BindOnce(&MemberFunctions::Function03, &obj).Run();
-  base::BindOnce(&MemberFunctions::Function04, &obj).Run();
+  base::BindOnce(&MemberFunctions<void>::Function01, &obj).Run();
+  base::BindOnce(&MemberFunctions<void>::Function02, &obj).Run();
+  base::BindOnce(&MemberFunctions<void>::Function03, &obj).Run();
+  base::BindOnce(&MemberFunctions<void>::Function04, &obj).Run();
 
-  base::BindOnce(&MemberFunctions::Function05, &obj).Run();
-  base::BindOnce(&MemberFunctions::Function06, &obj).Run();
-  base::BindOnce(&MemberFunctions::Function07, &obj).Run();
-  base::BindOnce(&MemberFunctions::Function08, &obj).Run();
+  base::BindOnce(&MemberFunctions<void>::Function05, &obj).Run();
+  base::BindOnce(&MemberFunctions<void>::Function06, &obj).Run();
+  base::BindOnce(&MemberFunctions<void>::Function07, &obj).Run();
+  base::BindOnce(&MemberFunctions<void>::Function08, &obj).Run();
   // Functions 09-12 are non-bindable to pointers since pointers cannot transfer
   // r-valueness
 
-  base::BindOnce(&MemberFunctions::Function13, &obj).Run();
-  base::BindOnce(&MemberFunctions::Function14, &obj).Run();
-  base::BindOnce(&MemberFunctions::Function15, &obj).Run();
-  base::BindOnce(&MemberFunctions::Function16, &obj).Run();
+  base::BindOnce(&MemberFunctions<void>::Function13, &obj).Run();
+  base::BindOnce(&MemberFunctions<void>::Function14, &obj).Run();
+  base::BindOnce(&MemberFunctions<void>::Function15, &obj).Run();
+  base::BindOnce(&MemberFunctions<void>::Function16, &obj).Run();
 
-  base::BindOnce(&MemberFunctions::Function17, &obj).Run();
-  base::BindOnce(&MemberFunctions::Function18, &obj).Run();
-  base::BindOnce(&MemberFunctions::Function19, &obj).Run();
-  base::BindOnce(&MemberFunctions::Function20, &obj).Run();
+  base::BindOnce(&MemberFunctions<void>::Function17, &obj).Run();
+  base::BindOnce(&MemberFunctions<void>::Function18, &obj).Run();
+  base::BindOnce(&MemberFunctions<void>::Function19, &obj).Run();
+  base::BindOnce(&MemberFunctions<void>::Function20, &obj).Run();
   // Functions 21-24 are non-bindable to pointers since pointers cannot transfer
   // r-valueness
 
@@ -500,6 +573,96 @@ TEST_F(ThreadedWeakCallbackTest, UseWeakPtrOnAnotherSequence) {
                          base::BindOnce(&WeakClass::IncrementValue, weak_ptr));
   TaskRunner()->PostTask(
       FROM_HERE, base::BindOnce(&WeakClass::VerifyExpectation, weak_ptr, 2u));
+}
+
+class IgnoreResultTest : public ::testing::Test {};
+
+int SetGlobalIntArgAndReturnIt(int x) {
+  SetGlobalIntArg(x);
+  return x;
+}
+
+TEST_F(IgnoreResultTest, BindOnceIgnoreResult) {
+  global_int_arg = -1;
+
+  base::OnceCallback<void(int)> callback =
+      base::BindOnce(base::IgnoreResult(&SetGlobalIntArgAndReturnIt));
+  ASSERT_TRUE(callback);
+  std::move(callback).Run(3);
+  EXPECT_FALSE(callback);
+  EXPECT_EQ(global_int_arg, 3);
+}
+
+TEST_F(IgnoreResultTest, BindOnceIgnoreResultWithArgument) {
+  global_int_arg = -1;
+
+  base::OnceCallback<void()> callback =
+      base::BindOnce(base::IgnoreResult(&SetGlobalIntArgAndReturnIt), 7);
+  ASSERT_TRUE(callback);
+  std::move(callback).Run();
+  EXPECT_FALSE(callback);
+  EXPECT_EQ(global_int_arg, 7);
+}
+
+TEST_F(IgnoreResultTest, BindRepeatingIgnoreResult) {
+  global_int_arg = -1;
+
+  base::RepeatingCallback<void(int)> callback =
+      base::BindRepeating(base::IgnoreResult(&SetGlobalIntArgAndReturnIt));
+  ASSERT_TRUE(callback);
+  callback.Run(3);
+  EXPECT_TRUE(callback);
+  EXPECT_EQ(global_int_arg, 3);
+  callback.Run(7);
+  EXPECT_TRUE(callback);
+  EXPECT_EQ(global_int_arg, 7);
+}
+
+TEST_F(IgnoreResultTest, BindRepeatingIgnoreResultWithArgument) {
+  global_int_arg = -1;
+
+  base::RepeatingCallback<void()> callback =
+      base::BindRepeating(base::IgnoreResult(&SetGlobalIntArgAndReturnIt), 9);
+  ASSERT_TRUE(callback);
+  callback.Run();
+  EXPECT_TRUE(callback);
+  EXPECT_EQ(global_int_arg, 9);
+  global_int_arg = 11;
+  callback.Run();
+  EXPECT_TRUE(callback);
+  EXPECT_EQ(global_int_arg, 9);
+}
+
+TEST(IgnoreResultExhaustionTest, MemberFunctions) {
+  using Functions = MemberFunctions<int>;
+
+  Functions obj;
+
+  base::BindOnce(base::IgnoreResult(&Functions::Function01), &obj).Run();
+  base::BindOnce(base::IgnoreResult(&Functions::Function02), &obj).Run();
+  base::BindOnce(base::IgnoreResult(&Functions::Function03), &obj).Run();
+  base::BindOnce(base::IgnoreResult(&Functions::Function04), &obj).Run();
+
+  base::BindOnce(base::IgnoreResult(&Functions::Function05), &obj).Run();
+  base::BindOnce(base::IgnoreResult(&Functions::Function06), &obj).Run();
+  base::BindOnce(base::IgnoreResult(&Functions::Function07), &obj).Run();
+  base::BindOnce(base::IgnoreResult(&Functions::Function08), &obj).Run();
+  // Functions 09-12 are non-bindable to pointers since pointers cannot transfer
+  // r-valueness
+
+  base::BindOnce(base::IgnoreResult(&Functions::Function13), &obj).Run();
+  base::BindOnce(base::IgnoreResult(&Functions::Function14), &obj).Run();
+  base::BindOnce(base::IgnoreResult(&Functions::Function15), &obj).Run();
+  base::BindOnce(base::IgnoreResult(&Functions::Function16), &obj).Run();
+
+  base::BindOnce(base::IgnoreResult(&Functions::Function17), &obj).Run();
+  base::BindOnce(base::IgnoreResult(&Functions::Function18), &obj).Run();
+  base::BindOnce(base::IgnoreResult(&Functions::Function19), &obj).Run();
+  base::BindOnce(base::IgnoreResult(&Functions::Function20), &obj).Run();
+  // Functions 21-24 are non-bindable to pointers since pointers cannot transfer
+  // r-valueness
+
+  EXPECT_EQ(obj.value, 0b00001111'1111'00001111'1111);
 }
 
 }  // namespace
