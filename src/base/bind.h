@@ -32,6 +32,11 @@ inline auto Unretained(InstanceType* instance_ptr) {
   return detail::UnretainedType{instance_ptr};
 }
 
+template <typename InstanceType>
+inline auto RetainedRef(std::shared_ptr<InstanceType> instance_ptr) {
+  return detail::RetainedRefType{std::move(instance_ptr)};
+}
+
 template <typename Functor>
 inline auto IgnoreResult(Functor functor) {
   return detail::IgnoreResultType<Functor>{std::forward<Functor>(functor)};

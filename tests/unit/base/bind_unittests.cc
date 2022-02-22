@@ -246,6 +246,78 @@ TEST(AdvancedBindTest, OnceToOnceCallbackToFreeFunction) {
   EXPECT_FALSE(cb_7);
 }
 
+class BindToSharedPtrHelper {
+ public:
+  BindToSharedPtrHelper(int* call_count, bool* destroyed_flag)
+      : call_count_(call_count), destroyed_flag_(destroyed_flag) {
+    EXPECT_TRUE(call_count_);
+    EXPECT_EQ(*call_count, 0);
+    EXPECT_TRUE(destroyed_flag_);
+    EXPECT_FALSE(*destroyed_flag_);
+  }
+
+  ~BindToSharedPtrHelper() { *destroyed_flag_ = true; }
+
+  int Call() { return ++(*call_count_); }
+
+ private:
+  int* call_count_;
+  bool* destroyed_flag_;
+};
+
+TEST(BindToSharedPtrTest, BindOnce) {
+  int call_count = 0;
+  bool destroyed = false;
+
+  auto object =
+      std::make_shared<BindToSharedPtrHelper>(&call_count, &destroyed);
+  auto callback =
+      base::BindOnce(&BindToSharedPtrHelper::Call, base::RetainedRef(object));
+
+  object.reset();
+  EXPECT_EQ(call_count, 0);
+  EXPECT_FALSE(destroyed);
+
+  EXPECT_EQ(std::move(callback).Run(), 1);
+  EXPECT_EQ(call_count, 1);
+  EXPECT_TRUE(destroyed);
+}
+
+TEST(BindToSharedPtrTest, BindRepeating) {
+  int call_count = 0;
+  bool destroyed = false;
+
+  auto object =
+      std::make_shared<BindToSharedPtrHelper>(&call_count, &destroyed);
+  auto callback1 = base::BindRepeating(&BindToSharedPtrHelper::Call,
+                                       base::RetainedRef(object));
+  auto callback2 = callback1;
+
+  object.reset();
+  EXPECT_EQ(call_count, 0);
+  EXPECT_FALSE(destroyed);
+
+  EXPECT_EQ(callback1.Run(), 1);
+  EXPECT_EQ(call_count, 1);
+  EXPECT_FALSE(destroyed);
+
+  EXPECT_EQ(callback2.Run(), 2);
+  EXPECT_EQ(call_count, 2);
+  EXPECT_FALSE(destroyed);
+
+  EXPECT_EQ(callback1.Run(), 3);
+  EXPECT_EQ(call_count, 3);
+  EXPECT_FALSE(destroyed);
+
+  EXPECT_EQ(std::move(callback2).Run(), 4);
+  EXPECT_EQ(call_count, 4);
+  EXPECT_FALSE(destroyed);
+
+  EXPECT_EQ(std::move(callback1).Run(), 5);
+  EXPECT_EQ(call_count, 5);
+  EXPECT_TRUE(destroyed);
+}
+
 template <typename ReturnType>
 class MemberFunctions {
  public:

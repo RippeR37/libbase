@@ -56,14 +56,29 @@ class BindAccessHelper {
 template <typename InstanceType>
 struct UnretainedType {
   UnretainedType(InstanceType* instance_ptr) : instance_ptr(instance_ptr) {}
-
   InstanceType* instance_ptr;
+};
+
+template <typename InstanceType>
+struct RetainedRefType {
+  RetainedRefType(std::shared_ptr<InstanceType> instance_ptr)
+      : instance_ptr(std::move(instance_ptr)) {}
+  std::shared_ptr<InstanceType> instance_ptr;
 };
 
 template <typename Functor, typename Instance, typename... ArgumentTypes>
 static constexpr decltype(auto) MemberFunctionInvoke(
     Functor&& functor,
     const UnretainedType<Instance>& instance,
+    ArgumentTypes&&... arguments) {
+  return std::invoke(std::forward<Functor>(functor), instance.instance_ptr,
+                     std::forward<ArgumentTypes>(arguments)...);
+}
+
+template <typename Functor, typename Instance, typename... ArgumentTypes>
+static constexpr decltype(auto) MemberFunctionInvoke(
+    Functor&& functor,
+    const RetainedRefType<Instance>& instance,
     ArgumentTypes&&... arguments) {
   return std::invoke(std::forward<Functor>(functor), instance.instance_ptr,
                      std::forward<ArgumentTypes>(arguments)...);
