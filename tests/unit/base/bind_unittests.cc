@@ -71,7 +71,7 @@ TEST(BindTest, LambdaWithArgs) {
 
 TEST(BindTest, ClassMethod) {
   Counter counter;
-  auto cb = base::BindRepeating(&Counter::add, &counter);
+  auto cb = base::BindRepeating(&Counter::add, base::Unretained(&counter));
   ASSERT_EQ(counter.sum, 0);
   cb.Run(7);
   EXPECT_EQ(counter.sum, 7);
@@ -81,7 +81,7 @@ TEST(BindTest, ClassMethod) {
 
 TEST(BindTest, ClassMethodWithArgs) {
   Counter counter;
-  auto cb = base::BindRepeating(&Counter::add, &counter, 21);
+  auto cb = base::BindRepeating(&Counter::add, base::Unretained(&counter), 21);
   ASSERT_EQ(counter.sum, 0);
   cb.Run();
   EXPECT_EQ(counter.sum, 21);
@@ -141,7 +141,7 @@ TEST(BindOnceTest, LambdaWithArgs) {
 
 TEST(BindOnceTest, ClassMethod) {
   Counter counter;
-  auto cb = base::BindOnce(&Counter::add, &counter);
+  auto cb = base::BindOnce(&Counter::add, base::Unretained(&counter));
   ASSERT_EQ(counter.sum, 0);
   std::move(cb).Run(7);
   EXPECT_EQ(counter.sum, 7);
@@ -150,7 +150,7 @@ TEST(BindOnceTest, ClassMethod) {
 
 TEST(BindOnceTest, ClassMethodWithArgs) {
   Counter counter;
-  auto cb = base::BindOnce(&Counter::add, &counter, 21);
+  auto cb = base::BindOnce(&Counter::add, base::Unretained(&counter), 21);
   ASSERT_EQ(counter.sum, 0);
   std::move(cb).Run();
   EXPECT_EQ(counter.sum, 21);
@@ -355,27 +355,43 @@ class MemberFunctions {
 TEST(MemberFunctionsExhaustionTest, ExhaustionTest) {
   MemberFunctions<void> obj;
 
-  base::BindOnce(&MemberFunctions<void>::Function01, &obj).Run();
-  base::BindOnce(&MemberFunctions<void>::Function02, &obj).Run();
-  base::BindOnce(&MemberFunctions<void>::Function03, &obj).Run();
-  base::BindOnce(&MemberFunctions<void>::Function04, &obj).Run();
+  base::BindOnce(&MemberFunctions<void>::Function01, base::Unretained(&obj))
+      .Run();
+  base::BindOnce(&MemberFunctions<void>::Function03, base::Unretained(&obj))
+      .Run();
+  base::BindOnce(&MemberFunctions<void>::Function02, base::Unretained(&obj))
+      .Run();
+  base::BindOnce(&MemberFunctions<void>::Function04, base::Unretained(&obj))
+      .Run();
 
-  base::BindOnce(&MemberFunctions<void>::Function05, &obj).Run();
-  base::BindOnce(&MemberFunctions<void>::Function06, &obj).Run();
-  base::BindOnce(&MemberFunctions<void>::Function07, &obj).Run();
-  base::BindOnce(&MemberFunctions<void>::Function08, &obj).Run();
+  base::BindOnce(&MemberFunctions<void>::Function05, base::Unretained(&obj))
+      .Run();
+  base::BindOnce(&MemberFunctions<void>::Function06, base::Unretained(&obj))
+      .Run();
+  base::BindOnce(&MemberFunctions<void>::Function07, base::Unretained(&obj))
+      .Run();
+  base::BindOnce(&MemberFunctions<void>::Function08, base::Unretained(&obj))
+      .Run();
   // Functions 09-12 are non-bindable to pointers since pointers cannot transfer
   // r-valueness
 
-  base::BindOnce(&MemberFunctions<void>::Function13, &obj).Run();
-  base::BindOnce(&MemberFunctions<void>::Function14, &obj).Run();
-  base::BindOnce(&MemberFunctions<void>::Function15, &obj).Run();
-  base::BindOnce(&MemberFunctions<void>::Function16, &obj).Run();
+  base::BindOnce(&MemberFunctions<void>::Function13, base::Unretained(&obj))
+      .Run();
+  base::BindOnce(&MemberFunctions<void>::Function14, base::Unretained(&obj))
+      .Run();
+  base::BindOnce(&MemberFunctions<void>::Function15, base::Unretained(&obj))
+      .Run();
+  base::BindOnce(&MemberFunctions<void>::Function16, base::Unretained(&obj))
+      .Run();
 
-  base::BindOnce(&MemberFunctions<void>::Function17, &obj).Run();
-  base::BindOnce(&MemberFunctions<void>::Function18, &obj).Run();
-  base::BindOnce(&MemberFunctions<void>::Function19, &obj).Run();
-  base::BindOnce(&MemberFunctions<void>::Function20, &obj).Run();
+  base::BindOnce(&MemberFunctions<void>::Function17, base::Unretained(&obj))
+      .Run();
+  base::BindOnce(&MemberFunctions<void>::Function18, base::Unretained(&obj))
+      .Run();
+  base::BindOnce(&MemberFunctions<void>::Function19, base::Unretained(&obj))
+      .Run();
+  base::BindOnce(&MemberFunctions<void>::Function20, base::Unretained(&obj))
+      .Run();
   // Functions 21-24 are non-bindable to pointers since pointers cannot transfer
   // r-valueness
 
@@ -634,31 +650,61 @@ TEST_F(IgnoreResultTest, BindRepeatingIgnoreResultWithArgument) {
 }
 
 TEST(IgnoreResultExhaustionTest, MemberFunctions) {
-  using Functions = MemberFunctions<int>;
+  MemberFunctions<int> obj;
 
-  Functions obj;
+  base::BindOnce(base::IgnoreResult(&MemberFunctions<int>::Function01),
+                 base::Unretained(&obj))
+      .Run();
+  base::BindOnce(base::IgnoreResult(&MemberFunctions<int>::Function02),
+                 base::Unretained(&obj))
+      .Run();
+  base::BindOnce(base::IgnoreResult(&MemberFunctions<int>::Function03),
+                 base::Unretained(&obj))
+      .Run();
+  base::BindOnce(base::IgnoreResult(&MemberFunctions<int>::Function04),
+                 base::Unretained(&obj))
+      .Run();
 
-  base::BindOnce(base::IgnoreResult(&Functions::Function01), &obj).Run();
-  base::BindOnce(base::IgnoreResult(&Functions::Function02), &obj).Run();
-  base::BindOnce(base::IgnoreResult(&Functions::Function03), &obj).Run();
-  base::BindOnce(base::IgnoreResult(&Functions::Function04), &obj).Run();
-
-  base::BindOnce(base::IgnoreResult(&Functions::Function05), &obj).Run();
-  base::BindOnce(base::IgnoreResult(&Functions::Function06), &obj).Run();
-  base::BindOnce(base::IgnoreResult(&Functions::Function07), &obj).Run();
-  base::BindOnce(base::IgnoreResult(&Functions::Function08), &obj).Run();
+  base::BindOnce(base::IgnoreResult(&MemberFunctions<int>::Function05),
+                 base::Unretained(&obj))
+      .Run();
+  base::BindOnce(base::IgnoreResult(&MemberFunctions<int>::Function06),
+                 base::Unretained(&obj))
+      .Run();
+  base::BindOnce(base::IgnoreResult(&MemberFunctions<int>::Function07),
+                 base::Unretained(&obj))
+      .Run();
+  base::BindOnce(base::IgnoreResult(&MemberFunctions<int>::Function08),
+                 base::Unretained(&obj))
+      .Run();
   // Functions 09-12 are non-bindable to pointers since pointers cannot transfer
   // r-valueness
 
-  base::BindOnce(base::IgnoreResult(&Functions::Function13), &obj).Run();
-  base::BindOnce(base::IgnoreResult(&Functions::Function14), &obj).Run();
-  base::BindOnce(base::IgnoreResult(&Functions::Function15), &obj).Run();
-  base::BindOnce(base::IgnoreResult(&Functions::Function16), &obj).Run();
+  base::BindOnce(base::IgnoreResult(&MemberFunctions<int>::Function13),
+                 base::Unretained(&obj))
+      .Run();
+  base::BindOnce(base::IgnoreResult(&MemberFunctions<int>::Function14),
+                 base::Unretained(&obj))
+      .Run();
+  base::BindOnce(base::IgnoreResult(&MemberFunctions<int>::Function15),
+                 base::Unretained(&obj))
+      .Run();
+  base::BindOnce(base::IgnoreResult(&MemberFunctions<int>::Function16),
+                 base::Unretained(&obj))
+      .Run();
 
-  base::BindOnce(base::IgnoreResult(&Functions::Function17), &obj).Run();
-  base::BindOnce(base::IgnoreResult(&Functions::Function18), &obj).Run();
-  base::BindOnce(base::IgnoreResult(&Functions::Function19), &obj).Run();
-  base::BindOnce(base::IgnoreResult(&Functions::Function20), &obj).Run();
+  base::BindOnce(base::IgnoreResult(&MemberFunctions<int>::Function17),
+                 base::Unretained(&obj))
+      .Run();
+  base::BindOnce(base::IgnoreResult(&MemberFunctions<int>::Function18),
+                 base::Unretained(&obj))
+      .Run();
+  base::BindOnce(base::IgnoreResult(&MemberFunctions<int>::Function19),
+                 base::Unretained(&obj))
+      .Run();
+  base::BindOnce(base::IgnoreResult(&MemberFunctions<int>::Function20),
+                 base::Unretained(&obj))
+      .Run();
   // Functions 21-24 are non-bindable to pointers since pointers cannot transfer
   // r-valueness
 

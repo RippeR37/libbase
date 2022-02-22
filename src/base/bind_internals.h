@@ -53,12 +53,19 @@ class BindAccessHelper {
 // Helpers for invoking member functions with different instance-pointer types
 //
 
+template <typename InstanceType>
+struct UnretainedType {
+  UnretainedType(InstanceType* instance_ptr) : instance_ptr(instance_ptr) {}
+
+  InstanceType* instance_ptr;
+};
+
 template <typename Functor, typename Instance, typename... ArgumentTypes>
 static constexpr decltype(auto) MemberFunctionInvoke(
     Functor&& functor,
-    Instance* instance,
+    const UnretainedType<Instance>& instance,
     ArgumentTypes&&... arguments) {
-  return std::invoke(std::forward<Functor>(functor), instance,
+  return std::invoke(std::forward<Functor>(functor), instance.instance_ptr,
                      std::forward<ArgumentTypes>(arguments)...);
 }
 

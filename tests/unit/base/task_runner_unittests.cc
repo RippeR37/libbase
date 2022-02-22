@@ -43,10 +43,10 @@ class TaskRunnerPostTaskAndReplyTest : public TaskRunnerTest {
     base::WaitableEvent end_of_task1{};
     TaskRunner2()->PostTaskAndReply(
         FROM_HERE,
-        base::BindOnce(&TaskRunnerPostTaskAndReplyTest::Task2, this,
-                       &end_of_task1),
-        base::BindOnce(&TaskRunnerPostTaskAndReplyTest::Task3, this,
-                       std::move(guard)));
+        base::BindOnce(&TaskRunnerPostTaskAndReplyTest::Task2,
+                       base::Unretained(this), &end_of_task1),
+        base::BindOnce(&TaskRunnerPostTaskAndReplyTest::Task3,
+                       base::Unretained(this), std::move(guard)));
     end_of_task1.Wait();
   }
 
@@ -68,9 +68,10 @@ class TaskRunnerPostTaskAndReplyTest : public TaskRunnerTest {
 
 TEST_F(TaskRunnerPostTaskAndReplyTest, PostTaskAndReply) {
   base::WaitableEvent finished_event{};
-  TaskRunner1()->PostTask(
-      FROM_HERE, base::BindOnce(&TaskRunnerPostTaskAndReplyTest::Task1, this,
-                                base::AutoSignaller{&finished_event}));
+  TaskRunner1()->PostTask(FROM_HERE,
+                          base::BindOnce(&TaskRunnerPostTaskAndReplyTest::Task1,
+                                         base::Unretained(this),
+                                         base::AutoSignaller{&finished_event}));
   finished_event.Wait();
   EXPECT_TRUE(task2_completed);
   EXPECT_TRUE(task3_completed);
@@ -82,10 +83,10 @@ class TaskRunnerPostTaskAndReplyWithResultTest : public TaskRunnerTest {
     EXPECT_TRUE(TaskRunner1()->RunsTasksInCurrentSequence());
     TaskRunner2()->PostTaskAndReplyWithResult(
         FROM_HERE,
-        base::BindOnce(&TaskRunnerPostTaskAndReplyWithResultTest::Task2, this,
-                       n),
-        base::BindOnce(&TaskRunnerPostTaskAndReplyWithResultTest::Task3, this,
-                       std::move(guard)));
+        base::BindOnce(&TaskRunnerPostTaskAndReplyWithResultTest::Task2,
+                       base::Unretained(this), n),
+        base::BindOnce(&TaskRunnerPostTaskAndReplyWithResultTest::Task3,
+                       base::Unretained(this), std::move(guard)));
   }
 
   int Task2(int n) {
@@ -105,7 +106,8 @@ TEST_F(TaskRunnerPostTaskAndReplyWithResultTest, PostTaskAndReplyWithResult) {
   base::WaitableEvent finished_event{};
   TaskRunner1()->PostTask(
       FROM_HERE,
-      base::BindOnce(&TaskRunnerPostTaskAndReplyWithResultTest::Task1, this,
+      base::BindOnce(&TaskRunnerPostTaskAndReplyWithResultTest::Task1,
+                     base::Unretained(this),
                      base::AutoSignaller{&finished_event}, 7));
   finished_event.Wait();
   ASSERT_TRUE(task3_result);

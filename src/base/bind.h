@@ -27,6 +27,11 @@ auto BindRepeating(Functor&& functor, Arguments&&... arguments) {
 // Helpers
 //
 
+template <typename InstanceType>
+inline auto Unretained(InstanceType* instance_ptr) {
+  return detail::UnretainedType{instance_ptr};
+}
+
 template <typename Functor>
 inline auto IgnoreResult(Functor functor) {
   return detail::IgnoreResultType<Functor>{std::forward<Functor>(functor)};
