@@ -81,7 +81,7 @@ class RepeatingCallback<ReturnType(ArgumentTypes...)> {
 
   ReturnType Run(ArgumentTypes... arguments) && {
     RepeatingCallback callback = std::move(*this);
-    callback.Run(std::forward<ArgumentTypes>(arguments)...);
+    return callback.Run(std::forward<ArgumentTypes>(arguments)...);
   }
 
  private:
