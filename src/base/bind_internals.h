@@ -50,49 +50,26 @@ class BindAccessHelper {
 };
 
 //
-// Helpers for applying variable ammount of arguments (both already bounded
-// into std::tuple<...> and from variadic template arguments.
+// Helpers for invoking member functions with different instance-pointer types
 //
 
-template <class FunctionType,
-          class BoundArgumentsTupleType,
-          std::size_t... Indexes,
-          typename... RunArgumentTypes>
-constexpr decltype(auto) ApplyBoundAndVariadicArgumentsToFreeFunction(
-    FunctionType&& function,
-    BoundArgumentsTupleType&& bound_arguments,
-    std::index_sequence<Indexes...>,
-    RunArgumentTypes&&... run_arguments) {
-  if constexpr (std::is_member_function_pointer_v<
-                    traits::RemoveCVRefT<FunctionType>>) {
-    if constexpr (sizeof...(Indexes) > 0) {
-      if constexpr (!std::is_pointer_v<
-                        std::tuple_element_t<0, BoundArgumentsTupleType>>) {
-        if (!std::get<0>(bound_arguments)) {
-          return;
-        }
-      }
-    }
-  }
-  return std::invoke(std::forward<FunctionType>(function),
-                     std::get<Indexes>(std::forward<BoundArgumentsTupleType>(
-                         bound_arguments))...,
-                     std::forward<RunArgumentTypes>(run_arguments)...);
+template <typename Functor, typename Instance, typename... ArgumentTypes>
+static constexpr decltype(auto) MemberFunctionInvoke(
+    Functor&& functor,
+    Instance* instance,
+    ArgumentTypes&&... arguments) {
+  return std::invoke(std::forward<Functor>(functor), instance,
+                     std::forward<ArgumentTypes>(arguments)...);
 }
 
-template <class CallbackType,
-          class BoundArgumentsTupleType,
-          std::size_t... Indexes,
-          typename... RunArgumentTypes>
-constexpr decltype(auto) ApplyBoundAndVariadicArgumentsToCallback(
-    CallbackType&& callback,
-    BoundArgumentsTupleType&& bound_arguments,
-    std::index_sequence<Indexes...>,
-    RunArgumentTypes&&... run_arguments) {
-  return std::forward<CallbackType>(callback).Run(
-      std::get<Indexes>(
-          std::forward<BoundArgumentsTupleType>(bound_arguments))...,
-      std::forward<RunArgumentTypes>(run_arguments)...);
+template <typename Functor, typename Class, typename... ArgumentTypes>
+inline constexpr void MemberFunctionInvoke(Functor&& functor,
+                                           const base::WeakPtr<Class>& weak_ptr,
+                                           ArgumentTypes&&... arguments) {
+  if (weak_ptr) {
+    std::invoke(std::forward<Functor>(functor), weak_ptr,
+                std::forward<ArgumentTypes>(arguments)...);
+  }
 }
 
 //
@@ -106,6 +83,21 @@ struct FunctorTraitsImpl {
   using ReturnType = ReturnTypeParam;
   using ArgumentsType = ArgumentsTypeParam;
   static constexpr size_t ArgumentsCount = ArgumentsCountParam;
+
+  template <typename Functor,
+            std::size_t... Indexes,
+            typename BoundArgumentsTupleType,
+            typename... RunArgumentTypes>
+  static constexpr decltype(auto) Invoke(
+      Functor&& functor,
+      std::index_sequence<Indexes...>,
+      BoundArgumentsTupleType&& bound_arguments,
+      RunArgumentTypes&&... run_arguments) {
+    return std::invoke(std::forward<Functor>(functor),
+                       std::get<Indexes>(std::forward<BoundArgumentsTupleType>(
+                           bound_arguments))...,
+                       std::forward<RunArgumentTypes>(run_arguments)...);
+  }
 };
 
 template <typename Functor, typename InstancePointer, typename = void>
@@ -142,7 +134,23 @@ struct FunctorTraits<ReturnType (*)(ArgumentTypes...), InstancePointer>
                        InstancePointerType>                                  \
       : FunctorTraitsImpl<ReturnType,                                        \
                           std::tuple<InstancePointerType, ArgumentTypes...>, \
-                          1 + sizeof...(ArgumentTypes)> {}
+                          1 + sizeof...(ArgumentTypes)> {                    \
+    template <typename Functor,                                              \
+              std::size_t... Indexes,                                        \
+              typename BoundArgumentsTupleType,                              \
+              typename... RunArgumentTypes>                                  \
+    static constexpr decltype(auto) Invoke(                                  \
+        Functor&& functor,                                                   \
+        std::index_sequence<Indexes...>,                                     \
+        BoundArgumentsTupleType&& bound_arguments,                           \
+        RunArgumentTypes&&... run_arguments) {                               \
+      return MemberFunctionInvoke(                                           \
+          std::forward<Functor>(functor),                                    \
+          std::get<Indexes>(                                                 \
+              std::forward<BoundArgumentsTupleType>(bound_arguments))...,    \
+          std::forward<RunArgumentTypes>(run_arguments)...);                 \
+    }                                                                        \
+  }
 
 LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT();
 LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const);
@@ -179,7 +187,22 @@ struct FunctorTraits<::base::OnceCallback<ReturnType(ArgumentTypes...)>,
                      InstancePointer>
     : FunctorTraitsImpl<ReturnType,
                         std::tuple<ArgumentTypes...>,
-                        sizeof...(ArgumentTypes)> {};
+                        sizeof...(ArgumentTypes)> {
+  template <typename Functor,
+            std::size_t... Indexes,
+            typename BoundArgumentsTupleType,
+            typename... RunArgumentTypes>
+  static constexpr decltype(auto) Invoke(
+      Functor&& functor,
+      std::index_sequence<Indexes...>,
+      BoundArgumentsTupleType&& bound_arguments,
+      RunArgumentTypes&&... run_arguments) {
+    return std::forward<Functor>(functor).Run(
+        std::get<Indexes>(
+            std::forward<BoundArgumentsTupleType>(bound_arguments))...,
+        std::forward<RunArgumentTypes>(run_arguments)...);
+  }
+};
 
 template <typename ReturnType,
           typename... ArgumentTypes,
@@ -188,32 +211,34 @@ struct FunctorTraits<::base::RepeatingCallback<ReturnType(ArgumentTypes...)>,
                      InstancePointer>
     : FunctorTraitsImpl<ReturnType,
                         std::tuple<ArgumentTypes...>,
-                        sizeof...(ArgumentTypes)> {};
+                        sizeof...(ArgumentTypes)> {
+  template <typename Functor,
+            std::size_t... Indexes,
+            typename BoundArgumentsTupleType,
+            typename... RunArgumentTypes>
+  static constexpr decltype(auto) Invoke(
+      const Functor& functor,
+      std::index_sequence<Indexes...>,
+      const BoundArgumentsTupleType& bound_arguments,
+      RunArgumentTypes&&... run_arguments) {
+    return functor.Run(std::get<Indexes>(bound_arguments)...,
+                       std::forward<RunArgumentTypes>(run_arguments)...);
+  }
+};
 
 // Lambda
 template <typename LambdaType, typename InstancePointer>
 struct FunctorTraits<
     LambdaType,
     InstancePointer,
-    std::enable_if_t<traits::IsCapturelessLambdaV<LambdaType>, void>> {
-  using FunctionPointerType = decltype(+std::declval<LambdaType>());
-  using FunctionPointerTraits =
-      FunctorTraits<FunctionPointerType, InstancePointer>;
-
-  using ReturnType = typename FunctionPointerTraits::ReturnType;
-  using ArgumentsType = typename FunctionPointerTraits::ArgumentsType;
-  static constexpr size_t ArgumentsCount =
-      FunctionPointerTraits::ArgumentsCount;
-};
+    std::enable_if_t<traits::IsCapturelessLambdaV<LambdaType>, void>>
+    : FunctorTraits<decltype(+std::declval<LambdaType>()), InstancePointer> {};
 
 // IgnoreResult
 template <typename Functor, typename InstancePointer>
-struct FunctorTraits<IgnoreResultType<Functor>, InstancePointer> {
-  using Traits = FunctorTraits<Functor, InstancePointer>;
-
+struct FunctorTraits<IgnoreResultType<Functor>, InstancePointer>
+    : FunctorTraits<Functor, InstancePointer> {
   using ReturnType = void;
-  using ArgumentsType = typename Traits::ArgumentsType;
-  static constexpr size_t ArgumentsCount = Traits::ArgumentsCount;
 };
 
 //
@@ -232,6 +257,7 @@ class RepeatingCallbackCrtpImpl
 };
 
 template <bool is_repeating,
+          typename FunctorTraits,
           typename FunctorType,
           typename ReturnType,
           typename BoundArgumentTupleType,
@@ -241,11 +267,13 @@ class FunctorCallback {
 };
 
 template <bool is_repeating,
+          typename FunctorTraits,
           typename FunctorType,
           typename ReturnType,
           typename... BoundArgumentTypes,
           typename... RunArgumentTypes>
 class FunctorCallback<is_repeating,
+                      FunctorTraits,
                       FunctorType,
                       ReturnType,
                       std::tuple<BoundArgumentTypes...>,
@@ -254,6 +282,7 @@ class FunctorCallback<is_repeating,
           is_repeating,
           RepeatingCallbackCrtpImpl<
               FunctorCallback<is_repeating,
+                              FunctorTraits,
                               FunctorType,
                               ReturnType,
                               std::tuple<BoundArgumentTypes...>,
@@ -270,20 +299,15 @@ class FunctorCallback<is_repeating,
         bound_arguments_(std::move(bound_arguments)) {}
 
   ReturnType Run(RunArgumentTypes... arguments) override {
-    if constexpr (traits::IsOnceCallbackV<RawFunctorType>) {
-      return ApplyBoundAndVariadicArgumentsToCallback(
-          std::move(functor_), std::move(bound_arguments_),
-          std::make_index_sequence<sizeof...(BoundArgumentTypes)>{},
-          std::forward<RunArgumentTypes>(arguments)...);
-    } else if constexpr (traits::IsRepeatingCallbackV<RawFunctorType>) {
-      return ApplyBoundAndVariadicArgumentsToCallback(
-          functor_, bound_arguments_,
-          std::make_index_sequence<sizeof...(BoundArgumentTypes)>{},
-          std::forward<RunArgumentTypes>(arguments)...);
+    if constexpr (is_repeating) {
+      return FunctorTraits::Invoke(
+          functor_, std::make_index_sequence<sizeof...(BoundArgumentTypes)>{},
+          bound_arguments_, std::forward<RunArgumentTypes>(arguments)...);
     } else {
-      return ApplyBoundAndVariadicArgumentsToFreeFunction(
-          functor_, std::move(bound_arguments_),
+      return FunctorTraits::Invoke(
+          std::move(functor_),
           std::make_index_sequence<sizeof...(BoundArgumentTypes)>{},
+          std::move(bound_arguments_),
           std::forward<RunArgumentTypes>(arguments)...);
     }
   }
@@ -328,9 +352,10 @@ auto Bind(Functor&& functor, Arguments&&... arguments) {
 
   // 3. Create the callback object.
   return BindAccessHelper::Create<ResultType>(
-      std::make_unique<FunctorCallback<
-          is_repeating, Functor, typename FunctorTraits::ReturnType,
-          BoundArgumentsType, RemainingArgumentsType>>(
+      std::make_unique<
+          FunctorCallback<is_repeating, FunctorTraits, Functor,
+                          typename FunctorTraits::ReturnType,
+                          BoundArgumentsType, RemainingArgumentsType>>(
           std::forward<Functor>(functor), std::move(bound_args)));
 }
 
