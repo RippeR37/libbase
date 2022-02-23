@@ -15,14 +15,7 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/third_party/googletest build_gtest)
 # Unittests target
 #
 
-file(GLOB_RECURSE LIBBASE_UNITTESTS_SRC CONFIGURE_DEPENDS
-  ${PROJECT_SOURCE_DIR}/tests/unit/main.cc
-  ${PROJECT_SOURCE_DIR}/tests/unit/*.h
-  ${PROJECT_SOURCE_DIR}/tests/unit/*.cc
-  ${PROJECT_SOURCE_DIR}/tests/unit/*.h
-  ${PROJECT_SOURCE_DIR}/tests/unit/*.cc)
-
-add_executable(libbase_unittests ${LIBBASE_UNITTESTS_SRC})
+add_executable(libbase_unittests "")
 
 target_compile_options(libbase_unittests PRIVATE "${LIBBASE_COMPILE_FLAGS}")
 
@@ -33,6 +26,25 @@ target_link_libraries(libbase_unittests PRIVATE
   libbase
   gtest
   gmock)
+
+target_sources(libbase_unittests
+  PRIVATE
+    base/auto_reset_unittests.cc
+    base/bind_unittests.cc
+    base/callback_helpers_unittests.cc
+    base/memory/weak_ptr_unittests.cc
+    base/message_loop/message_loop_impl_unittests.cc
+    base/message_loop/message_pump_impl_unittests.cc
+    base/sequenced_task_runner_helpers_unittest.cc
+    base/sequenced_task_runner_unittests.cc
+    base/synchronization/auto_signaller_unittests.cc
+    base/synchronization/waitable_event_unittests.cc
+    base/task_runner_unittests.cc
+    base/threading/thread_unittests.cc
+    main.cc
+    mock/base/message_loop/mock_message_pump.h
+)
+
 
 include(GoogleTest)
 gtest_discover_tests(libbase_unittests)

@@ -30,7 +30,7 @@ ctest --test-dir build
 #### Requirements
 
 * Compiler with C++17 support
-* CMake (>= v3.11)
+* CMake (>= v3.13)
 
 #### Platforms tested
 

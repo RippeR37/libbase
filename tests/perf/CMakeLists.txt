@@ -18,13 +18,14 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/third_party/googlebenchmark build_gbench)
 # Performance tests target
 #
 
-file(GLOB_RECURSE LIBBASE_PERF_TEST_SRC CONFIGURE_DEPENDS 
-  ${PROJECT_SOURCE_DIR}/tests/perf/*.h
-  ${PROJECT_SOURCE_DIR}/tests/perf/*.cc)
-
-add_executable(libbase_perf_tests ${LIBBASE_PERF_TEST_SRC})
+add_executable(libbase_perf_tests "")
 
 target_link_libraries(libbase_perf_tests
   libbase
   benchmark::benchmark
   benchmark::benchmark_main)
+
+target_sources(libbase_perf_tests
+  PRIVATE
+    base/threading/thread_perftests.cc
+)
