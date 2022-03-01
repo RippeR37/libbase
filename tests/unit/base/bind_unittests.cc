@@ -246,6 +246,41 @@ TEST(AdvancedBindTest, OnceToOnceCallbackToFreeFunction) {
   EXPECT_FALSE(cb_7);
 }
 
+int ReturnCopyOfConstRefArgument(const int& value) {
+  return value;
+}
+
+int ReturnCopyAndIncrementRefArgument(int& value) {
+  return value++;
+}
+
+TEST(WrapUnwrapTests, BindConstRefArgument) {
+  int n = 0;
+  auto callback = base::BindRepeating(&ReturnCopyOfConstRefArgument, n);
+  EXPECT_EQ(callback.Run(), 0);
+  n = 1;
+  EXPECT_EQ(callback.Run(), 0);
+}
+
+TEST(WrapUnwrapTests, BindConstRefArgumentWithReferenceWrapper) {
+  int n = 0;
+  auto callback =
+      base::BindRepeating(&ReturnCopyOfConstRefArgument, std::ref(n));
+  EXPECT_EQ(callback.Run(), 0);
+  n = 1;
+  EXPECT_EQ(callback.Run(), 1);
+}
+
+TEST(WrapUnwrapTests, BindNonConstRefArgumentWithReferenceWrapper) {
+  int n = 0;
+  auto callback =
+      base::BindRepeating(&ReturnCopyAndIncrementRefArgument, std::ref(n));
+  EXPECT_EQ(callback.Run(), 0);
+  EXPECT_EQ(n, 1);
+  EXPECT_EQ(callback.Run(), 1);
+  EXPECT_EQ(n, 2);
+}
+
 class BindToSharedPtrHelper {
  public:
   BindToSharedPtrHelper(int* call_count, bool* destroyed_flag)

@@ -264,6 +264,59 @@ struct FunctorTraits<IgnoreResultType<Functor>, InstancePointer>
 };
 
 //
+// Wrap bound types customization
+//
+
+template <typename FunctorArgument, typename BindArgument>
+struct WrapHelper {
+  template <typename T>
+  static auto Wrap(T&& arg) {
+    return FunctorArgument{std::forward<T>(arg)};
+  }
+
+  static constexpr bool IsWrapped = false;
+};
+
+template <typename FunctorArgument, typename BindArgument>
+struct WrapHelper<FunctorArgument, std::reference_wrapper<BindArgument>> {
+  template <typename T>
+  static auto Wrap(T&& arg) {
+    return std::reference_wrapper<FunctorArgument>{std::forward<T>(arg)};
+  }
+
+  static constexpr bool IsWrapped = true;
+};
+
+template <typename T, typename U>
+struct WrapTypesHelper {
+  static_assert(!sizeof(T), "Invalid instantiation");
+};
+
+template <typename... FunctorTypes, typename... ArgTypes>
+struct WrapTypesHelper<std::tuple<FunctorTypes...>, std::tuple<ArgTypes...>> {
+  using ResultType =
+      std::tuple<decltype(WrapHelper<traits::RemoveCVRefT<FunctorTypes>,
+                                     traits::RemoveCVRefT<ArgTypes>>::
+                              Wrap(std::declval<ArgTypes>()))...>;
+
+  static ResultType WrapArguments(ArgTypes&&... args) {
+    constexpr bool cannot_bind_value_to_nonconst_reference_test =
+        ((!std::is_reference_v<FunctorTypes> ||
+          std::is_const_v<std::remove_reference_t<FunctorTypes>> ||
+          WrapHelper<traits::RemoveCVRefT<FunctorTypes>,
+                     traits::RemoveCVRefT<ArgTypes>>::IsWrapped)
+
+         && ...);
+    static_assert(cannot_bind_value_to_nonconst_reference_test,
+                  "Cannot bind unwrapped value to non-const reference");
+
+    return ResultType{WrapHelper<
+        traits::RemoveCVRefT<FunctorTypes>,
+        traits::RemoveCVRefT<ArgTypes>>::Wrap(std::forward<ArgTypes>(args))...};
+  }
+};
+
+//
 // Callback implementation
 //
 
@@ -357,10 +410,15 @@ auto Bind(Functor&& functor, Arguments&&... arguments) {
                 "Cannot bind more more arguments than the function takes");
 
   // 1. Bind arguments
-  using BoundArgumentsType =
+  using FunctorHeadTypes =
       traits::HeadTypesRangeT<bind_arg_cnt,
                               typename FunctorTraits::ArgumentsType>;
-  BoundArgumentsType bound_args{std::forward<Arguments>(arguments)...};
+  using BoundArgumentsType =
+      typename WrapTypesHelper<FunctorHeadTypes,
+                               std::tuple<Arguments...>>::ResultType;
+  auto bound_args =
+      WrapTypesHelper<FunctorHeadTypes, std::tuple<Arguments...>>::
+          WrapArguments(std::forward<Arguments>(arguments)...);
 
   // 2. Compute values and types of the result
   constexpr size_t remaining_arg_cnt =

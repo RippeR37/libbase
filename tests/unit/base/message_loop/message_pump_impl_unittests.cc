@@ -33,7 +33,7 @@ base::MessagePump::PendingTask CreateTask(base::OnceClosure task) {
 base::MessagePump::PendingTask CreateSetterTask(bool& flag) {
   EXPECT_FALSE(flag);
   return CreateTask(
-      base::BindOnce([](bool& ext_flag) { ext_flag = true; }, flag));
+      base::BindOnce([](bool* ext_flag) { *ext_flag = true; }, &flag));
 }
 
 base::MessagePump::PendingTask CreateSetterExecutorTask(
@@ -41,7 +41,7 @@ base::MessagePump::PendingTask CreateSetterExecutorTask(
     bool& flag) {
   EXPECT_FALSE(flag);
   return CreateExecutorTask(
-      base::BindOnce([](bool& ext_flag) { ext_flag = true; }, flag),
+      base::BindOnce([](bool* ext_flag) { *ext_flag = true; }, &flag),
       std::move(executor_id));
 }
 
@@ -50,7 +50,7 @@ base::MessagePump::PendingTask CreateSetterSequenceTask(
     bool& flag) {
   EXPECT_FALSE(flag);
   return CreateSequenceTask(
-      base::BindOnce([](bool& ext_flag) { ext_flag = true; }, flag),
+      base::BindOnce([](bool* ext_flag) { *ext_flag = true; }, &flag),
       std::move(sequence_id));
 }
 

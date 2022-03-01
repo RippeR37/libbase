@@ -42,8 +42,8 @@ class MessageLoopImplTest : public Test {
     ASSERT_FALSE(task_executed);
     EXPECT_CALL(*mock_message_pump_, GetNextPendingTask)
         .WillOnce(Return(ByMove(CreatePendingTask(base::BindOnce(
-            [](bool& ext_task_executed) { ext_task_executed = true; },
-            task_executed)))))
+            [](bool* ext_task_executed) { *ext_task_executed = true; },
+            &task_executed)))))
         .RetiresOnSaturation();
   }
 
@@ -62,8 +62,8 @@ class MessageLoopImplTest : public Test {
   }
 
   base::MessagePump::PendingTask CreateCountingPendingTask(size_t& counter) {
-    return CreatePendingTask(
-        base::BindOnce([](size_t& ext_counter) { ext_counter++; }, counter));
+    return CreatePendingTask(base::BindOnce(
+        [](size_t* ext_counter) { (*ext_counter)++; }, &counter));
   }
 
  protected:
