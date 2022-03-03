@@ -125,7 +125,11 @@ jobs:
       # (Optional) Perform performance testing and optionally save the results
       - name: (Optional) Perform performance testing
         if: ${{ matrix.performance_test }}
-        run: ./build/tests/perf/libbase_perf_tests --benchmark_format=json | tee benchmark_result.json
+        run: >
+          ./build/tests/perf/libbase_perf_tests --benchmark_format=json |
+          jq 'del(.benchmarks[] | select( .name | endswith("mean") | not ) )' |
+          jq '.benchmarks[].name |= sub("(?<name>.*)(\/repeats.*)"; "\(.name)")' |
+          tee benchmark_result.json
       - name: (Optional) Download previous performance testing results
         if: ${{ matrix.performance_test }}
         uses: actions/cache@v2
@@ -140,10 +144,9 @@ jobs:
           output-file-path: benchmark_result.json
           benchmark-data-dir-path: perf_tests/master
           external-data-json-path: ./cache/performance_tests/benchmark_result.json
-          alert-threshold: '150%'
+          alert-threshold: '200%'
           comment-on-alert: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          alert-comment-cc-users: '@RippeR37'
           auto-push: false
       - name: (Optional) Process and store performance test results
         if: ${{ matrix.performance_test && github.event_name != 'pull_request' && (github.ref_name == 'master' || github.ref_name == 'develop') }}
@@ -152,9 +155,8 @@ jobs:
           tool: 'googlecpp'
           output-file-path: benchmark_result.json
           benchmark-data-dir-path: perf_tests/${{github.ref_name}}
-          alert-threshold: '150%'
+          alert-threshold: '200%'
           comment-on-alert: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          alert-comment-cc-users: '@RippeR37'
           max-items-in-chart: 200
           auto-push: true

@@ -29,7 +29,7 @@ void TestDoubleThreaded(base::SequencedTaskRunner* tr1,
   }
 }
 
-static void BM_TestSingleThreaded(benchmark::State& state) {
+void BM_TestSingleThreaded(benchmark::State& state) {
   base::Thread t1;
   t1.Start();
   base::WaitableEvent event{base::WaitableEvent::ResetPolicy::kAutomatic};
@@ -40,7 +40,7 @@ static void BM_TestSingleThreaded(benchmark::State& state) {
   }
 }
 
-static void BM_TestDoubleThreaded(benchmark::State& state) {
+void BM_TestDoubleThreaded(benchmark::State& state) {
   base::Thread t1;
   base::Thread t2;
   t1.Start();
@@ -56,8 +56,8 @@ static void BM_TestDoubleThreaded(benchmark::State& state) {
 
 #define LIBBASE_BENCHMARK(x)                                                  \
   BENCHMARK(x)                                                                \
-      ->Unit(::benchmark::TimeUnit::kMicrosecond)                             \
-      ->Repetitions(2)                                                        \
+      ->Unit(::benchmark::TimeUnit::kMillisecond)                             \
+      ->Repetitions(10)                                                       \
       ->ComputeStatistics(                                                    \
           "min",                                                              \
           [](auto& values) {                                                  \
