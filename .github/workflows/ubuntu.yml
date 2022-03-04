@@ -4,10 +4,6 @@ on:
   push:
   pull_request:
 
-permissions:
-  deployments: write
-  contents: write
-
 jobs:
   clang-format-check:
     runs-on: ubuntu-latest
@@ -38,26 +34,22 @@ jobs:
         ]
         cmake_args: [""]
         code_coverage: [false]
-        performance_test: [false]
         include:
           - os: ubuntu-20.04
             compiler: {name: CodeCoverage (gcov), cc: gcc-10, cxx: g++-10}
             build_type: Debug
             cmake_args: "-DLIBBASE_CODE_COVERAGE=ON"
             code_coverage: true
-            performance_test: false
           - os: ubuntu-20.04
             compiler: {name: CodeCoverage (llvm-cov), cc: clang-12, cxx: clang++-12}
             build_type: Debug
             cmake_args: "-DLIBBASE_CODE_COVERAGE=ON"
             code_coverage: true
-            performance_test: false
           - os: ubuntu-20.04
             compiler: {name: Performance test, cc: clang-12, cxx: clang++-12}
             build_type: Release
             cmake_args: ""
             code_coverage: false
-            performance_test: true
 
     env:
       CC: ${{ matrix.compiler.cc }}
@@ -121,42 +113,3 @@ jobs:
         with:
           name: llvm-cov-code-coverage-report
           path: build/coverage/
-
-      # (Optional) Perform performance testing and optionally save the results
-      - name: (Optional) Perform performance testing
-        if: ${{ matrix.performance_test }}
-        run: >
-          ./build/tests/perf/libbase_perf_tests --benchmark_format=json |
-          jq 'del(.benchmarks[] | select( .name | endswith("mean") | not ) )' |
-          jq '.benchmarks[].name |= sub("(?<name>.*)(\/repeats.*)"; "\(.name)")' |
-          tee benchmark_result.json
-      - name: (Optional) Download previous performance testing results
-        if: ${{ matrix.performance_test }}
-        uses: actions/cache@v2
-        with:
-          path: ./cache/performance_tests/
-          key: ${{ runner.os }}-${{ github.ref_name }}-performance-test
-      - name: (Optional) Process performance test results
-        if: ${{ matrix.performance_test && github.event_name == 'pull_request' }}
-        uses: benchmark-action/github-action-benchmark@v1
-        with:
-          tool: 'googlecpp'
-          output-file-path: benchmark_result.json
-          benchmark-data-dir-path: perf_tests/master
-          external-data-json-path: ./cache/performance_tests/benchmark_result.json
-          alert-threshold: '200%'
-          comment-on-alert: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          auto-push: false
-      - name: (Optional) Process and store performance test results
-        if: ${{ matrix.performance_test && github.event_name != 'pull_request' && (github.ref_name == 'master' || github.ref_name == 'develop') }}
-        uses: benchmark-action/github-action-benchmark@v1
-        with:
-          tool: 'googlecpp'
-          output-file-path: benchmark_result.json
-          benchmark-data-dir-path: perf_tests/${{github.ref_name}}
-          alert-threshold: '200%'
-          comment-on-alert: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          max-items-in-chart: 200
-          auto-push: true
