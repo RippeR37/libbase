@@ -281,9 +281,9 @@ TEST(WrapUnwrapTests, BindNonConstRefArgumentWithReferenceWrapper) {
   EXPECT_EQ(n, 2);
 }
 
-class BindToSharedPtrHelper {
+class BindWrappedHelper {
  public:
-  BindToSharedPtrHelper(int* call_count, bool* destroyed_flag)
+  BindWrappedHelper(int* call_count, bool* destroyed_flag)
       : call_count_(call_count), destroyed_flag_(destroyed_flag) {
     EXPECT_TRUE(call_count_);
     EXPECT_EQ(*call_count, 0);
@@ -291,7 +291,7 @@ class BindToSharedPtrHelper {
     EXPECT_FALSE(*destroyed_flag_);
   }
 
-  ~BindToSharedPtrHelper() { *destroyed_flag_ = true; }
+  ~BindWrappedHelper() { *destroyed_flag_ = true; }
 
   int Call() { return ++(*call_count_); }
 
@@ -300,14 +300,121 @@ class BindToSharedPtrHelper {
   bool* destroyed_flag_;
 };
 
+TEST(WrapUnwrapTests, BindOnceOwnedMemberCalled) {
+  int call_count = 0;
+  bool destroyed = false;
+
+  auto object = std::make_unique<BindWrappedHelper>(&call_count, &destroyed);
+  auto callback =
+      base::BindOnce(&BindWrappedHelper::Call, base::Owned(object.release()));
+
+  EXPECT_FALSE(destroyed);
+  EXPECT_EQ(std::move(callback).Run(), 1);
+  EXPECT_EQ(call_count, 1);
+  EXPECT_TRUE(destroyed);
+}
+
+TEST(WrapUnwrapTests, BindOnceOwnedMemberDestroyed) {
+  int call_count = 0;
+  bool destroyed = false;
+
+  auto object = std::make_unique<BindWrappedHelper>(&call_count, &destroyed);
+
+  EXPECT_FALSE(destroyed);
+  {
+    auto callback =
+        base::BindOnce(&BindWrappedHelper::Call, base::Owned(object.release()));
+  }
+  EXPECT_EQ(call_count, 0);
+  EXPECT_TRUE(destroyed);
+}
+
+TEST(WrapUnwrapTests, BindRepeatingMemberOwned) {
+  int call_count = 0;
+  bool destroyed = false;
+
+  auto object = std::make_unique<BindWrappedHelper>(&call_count, &destroyed);
+  auto callback = base::BindRepeating(&BindWrappedHelper::Call,
+                                      base::Owned(std::move(object)));
+
+  EXPECT_EQ(callback.Run(), 1);
+  EXPECT_EQ(call_count, 1);
+
+  auto callback_copy = callback;
+
+  EXPECT_EQ(callback_copy.Run(), 2);
+  EXPECT_EQ(call_count, 2);
+
+  EXPECT_FALSE(destroyed);
+  callback = base::RepeatingCallback<int()>{};
+  EXPECT_FALSE(destroyed);
+  callback_copy = base::RepeatingCallback<int()>{};
+  EXPECT_TRUE(destroyed);
+}
+
+int CallBindWrapperHelperCall(BindWrappedHelper* helper) {
+  return helper->Call();
+}
+
+TEST(WrapUnwrapTests, BindOnceOwnedFreeCalled) {
+  int call_count = 0;
+  bool destroyed = false;
+
+  auto object = std::make_unique<BindWrappedHelper>(&call_count, &destroyed);
+  auto callback =
+      base::BindOnce(&CallBindWrapperHelperCall, base::Owned(object.release()));
+
+  EXPECT_FALSE(destroyed);
+  EXPECT_EQ(std::move(callback).Run(), 1);
+  EXPECT_EQ(call_count, 1);
+  EXPECT_TRUE(destroyed);
+}
+
+TEST(WrapUnwrapTests, BindOnceOwnedFreeDestroyed) {
+  int call_count = 0;
+  bool destroyed = false;
+
+  auto object = std::make_unique<BindWrappedHelper>(&call_count, &destroyed);
+
+  EXPECT_FALSE(destroyed);
+  {
+    auto callback = base::BindOnce(&CallBindWrapperHelperCall,
+                                   base::Owned(object.release()));
+  }
+  EXPECT_EQ(call_count, 0);
+  EXPECT_TRUE(destroyed);
+}
+
+TEST(WrapUnwrapTests, BindRepeatingFreeOwned) {
+  int call_count = 0;
+  bool destroyed = false;
+
+  auto object = std::make_unique<BindWrappedHelper>(&call_count, &destroyed);
+  auto callback = base::BindRepeating(&CallBindWrapperHelperCall,
+                                      base::Owned(std::move(object)));
+
+  EXPECT_EQ(callback.Run(), 1);
+  EXPECT_EQ(call_count, 1);
+
+  auto callback_copy = callback;
+
+  EXPECT_EQ(callback_copy.Run(), 2);
+  EXPECT_EQ(call_count, 2);
+
+  EXPECT_FALSE(destroyed);
+  callback = base::RepeatingCallback<int()>{};
+  EXPECT_FALSE(destroyed);
+  callback_copy = base::RepeatingCallback<int()>{};
+  EXPECT_TRUE(destroyed);
+}
+
 TEST(BindToSharedPtrTest, BindOnce) {
   int call_count = 0;
   bool destroyed = false;
 
-  auto object =
-      std::make_shared<BindToSharedPtrHelper>(&call_count, &destroyed);
+  auto object = std::make_shared<BindWrappedHelper>(&call_count, &destroyed);
   auto callback =
-      base::BindOnce(&BindToSharedPtrHelper::Call, base::RetainedRef(object));
+      base::BindOnce(&BindWrappedHelper::Call, base::RetainedRef(object));
 
   object.reset();
   EXPECT_EQ(call_count, 0);
@@ -322,10 +429,9 @@ TEST(BindToSharedPtrTest, BindRepeating) {
   int call_count = 0;
   bool destroyed = false;
 
-  auto object =
-      std::make_shared<BindToSharedPtrHelper>(&call_count, &destroyed);
-  auto callback1 = base::BindRepeating(&BindToSharedPtrHelper::Call,
-                                       base::RetainedRef(object));
+  auto object = std::make_shared<BindWrappedHelper>(&call_count, &destroyed);
+  auto callback1 =
+      base::BindRepeating(&BindWrappedHelper::Call, base::RetainedRef(object));
   auto callback2 = callback1;
 
   object.reset();

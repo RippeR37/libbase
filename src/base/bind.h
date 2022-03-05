@@ -37,6 +37,16 @@ inline auto RetainedRef(std::shared_ptr<InstanceType> instance_ptr) {
   return detail::RetainedRefType{std::move(instance_ptr)};
 }
 
+template <typename InstanceType>
+inline auto Owned(std::unique_ptr<InstanceType> instance) {
+  return detail::OwnedWrapper<InstanceType>{std::move(instance)};
+}
+
+template <typename InstanceType>
+inline auto Owned(InstanceType* instance_ptr) {
+  return Owned(std::unique_ptr<InstanceType>{instance_ptr});
+}
+
 template <typename Functor>
 inline auto IgnoreResult(Functor functor) {
   return detail::IgnoreResultType<Functor>{std::forward<Functor>(functor)};

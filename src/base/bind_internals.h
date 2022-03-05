@@ -66,6 +66,14 @@ struct RetainedRefType {
   std::shared_ptr<InstanceType> instance_ptr;
 };
 
+template <typename T>
+struct OwnedWrapper {
+  OwnedWrapper(std::shared_ptr<T> instance_ptr)
+      : instance_ptr(std::move(instance_ptr)) {}
+  operator T*() const { return instance_ptr.get(); }
+  std::shared_ptr<T> instance_ptr;
+};
+
 template <typename Functor, typename Instance, typename... ArgumentTypes>
 static constexpr decltype(auto) MemberFunctionInvoke(
     Functor&& functor,
@@ -81,6 +89,15 @@ static constexpr decltype(auto) MemberFunctionInvoke(
     const RetainedRefType<Instance>& instance,
     ArgumentTypes&&... arguments) {
   return std::invoke(std::forward<Functor>(functor), instance.instance_ptr,
+                     std::forward<ArgumentTypes>(arguments)...);
+}
+
+template <typename Functor, typename Instance, typename... ArgumentTypes>
+static constexpr decltype(auto) MemberFunctionInvoke(
+    Functor&& functor,
+    const OwnedWrapper<Instance>& instance,
+    ArgumentTypes&&... arguments) {
+  return std::invoke(std::forward<Functor>(functor), instance,
                      std::forward<ArgumentTypes>(arguments)...);
 }
 
@@ -299,6 +316,15 @@ struct WrapHelper<FunctorArgument*, ::base::WeakPtr<BindArgument>> {
   template <typename T>
   static auto Wrap(T&& arg) {
     return ::base::WeakPtr<FunctorArgument>{std::forward<T>(arg)};
+  }
+  static constexpr bool IsWrapped = true;
+};
+
+template <typename FunctorArgument, typename BindArgument>
+struct WrapHelper<FunctorArgument*, OwnedWrapper<BindArgument>> {
+  template <typename T>
+  static auto Wrap(T&& arg) {
+    return OwnedWrapper<FunctorArgument>{std::forward<T>(arg.instance_ptr)};
   }
   static constexpr bool IsWrapped = true;
 };
