@@ -408,6 +408,30 @@ TEST(WrapUnwrapTests, BindRepeatingFreeOwned) {
   EXPECT_TRUE(destroyed);
 }
 
+int CallBindWrapperHelperCallRef(BindWrappedHelper& helper) {
+  return helper.Call();
+}
+
+TEST(WrapUnwrapTests, BindRepeatingOwnedRef) {
+  int call_count = 0;
+  bool destroyed = false;
+
+  BindWrappedHelper object{&call_count, &destroyed};
+  auto callback = base::BindRepeating(&CallBindWrapperHelperCallRef,
+                                      base::OwnedRef(std::move(object)));
+
+  EXPECT_FALSE(destroyed);
+  EXPECT_EQ(call_count, 0);
+
+  EXPECT_EQ(callback.Run(), 1);
+  EXPECT_EQ(call_count, 1);
+  EXPECT_FALSE(destroyed);
+
+  callback = base::RepeatingCallback<int()>{};
+  EXPECT_EQ(call_count, 1);
+  EXPECT_TRUE(destroyed);
+}
+
 TEST(BindToSharedPtrTest, BindOnce) {
   int call_count = 0;
   bool destroyed = false;

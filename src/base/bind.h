@@ -47,6 +47,12 @@ inline auto Owned(InstanceType* instance_ptr) {
   return Owned(std::unique_ptr<InstanceType>{instance_ptr});
 }
 
+template <typename InstanceType>
+inline auto OwnedRef(InstanceType&& instance) {
+  return detail::OwnedRefWrapper{std::make_shared<std::decay_t<InstanceType>>(
+      std::forward<InstanceType>(instance))};
+}
+
 template <typename Functor>
 inline auto IgnoreResult(Functor functor) {
   return detail::IgnoreResultType<Functor>{std::forward<Functor>(functor)};
