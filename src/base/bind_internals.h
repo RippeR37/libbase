@@ -122,7 +122,7 @@ struct FunctorTraitsImpl {
   }
 };
 
-template <typename Functor, typename InstancePointer, typename = void>
+template <typename Functor, typename = void>
 struct FunctorTraits {
   static_assert(!sizeof(Functor), "Invalid instantiation");
 };
@@ -139,74 +139,68 @@ struct IgnoreResultType {
 };
 
 // Function
-template <typename ReturnType,
-          typename... ArgumentTypes,
-          typename InstancePointer>
-struct FunctorTraits<ReturnType (*)(ArgumentTypes...), InstancePointer>
+template <typename ReturnType, typename... ArgumentTypes>
+struct FunctorTraits<ReturnType (*)(ArgumentTypes...)>
     : FunctorTraitsImpl<ReturnType,
                         std::tuple<ArgumentTypes...>,
                         sizeof...(ArgumentTypes)> {};
 
 // Member functions
-#define LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(...)                       \
-  template <typename ReturnType, typename ClassType,                         \
-            typename InstancePointerType, typename... ArgumentTypes>         \
-  struct FunctorTraits<ReturnType (ClassType::*)(ArgumentTypes...)           \
-                           __VA_ARGS__,                                      \
-                       InstancePointerType>                                  \
-      : FunctorTraitsImpl<ReturnType,                                        \
-                          std::tuple<InstancePointerType, ArgumentTypes...>, \
-                          1 + sizeof...(ArgumentTypes)> {                    \
-    template <typename Functor,                                              \
-              std::size_t... Indexes,                                        \
-              typename BoundArgumentsTupleType,                              \
-              typename... RunArgumentTypes>                                  \
-    static constexpr decltype(auto) Invoke(                                  \
-        Functor&& functor,                                                   \
-        std::index_sequence<Indexes...>,                                     \
-        BoundArgumentsTupleType&& bound_arguments,                           \
-        RunArgumentTypes&&... run_arguments) {                               \
-      return MemberFunctionInvoke(                                           \
-          std::forward<Functor>(functor),                                    \
-          std::get<Indexes>(                                                 \
-              std::forward<BoundArgumentsTupleType>(bound_arguments))...,    \
-          std::forward<RunArgumentTypes>(run_arguments)...);                 \
-    }                                                                        \
+#define LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(INSTANCE_TYPE, ...)            \
+  template <typename ReturnType, typename ClassType,                      \
+            typename... ArgumentTypes>                                    \
+  struct FunctorTraits<ReturnType (ClassType::*)(ArgumentTypes...)        \
+                           __VA_ARGS__>                                   \
+      : FunctorTraitsImpl<ReturnType,                                     \
+                          std::tuple<INSTANCE_TYPE*, ArgumentTypes...>,   \
+                          1 + sizeof...(ArgumentTypes)> {                 \
+    template <typename Functor,                                           \
+              std::size_t... Indexes,                                     \
+              typename BoundArgumentsTupleType,                           \
+              typename... RunArgumentTypes>                               \
+    static constexpr decltype(auto) Invoke(                               \
+        Functor&& functor,                                                \
+        std::index_sequence<Indexes...>,                                  \
+        BoundArgumentsTupleType&& bound_arguments,                        \
+        RunArgumentTypes&&... run_arguments) {                            \
+      return MemberFunctionInvoke(                                        \
+          std::forward<Functor>(functor),                                 \
+          std::get<Indexes>(                                              \
+              std::forward<BoundArgumentsTupleType>(bound_arguments))..., \
+          std::forward<RunArgumentTypes>(run_arguments)...);              \
+    }                                                                     \
   }
 
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT();
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const);
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(volatile);
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const volatile);
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(&);
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const&);
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(volatile&);
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const volatile&);
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(&&);
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const&&);
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(volatile&&);
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const volatile&&);
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(noexcept);
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const noexcept);
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(volatile noexcept);
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const volatile noexcept);
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(&noexcept);
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const& noexcept);
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(volatile& noexcept);
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const volatile& noexcept);
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(&&noexcept);
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const&& noexcept);
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(volatile&& noexcept);
-LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT(const volatile&& noexcept);
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(ClassType, );
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(ClassType, volatile);
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(ClassType, &);
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(ClassType, volatile&);
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(ClassType, &&);
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(ClassType, volatile&&);
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(ClassType, noexcept);
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(ClassType, volatile noexcept);
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(ClassType, & noexcept);
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(ClassType, volatile& noexcept);
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(ClassType, && noexcept);
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(ClassType, volatile&& noexcept);
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(const ClassType, const);
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(const ClassType, const volatile);
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(const ClassType, const&);
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(const ClassType, const volatile&);
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(const ClassType, const&&);
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(const ClassType, const volatile&&);
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(const ClassType, const noexcept);
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(const ClassType, const volatile noexcept);
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(const ClassType, const& noexcept);
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(const ClassType, const volatile& noexcept);
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(const ClassType, const&& noexcept);
+LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(const ClassType, const volatile&& noexcept);
 
-#undef LIBBASE_IMPL_CREATE_MEMBER_FUNCTION_TRAIT
+#undef LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT
 
 // Callbacks
-template <typename ReturnType,
-          typename... ArgumentTypes,
-          typename InstancePointer>
-struct FunctorTraits<::base::OnceCallback<ReturnType(ArgumentTypes...)>,
-                     InstancePointer>
+template <typename ReturnType, typename... ArgumentTypes>
+struct FunctorTraits<::base::OnceCallback<ReturnType(ArgumentTypes...)>>
     : FunctorTraitsImpl<ReturnType,
                         std::tuple<ArgumentTypes...>,
                         sizeof...(ArgumentTypes)> {
@@ -226,11 +220,8 @@ struct FunctorTraits<::base::OnceCallback<ReturnType(ArgumentTypes...)>,
   }
 };
 
-template <typename ReturnType,
-          typename... ArgumentTypes,
-          typename InstancePointer>
-struct FunctorTraits<::base::RepeatingCallback<ReturnType(ArgumentTypes...)>,
-                     InstancePointer>
+template <typename ReturnType, typename... ArgumentTypes>
+struct FunctorTraits<::base::RepeatingCallback<ReturnType(ArgumentTypes...)>>
     : FunctorTraitsImpl<ReturnType,
                         std::tuple<ArgumentTypes...>,
                         sizeof...(ArgumentTypes)> {
@@ -249,12 +240,11 @@ struct FunctorTraits<::base::RepeatingCallback<ReturnType(ArgumentTypes...)>,
 };
 
 // Lambda
-template <typename LambdaType, typename InstancePointer>
+template <typename LambdaType>
 struct FunctorTraits<
     LambdaType,
-    InstancePointer,
     std::enable_if_t<traits::IsCapturelessLambdaV<LambdaType>, void>>
-    : FunctorTraits<decltype(+std::declval<LambdaType>()), InstancePointer> {};
+    : FunctorTraits<decltype(+std::declval<LambdaType>())> {};
 
 // IgnoreResult
 template <typename Functor, typename InstancePointer>
@@ -283,7 +273,33 @@ struct WrapHelper<FunctorArgument, std::reference_wrapper<BindArgument>> {
   static auto Wrap(T&& arg) {
     return std::reference_wrapper<FunctorArgument>{std::forward<T>(arg)};
   }
+  static constexpr bool IsWrapped = true;
+};
 
+template <typename FunctorArgument, typename BindArgument>
+struct WrapHelper<FunctorArgument*, UnretainedType<BindArgument>> {
+  template <typename T>
+  static auto Wrap(T&& arg) {
+    return UnretainedType<FunctorArgument>{arg.instance_ptr};
+  }
+  static constexpr bool IsWrapped = true;
+};
+
+template <typename FunctorArgument, typename BindArgument>
+struct WrapHelper<FunctorArgument*, RetainedRefType<BindArgument>> {
+  template <typename T>
+  static auto Wrap(T&& arg) {
+    return RetainedRefType<FunctorArgument>{std::forward<T>(arg)};
+  }
+  static constexpr bool IsWrapped = true;
+};
+
+template <typename FunctorArgument, typename BindArgument>
+struct WrapHelper<FunctorArgument*, ::base::WeakPtr<BindArgument>> {
+  template <typename T>
+  static auto Wrap(T&& arg) {
+    return ::base::WeakPtr<FunctorArgument>{std::forward<T>(arg)};
+  }
   static constexpr bool IsWrapped = true;
 };
 
@@ -397,12 +413,7 @@ template <template <typename> class CallbackType,
           typename Functor,
           typename... Arguments>
 auto Bind(Functor&& functor, Arguments&&... arguments) {
-  constexpr bool has_arguments = sizeof...(Arguments) > 0;
-  using FirstArgumentType = std::conditional_t<
-      has_arguments, std::tuple_element_t<0, std::tuple<Arguments..., void>>,
-      void>;
-  using FunctorTraits = FunctorTraits<traits::RemoveCVRefT<Functor>,
-                                      traits::RemoveCVRefT<FirstArgumentType>>;
+  using FunctorTraits = FunctorTraits<traits::RemoveCVRefT<Functor>>;
 
   constexpr size_t func_arg_cnt = FunctorTraits::ArgumentsCount;
   constexpr size_t bind_arg_cnt = sizeof...(Arguments);
