@@ -45,11 +45,6 @@ jobs:
             build_type: Debug
             cmake_args: "-DLIBBASE_CODE_COVERAGE=ON"
             code_coverage: true
-          - os: ubuntu-20.04
-            compiler: {name: Performance test, cc: clang-12, cxx: clang++-12}
-            build_type: Release
-            cmake_args: ""
-            code_coverage: false
 
     env:
       CC: ${{ matrix.compiler.cc }}
