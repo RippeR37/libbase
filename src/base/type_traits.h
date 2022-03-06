@@ -3,8 +3,6 @@
 #include <tuple>
 #include <utility>
 
-#include "callback.h"
-
 namespace base {
 namespace traits {
 

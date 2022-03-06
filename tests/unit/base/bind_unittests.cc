@@ -948,4 +948,85 @@ TEST(IgnoreResultExhaustionTest, MemberFunctions) {
   EXPECT_EQ(obj.value, 0b00001111'1111'00001111'1111);
 }
 
+TEST(CallbackThenTest, OnceCallbackThenOnceCallbackNoResult) {
+  bool first = false;
+  bool second = false;
+  bool correct_order = false;
+
+  base::OnceCallback<void(bool*)> callback_1 = base::BindOnce(
+      [](bool* first_flag, bool* second_flag, bool* correct_order_flag) {
+        *first_flag = true;
+        if (!*second_flag) {
+          *correct_order_flag = true;
+        }
+      },
+      &first, &second);
+
+  base::OnceCallback<void(bool*)> callback_2 =
+      std::move(callback_1)
+          .Then(base::BindOnce([](bool* second_flag) { *second_flag = true; },
+                               &second));
+
+  std::move(callback_2).Run(&correct_order);
+
+  EXPECT_TRUE(first);
+  EXPECT_TRUE(second);
+  EXPECT_TRUE(correct_order);
+}
+
+TEST(CallbackThenTest, OnceCallbackThenOnceCallbackMoveOnlyResultAndArgument) {
+  using CounterType = std::unique_ptr<int>;
+
+  auto counter = std::make_unique<int>(0);
+  const auto* counter_ptr = counter.get();
+
+  auto increment_and_return = [](CounterType value) {
+    *value += 1;
+    return value;
+  };
+
+  base::OnceCallback<CounterType(CounterType)> callback_1 =
+      base::BindOnce(increment_and_return);
+  base::OnceCallback<CounterType(CounterType)> callback_2 =
+      std::move(callback_1).Then(base::BindOnce(increment_and_return));
+
+  auto result = std::move(callback_2).Run(std::move(counter));
+
+  ASSERT_TRUE(result);
+  EXPECT_EQ(result.get(), counter_ptr);
+  EXPECT_EQ(*result, 2);
+}
+
+TEST(CallbackThenTest, RepeatingCallbackThenRepeatingCallbackNoResult) {
+  int first = 0;
+  int second = 0;
+  int correct_order = 0;
+
+  base::RepeatingCallback<void(int*)> callback_1 = base::BindRepeating(
+      [](int* first_counter, int* second_counter, int* correct_order_counter) {
+        *first_counter += 1;
+        if (*first_counter > *second_counter) {
+          *correct_order_counter += 1;
+        }
+      },
+      &first, &second);
+  base::RepeatingCallback<void(int*)> callback_2 =
+      callback_1.Then(base::BindRepeating(
+          [](int* second_counter) { *second_counter += 1; }, &second));
+
+  EXPECT_TRUE(callback_1);
+
+  callback_2.Run(&correct_order);
+  EXPECT_EQ(first, 1);
+  EXPECT_EQ(second, 1);
+  EXPECT_EQ(correct_order, 1);
+  ASSERT_TRUE(callback_2);
+
+  std::move(callback_2).Run(&correct_order);
+  EXPECT_EQ(first, 2);
+  EXPECT_EQ(second, 2);
+  EXPECT_EQ(correct_order, 2);
+  EXPECT_FALSE(callback_2);
+}
+
 }  // namespace

@@ -19,9 +19,11 @@ target_sources(libbase
     base/bind.h
     base/bind_internals.h
     base/callback.h
+    base/callback_forward.h
     base/callback_helpers.cc
     base/callback_helpers.h
     base/callback_iface.h
+    base/callback_internals.h
     base/logging.h
     base/memory/weak_ptr.h
     base/message_loop/message_loop.h

@@ -2,7 +2,9 @@
 
 #include <memory>
 
+#include "base/bind.h"
 #include "base/callback_iface.h"
+#include "base/callback_internals.h"
 
 namespace base {
 
@@ -31,6 +33,24 @@ class OnceCallback<ReturnType(ArgumentTypes...)> {
   ReturnType Run(ArgumentTypes... arguments) && {
     OnceCallback callback = std::move(*this);
     return callback.impl_->Run(std::forward<ArgumentTypes>(arguments)...);
+  }
+
+  template <typename ThenReturn, typename... ThenArguments>
+  OnceCallback<ThenReturn(ArgumentTypes...)> Then(
+      OnceCallback<ThenReturn(ThenArguments...)> then) && {
+    return BindOnce(
+        &detail::ThenHelper<ReturnType,
+                            OnceCallback<ReturnType(ArgumentTypes...)>,
+                            OnceCallback<ThenReturn(ThenArguments...)>,
+                            ArgumentTypes...>::Invoke,
+        std::move(*this), std::move(then));
+  }
+
+  template <typename ThenReturn, typename... ThenArguments>
+  OnceCallback<ThenReturn(ArgumentTypes...)> Then(
+      RepeatingCallback<ThenReturn(ThenArguments...)> then) && {
+    return Then(static_cast<OnceCallback<ThenReturn(ThenArguments...)>>(
+        std::move(then)));
   }
 
  private:
@@ -69,8 +89,12 @@ class RepeatingCallback<ReturnType(ArgumentTypes...)> {
     return *this;
   }
 
-  explicit operator OnceCallback<ReturnType(ArgumentTypes...)>() const {
+  explicit operator OnceCallback<ReturnType(ArgumentTypes...)>() const& {
     return OnceCallback<ReturnType(ArgumentTypes...)>{CloneImpl(impl_)};
+  }
+
+  explicit operator OnceCallback<ReturnType(ArgumentTypes...)>() && {
+    return OnceCallback<ReturnType(ArgumentTypes...)>{std::move(impl_)};
   }
 
   explicit operator bool() const { return !!impl_; }
@@ -82,6 +106,24 @@ class RepeatingCallback<ReturnType(ArgumentTypes...)> {
   ReturnType Run(ArgumentTypes... arguments) && {
     RepeatingCallback callback = std::move(*this);
     return callback.Run(std::forward<ArgumentTypes>(arguments)...);
+  }
+
+  template <typename ThenReturn, typename... ThenArguments>
+  RepeatingCallback<ThenReturn(ArgumentTypes...)> Then(
+      RepeatingCallback<ThenReturn(ThenArguments...)> then) const& {
+    auto copy = *this;
+    return std::move(copy).Then(std::move(then));
+  }
+
+  template <typename ThenReturn, typename... ThenArguments>
+  RepeatingCallback<ThenReturn(ArgumentTypes...)> Then(
+      RepeatingCallback<ThenReturn(ThenArguments...)> then) && {
+    return BindRepeating(
+        &detail::ThenHelper<ReturnType,
+                            RepeatingCallback<ReturnType(ArgumentTypes...)>,
+                            RepeatingCallback<ThenReturn(ThenArguments...)>,
+                            ArgumentTypes...>::Invoke,
+        std::move(*this), std::move(then));
   }
 
  private:
