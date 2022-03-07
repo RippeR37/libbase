@@ -28,6 +28,10 @@ class OnceCallback<ReturnType(ArgumentTypes...)> {
   OnceCallback(OnceCallback&& other) = default;
   OnceCallback& operator=(OnceCallback&&) = default;
 
+  OnceCallback(RepeatingCallback<ReturnType(ArgumentTypes...)> callback)
+      : OnceCallback(
+            detail::BindAccessHelper::ExtractImpl(std::move(callback))) {}
+
   explicit operator bool() const { return !!impl_; }
 
   ReturnType Run(ArgumentTypes... arguments) && {
@@ -87,14 +91,6 @@ class RepeatingCallback<ReturnType(ArgumentTypes...)> {
   RepeatingCallback& operator=(const RepeatingCallback& other) {
     impl_ = CloneImpl(other.impl_);
     return *this;
-  }
-
-  explicit operator OnceCallback<ReturnType(ArgumentTypes...)>() const& {
-    return OnceCallback<ReturnType(ArgumentTypes...)>{CloneImpl(impl_)};
-  }
-
-  explicit operator OnceCallback<ReturnType(ArgumentTypes...)>() && {
-    return OnceCallback<ReturnType(ArgumentTypes...)>{std::move(impl_)};
   }
 
   explicit operator bool() const { return !!impl_; }

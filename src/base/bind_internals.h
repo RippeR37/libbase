@@ -46,6 +46,11 @@ class BindAccessHelper {
   static CallbackType Create(ImplType impl) {
     return CallbackType{std::move(impl)};
   }
+
+  template <typename CallbackType>
+  static auto ExtractImpl(CallbackType callback) {
+    return std::move(callback.impl_);
+  }
 };
 
 //
