@@ -16,6 +16,7 @@ target_link_libraries(libbase PUBLIC
 target_sources(libbase
   PRIVATE
     base/auto_reset.h
+    base/barrier_callback.h
     base/bind.h
     base/bind_internals.h
     base/callback.h

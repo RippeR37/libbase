@@ -29,7 +29,7 @@ using IdentityT = typename IdentityType<T>::type;
  */
 template <typename T>
 struct RemoveCVRef {
-  using type = std::remove_reference_t<std::remove_cv_t<T>>;
+  using type = std::remove_cv_t<std::remove_reference_t<T>>;
 };
 template <typename T>
 using RemoveCVRefT = typename RemoveCVRef<T>::type;

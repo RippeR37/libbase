@@ -30,6 +30,7 @@ target_link_libraries(libbase_unittests PRIVATE
 target_sources(libbase_unittests
   PRIVATE
     base/auto_reset_unittests.cc
+    base/barrier_callback_unittests.cc
     base/bind_unittests.cc
     base/callback_helpers_unittests.cc
     base/memory/weak_ptr_unittests.cc
