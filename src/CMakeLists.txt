@@ -17,6 +17,8 @@ target_sources(libbase
   PRIVATE
     base/auto_reset.h
     base/barrier_callback.h
+    base/barrier_closure.cc
+    base/barrier_closure.h
     base/bind.h
     base/bind_internals.h
     base/callback.h
