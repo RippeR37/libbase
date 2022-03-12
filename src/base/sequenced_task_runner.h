@@ -19,13 +19,13 @@ class SequencedTaskRunner : public TaskRunner {
   bool DeleteSoon(SourceLocation location, std::unique_ptr<T> object) {
     return PostTask(
         std::move(location),
-        base::BindOnce(&detail::DeleteSoonUniquePtr<T>, object.release()));
+        BindOnce(&detail::DeleteSoonUniquePtr<T>, object.release()));
   }
 
   template <typename T>
   bool DeleteSoon(SourceLocation location, const T* object) {
     return PostTask(std::move(location),
-                    base::BindOnce(&detail::DeleteSoonPtr<T>, object));
+                    BindOnce(&detail::DeleteSoonPtr<T>, object));
   }
 };
 

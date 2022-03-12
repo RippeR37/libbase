@@ -32,9 +32,9 @@ RepeatingClosure BarrierClosure(size_t required_run_count,
     return {};
   }
 
-  return base::BindRepeating(&BarrierClosureHelper::Run,
-                             base::Owned(std::make_unique<BarrierClosureHelper>(
-                                 required_run_count, std::move(callback))));
+  return BindRepeating(&BarrierClosureHelper::Run,
+                       Owned(std::make_unique<BarrierClosureHelper>(
+                           required_run_count, std::move(callback))));
 }
 
 }  // namespace base

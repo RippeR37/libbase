@@ -51,8 +51,8 @@ void MessageLoopImpl::RunTask(MessagePump::PendingTask&& pending_task) {
     const auto scoped_sequence_id =
         detail::ScopedSequenceIdSetter{*pending_task.sequence_id};
 
-    const auto scoped_task_runner_handle = base::SequencedTaskRunnerHandle{
-        std::make_shared<SequencedTaskRunnerImpl>(
+    const auto scoped_task_runner_handle =
+        SequencedTaskRunnerHandle{std::make_shared<SequencedTaskRunnerImpl>(
             std::weak_ptr<MessagePump>(message_pump_),
             *pending_task.sequence_id)};
 

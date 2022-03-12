@@ -115,7 +115,7 @@ static constexpr decltype(auto) MemberFunctionInvoke(
 
 template <typename Functor, typename Class, typename... ArgumentTypes>
 inline constexpr void MemberFunctionInvoke(Functor&& functor,
-                                           const base::WeakPtr<Class>& weak_ptr,
+                                           const WeakPtr<Class>& weak_ptr,
                                            ArgumentTypes&&... arguments) {
   if (weak_ptr) {
     std::invoke(std::forward<Functor>(functor), weak_ptr,
@@ -229,7 +229,7 @@ LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(const ClassType, const volatile&& noexcept);
 
 // Callbacks
 template <typename ReturnType, typename... ArgumentTypes>
-struct FunctorTraits<::base::OnceCallback<ReturnType(ArgumentTypes...)>>
+struct FunctorTraits<OnceCallback<ReturnType(ArgumentTypes...)>>
     : FunctorTraitsImpl<ReturnType,
                         std::tuple<ArgumentTypes...>,
                         sizeof...(ArgumentTypes)> {
@@ -250,7 +250,7 @@ struct FunctorTraits<::base::OnceCallback<ReturnType(ArgumentTypes...)>>
 };
 
 template <typename ReturnType, typename... ArgumentTypes>
-struct FunctorTraits<::base::RepeatingCallback<ReturnType(ArgumentTypes...)>>
+struct FunctorTraits<RepeatingCallback<ReturnType(ArgumentTypes...)>>
     : FunctorTraitsImpl<ReturnType,
                         std::tuple<ArgumentTypes...>,
                         sizeof...(ArgumentTypes)> {
@@ -324,10 +324,10 @@ struct WrapHelper<FunctorArgument*, RetainedRefType<BindArgument>> {
 };
 
 template <typename FunctorArgument, typename BindArgument>
-struct WrapHelper<FunctorArgument*, ::base::WeakPtr<BindArgument>> {
+struct WrapHelper<FunctorArgument*, WeakPtr<BindArgument>> {
   template <typename T>
   static auto Wrap(T&& arg) {
-    return ::base::WeakPtr<FunctorArgument>{std::forward<T>(arg)};
+    return WeakPtr<FunctorArgument>{std::forward<T>(arg)};
   }
   static constexpr bool IsWrapped = true;
 };

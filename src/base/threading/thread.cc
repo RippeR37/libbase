@@ -62,8 +62,8 @@ void Thread::FlushForTesting() {
   WaitableEvent waitable_event{WaitableEvent::ResetPolicy::kAutomatic,
                                WaitableEvent::InitialState::kNotSignaled};
   TaskRunner()->PostTask(
-      FROM_HERE, base::BindOnce([](WaitableEvent* event) { event->Signal(); },
-                                &waitable_event));
+      FROM_HERE,
+      BindOnce([](WaitableEvent* event) { event->Signal(); }, &waitable_event));
   waitable_event.Wait();
 }
 

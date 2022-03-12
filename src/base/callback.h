@@ -163,7 +163,7 @@ struct IsOnceCallbackType {
 };
 
 template <typename CallbackSignatureType>
-struct IsOnceCallbackType<::base::OnceCallback<CallbackSignatureType>> {
+struct IsOnceCallbackType<OnceCallback<CallbackSignatureType>> {
   static constexpr bool value = true;
 };
 
@@ -173,8 +173,7 @@ struct IsRepeatingCallbackType {
 };
 
 template <typename CallbackSignatureType>
-struct IsRepeatingCallbackType<
-    ::base::RepeatingCallback<CallbackSignatureType>> {
+struct IsRepeatingCallbackType<RepeatingCallback<CallbackSignatureType>> {
   static constexpr bool value = true;
 };
 

@@ -12,8 +12,7 @@ namespace base {
 namespace detail {
 template <typename ReturnType, typename... ArgumentTypes>
 struct SplitOnceCallbackHelper {
-  SplitOnceCallbackHelper(
-      base::OnceCallback<ReturnType(ArgumentTypes...)> callback)
+  SplitOnceCallbackHelper(OnceCallback<ReturnType(ArgumentTypes...)> callback)
       : callback(std::move(callback)) {}
 
   ReturnType Run(ArgumentTypes... arguments) {
@@ -22,7 +21,7 @@ struct SplitOnceCallbackHelper {
   }
 
   std::atomic_flag flag{};
-  base::OnceCallback<ReturnType(ArgumentTypes...)> callback{};
+  OnceCallback<ReturnType(ArgumentTypes...)> callback{};
 };
 }  // namespace detail
 
@@ -69,19 +68,18 @@ class DoNothing {
 };
 
 template <typename ReturnType, typename... ArgumentTypes>
-std::pair<base::OnceCallback<ReturnType(ArgumentTypes...)>,
-          base::OnceCallback<ReturnType(ArgumentTypes...)>>
-SplitOnceCallback(base::OnceCallback<ReturnType(ArgumentTypes...)> callback) {
+std::pair<OnceCallback<ReturnType(ArgumentTypes...)>,
+          OnceCallback<ReturnType(ArgumentTypes...)>>
+SplitOnceCallback(OnceCallback<ReturnType(ArgumentTypes...)> callback) {
   if (!callback) {
     return {};
   }
 
   using Helper = detail::SplitOnceCallbackHelper<ReturnType, ArgumentTypes...>;
-  auto result = base::BindRepeating(
-      &Helper::Run, base::Owned(std::make_unique<Helper>(std::move(callback))));
-  return {
-      static_cast<base::OnceCallback<ReturnType(ArgumentTypes...)>>(result),
-      static_cast<base::OnceCallback<ReturnType(ArgumentTypes...)>>(result)};
+  auto result = BindRepeating(
+      &Helper::Run, Owned(std::make_unique<Helper>(std::move(callback))));
+  return {static_cast<OnceCallback<ReturnType(ArgumentTypes...)>>(result),
+          static_cast<OnceCallback<ReturnType(ArgumentTypes...)>>(result)};
 }
 
 }  // namespace base
