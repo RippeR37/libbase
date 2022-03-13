@@ -1,6 +1,7 @@
 #include "base/task_runner.h"
 
 #include "base/bind.h"
+#include "base/bind_post_task.h"
 #include "base/logging.h"
 #include "base/sequenced_task_runner.h"
 #include "base/threading/sequenced_task_runner_handle.h"
@@ -9,6 +10,7 @@ namespace base {
 
 namespace {
 
+#ifdef LIBBASE_POLICY_LEAK_ON_REPLY_POST_TASK_FAILURE
 class PostTaskAndReplyHelper {
  public:
   static void ExecuteTaskAndPostReply(PostTaskAndReplyHelper helper) {
@@ -53,6 +55,7 @@ class PostTaskAndReplyHelper {
   OnceClosure reply_;
   std::shared_ptr<SequencedTaskRunner> original_task_runner_;
 };
+#endif  // LIBBASE_POLICY_LEAK_ON_REPLY_POST_TASK_FAILURE
 
 }  // namespace
 
@@ -61,16 +64,19 @@ bool TaskRunner::PostTaskAndReply(SourceLocation location,
                                   OnceClosure reply) {
   DCHECK(task);
   DCHECK(reply);
+  DCHECK(SequencedTaskRunnerHandle::IsSet());
 
-  const bool has_sequenced_task_runner = SequencedTaskRunnerHandle::IsSet();
-  const auto sequenced_task_runner =
-      has_sequenced_task_runner ? SequencedTaskRunnerHandle::Get() : nullptr;
-
+#ifdef LIBBASE_POLICY_LEAK_ON_REPLY_POST_TASK_FAILURE
   return PostTask(location,
                   BindOnce(&PostTaskAndReplyHelper::ExecuteTaskAndPostReply,
                            PostTaskAndReplyHelper{
                                location, std::move(task), std::move(reply),
-                               std::move(sequenced_task_runner)}));
+                               SequencedTaskRunnerHandle::Get()}));
+#else   // LIBBASE_POLICY_LEAK_ON_REPLY_POST_TASK_FAILURE
+  return PostTask(location, std::move(task).Then(base::BindPostTask(
+                                SequencedTaskRunnerHandle::Get(),
+                                std::move(reply), location)));
+#endif  // LIBBASE_POLICY_LEAK_ON_REPLY_POST_TASK_FAILURE
 }
 
 }  // namespace base
