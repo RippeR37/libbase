@@ -31,6 +31,7 @@ target_sources(libbase_unittests
   PRIVATE
     base/auto_reset_unittests.cc
     base/barrier_callback_unittests.cc
+    base/barrier_closure_unittests.cc
     base/bind_post_task_unittests.cc
     base/bind_unittests.cc
     base/callback_helpers_unittests.cc

@@ -9,7 +9,7 @@
 
 namespace {
 
-TEST(BarrierCallbackTest, ZeroCount) {
+TEST(BarrierClosureTest, ZeroCount) {
   bool verification_done = false;
   auto verify_closure = base::BindOnce(
       [](bool* done_flag) { *done_flag = true; }, &verification_done);
@@ -19,7 +19,7 @@ TEST(BarrierCallbackTest, ZeroCount) {
   EXPECT_TRUE(verification_done);
 }
 
-TEST(BarrierCallbackTest, SingleRun) {
+TEST(BarrierClosureTest, SingleRun) {
   bool verification_done = false;
   auto verify_closure = base::BindOnce(
       [](bool* done_flag) { *done_flag = true; }, &verification_done);
@@ -33,7 +33,7 @@ TEST(BarrierCallbackTest, SingleRun) {
   EXPECT_TRUE(verification_done);
 }
 
-TEST(BarrierCallbackTest, MultipleRuns) {
+TEST(BarrierClosureTest, MultipleRuns) {
   constexpr size_t kRunsCount = 10;
 
   bool verification_done = false;
@@ -45,7 +45,7 @@ TEST(BarrierCallbackTest, MultipleRuns) {
   EXPECT_TRUE(barrier_closure);
   EXPECT_FALSE(verification_done);
 
-  for (size_t idx = 0; idx < kRunsCount; ++idx) {
+  for (size_t idx = 0; idx < kRunsCount - 1; ++idx) {
     barrier_closure.Run();
   }
   EXPECT_TRUE(barrier_closure);
@@ -55,7 +55,7 @@ TEST(BarrierCallbackTest, MultipleRuns) {
   EXPECT_TRUE(verification_done);
 }
 
-TEST(BarrierCallbackTest, MultipleRunsMultiThread) {
+TEST(BarrierClosureTest, MultipleRunsMultiThread) {
   constexpr size_t kRunsCount = 10;
 
   bool verification_done = false;
