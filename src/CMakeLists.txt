@@ -21,6 +21,7 @@ target_sources(libbase
     base/barrier_closure.h
     base/bind.h
     base/bind_internals.h
+    base/bind_post_task.h
     base/callback.h
     base/callback_forward.h
     base/callback_helpers.cc
