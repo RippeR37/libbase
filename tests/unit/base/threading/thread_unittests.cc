@@ -58,8 +58,11 @@ TEST_F(ThreadTest, AllQueuedTasksAreExecuted) {
       FROM_HERE, base::BindOnce(second_task, &second_task_executed));
   ready_to_end_first_task_event.Signal();
 
-  thread->Stop();
+  bool last_task_executed = false;
+  auto last_task = [](bool* executed_flag) { *executed_flag = true; };
+  thread->Stop(FROM_HERE, base::BindOnce(last_task, &last_task_executed));
   EXPECT_TRUE(second_task_executed);
+  EXPECT_TRUE(last_task_executed);
 }
 
 }  // namespace

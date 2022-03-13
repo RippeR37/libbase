@@ -18,7 +18,7 @@ class MessageLoopImpl : public MessageLoop {
   bool RunOnce() override;
   void RunUntilIdle() override;
   void Run() override;
-  void Stop() override;
+  void Stop(OnceClosure last_task) override;
 
  private:
   void RunUntilIdleOrStop();

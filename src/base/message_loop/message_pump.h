@@ -24,7 +24,7 @@ class MessagePump {
   virtual PendingTask GetNextPendingTask(ExecutorId executor_id) = 0;
   virtual bool QueuePendingTask(PendingTask pending_task) = 0;
 
-  virtual void Stop() = 0;
+  virtual void Stop(PendingTask last_task) = 0;
 };
 
 }  // namespace base

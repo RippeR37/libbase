@@ -46,9 +46,12 @@ bool MessagePumpImpl::QueuePendingTask(PendingTask pending_task) {
   return task_queued;
 }
 
-void MessagePumpImpl::Stop() {
+void MessagePumpImpl::Stop(PendingTask last_task) {
   {
     std::lock_guard<std::mutex> guard(mutex_);
+    if (!stopped_ && last_task) {
+      pending_tasks_.push_back(std::move(last_task));
+    }
     stopped_ = true;
   }
 

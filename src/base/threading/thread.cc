@@ -1,6 +1,7 @@
 #include "base/threading/thread.h"
 
 #include "base/bind.h"
+#include "base/callback.h"
 #include "base/message_loop/message_loop_impl.h"
 #include "base/message_loop/message_pump_impl.h"
 #include "base/sequenced_task_runner_helpers.h"
@@ -38,8 +39,13 @@ void Thread::Start() {
 }
 
 void Thread::Stop() {
+  Stop(FROM_HERE, base::OnceClosure{});
+}
+
+void Thread::Stop(SourceLocation location, OnceClosure last_task) {
   if (message_loop_) {
-    message_loop_->Stop();
+    (void)location;  // TODO: use `location`
+    message_loop_->Stop(std::move(last_task));
   }
   if (thread_) {
     thread_->join();

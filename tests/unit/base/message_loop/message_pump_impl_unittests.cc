@@ -2,6 +2,7 @@
 #include <future>
 #include <thread>
 
+#include "base/callback.h"
 #include "base/callback_helpers.h"
 #include "base/message_loop/message_pump_impl.h"
 
@@ -28,6 +29,10 @@ base::MessagePump::PendingTask CreateSequenceTask(
 
 base::MessagePump::PendingTask CreateTask(base::OnceClosure task) {
   return CreateExecutorTask(std::move(task), {});
+}
+
+base::MessagePump::PendingTask CreateEmptyTask() {
+  return CreateTask(base::OnceClosure{});
 }
 
 base::MessagePump::PendingTask CreateSetterTask(bool& flag) {
@@ -62,19 +67,25 @@ class MessagePumpImplTest : public ::testing::Test {
 };
 
 TEST_F(MessagePumpImplTest, NoTasksAfterStopEmptyQueue) {
-  pump.Stop();
+  pump.Stop(CreateEmptyTask());
+  EXPECT_FALSE(pump.GetNextPendingTask(kExecutorId));
+}
+
+TEST_F(MessagePumpImplTest, LastTaskAfterStopWithTaskEmptyQueue) {
+  pump.Stop(CreateTask(base::DoNothing{}));
+  EXPECT_TRUE(pump.GetNextPendingTask(kExecutorId));
   EXPECT_FALSE(pump.GetNextPendingTask(kExecutorId));
 }
 
 TEST_F(MessagePumpImplTest, RemainingTasksAfterStopNonEmptyQueue) {
   EXPECT_TRUE(pump.QueuePendingTask(CreateTask(base::DoNothing{})));
-  pump.Stop();
+  pump.Stop(CreateEmptyTask());
   EXPECT_TRUE(pump.GetNextPendingTask(kExecutorId));
   EXPECT_FALSE(pump.GetNextPendingTask(kExecutorId));
 }
 
 TEST_F(MessagePumpImplTest, NoTasksAfterStopAndTaskQueued) {
-  pump.Stop();
+  pump.Stop(CreateEmptyTask());
   EXPECT_FALSE(pump.QueuePendingTask(CreateTask(base::DoNothing{})));
   EXPECT_FALSE(pump.GetNextPendingTask(kExecutorId));
 }
@@ -181,7 +192,7 @@ TEST_F(MessagePumpImplTest, DequeueOnEmptyPumpWaitsForStop) {
   const auto async_result = std::async(std::launch::async, [&]() {
     std::this_thread::sleep_for(20ms);
     EXPECT_FALSE(dequeue_finished);
-    pump.Stop();
+    pump.Stop(CreateEmptyTask());
   });
   const auto result = pump.GetNextPendingTask(kExecutorId);
   dequeue_finished = true;
@@ -224,7 +235,7 @@ TEST_F(MessagePumpImplTest, DequeueOnBlockedSequencedWaitsForStop) {
   const auto async_result = std::async(std::launch::async, [&]() {
     std::this_thread::sleep_for(20ms);
     EXPECT_FALSE(dequeue_finished);
-    pump.Stop();
+    pump.Stop(CreateEmptyTask());
   });
   const auto result = pump.GetNextPendingTask(kOtherExecutorId);
   dequeue_finished = true;

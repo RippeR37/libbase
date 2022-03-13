@@ -5,6 +5,7 @@
 #include <thread>
 
 #include "base/bind.h"
+#include "base/callback.h"
 #include "base/message_loop/message_loop_impl.h"
 #include "base/message_loop/mock_message_pump.h"
 #include "base/sequenced_task_runner_helpers.h"
@@ -14,6 +15,7 @@
 
 namespace {
 
+using ::testing::_;
 using ::testing::ByMove;
 using ::testing::Return;
 using ::testing::Test;
@@ -147,8 +149,8 @@ TEST_F(MessageLoopImplTest, RunUntilIdleExecutesAllPendingTasks) {
 }
 
 TEST_F(MessageLoopImplTest, StopIsForwarded) {
-  EXPECT_CALL(*mock_message_pump_, Stop());
-  message_loop_impl_->Stop();
+  EXPECT_CALL(*mock_message_pump_, Stop(_));
+  message_loop_impl_->Stop(base::OnceClosure{});
 }
 
 TEST_F(MessageLoopImplTest, RunIsExecutedUntilStopIsCalled) {
@@ -185,7 +187,7 @@ TEST_F(MessageLoopImplTest, RunIsExecutedUntilStopIsCalled) {
   std::this_thread::sleep_for(30ms);
   EXPECT_FALSE(run_finished);
 
-  message_loop_impl_->Stop();
+  message_loop_impl_->Stop(base::OnceClosure{});
   executor.join();
 }
 

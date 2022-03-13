@@ -36,9 +36,10 @@ void MessageLoopImpl::Run() {
   RunUntilIdle();
 }
 
-void MessageLoopImpl::Stop() {
+void MessageLoopImpl::Stop(OnceClosure last_task) {
   is_stopped_ = true;
-  message_pump_->Stop();
+  message_pump_->Stop(MessagePump::PendingTask{std::move(last_task),
+                                               std::nullopt, std::nullopt});
 }
 
 void MessageLoopImpl::RunUntilIdleOrStop() {

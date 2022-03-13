@@ -2,6 +2,7 @@
 
 #include <thread>
 
+#include "base/callback.h"
 #include "base/logging.h"
 #include "base/message_loop/message_loop_impl.h"
 #include "base/message_loop/message_pump_impl.h"
@@ -43,11 +44,13 @@ void ThreadPool::Start() {
 
 void ThreadPool::Stop() {
   for (auto& thread : threads_) {
-    thread.message_loop->Stop();
+    thread.message_loop->Stop(base::OnceClosure{});
     thread.thread->join();
   }
   threads_.clear();
 }
+
+void Stop(SourceLocation location, OnceClosure last_task);
 
 std::shared_ptr<TaskRunner> ThreadPool::GetTaskRunner() const {
   return task_runner_;

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "base/callback_forward.h"
+
 namespace base {
 
 class MessageLoop {
@@ -10,7 +12,7 @@ class MessageLoop {
   virtual void RunUntilIdle() = 0;
 
   virtual void Run() = 0;
-  virtual void Stop() = 0;
+  virtual void Stop(OnceClosure last_task) = 0;
 };
 
 }  // namespace base
