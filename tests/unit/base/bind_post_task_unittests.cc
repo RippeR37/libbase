@@ -25,7 +25,7 @@ void IncrementIfRunningOnTaskRunner(
 class BindPostTaskTest : public ::testing::Test {
  public:
   void SetUp() override { thread.Start(); }
-  void TearDown() override { thread.Join(); }
+  void TearDown() override { thread.Stop(); }
 
   base::Thread thread;
 };

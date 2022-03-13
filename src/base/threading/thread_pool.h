@@ -16,7 +16,7 @@ class ThreadPool {
   ~ThreadPool();
 
   void Start();
-  void Join();
+  void Stop();
 
   std::shared_ptr<TaskRunner> GetTaskRunner() const;
   std::shared_ptr<SequencedTaskRunner> CreateSequencedTaskRunner();

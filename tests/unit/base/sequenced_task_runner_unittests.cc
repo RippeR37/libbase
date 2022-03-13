@@ -71,7 +71,7 @@ TEST_F(SequencedTaskRunnerTest, DeleteSoonUniquePtr) {
 TEST_F(SequencedTaskRunnerTest, LeakRawIfFailed) {
   bool object_deleted = false;
   auto* object = new DeleteNotifier(&object_deleted, task_runner);
-  thread->Join();
+  thread->Stop();
 
   EXPECT_FALSE(task_runner->DeleteSoon(FROM_HERE, object));
   EXPECT_FALSE(object_deleted);
@@ -83,7 +83,7 @@ TEST_F(SequencedTaskRunnerTest, LeakUniqueIfFailed) {
   bool object_deleted = false;
   auto object = std::make_unique<DeleteNotifier>(&object_deleted, task_runner);
   auto* object_ptr = object.get();
-  thread->Join();
+  thread->Stop();
 
   EXPECT_FALSE(task_runner->DeleteSoon(FROM_HERE, std::move(object)));
   EXPECT_FALSE(object_deleted);

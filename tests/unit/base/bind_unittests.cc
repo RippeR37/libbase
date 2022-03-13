@@ -782,7 +782,7 @@ class ThreadedWeakCallbackTest : public WeakCallbackTest {
   void SetUp() override { thread_.Start(); }
   void TearDown() override {
     thread_.FlushForTesting();
-    thread_.Join();
+    thread_.Stop();
   }
 
   std::shared_ptr<base::SequencedTaskRunner> TaskRunner() {

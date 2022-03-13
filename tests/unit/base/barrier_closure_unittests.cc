@@ -76,7 +76,7 @@ TEST(BarrierClosureTest, MultipleRunsMultiThread) {
 
   // This ensures that all posted callbacks have been executed
   for (auto& thread : threads) {
-    thread.Join();
+    thread.Stop();
   }
 
   EXPECT_TRUE(verification_done);

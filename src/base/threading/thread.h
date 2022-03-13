@@ -14,7 +14,7 @@ class Thread {
   ~Thread();
 
   void Start();
-  void Join();
+  void Stop();
 
   std::thread::id Id() const;
   std::shared_ptr<SingleThreadTaskRunner> TaskRunner();

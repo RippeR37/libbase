@@ -21,7 +21,7 @@ ThreadPool::ThreadPool(size_t initial_size)
 }
 
 ThreadPool::~ThreadPool() {
-  Join();
+  Stop();
 }
 
 void ThreadPool::Start() {
@@ -41,7 +41,7 @@ void ThreadPool::Start() {
   task_runner_ = std::make_shared<TaskRunnerImpl>(std::move(weak_message_pump));
 }
 
-void ThreadPool::Join() {
+void ThreadPool::Stop() {
   for (auto& thread : threads_) {
     thread.message_loop->Stop();
     thread.thread->join();

@@ -57,8 +57,8 @@ void ThreadExample() {
   finished_event.Wait();
   LOG(INFO) << __FUNCTION__ << "() finished";
 
-  t2.Join();
-  t1.Join();
+  t2.Stop();
+  t1.Stop();
 }
 
 void ThreadPoolNonSequencedExample() {
@@ -67,7 +67,7 @@ void ThreadPoolNonSequencedExample() {
 
   auto generic_tr1 = pool.GetTaskRunner();
 
-  pool.Join();
+  pool.Stop();
 }
 
 void ThreadPoolSequencedExample() {
@@ -77,7 +77,7 @@ void ThreadPoolSequencedExample() {
   auto sequenced_tr1 = pool.CreateSequencedTaskRunner();
   auto sequenced_tr2 = pool.CreateSequencedTaskRunner();
 
-  pool.Join();
+  pool.Stop();
 }
 
 void ThreadPoolSingleThreadExample() {
@@ -86,7 +86,7 @@ void ThreadPoolSingleThreadExample() {
 
   auto single_thread_tr1 = pool.CreateSingleThreadTaskRunner();
 
-  pool.Join();
+  pool.Stop();
 }
 
 int main(int /*argc*/, char* argv[]) {

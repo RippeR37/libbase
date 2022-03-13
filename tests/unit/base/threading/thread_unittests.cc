@@ -19,18 +19,18 @@ class ThreadTest : public ::testing::Test {
 
 TEST_F(ThreadTest, MultipleStartJoin) {
   thread->Start();
-  thread->Join();
-  thread->Join();
-  thread->Join();
+  thread->Stop();
+  thread->Stop();
+  thread->Stop();
   thread->Start();
-  thread->Join();
+  thread->Stop();
 }
 
 TEST_F(ThreadTest, TaskRunnerOnlyWhenRunning) {
   EXPECT_EQ(thread->TaskRunner(), nullptr);
   thread->Start();
   EXPECT_NE(thread->TaskRunner(), nullptr);
-  thread->Join();
+  thread->Stop();
   EXPECT_EQ(thread->TaskRunner(), nullptr);
 }
 
@@ -58,7 +58,7 @@ TEST_F(ThreadTest, AllQueuedTasksAreExecuted) {
       FROM_HERE, base::BindOnce(second_task, &second_task_executed));
   ready_to_end_first_task_event.Signal();
 
-  thread->Join();
+  thread->Stop();
   EXPECT_TRUE(second_task_executed);
 }
 

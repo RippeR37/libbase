@@ -12,7 +12,7 @@ namespace base {
 Thread::Thread() = default;
 
 Thread::~Thread() {
-  Join();
+  Stop();
 }
 
 std::thread::id Thread::Id() const {
@@ -37,7 +37,7 @@ void Thread::Start() {
       executor_id);
 }
 
-void Thread::Join() {
+void Thread::Stop() {
   if (message_loop_) {
     message_loop_->Stop();
   }
