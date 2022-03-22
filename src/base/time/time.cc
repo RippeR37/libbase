@@ -1,7 +1,5 @@
 #include "base/time/time.h"
 
-#include "base/time/time_delta.h"
-
 #if defined(LIBBASE_IS_LINUX)
 #else  // defined(LIBBASE_IS_LINUX)
 #include <chrono>
@@ -105,6 +103,10 @@ Time& Time::operator+=(TimeDelta delta) {
 Time& Time::operator-=(TimeDelta delta) {
   us_time_ -= delta.InMicroseconds();
   return *this;
+}
+
+TimeDelta Time::operator-(Time other) const {
+  return TimeDelta{us_time_ - other.us_time_};
 }
 
 }  // namespace base

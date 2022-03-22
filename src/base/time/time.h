@@ -3,9 +3,9 @@
 #include <cstdint>
 #include <ctime>
 
-namespace base {
+#include "base/time/time_delta.h"
 
-class TimeDelta;
+namespace base {
 
 class Time {
  public:
@@ -32,6 +32,8 @@ class Time {
   Time operator-(TimeDelta delta) const;
   Time& operator+=(TimeDelta delta);
   Time& operator-=(TimeDelta delta);
+
+  TimeDelta operator-(Time other) const;
 
  private:
   Time(int64_t us_time) : us_time_(us_time) {}

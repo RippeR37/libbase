@@ -5,6 +5,9 @@
 
 namespace base {
 
+class Time;
+class TimeTicks;
+
 class TimeDelta {
  public:
 #if defined(LIBBASE_IS_LINUX)
@@ -28,6 +31,39 @@ class TimeDelta {
   double InMicrosecondsF() const;
   int64_t InNanoseconds() const;
 
+  TimeDelta operator+(TimeDelta other) const;
+  TimeDelta operator-(TimeDelta other) const;
+  TimeDelta& operator+=(TimeDelta other);
+  TimeDelta& operator-=(TimeDelta other);
+  TimeDelta operator-() const;
+
+  template <typename T>
+  TimeDelta operator*(T a) const {
+    return TimeDelta{int64_t{us_delta_ * a}};
+  }
+
+  template <typename T>
+  TimeDelta operator/(T a) const {
+    return TimeDelta{int64_t{us_delta_ / a}};
+  }
+
+  template <typename T>
+  TimeDelta& operator*=(T a) {
+    return *this = (*this * a);
+  }
+
+  template <typename T>
+  TimeDelta& operator/=(T a) {
+    return *this = (*this / a);
+  }
+
+  bool operator==(TimeDelta other) const;
+  bool operator!=(TimeDelta other) const;
+  bool operator<(TimeDelta other) const;
+  bool operator<=(TimeDelta other) const;
+  bool operator>(TimeDelta other) const;
+  bool operator>=(TimeDelta other) const;
+
  private:
   template <typename T>
   friend TimeDelta Days(T);
@@ -44,13 +80,16 @@ class TimeDelta {
   template <typename T>
   friend TimeDelta Nanoseconds(T);
 
-  static constexpr int64_t kNanosecondsInMicroseconds = 1000;
-  static constexpr int64_t kMicrosecondsInMilliseconds = 1000;
-  static constexpr int64_t kMicrosecondsInSeconds =
+  friend class Time;
+  friend class TimeTicks;
+
+  static const int64_t kNanosecondsInMicroseconds = 1000;
+  static const int64_t kMicrosecondsInMilliseconds = 1000;
+  static const int64_t kMicrosecondsInSeconds =
       1000 * kMicrosecondsInMilliseconds;
-  static constexpr int64_t kMicrosecondsInMinutes = 60 * kMicrosecondsInSeconds;
-  static constexpr int64_t kMicrosecondsInHours = 60 * kMicrosecondsInMinutes;
-  static constexpr int64_t kMicrosecondsInDays = 24 * kMicrosecondsInHours;
+  static const int64_t kMicrosecondsInMinutes = 60 * kMicrosecondsInSeconds;
+  static const int64_t kMicrosecondsInHours = 60 * kMicrosecondsInMinutes;
+  static const int64_t kMicrosecondsInDays = 24 * kMicrosecondsInHours;
 
   explicit TimeDelta(int64_t us_delta) : us_delta_(us_delta) {}
 

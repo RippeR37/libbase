@@ -62,4 +62,48 @@ int64_t TimeDelta::InNanoseconds() const {
   return us_delta_ * kNanosecondsInMicroseconds;
 }
 
+TimeDelta TimeDelta::operator+(TimeDelta other) const {
+  return TimeDelta{int64_t{us_delta_ + other.us_delta_}};
+}
+
+TimeDelta TimeDelta::operator-(TimeDelta other) const {
+  return TimeDelta{int64_t{us_delta_ - other.us_delta_}};
+}
+
+TimeDelta& TimeDelta::operator+=(TimeDelta other) {
+  return (*this = (*this + other));
+}
+
+TimeDelta& TimeDelta::operator-=(TimeDelta other) {
+  return (*this = (*this - other));
+}
+
+TimeDelta TimeDelta::operator-() const {
+  return TimeDelta{-us_delta_};
+}
+
+bool TimeDelta::operator==(TimeDelta other) const {
+  return us_delta_ == other.us_delta_;
+}
+
+bool TimeDelta::operator!=(TimeDelta other) const {
+  return us_delta_ != other.us_delta_;
+}
+
+bool TimeDelta::operator<(TimeDelta other) const {
+  return us_delta_ < other.us_delta_;
+}
+
+bool TimeDelta::operator<=(TimeDelta other) const {
+  return us_delta_ <= other.us_delta_;
+}
+
+bool TimeDelta::operator>(TimeDelta other) const {
+  return us_delta_ > other.us_delta_;
+}
+
+bool TimeDelta::operator>=(TimeDelta other) const {
+  return us_delta_ >= other.us_delta_;
+}
+
 }  // namespace base

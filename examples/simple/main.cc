@@ -7,6 +7,7 @@
 #include "base/synchronization/waitable_event.h"
 #include "base/threading/thread.h"
 #include "base/threading/thread_pool.h"
+#include "base/time/time_ticks.h"
 #include "base/vlog_is_on.h"
 
 namespace {
@@ -95,10 +96,16 @@ int main(int /*argc*/, char* argv[]) {
   google::InitGoogleLogging(argv[0]);
   google::InstallFailureSignalHandler();
 
+  const auto time_before = base::TimeTicks::Now();
+
   ThreadExample();
   ThreadPoolNonSequencedExample();
   ThreadPoolSequencedExample();
   ThreadPoolSingleThreadExample();
+
+  const auto time_after = base::TimeTicks::Now();
+  LOG(INFO) << "Test finished in "
+            << (time_after - time_before).InMicroseconds() << "us";
 
   google::ShutdownGoogleLogging();
 

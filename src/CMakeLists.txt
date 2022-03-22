@@ -65,6 +65,8 @@ target_sources(libbase
     base/time/time.h
     base/time/time_delta.cc
     base/time/time_delta.h
+    base/time/time_ticks.cc
+    base/time/time_ticks.h
     base/type_traits.h
     base/vlog_is_on.h
 )
