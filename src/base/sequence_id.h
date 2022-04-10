@@ -14,6 +14,7 @@ class SequenceIdGenerator;
 class SequenceId {
  public:
   SequenceId(const SequenceId&) = default;
+  SequenceId& operator=(const SequenceId&) = default;
 
   bool operator==(const SequenceId& other) const;
   bool operator!=(const SequenceId& other) const;
