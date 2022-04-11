@@ -6,6 +6,7 @@
 #include "base/message_loop/message_pump_impl.h"
 #include "base/sequenced_task_runner_helpers.h"
 #include "base/synchronization/waitable_event.h"
+#include "base/threading/delayed_task_manager_shared_instance.h"
 #include "base/threading/task_runner_impl.h"
 
 namespace base {
@@ -35,7 +36,8 @@ void Thread::Start() {
   std::weak_ptr<MessagePump> weak_message_pump = message_pump;
   task_runner_ = std::make_unique<SingleThreadTaskRunnerImpl>(
       weak_message_pump, detail::SequenceIdGenerator::GetNextSequenceId(),
-      executor_id);
+      executor_id,
+      DelayedTaskManagerSharedInstance::GetOrCreateSharedInstance());
 }
 
 void Thread::Stop() {

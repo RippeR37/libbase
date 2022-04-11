@@ -59,6 +59,11 @@ class PostTaskAndReplyHelper {
 
 }  // namespace
 
+bool TaskRunner::PostTask(SourceLocation location, OnceClosure task) {
+  const auto kNoDelay = base::TimeDelta{};
+  return PostDelayedTask(std::move(location), std::move(task), kNoDelay);
+}
+
 bool TaskRunner::PostTaskAndReply(SourceLocation location,
                                   OnceClosure task,
                                   OnceClosure reply) {

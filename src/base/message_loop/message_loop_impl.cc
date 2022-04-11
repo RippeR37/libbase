@@ -2,6 +2,7 @@
 
 #include "base/bind.h"
 #include "base/sequenced_task_runner_helpers.h"
+#include "base/threading/delayed_task_manager_shared_instance.h"
 #include "base/threading/sequenced_task_runner_handle.h"
 #include "base/threading/task_runner_impl.h"
 
@@ -55,7 +56,8 @@ void MessageLoopImpl::RunTask(MessagePump::PendingTask&& pending_task) {
     const auto scoped_task_runner_handle =
         SequencedTaskRunnerHandle{std::make_shared<SequencedTaskRunnerImpl>(
             std::weak_ptr<MessagePump>(message_pump_),
-            *pending_task.sequence_id)};
+            *pending_task.sequence_id,
+            DelayedTaskManagerSharedInstance::GetOrCreateSharedInstance())};
 
     std::move(pending_task.task).Run();
   } else {

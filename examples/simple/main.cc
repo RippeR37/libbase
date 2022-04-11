@@ -62,6 +62,39 @@ void ThreadExample() {
   t1.Stop();
 }
 
+void ThreadDelayedExample() {
+  base::Thread thread{};
+  base::WaitableEvent finished_event{};
+
+  thread.Start();
+
+  thread.TaskRunner()->PostDelayedTask(
+      FROM_HERE,
+      base::BindOnce(
+          []([[maybe_unused]] base::AutoSignaller finished_signaller) {
+            LOG(ERROR)
+                << "ThreadDelayedExample() delayed (300ms) task executing";
+          },
+          base::AutoSignaller{&finished_event}),
+      base::Milliseconds(300));
+
+  thread.TaskRunner()->PostTask(
+      FROM_HERE, base::BindOnce([]() {
+        LOG(ERROR) << "ThreadDelayedExample() non-delayed task executing";
+      }));
+
+  thread.TaskRunner()->PostDelayedTask(
+      FROM_HERE, base::BindOnce([]() {
+        LOG(ERROR) << "ThreadDelayedExample() delayed (100ms) task executing";
+      }),
+      base::Milliseconds(100));
+
+  finished_event.Wait();
+  LOG(INFO) << __FUNCTION__ << "() finished";
+
+  thread.Stop();
+}
+
 void ThreadPoolNonSequencedExample() {
   base::ThreadPool pool{1};
   pool.Start();
@@ -99,6 +132,7 @@ int main(int /*argc*/, char* argv[]) {
   const auto time_before = base::TimeTicks::Now();
 
   ThreadExample();
+  ThreadDelayedExample();
   ThreadPoolNonSequencedExample();
   ThreadPoolSequencedExample();
   ThreadPoolSingleThreadExample();

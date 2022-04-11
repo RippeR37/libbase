@@ -10,45 +10,62 @@
 
 namespace base {
 
+class DelayedTaskManager;
+
 class TaskRunnerImpl : public TaskRunner {
  public:
-  explicit TaskRunnerImpl(std::weak_ptr<MessagePump> pump);
+  explicit TaskRunnerImpl(
+      std::weak_ptr<MessagePump> pump,
+      std::shared_ptr<DelayedTaskManager> delayed_task_manager);
 
   // TaskRunner
-  bool PostTask(SourceLocation location, OnceClosure task) override;
+  bool PostDelayedTask(SourceLocation location,
+                       OnceClosure task,
+                       TimeDelta delay) override;
 
  private:
   std::weak_ptr<MessagePump> pump_;
+  std::shared_ptr<DelayedTaskManager> delayed_task_manager_;
 };
 
 class SequencedTaskRunnerImpl : public SequencedTaskRunner {
  public:
-  SequencedTaskRunnerImpl(std::weak_ptr<MessagePump> pump,
-                          SequenceId sequence_id);
+  SequencedTaskRunnerImpl(
+      std::weak_ptr<MessagePump> pump,
+      SequenceId sequence_id,
+      std::shared_ptr<DelayedTaskManager> delayed_task_manager);
 
   // SequencedTaskRunner
-  bool PostTask(SourceLocation location, OnceClosure task) override;
+  bool PostDelayedTask(SourceLocation location,
+                       OnceClosure task,
+                       TimeDelta delay) override;
   bool RunsTasksInCurrentSequence() const override;
 
  private:
   std::weak_ptr<MessagePump> pump_;
   SequenceId sequence_id_;
+  std::shared_ptr<DelayedTaskManager> delayed_task_manager_;
 };
 
 class SingleThreadTaskRunnerImpl : public SingleThreadTaskRunner {
  public:
-  SingleThreadTaskRunnerImpl(std::weak_ptr<MessagePump> pump,
-                             SequenceId sequence_id,
-                             MessagePump::ExecutorId executor_id);
+  SingleThreadTaskRunnerImpl(
+      std::weak_ptr<MessagePump> pump,
+      SequenceId sequence_id,
+      MessagePump::ExecutorId executor_id,
+      std::shared_ptr<DelayedTaskManager> delayed_task_manager);
 
   // SingleThreadTaskRunner
-  bool PostTask(SourceLocation location, OnceClosure task) override;
+  bool PostDelayedTask(SourceLocation location,
+                       OnceClosure task,
+                       TimeDelta delay) override;
   bool RunsTasksInCurrentSequence() const override;
 
  private:
   std::weak_ptr<MessagePump> pump_;
   SequenceId sequence_id_;
   MessagePump::ExecutorId executor_id_;
+  std::shared_ptr<DelayedTaskManager> delayed_task_manager_;
 };
 
 }  // namespace base
