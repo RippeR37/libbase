@@ -8,6 +8,7 @@
 #include "base/callback.h"
 #include "base/message_loop/message_loop_impl.h"
 #include "base/message_loop/mock_message_pump.h"
+#include "base/mock_sequenced_task_runner.h"
 #include "base/sequenced_task_runner_helpers.h"
 #include "base/threading/sequenced_task_runner_handle.h"
 
@@ -20,18 +21,43 @@ using ::testing::ByMove;
 using ::testing::Return;
 using ::testing::Test;
 
+base::MessagePump::PendingTask CreateSequencedPendingTask(
+    base::OnceClosure task,
+    std::optional<base::SequenceId> sequence_id,
+    std::weak_ptr<base::SequencedTaskRunner> task_runner) {
+  return {std::move(task), std::move(sequence_id), {}, std::move(task_runner)};
+}
+
+base::MessagePump::PendingTask CreatePendingTask(base::OnceClosure task) {
+  return CreateSequencedPendingTask(std::move(task), {}, {});
+}
+
+base::MessagePump::PendingTask CreateEmptyPendingTask() {
+  return CreatePendingTask({});
+}
+
+base::MessagePump::PendingTask CreateCountingPendingTask(size_t& counter) {
+  return CreatePendingTask(
+      base::BindOnce([](size_t* ext_counter) { (*ext_counter)++; }, &counter));
+}
+
 class MessageLoopImplTest : public Test {
  public:
   void SetUp() override {
     const base::MessagePump::ExecutorId executor_id = 0;
+    mock_sequenced_task_runner_ = std::make_shared<MockSequencedTaskRunner>();
     mock_message_pump_ = std::make_shared<MockMessagePump>();
     message_loop_impl_ = std::make_unique<base::MessageLoopImpl>(
         executor_id, mock_message_pump_);
+
+    EXPECT_CALL(*mock_sequenced_task_runner_, RunsTasksInCurrentSequence())
+        .WillRepeatedly(Return(true));
   }
 
   void TearDown() override {
     message_loop_impl_.reset();
     mock_message_pump_.reset();
+    mock_sequenced_task_runner_.reset();
   }
 
   void SetupDefaultGetNextPendingTask() {
@@ -49,26 +75,8 @@ class MessageLoopImplTest : public Test {
         .RetiresOnSaturation();
   }
 
-  base::MessagePump::PendingTask CreateSequencedPendingTask(
-      base::OnceClosure task,
-      std::optional<base::SequenceId> sequence_id) {
-    return {std::move(task), std::move(sequence_id), {}};
-  }
-
-  base::MessagePump::PendingTask CreatePendingTask(base::OnceClosure task) {
-    return CreateSequencedPendingTask(std::move(task), {});
-  }
-
-  base::MessagePump::PendingTask CreateEmptyPendingTask() {
-    return CreatePendingTask({});
-  }
-
-  base::MessagePump::PendingTask CreateCountingPendingTask(size_t& counter) {
-    return CreatePendingTask(base::BindOnce(
-        [](size_t* ext_counter) { (*ext_counter)++; }, &counter));
-  }
-
  protected:
+  std::shared_ptr<MockSequencedTaskRunner> mock_sequenced_task_runner_;
   std::shared_ptr<MockMessagePump> mock_message_pump_;
   std::unique_ptr<base::MessageLoopImpl> message_loop_impl_;
 };
@@ -117,7 +125,7 @@ TEST_F(MessageLoopImplTest, CurrentSequenceSetWhenRunning) {
             }
           },
           sequence_id, &was_current_sequence_set, &was_task_runner_handle_set),
-      sequence_id);
+      sequence_id, mock_sequenced_task_runner_);
   EXPECT_CALL(*mock_message_pump_, GetNextPendingTask)
       .WillOnce(Return(ByMove(std::move(task))));
 
@@ -150,7 +158,7 @@ TEST_F(MessageLoopImplTest, RunUntilIdleExecutesAllPendingTasks) {
 
 TEST_F(MessageLoopImplTest, StopIsForwarded) {
   EXPECT_CALL(*mock_message_pump_, Stop(_));
-  message_loop_impl_->Stop(base::OnceClosure{});
+  message_loop_impl_->Stop({});
 }
 
 TEST_F(MessageLoopImplTest, RunIsExecutedUntilStopIsCalled) {
@@ -187,7 +195,7 @@ TEST_F(MessageLoopImplTest, RunIsExecutedUntilStopIsCalled) {
   std::this_thread::sleep_for(30ms);
   EXPECT_FALSE(run_finished);
 
-  message_loop_impl_->Stop(base::OnceClosure{});
+  message_loop_impl_->Stop({});
   executor.join();
 }
 

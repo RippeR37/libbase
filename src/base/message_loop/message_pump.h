@@ -1,11 +1,14 @@
 #pragma once
 
+#include <memory>
 #include <optional>
 
 #include "base/callback.h"
 #include "base/sequence_id.h"
 
 namespace base {
+
+class SequencedTaskRunner;
 
 class MessagePump {
  public:
@@ -17,6 +20,7 @@ class MessagePump {
     OnceClosure task;
     std::optional<SequenceId> sequence_id;
     std::optional<ExecutorId> allowed_executor_id;
+    std::weak_ptr<SequencedTaskRunner> target_task_runner;
   };
 
   virtual ~MessagePump() = default;

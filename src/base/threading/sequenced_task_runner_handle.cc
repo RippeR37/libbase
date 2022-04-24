@@ -23,6 +23,7 @@ bool SequencedTaskRunnerHandle::IsSet() {
 SequencedTaskRunnerHandle::SequencedTaskRunnerHandle(
     std::shared_ptr<SequencedTaskRunner> task_runner)
     : task_runner_(std::move(task_runner)) {
+  DCHECK(task_runner_);
   DCHECK(task_runner_->RunsTasksInCurrentSequence());
   DCHECK(!IsSet());
 

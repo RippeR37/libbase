@@ -5,6 +5,7 @@
 #include "base/callback.h"
 #include "base/source_location.h"
 #include "base/task_runner_internals.h"
+#include "base/time/time_delta.h"
 
 namespace base {
 
@@ -12,7 +13,11 @@ class TaskRunner {
  public:
   virtual ~TaskRunner() = default;
 
-  virtual bool PostTask(SourceLocation location, OnceClosure task) = 0;
+  bool PostTask(SourceLocation location, OnceClosure task);
+
+  virtual bool PostDelayedTask(SourceLocation location,
+                               OnceClosure task,
+                               TimeDelta delay) = 0;
 
   bool PostTaskAndReply(SourceLocation location,
                         OnceClosure task,

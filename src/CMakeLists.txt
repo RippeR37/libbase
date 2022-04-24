@@ -53,6 +53,10 @@ target_sources(libbase
     base/task_runner.cc
     base/task_runner.h
     base/task_runner_internals.h
+    base/threading/delayed_task_manager.cc
+    base/threading/delayed_task_manager.h
+    base/threading/delayed_task_manager_shared_instance.cc
+    base/threading/delayed_task_manager_shared_instance.h
     base/threading/sequenced_task_runner_handle.cc
     base/threading/sequenced_task_runner_handle.h
     base/threading/task_runner_impl.cc
