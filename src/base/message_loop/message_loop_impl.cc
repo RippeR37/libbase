@@ -4,7 +4,6 @@
 #include "base/sequenced_task_runner_helpers.h"
 #include "base/threading/delayed_task_manager_shared_instance.h"
 #include "base/threading/sequenced_task_runner_handle.h"
-#include "base/threading/task_runner_impl.h"
 
 namespace base {
 
