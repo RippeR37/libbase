@@ -18,11 +18,10 @@ class MessageLoopImpl : public MessageLoop {
   bool RunOnce() override;
   void RunUntilIdle() override;
   void Run() override;
-  void Stop(OnceClosure last_task) override;
+  void Stop(MessagePump::PendingTask last_task) override;
 
  private:
   void RunUntilIdleOrStop();
-  void RunTask(MessagePump::PendingTask&& pending_task);
 
   const MessagePump::ExecutorId executor_id_;
   std::shared_ptr<MessagePump> message_pump_;

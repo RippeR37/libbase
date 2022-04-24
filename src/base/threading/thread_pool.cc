@@ -40,14 +40,14 @@ void ThreadPool::Start() {
   }
 
   std::weak_ptr<MessagePump> weak_message_pump = message_pump;
-  task_runner_ = std::make_shared<TaskRunnerImpl>(
+  task_runner_ = TaskRunnerImpl::Create(
       std::move(weak_message_pump),
       DelayedTaskManagerSharedInstance::GetOrCreateSharedInstance());
 }
 
 void ThreadPool::Stop() {
   for (auto& thread : threads_) {
-    thread.message_loop->Stop(base::OnceClosure{});
+    thread.message_loop->Stop({});
     thread.thread->join();
   }
   threads_.clear();
@@ -60,7 +60,7 @@ std::shared_ptr<TaskRunner> ThreadPool::GetTaskRunner() const {
 }
 
 std::shared_ptr<SequencedTaskRunner> ThreadPool::CreateSequencedTaskRunner() {
-  return std::make_shared<SequencedTaskRunnerImpl>(
+  return SequencedTaskRunnerImpl::Create(
       pump_, detail::SequenceIdGenerator::GetNextSequenceId(),
       DelayedTaskManagerSharedInstance::GetOrCreateSharedInstance());
 }
@@ -72,7 +72,7 @@ ThreadPool::CreateSingleThreadTaskRunner() {
   const MessagePump::ExecutorId allowed_executor_id =
       executor_id_distribution(random_generator_);
 
-  return std::make_shared<SingleThreadTaskRunnerImpl>(
+  return SingleThreadTaskRunnerImpl::Create(
       pump_, detail::SequenceIdGenerator::GetNextSequenceId(),
       allowed_executor_id,
       DelayedTaskManagerSharedInstance::GetOrCreateSharedInstance());

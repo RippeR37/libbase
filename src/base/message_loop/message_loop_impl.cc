@@ -8,6 +8,23 @@
 
 namespace base {
 
+namespace {
+
+void RunTask(MessagePump::PendingTask&& pending_task) {
+  if (pending_task.sequence_id) {
+    const auto scoped_sequence_id =
+        detail::ScopedSequenceIdSetter{*pending_task.sequence_id};
+    const auto scoped_task_runner_handle =
+        SequencedTaskRunnerHandle{pending_task.target_task_runner.lock()};
+
+    std::move(pending_task.task).Run();
+  } else {
+    std::move(pending_task.task).Run();
+  }
+}
+
+}  // namespace
+
 MessageLoopImpl::MessageLoopImpl(MessagePump::ExecutorId executor_id,
                                  std::shared_ptr<MessagePump> message_pump)
     : executor_id_(executor_id),
@@ -37,31 +54,13 @@ void MessageLoopImpl::Run() {
   RunUntilIdle();
 }
 
-void MessageLoopImpl::Stop(OnceClosure last_task) {
+void MessageLoopImpl::Stop(MessagePump::PendingTask last_task) {
   is_stopped_ = true;
-  message_pump_->Stop(MessagePump::PendingTask{std::move(last_task),
-                                               std::nullopt, std::nullopt});
+  message_pump_->Stop(std::move(last_task));
 }
 
 void MessageLoopImpl::RunUntilIdleOrStop() {
   while (!is_stopped_ && RunOnce()) {
-  }
-}
-
-void MessageLoopImpl::RunTask(MessagePump::PendingTask&& pending_task) {
-  if (pending_task.sequence_id) {
-    const auto scoped_sequence_id =
-        detail::ScopedSequenceIdSetter{*pending_task.sequence_id};
-
-    const auto scoped_task_runner_handle =
-        SequencedTaskRunnerHandle{std::make_shared<SequencedTaskRunnerImpl>(
-            std::weak_ptr<MessagePump>(message_pump_),
-            *pending_task.sequence_id,
-            DelayedTaskManagerSharedInstance::GetOrCreateSharedInstance())};
-
-    std::move(pending_task.task).Run();
-  } else {
-    std::move(pending_task.task).Run();
   }
 }
 

@@ -72,7 +72,7 @@ void ThreadDelayedExample() {
       FROM_HERE,
       base::BindOnce(
           []([[maybe_unused]] base::AutoSignaller finished_signaller) {
-            LOG(ERROR)
+            LOG(INFO)
                 << "ThreadDelayedExample() delayed (300ms) task executing";
           },
           base::AutoSignaller{&finished_event}),
@@ -80,12 +80,12 @@ void ThreadDelayedExample() {
 
   thread.TaskRunner()->PostTask(
       FROM_HERE, base::BindOnce([]() {
-        LOG(ERROR) << "ThreadDelayedExample() non-delayed task executing";
+        LOG(INFO) << "ThreadDelayedExample() non-delayed task executing";
       }));
 
   thread.TaskRunner()->PostDelayedTask(
       FROM_HERE, base::BindOnce([]() {
-        LOG(ERROR) << "ThreadDelayedExample() delayed (100ms) task executing";
+        LOG(INFO) << "ThreadDelayedExample() delayed (100ms) task executing";
       }),
       base::Milliseconds(100));
 
@@ -139,7 +139,7 @@ int main(int /*argc*/, char* argv[]) {
 
   const auto time_after = base::TimeTicks::Now();
   LOG(INFO) << "Test finished in "
-            << (time_after - time_before).InMicroseconds() << "us";
+            << (time_after - time_before).InMillisecondsF() << "us";
 
   google::ShutdownGoogleLogging();
 

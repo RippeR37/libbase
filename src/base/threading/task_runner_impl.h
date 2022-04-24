@@ -14,7 +14,7 @@ class DelayedTaskManager;
 
 class TaskRunnerImpl : public TaskRunner {
  public:
-  explicit TaskRunnerImpl(
+  static std::shared_ptr<TaskRunnerImpl> Create(
       std::weak_ptr<MessagePump> pump,
       std::shared_ptr<DelayedTaskManager> delayed_task_manager);
 
@@ -24,13 +24,19 @@ class TaskRunnerImpl : public TaskRunner {
                        TimeDelta delay) override;
 
  private:
+  explicit TaskRunnerImpl(
+      std::weak_ptr<MessagePump> pump,
+      std::shared_ptr<DelayedTaskManager> delayed_task_manager);
+
   std::weak_ptr<MessagePump> pump_;
   std::shared_ptr<DelayedTaskManager> delayed_task_manager_;
 };
 
-class SequencedTaskRunnerImpl : public SequencedTaskRunner {
+class SequencedTaskRunnerImpl
+    : public SequencedTaskRunner,
+      public std::enable_shared_from_this<SequencedTaskRunnerImpl> {
  public:
-  SequencedTaskRunnerImpl(
+  static std::shared_ptr<SequencedTaskRunnerImpl> Create(
       std::weak_ptr<MessagePump> pump,
       SequenceId sequence_id,
       std::shared_ptr<DelayedTaskManager> delayed_task_manager);
@@ -42,14 +48,21 @@ class SequencedTaskRunnerImpl : public SequencedTaskRunner {
   bool RunsTasksInCurrentSequence() const override;
 
  private:
+  SequencedTaskRunnerImpl(
+      std::weak_ptr<MessagePump> pump,
+      SequenceId sequence_id,
+      std::shared_ptr<DelayedTaskManager> delayed_task_manager);
+
   std::weak_ptr<MessagePump> pump_;
   SequenceId sequence_id_;
   std::shared_ptr<DelayedTaskManager> delayed_task_manager_;
 };
 
-class SingleThreadTaskRunnerImpl : public SingleThreadTaskRunner {
+class SingleThreadTaskRunnerImpl
+    : public SingleThreadTaskRunner,
+      public std::enable_shared_from_this<SingleThreadTaskRunnerImpl> {
  public:
-  SingleThreadTaskRunnerImpl(
+  static std::shared_ptr<SingleThreadTaskRunnerImpl> Create(
       std::weak_ptr<MessagePump> pump,
       SequenceId sequence_id,
       MessagePump::ExecutorId executor_id,
@@ -62,6 +75,12 @@ class SingleThreadTaskRunnerImpl : public SingleThreadTaskRunner {
   bool RunsTasksInCurrentSequence() const override;
 
  private:
+  SingleThreadTaskRunnerImpl(
+      std::weak_ptr<MessagePump> pump,
+      SequenceId sequence_id,
+      MessagePump::ExecutorId executor_id,
+      std::shared_ptr<DelayedTaskManager> delayed_task_manager);
+
   std::weak_ptr<MessagePump> pump_;
   SequenceId sequence_id_;
   MessagePump::ExecutorId executor_id_;

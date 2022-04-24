@@ -18,13 +18,19 @@ const size_t kExecutorCount = kHighestExecutorId + 1;
 base::MessagePump::PendingTask CreateExecutorTask(
     base::OnceClosure task,
     std::optional<base::MessagePump::ExecutorId> executor_id) {
-  return {std::move(task), {}, std::move(executor_id)};
+  return {std::move(task),
+          {},
+          std::move(executor_id),
+          std::weak_ptr<base::SequencedTaskRunner>{}};
 }
 
 base::MessagePump::PendingTask CreateSequenceTask(
     base::OnceClosure task,
     std::optional<base::SequenceId> sequence_id) {
-  return {std::move(task), std::move(sequence_id), {}};
+  return {std::move(task),
+          std::move(sequence_id),
+          {},
+          std::weak_ptr<base::SequencedTaskRunner>{}};
 }
 
 base::MessagePump::PendingTask CreateTask(base::OnceClosure task) {
