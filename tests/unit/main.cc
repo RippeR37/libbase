@@ -1,14 +1,12 @@
-#include "base/logging.h"
+#include "base/init.h"
 #include "gtest/gtest.h"
 
 int main(int argc, char* argv[]) {
-  FLAGS_logtostderr = true;
-  google::InitGoogleLogging(argv[0]);
-  google::InstallFailureSignalHandler();
+  base::Initialize(argc, argv);
 
   ::testing::InitGoogleTest(&argc, argv);
   const auto result = RUN_ALL_TESTS();
 
-  google::ShutdownGoogleLogging();
+  base::Deinitialize();
   return result;
 }

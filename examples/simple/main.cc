@@ -2,13 +2,13 @@
 
 #include "base/bind.h"
 #include "base/callback.h"
+#include "base/init.h"
 #include "base/logging.h"
 #include "base/synchronization/auto_signaller.h"
 #include "base/synchronization/waitable_event.h"
 #include "base/threading/thread.h"
 #include "base/threading/thread_pool.h"
 #include "base/time/time_ticks.h"
-#include "base/vlog_is_on.h"
 
 namespace {
 std::shared_ptr<base::SequencedTaskRunner> tr1;
@@ -123,11 +123,8 @@ void ThreadPoolSingleThreadExample() {
   pool.Stop();
 }
 
-int main(int /*argc*/, char* argv[]) {
-  FLAGS_logtostderr = true;
-  FLAGS_v = 3;
-  google::InitGoogleLogging(argv[0]);
-  google::InstallFailureSignalHandler();
+int main(int argc, char* argv[]) {
+  base::Initialize(argc, argv);
 
   const auto time_before = base::TimeTicks::Now();
 
@@ -138,10 +135,9 @@ int main(int /*argc*/, char* argv[]) {
   ThreadPoolSingleThreadExample();
 
   const auto time_after = base::TimeTicks::Now();
-  LOG(INFO) << "Test finished in "
-            << (time_after - time_before).InMillisecondsF() << "us";
+  LOG(INFO) << "Example finished in "
+            << (time_after - time_before).InMillisecondsF() << "ms";
 
-  google::ShutdownGoogleLogging();
-
+  base::Deinitialize();
   return 0;
 }

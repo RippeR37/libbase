@@ -13,3 +13,11 @@
 #undef NOMINMAX
 
 #endif  // #ifdef NOMINMAX
+
+namespace base {
+namespace detail {
+
+void LogFormatter(std::ostream&, const google::LogMessageInfo&, void*);
+
+}  // namespace detail
+}  // namespace base

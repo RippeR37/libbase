@@ -28,6 +28,9 @@ target_sources(libbase
     base/callback_helpers.h
     base/callback_iface.h
     base/callback_internals.h
+    base/init.cc
+    base/init.h
+    base/logging.cc
     base/logging.h
     base/memory/weak_ptr.h
     base/message_loop/message_loop.h
