@@ -43,6 +43,8 @@ target_sources(libbase_unittests
     base/synchronization/auto_signaller_unittests.cc
     base/synchronization/waitable_event_unittests.cc
     base/task_runner_unittests.cc
+    base/threading/delayed_task_manager_shared_instance_unittests.cc
+    base/threading/delayed_task_manager_unittests.cc
     base/threading/thread_unittests.cc
     main.cc
     mock/base/message_loop/mock_message_pump.h

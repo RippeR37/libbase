@@ -22,16 +22,22 @@ class DelayedTaskManager {
     mutable MessagePump::PendingTask pending_task;
   };
 
-  DelayedTaskManager();
+  using TimeTicksProvider = TimeTicks (*)();
+
+  DelayedTaskManager(TimeTicksProvider time_ticks_provider = &TimeTicks::Now);
   ~DelayedTaskManager();
 
   void QueueDelayedTask(DelayedTask delayed_task);
+
+  void ScheduleAllReadyTasksForTests();
 
  private:
   void ScheduleTasksUntilStop();
   void ScheduleAllReadyTasksLocked();
   void WaitForNextTaskOrStopLocked(std::unique_lock<std::mutex>& lock);
   std::optional<TimeDelta> NextTaskRemainingDelayLocked() const;
+
+  const TimeTicksProvider time_ticks_provider_;
 
   std::thread scheduler_thread_;
   std::mutex mutex_;
