@@ -46,6 +46,7 @@ target_sources(libbase_unittests
     base/threading/delayed_task_manager_shared_instance_unittests.cc
     base/threading/delayed_task_manager_unittests.cc
     base/threading/thread_unittests.cc
+    base/timer/elapsed_timer_unittests.cc
     main.cc
     mock/base/message_loop/mock_message_pump.h
 )

@@ -8,7 +8,7 @@
 #include "base/synchronization/waitable_event.h"
 #include "base/threading/thread.h"
 #include "base/threading/thread_pool.h"
-#include "base/time/time_ticks.h"
+#include "base/timer/elapsed_timer.h"
 
 namespace {
 std::shared_ptr<base::SequencedTaskRunner> tr1;
@@ -126,7 +126,7 @@ void ThreadPoolSingleThreadExample() {
 int main(int argc, char* argv[]) {
   base::Initialize(argc, argv);
 
-  const auto time_before = base::TimeTicks::Now();
+  const auto timer = base::ElapsedTimer{};
 
   ThreadExample();
   ThreadDelayedExample();
@@ -134,9 +134,8 @@ int main(int argc, char* argv[]) {
   ThreadPoolSequencedExample();
   ThreadPoolSingleThreadExample();
 
-  const auto time_after = base::TimeTicks::Now();
-  LOG(INFO) << "Example finished in "
-            << (time_after - time_before).InMillisecondsF() << "ms";
+  LOG(INFO) << "Example finished in " << timer.Elapsed().InMillisecondsF()
+            << "ms";
 
   base::Deinitialize();
   return 0;
