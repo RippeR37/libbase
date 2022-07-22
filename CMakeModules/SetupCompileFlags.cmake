@@ -11,12 +11,21 @@ function(SETUP_COMPILE_FLAGS)
 
   if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
       # -Wold-style-cast
-      set(WARNINGS "-Wall;-Wextra;-Wpedantic;-Werror;-Wunreachable-code")
+      set(WARNINGS "-Wall;-Wextra;-Werror;-Wunreachable-code")
 
       if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-        set(WARNINGS "${WARNINGS};-Wshadow;-Wno-gnu-zero-variadic-macro-arguments")
+        set(WARNINGS "${WARNINGS};-Wpedantic;-Wshadow;-Wno-gnu-zero-variadic-macro-arguments")
       else()
         set(WARNINGS "${WARNINGS};-Wshadow=local")
+
+        # GCC 7.x and older doesn't handle variadic macros that well, so enable
+        # pedanting warnings only on newer versions to avoid the:
+        # > ISO C++11 requires at least one argument for the "..." in a variadic
+        # > macro
+        # error
+        if(CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 8.0)
+          set(WARNINGS "${WARNINGS};-Wpedantic")
+        endif()
       endif()
   elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
       set(WARNINGS "/W4;/WX;/EHsc;/permissive-")
