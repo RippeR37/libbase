@@ -9,6 +9,9 @@
 #include "base/threading/thread.h"
 #include "base/threading/thread_pool.h"
 #include "base/timer/elapsed_timer.h"
+#include "base/trace_event/trace_event.h"
+#include "base/trace_event/trace_flow.h"
+#include "base/trace_event/trace_flush.h"
 
 namespace {
 std::shared_ptr<base::SequencedTaskRunner> tr1;
@@ -21,6 +24,8 @@ void Task1(std::shared_ptr<base::TaskRunner> current,
            base::AutoSignaller finished_event,
            int n) {
   CHECK_GE(n, 0) << "`n` must be greater or equal to 0";
+  TRACE_EVENT("thread_example", "task1", "n", std::to_string(n));
+  TRACE_EVENT_WITH_FLOW_STEP("thread_example", "flow:ThreadExample", &tr1);
   LOG(INFO) << __FUNCTION__ << "() Writing from thread "
             << std::this_thread::get_id() << " with n=" << n
             << "(tr1: " << tr1->RunsTasksInCurrentSequence()
@@ -38,6 +43,7 @@ void Task1(std::shared_ptr<base::TaskRunner> current,
 }
 
 void ThreadExample() {
+  TRACE_EVENT("thread_example", "ThreadExample");
   base::Thread t1{};
   base::Thread t2{};
 
@@ -49,15 +55,24 @@ void ThreadExample() {
 
   base::WaitableEvent five_left_event{};
   base::WaitableEvent finished_event{};
-  tr1->PostTask(FROM_HERE,
-                base::BindOnce(&Task1, tr1, tr2, &five_left_event,
-                               base::AutoSignaller{&finished_event}, 10));
+
+  {
+    TRACE_EVENT("thread_example", "Async work start");
+    TRACE_EVENT_WITH_FLOW_BEGIN("thread_example", "flow:ThreadExample", &tr1);
+    tr1->PostTask(FROM_HERE,
+                  base::BindOnce(&Task1, tr1, tr2, &five_left_event,
+                                 base::AutoSignaller{&finished_event}, 10));
+  }
 
   five_left_event.Wait();
   LOG(INFO) << __FUNCTION__ << "() (at most 5 calls left)...";
   finished_event.Wait();
   LOG(INFO) << __FUNCTION__ << "() finished";
 
+  {
+    TRACE_EVENT_WITH_FLOW_END("thread_example", "flow:ThreadExample", &tr1);
+    TRACE_EVENT("thread_example", "Async work done");
+  }
   t2.Stop();
   t1.Stop();
 }
@@ -137,6 +152,7 @@ int main(int argc, char* argv[]) {
   LOG(INFO) << "Example finished in " << timer.Elapsed().InMillisecondsF()
             << "ms";
 
+  TRACE_EVENT_FLUSH_TO_STREAM(LOG(INFO) << "Trace:\n");
   base::Deinitialize();
   return 0;
 }
