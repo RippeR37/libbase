@@ -16,8 +16,9 @@ uint64_t TracePlatform::GetPid() {
   return ::getpid();
 #elif LIBBASE_IS_WINDOWS
   return ::GetCurrentProcessId();
-#endif
+#else
   return static_cast<uint64_t>(-1);
+#endif
 }
 
 uint64_t TracePlatform::GetTid() {
@@ -25,8 +26,9 @@ uint64_t TracePlatform::GetTid() {
   return ::syscall(SYS_gettid);
 #elif LIBBASE_IS_WINDOWS
   return ::GetCurrentThreadId();
-#endif
+#else
   return static_cast<uint64_t>(-1);
+#endif
 }
 
 }  // namespace detail
