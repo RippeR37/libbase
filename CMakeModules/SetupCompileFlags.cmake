@@ -14,7 +14,7 @@ function(SETUP_COMPILE_FLAGS)
       set(WARNINGS "-Wall;-Wextra;-Wpedantic;-Werror;-Wunreachable-code")
 
       if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-        set(WARNINGS "${WARNINGS};-Wshadow")
+        set(WARNINGS "${WARNINGS};-Wshadow;-Wno-gnu-zero-variadic-macro-arguments")
       else()
         set(WARNINGS "${WARNINGS};-Wshadow=local")
       endif()

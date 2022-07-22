@@ -4,7 +4,7 @@ target_compile_features(libbase PUBLIC cxx_std_17)
 target_compile_options(libbase PRIVATE ${LIBBASE_COMPILE_FLAGS})
 target_compile_definitions(libbase PUBLIC ${LIBBASE_DEFINES})
 set_target_properties(libbase PROPERTIES
-  CXX_EXTENSIONS OFF
+  CXX_EXTENSIONS ON
   ${LIBBASE_OPT_CLANG_TIDY_PROPERTIES})
 
 target_include_directories(libbase PUBLIC ${libbase_SOURCE_DIR}/src/)
@@ -76,6 +76,21 @@ target_sources(libbase
     base/time/time_ticks.h
     base/timer/elapsed_timer.cc
     base/timer/elapsed_timer.h
+    base/trace_event/trace_argument_packer.h
+    base/trace_event/trace_async.h
+    base/trace_event/trace_complete.h
+    base/trace_event/trace_counter.h
+    base/trace_event/trace_event.h
+    base/trace_event/trace_event_register.h
+    base/trace_event/trace_events.cc
+    base/trace_event/trace_events.h
+    base/trace_event/trace_flow.h
+    base/trace_event/trace_flush.h
+    base/trace_event/trace_json_writer.h
+    base/trace_event/trace_metadata.h
+    base/trace_event/trace_platform.cc
+    base/trace_event/trace_platform.h
+    base/trace_event/trace_signal.h
     base/type_traits.h
     base/vlog_is_on.h
 )
