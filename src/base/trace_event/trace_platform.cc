@@ -1,3 +1,5 @@
+#ifdef LIBBASE_ENABLE_TRACING
+
 #include "base/trace_event/trace_platform.h"
 
 #if LIBBASE_IS_LINUX || LIBBASE_IS_MACOS
@@ -33,3 +35,5 @@ uint64_t TracePlatform::GetTid() {
 
 }  // namespace detail
 }  // namespace base
+
+#endif

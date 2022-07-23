@@ -1,3 +1,5 @@
+#ifdef LIBBASE_ENABLE_TRACING
+
 #include "base/trace_event/trace_events.h"
 
 namespace base {
@@ -105,3 +107,5 @@ void TraceInstantEvent::WriteTo(std::ostream& stream) const {
 
 }  // namespace detail
 }  // namespace base
+
+#endif

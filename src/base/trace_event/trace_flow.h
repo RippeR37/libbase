@@ -1,6 +1,6 @@
 #pragma once
 
-#ifndef LIBBASE_TRACING_DISABLE
+#ifdef LIBBASE_ENABLE_TRACING
 
 #include "base/trace_event/trace_event_register.h"
 

@@ -1,8 +1,25 @@
+#
+# Features
+#
+
+option(LIBBASE_FEATURE_TRACING "Enable tracing (trace event macros)." ON)
+
+set(LIBBASE_FEATURE_DEFINES "")
+if (LIBBASE_FEATURE_TRACING)
+  string(APPEND LIBBASE_FEATURE_DEFINES "LIBBASE_ENABLE_TRACING")
+endif()
+
+#
+# Library
+#
+
 add_library(libbase STATIC "")
 
 target_compile_features(libbase PUBLIC cxx_std_17)
 target_compile_options(libbase PRIVATE ${LIBBASE_COMPILE_FLAGS})
-target_compile_definitions(libbase PUBLIC ${LIBBASE_DEFINES})
+target_compile_definitions(libbase PUBLIC
+  ${LIBBASE_DEFINES}
+  ${LIBBASE_FEATURE_DEFINES})
 set_target_properties(libbase PROPERTIES
   CXX_EXTENSIONS ON
   ${LIBBASE_OPT_CLANG_TIDY_PROPERTIES})

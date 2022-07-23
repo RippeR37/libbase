@@ -1,6 +1,6 @@
 #pragma once
 
-#ifndef LIBBASE_TRACING_DISABLE
+#ifdef LIBBASE_ENABLE_TRACING
 
 #include <fstream>
 #include <list>
