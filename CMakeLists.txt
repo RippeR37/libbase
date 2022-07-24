@@ -8,8 +8,7 @@ project(libbase
         VERSION 0.1
         LANGUAGES CXX)
 
-set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
-
+list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/CMakeModules")
 
 #
 # Build options
@@ -20,12 +19,14 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
   option(LIBBASE_BUILD_TESTS "Build unit tests." ON)
   option(LIBBASE_CODE_COVERAGE "Compute code coverage." OFF)
   option(LIBBASE_BUILD_PERFORMANCE_TESTS "Build performance tests." ON)
+  option(LIBBASE_BUILD_DOCS "Build documentation." OFF)
   option(LIBBASE_CLANG_TIDY "Build with clang-tidy" ON)
 else()
   option(LIBBASE_BUILD_EXAMPLES "Build examples." OFF)
   option(LIBBASE_BUILD_TESTS "Build unit tests." OFF)
   option(LIBBASE_CODE_COVERAGE "Compute code coverage." OFF)
   option(LIBBASE_BUILDPERFORMANCE_TESTS "Build performance tests." OFF)
+  option(LIBBASE_BUILD_DOCS "Build documentation." OFF)
   option(LIBBASE_CLANG_TIDY "Build with clang-tidy" OFF)
 endif()
 
@@ -80,4 +81,9 @@ if(LIBBASE_BUILD_TESTS)
 endif()
 if(LIBBASE_BUILD_TESTS OR LIBBASE_BUILD_PERFORMANCE_TESTS)
   add_subdirectory(tests)
+endif()
+
+# Documentation
+if (LIBBASE_BUILD_DOCS)
+  add_subdirectory(docs)
 endif()

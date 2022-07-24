@@ -1,0 +1,41 @@
+name: Docs
+
+on:
+  push:
+    branches: [ main, develop ]
+  release:
+    types:
+      - created
+
+jobs:
+    docs:
+      name: Documentation
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+          with:
+            fetch-depth: 0
+        - name: Set system to non-interactive mode
+          run: export DEBIAN_FRONTEND=noninteractive
+        - name: Install dependencies
+          run: |
+            sudo apt-get install -y doxygen
+            pip install sphinx
+            pip install sphinx-rtd-theme
+            pip install sphinx-multiversion
+            pip install breathe
+            pip install exhale
+        - name: Build documentation
+          run: |
+            cd docs
+            sphinx-multiversion . build -D 'exhale_args.containmentFolder=${sourcedir}/build/api'
+            cp _templates/redirect.html build/index.html
+            cd ..
+        - name: Deploy
+          uses: peaceiris/actions-gh-pages@v3.7.3
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: ./docs/build
+            force_orphan: true

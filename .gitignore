@@ -12,3 +12,4 @@
 
 .cache/*
 build/*
+docs/build/*
