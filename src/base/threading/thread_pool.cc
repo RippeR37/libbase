@@ -53,8 +53,6 @@ void ThreadPool::Stop() {
   threads_.clear();
 }
 
-void Stop(SourceLocation location, OnceClosure last_task);
-
 std::shared_ptr<TaskRunner> ThreadPool::GetTaskRunner() const {
   return task_runner_;
 }
