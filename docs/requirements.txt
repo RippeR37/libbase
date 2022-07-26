@@ -1,2 +1,5 @@
+sphinx
+sphinx-rtd-theme
+sphinx-multiversion
 breathe
 exhale

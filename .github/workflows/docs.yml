@@ -22,11 +22,7 @@ jobs:
         - name: Install dependencies
           run: |
             sudo apt-get install -y doxygen
-            pip install sphinx
-            pip install sphinx-rtd-theme
-            pip install sphinx-multiversion
-            pip install breathe
-            pip install exhale
+            pip install -r docs/requirements.txt
         - name: Build documentation
           run: |
             cd docs
