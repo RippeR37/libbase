@@ -4,17 +4,17 @@ Logging
 About
 -----
 
-``libbase`` library comes *packaged* with a preconfigured
-`GLOG <https://github.com/google/glog>`_ library that allows you to add logs to
-your code in the same format as possible within Chromium's code.
+``libbase`` library comes *packaged* with a preintegrated
+`GLOG <https://github.com/google/glog>`_ library that allows you to add logs and
+assertions to your code in the same format as possible within Chromium's code.
 
 You can read more on how to use GLOG
 `here <https://github.com/google/glog#user-guide>`_ or see the same user-guide
 (from the version actually used in this build) included below.
 
-.. important::
+.. note::
 
-   To use logging system, simply include ``base/logging.h``.
+   To use logging system, simply include ``base/logging.h`` file.
 
 .. attention::
 
