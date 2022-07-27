@@ -13,6 +13,8 @@ CMake options affect what targets are build and how. They have two defaults:
 * Internal - used when the ``libbase`` is built as the main project,
 * External - used when the ``libbase`` is built as part of another project.
 
+.. _configuration-libbase-build-examples:
+
 .. option:: LIBBASE_BUILD_EXAMPLES=<ON|OFF>
 
    Build provided examples.
