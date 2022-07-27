@@ -19,9 +19,9 @@ jobs:
         os: [macos-11, macos-12]
         build_type: [Release, Debug]
         compiler: [
-          {name: GCC 9, cc: gcc-9, cxx: g++-9},
-          {name: GCC 10, cc: gcc-10, cxx: g++-10},
-          {name: GCC 11, cc: gcc-11, cxx: g++-11},
+          {name: GCC 9, cc: gcc-9, cxx: g++-9, brew_ver: gcc@9},
+          {name: GCC 10, cc: gcc-10, cxx: g++-10, brew_ver: gcc@10},
+          {name: GCC 11, cc: gcc-11, cxx: g++-11, brew_ver: gcc@11},
           {name: Clang 12, cc: clang, cxx: clang++}
         ]
 
@@ -30,6 +30,13 @@ jobs:
       CXX: ${{ matrix.compiler.cxx }}
 
     steps:
+      - name: (Optional) Compiler instalation
+        if: ${{ matrix.os == 'macos-12' && startsWith(matrix.compiler.cc, 'gcc') }}
+        run: |
+          if ! command -v ${{ matrix.compiler.cc }} &> /dev/null
+          then
+            brew install ${{ matrix.compiler.brew_ver }}
+          fi
       - uses: actions/checkout@v2
         with:
           submodules: true
