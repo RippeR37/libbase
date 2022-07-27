@@ -12,6 +12,10 @@ You can read more on how to use GLOG
 `here <https://github.com/google/glog#user-guide>`_ or see the same user-guide
 (from the version actually used in this build) included below.
 
+.. important::
+
+   To use logging system, simply include ``base/logging.h``.
+
 .. attention::
 
    The user-guide included below is created and maintained by the GLOG_

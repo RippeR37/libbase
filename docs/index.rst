@@ -30,6 +30,12 @@ Welcome to ``libbase`` library documentation!
    features/tracing.rst
 
 .. toctree::
+   :hidden:
+   :caption: Examples
+
+   examples/simple.rst
+
+.. toctree::
    :maxdepth: 2
    :hidden:
    :caption: Reference
