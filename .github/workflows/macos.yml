@@ -38,4 +38,4 @@ jobs:
       - name: Building
         run: cmake --build build
       - name: Testing
-        run: ctest --test-dir build
+        run: ctest --test-dir build --output-on-failure

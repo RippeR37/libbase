@@ -93,7 +93,7 @@ jobs:
       - name: Building
         run: cmake --build build
       - name: Testing
-        run: ctest --test-dir build
+        run: ctest --test-dir build --output-on-failure
 
       # (Optional) Generate code coverage report and upload it
       # - 'gcov'-based is used with CI
