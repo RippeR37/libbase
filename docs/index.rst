@@ -25,6 +25,7 @@ Welcome to ``libbase`` library documentation!
 
    features/callbacks.rst
    features/threads.rst
+   features/weak_ptrs.rst
    features/logging.rst
    features/tracing.rst
 
