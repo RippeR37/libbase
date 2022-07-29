@@ -40,6 +40,7 @@ Callbacks that don't take any arguments and return nothing are called
 * :type:`base::RepeatingClosure`
 
 .. admonition:: Example
+   :class: admonition-example-code
 
    ``base::OnceCallback<int(float, std::string)>``
       refers to callbacks that can be run at most once, take two arguments to
@@ -82,17 +83,19 @@ obtain rvalue-reference to it. This is done to signal to the readers of code
 that this callback will be reset ("moved-away") after running it.
 
 .. admonition:: Example - running |OnceCB|
+   :class: admonition-example-code
 
    .. code-block:: cpp
 
-      base::OnceCallback<...> my_callback = /* ... */;
-      auto result = std::move(my_callback).Run(/* arguments */);
-      CHECK(!my_callback);
+       base::OnceCallback<...> my_callback = /* ... */;
+       auto result = std::move(my_callback).Run(/* arguments */);
+       CHECK(!my_callback);
 
 |RepeCB| can be run both with lvalue-reference and rvalue-reference - the
 former will keep the callback unmodified, while the latter will reset it.
 
 .. admonition:: Example - running |RepeCB|
+   :class: admonition-example-code
 
    .. code-block:: cpp
 
@@ -133,6 +136,7 @@ be used when the callback will be run.
 
 
 .. admonition:: Example - :func:`base::BindOnce`
+   :class: admonition-example-code
 
    .. code-block:: cpp
       :linenos:
@@ -157,6 +161,7 @@ be used when the callback will be run.
       }
 
 .. admonition:: Example - :func:`base::BindRepeating`
+   :class: admonition-example-code
 
    .. code-block:: cpp
       :linenos:
@@ -204,6 +209,7 @@ adapter. This adapter binds the shared pointer within the callback state.
    the callback and all of its copies!
 
 .. admonition:: Example - binding member function to ``std::shared_ptr<>``
+   :class: admonition-example-code
 
    .. code-block:: cpp
 
@@ -249,6 +255,7 @@ object. There are no special/extra adapter for weak pointers - the
    to a weak pointer.
 
 .. admonition:: Example - binding member function to ``base::WeakPtr<>``
+   :class: admonition-example-code
 
    .. code-block:: cpp
 
@@ -289,6 +296,7 @@ This can be done with :func:`base::Unretained` adapter.
    often a source of lifetime-related bugs. Be careful when using it!
 
 .. admonition:: Example - binding member function to :func:`base::Unretained`/raw pointer
+   :class: admonition-example-code
 
    .. code-block:: cpp
 
@@ -321,6 +329,7 @@ to match some APIs that don't expect any return values). In such cases, it is
 possible to do so with the :func:`base::IgnoreResult` adapter.
 
 .. admonition:: Example - binding function with :func:`base::IgnoreResult` adapter
+   :class: admonition-example-code
 
    .. code-block:: cpp
 
@@ -351,6 +360,7 @@ You can bind arguments into a callback such that it will own them and pass them
 to the function (via pointer or reference).
 
 .. admonition:: Example - binding arguments with :func:`base::Owned` and :func:`base::OwnedRef`
+   :class: admonition-example-code
 
    .. code-block:: cpp
 
@@ -402,6 +412,7 @@ When chaining |OnceCB| with any callback, the result will be of |OnceCB| type.
 |RepeCB| callbacks can be chained only with other |RepeCB| callbacks.
 
 .. admonition:: Example - chaining callbacks
+   :class: admonition-example-code
 
    .. code-block:: cpp
 
@@ -445,6 +456,7 @@ post-task the original callback to the target task runner. This is possible with
 :func:`base::BindPostTask`.
 
 .. admonition:: Example - :func:`base::BindPostTask`
+   :class: admonition-example-code
 
    .. code-block:: cpp
       :linenos:
@@ -489,6 +501,7 @@ callbacks will run the original one. Running the other will result in trggering
 a ``CHECK()`` and crashing.
 
 .. admonition:: Example - :func:`base::SplitOnceCallback`
+   :class: admonition-example-code
 
    .. code-block:: cpp
       :linenos:
@@ -543,6 +556,7 @@ If you don't need to collect any data, you can also use
    thread/sequence as the final call to the barrier callback.
 
 .. admonition:: Example - :func:`base::BarrierClosure`
+   :class: admonition-example-code
 
    .. code-block:: cpp
       :linenos:

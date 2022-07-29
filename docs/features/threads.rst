@@ -140,6 +140,7 @@ to make it easier to write your code. The main method is:
       executed on the same physical thread at all.
 
    .. admonition:: Example
+      :class: admonition-example-code
 
       .. code-block:: cpp
 
@@ -162,6 +163,7 @@ to make it easier to write your code. The main method is:
    the posted task will **not** be executed before ``delay`` time has passed.
 
    .. admonition:: Example
+      :class: admonition-example-code
 
       .. code-block:: cpp
 
@@ -219,6 +221,7 @@ sequence as the one affiliated with that task runner.
    sequence in order in which they were posted.
 
 .. admonition:: Example
+   :class: admonition-example-code
 
    .. code-block:: cpp
 
@@ -252,6 +255,7 @@ which is just an alias for
    physical thread in order in which they were posted.
 
 .. admonition:: Example
+   :class: admonition-example-code
 
    .. code-block:: cpp
 
@@ -283,6 +287,7 @@ After the thread is started, you can obtain a
 :func:`base::Thread::TaskRunner` member function.
 
 .. admonition:: Example - :class:`base::Thread`
+   :class: admonition-example-code
 
    .. code-block:: cpp
       :linenos:
@@ -360,6 +365,7 @@ this thread pool with these methods:
       the already obtained task runners and reuse them.
 
 .. admonition:: Example - :class:`base::ThreadPool`
+   :class: admonition-example-code
 
    .. code-block:: cpp
       :linenos:
@@ -441,6 +447,7 @@ static function.
 
 
 .. admonition:: Example - :class:`base::SequencedTaskRunnerHandle`
+   :class: admonition-example-code
 
    .. code-block:: cpp
       :linenos:
@@ -502,6 +509,7 @@ even if you're not sure about whether it is still alive.
         bound sequence.
 
 .. admonition:: Example - :class:`base::SequenceChecker`
+   :class: admonition-example-code
 
    .. code-block:: cpp
 
@@ -592,6 +600,7 @@ waitable event will be signalled from a different thread.
    something unexpected happens.
 
 .. admonition:: Example - :class:`base::WaitableEvent`
+   :class: admonition-example-code
 
    .. code-block:: cpp
 

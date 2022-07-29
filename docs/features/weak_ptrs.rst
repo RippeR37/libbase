@@ -72,6 +72,7 @@ that point in time can only be dereferenced or invalidated on that sequence.
    created |WeakPtr| can be used on different sequences.
 
 .. admonition:: Example - |WeakPtr| and |WeakPtrFactory| usage
+   :class: admonition-example-code
 
    .. code-block:: cpp
       :linenos:
