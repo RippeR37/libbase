@@ -1,4 +1,4 @@
-## `libbase`
+## `libbase` [![Language](https://img.shields.io/badge/language-C++17-blue.svg)](https://github.com/RippeR37/libbase) [![Documentation](https://img.shields.io/badge/documentation-online-blue.svg)](https://ripper37.github.io/libbase/) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/ripper37/libbase/master/LICENSE) [![GitHub Releases](https://img.shields.io/github/release/ripper37/libbase.svg)](https://github.com/ripper37/libbase/releases)
 
 | Branch | Ubuntu | Windows | MacOS | Documentation | Coverage |
 | :----: | :----: | :-----: | :---: | :-----------: | :------: |
@@ -8,7 +8,10 @@
 
 ### Project description
 
-To-do...
+The [`libbase`](https://github.com/RippeR37/libbase/) is a small library that provides its users with a reimplementation of many useful low-level utilities known from Chromium’s [`//base`](https://chromium.googlesource.com/chromium/src/base/) module without the need to depend on the whole (or parts of the) Chromium itself.
+
+For more details with examples see the [`documentation`](https://github.com/RippeR37/libbase/).
+
 
 ### Building `libbase`
 
