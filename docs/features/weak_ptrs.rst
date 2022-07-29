@@ -96,7 +96,7 @@ that point in time can only be dereferenced or invalidated on that sequence.
       };
 
       int main() {
-        std::unique_ptr<Foo> foo;
+        std::unique_ptr<Foo> foo = std::make_unique<Foo>();
         base::WeakPtr<Foo> weak_foo = foo->GetWeakPtr();
 
         CHECK(weak_foo);

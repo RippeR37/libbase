@@ -389,9 +389,9 @@ this thread pool with these methods:
       int main() {
         base::ThreadPool thread_pool{4};
 
-        auto task_runner = thread.GetTaskRunner();
-        auto seq_task_runner = thread.CreateSequencedTaskRunner();
-        auto st_task_runner = thread.CreateSingleThreadTaskRunner();
+        auto task_runner = thread_pool.GetTaskRunner();
+        auto seq_task_runner = thread_pool.CreateSequencedTaskRunner();
+        auto st_task_runner = thread_pool.CreateSingleThreadTaskRunner();
 
         task_runner->PostTask(FROM_HERE, base::BindOnce(&Print, "Generic1"));
         task_runner->PostTask(FROM_HERE, base::BindOnce(&Print, "Generic2"));
