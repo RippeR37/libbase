@@ -25,6 +25,7 @@ project, please skip :ref:`here <skip_existing_project>`.
 
    .. code-block:: cmake
       :caption: CMakeLists.txt
+      :linenos:
 
       cmake_minimum_required(VERSION 3.13)
       project(project-name VERSION 1.0 LANGUAGES CXX)
@@ -38,6 +39,7 @@ project, please skip :ref:`here <skip_existing_project>`.
 
    .. code-block:: cpp
       :caption: src/main.cc
+      :linenos:
 
       #include <iostream>
 
@@ -64,6 +66,7 @@ project, please skip :ref:`here <skip_existing_project>`.
 
    .. code-block:: cmake
       :caption: CMakeLists.txt
+      :linenos:
       :emphasize-lines: 4,8,9
 
       cmake_minimum_required(VERSION 3.13)
@@ -83,17 +86,18 @@ project, please skip :ref:`here <skip_existing_project>`.
 #. Use ``libbase`` library in your project.
 
    .. code-block:: cpp
-     :caption: src/main.cc
-     :emphasize-lines: 3,6
+      :caption: src/main.cc
+      :linenos:
+      :emphasize-lines: 3,6
 
-     #include <iostream>
+      #include <iostream>
 
-     #include "base/callback.h"
+      #include "base/callback.h"
 
-     int main() {
-       base::BindOnce([]() { std::cout << "Hello World!" << std::endl; }).Run();
-       return 0;
-     }
+      int main() {
+        base::BindOnce([]() { std::cout << "Hello World!" << std::endl; }).Run();
+        return 0;
+      }
 
 #. Compile, build and run!
 
@@ -107,13 +111,13 @@ project, please skip :ref:`here <skip_existing_project>`.
 .. tip::
 
    Repository with the above project can also be viewed here:
-   `RippeR37/libbase-example <https://github.com/RippeR37/libbase-example>`_.
+   `RippeR37/libbase-example <https://github.com/RippeR37/libbase-example-cmake>`_.
 
 
 Other build systems
 -------------------
 
-.. caution::
+.. todo::
 
    Unfortunately, ``libbase`` library at this time comes only with a
    preconfigured way of integrating it within another CMake project. Other build

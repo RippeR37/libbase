@@ -36,18 +36,24 @@ Internal dependencies
 ---------------------
 
 ``libbase`` depends on some third-party libraries which are already integrated
-into the project and thus require **no** additional work to use it:
+into the project and thus require **no** additional work to use them:
 
-* `GLOG <https://github.com/google/glog>`_ - provides convinient logging
-  framework (see :doc:`../features/logging`).
+* `GLOG <https://github.com/google/glog>`_
+     Provides convinient logging framework (see :doc:`../features/logging`).
 
 
 Optional dependencies
 ---------------------
 
-``libbase`` can optionally use other external libraries (also already
-preconfigured and integrated into the project) for optional tasks. These are:
+``libbase`` can optionally use other third-party libraries (also already
+preconfigured and integrated into the project) or applications for optional
+tasks. These are:
 
-* `GTest and GMock <https://github.com/google/googletest>`_ - for unit tests.
-* `Google Benchmark <https://github.com/google/benchmark>`_ - for performance
-  tests.
+* `GTest and GMock <https://github.com/google/googletest>`_
+     For building and running unit tests.
+
+* `Google Benchmark <https://github.com/google/benchmark>`_
+     For building and running performance tests.
+
+* `Doxygen <https://doxygen.nl>`_ and `Sphinx <https://www.sphinx-doc.org>`_
+     For building this documentation.

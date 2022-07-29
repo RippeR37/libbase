@@ -42,7 +42,7 @@ Non-goals
   * Full API compatibility.
 
 * Reimplement *everything* from the ``//base`` module.
-* Match or surpass ``//base`` in terms of performance or compatibility on.
+* Match or surpass ``//base`` in terms of performance or compatibility.
 
 .. note::
 

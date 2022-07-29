@@ -21,9 +21,8 @@ writing safer code. This module consists of two classes:
 
 The notable difference between the |WeakPtr| class and the standard
 ``std::weak_ptr<T>`` class is that |WeakPtr| objects do not extend the lifetime
-of the pointed-to object and therefore can be used to point to practically
-anything (including variables of built-in types like ``int``). The user is
-required to check if the object is still accessible
+of the pointed-to object and therefore can be used to point to objects allocated
+on the stack. The user is required to check if the object is still accessible
 (with :func:`base::WeakPtr::operator bool`) before accessing the pointed-to
 object - which can be done with any of these functions:
 

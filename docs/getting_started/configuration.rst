@@ -74,7 +74,7 @@ work. They may affect runtime behavior of the ``libbase`` constructs.
 
 .. option:: LIBBASE_FEATURE_TRACING=<ON|OFF>
 
-   Build ``libbase`` with :doc:`../features/tracing` feature enabled.
+   Build ``libbase`` with the :doc:`../features/tracing` feature enabled.
 
    :Default: ON
 

@@ -44,8 +44,9 @@ Building with CMake
    $ cmake -S . -B build
    $ cmake --build build
 
-This will configure ``libbase`` with default options and build it in the
-``build/`` subdirectory.
+This will configure ``libbase`` with the default
+:ref:`configuration options <configuration>` and build it in the ``build/``
+subdirectory.
 
 
 Running the tests
