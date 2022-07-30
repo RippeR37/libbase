@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="trace__complete_8h" kind="file" language="C++">
+    <compoundname>trace_complete.h</compoundname>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="trace__complete_8h_1a06e651758207172afcc30d9b115d01c1" prot="public" static="no">
+        <name>TRACE_EVENT_COMPLETE</name>
+        <param><defname>categories</defname></param>
+        <param><defname>name</defname></param>
+        <param><defname>duration</defname></param>
+        <param><defname>...</defname></param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/trace_event/trace_complete.h" line="13" column="9" bodyfile="base/trace_event/trace_complete.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/trace_event/trace_complete.h"/>
+  </compounddef>
+</doxygen>

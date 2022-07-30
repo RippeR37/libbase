@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="callback__helpers_8h" kind="file" language="C++">
+    <compoundname>callback_helpers.h</compoundname>
+    <includes local="no">atomic</includes>
+    <includes local="no">utility</includes>
+    <includes refid="bind_8h" local="yes">base/bind.h</includes>
+    <includes refid="callback_8h" local="yes">base/callback.h</includes>
+    <includes refid="logging_8h" local="yes">base/logging.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>atomic</label>
+      </node>
+      <node id="1">
+        <label>base/callback_helpers.h</label>
+        <link refid="callback__helpers_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>utility</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classbase_1_1ScopedClosureRunner" prot="public">base::ScopedClosureRunner</innerclass>
+    <innerclass refid="classbase_1_1DoNothing" prot="public">base::DoNothing</innerclass>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/callback_helpers.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="dir_9449fdd6eae23017b58bec2fd411a57b" kind="dir">
+    <compoundname>base/synchronization</compoundname>
+    <innerfile refid="auto__signaller_8h">auto_signaller.h</innerfile>
+    <innerfile refid="waitable__event_8h">waitable_event.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/synchronization/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="callback__iface_8h" kind="file" language="C++">
+    <compoundname>callback_iface.h</compoundname>
+    <includes local="no">memory</includes>
+    <includedby refid="bind__internals_8h" local="yes">base/bind_internals.h</includedby>
+    <includedby refid="callback_8h" local="yes">base/callback.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>base/callback_iface.h</label>
+        <link refid="callback__iface_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/callback_iface.h"/>
+  </compounddef>
+</doxygen>

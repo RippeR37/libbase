@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="dir_2591cf406277c6183859abd36813c2a4" kind="dir">
+    <compoundname>base/timer</compoundname>
+    <innerfile refid="elapsed__timer_8h">elapsed_timer.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/timer/"/>
+  </compounddef>
+</doxygen>

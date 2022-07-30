@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="thread_8h" kind="file" language="C++">
+    <compoundname>thread.h</compoundname>
+    <includes local="no">memory</includes>
+    <includes local="no">optional</includes>
+    <includes local="no">thread</includes>
+    <includes refid="callback__forward_8h" local="yes">base/callback_forward.h</includes>
+    <includes refid="message__loop_8h" local="yes">base/message_loop/message_loop.h</includes>
+    <includes refid="sequence__id_8h" local="yes">base/sequence_id.h</includes>
+    <includes refid="single__thread__task__runner_8h" local="yes">base/single_thread_task_runner.h</includes>
+    <includes refid="source__location_8h" local="yes">base/source_location.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>base/threading/thread.h</label>
+        <link refid="thread_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>optional</label>
+      </node>
+      <node id="4">
+        <label>thread</label>
+      </node>
+      <node id="2">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classbase_1_1Thread" prot="public">base::Thread</innerclass>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/threading/thread.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structbase_1_1DelayedTaskManager_1_1DelayedTask" kind="struct" language="C++" prot="public">
+    <compoundname>base::DelayedTaskManager::DelayedTask</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structbase_1_1DelayedTaskManager_1_1DelayedTask_1af064cc901a905be084a8c4efd85ff4cc" prot="public" static="no" mutable="no">
+        <type><ref refid="classbase_1_1TimeTicks" kindref="compound">TimeTicks</ref></type>
+        <definition>TimeTicks base::DelayedTaskManager::DelayedTask::start_time</definition>
+        <argsstring></argsstring>
+        <name>start_time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/delayed_task_manager.h" line="20" column="15" bodyfile="base/threading/delayed_task_manager.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbase_1_1DelayedTaskManager_1_1DelayedTask_1afc8bc11d67fa3d8fad636d75e6da5c26" prot="public" static="no" mutable="no">
+        <type>std::weak_ptr&lt; <ref refid="classbase_1_1MessagePump" kindref="compound">MessagePump</ref> &gt;</type>
+        <definition>std::weak_ptr&lt;MessagePump&gt; base::DelayedTaskManager::DelayedTask::message_pump</definition>
+        <argsstring></argsstring>
+        <name>message_pump</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/delayed_task_manager.h" line="21" column="19" bodyfile="base/threading/delayed_task_manager.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbase_1_1DelayedTaskManager_1_1DelayedTask_1a8a6eb4f05ac8dbea137500026076f419" prot="public" static="no" mutable="yes">
+        <type><ref refid="structbase_1_1MessagePump_1_1PendingTask" kindref="compound">MessagePump::PendingTask</ref></type>
+        <definition>MessagePump::PendingTask base::DelayedTaskManager::DelayedTask::pending_task</definition>
+        <argsstring></argsstring>
+        <name>pending_task</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/delayed_task_manager.h" line="22" column="38" bodyfile="base/threading/delayed_task_manager.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structbase_1_1DelayedTaskManager_1_1DelayedTask_1a0c8dd0b4eb92005bdaef67115fb2a9cb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::DelayedTaskManager::DelayedTask::operator&lt;</definition>
+        <argsstring>(const DelayedTask &amp;rhs) const</argsstring>
+        <name>operator&lt;</name>
+        <param>
+          <type>const <ref refid="structbase_1_1DelayedTaskManager_1_1DelayedTask" kindref="compound">DelayedTask</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/delayed_task_manager.h" line="18" column="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>base::OnceCallback&lt; void()&gt;</label>
+        <link refid="classbase_1_1OnceCallback"/>
+      </node>
+      <node id="1">
+        <label>base::DelayedTaskManager::DelayedTask</label>
+        <link refid="structbase_1_1DelayedTaskManager_1_1DelayedTask"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>pending_task</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>start_time</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>base::TimeTicks</label>
+        <link refid="classbase_1_1TimeTicks"/>
+      </node>
+      <node id="2">
+        <label>base::MessagePump::PendingTask</label>
+        <link refid="structbase_1_1MessagePump_1_1PendingTask"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>task</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="base/threading/delayed_task_manager.h" line="17" column="20" bodyfile="base/threading/delayed_task_manager.h" bodystart="17" bodyend="23"/>
+    <listofallmembers>
+      <member refid="structbase_1_1DelayedTaskManager_1_1DelayedTask_1afc8bc11d67fa3d8fad636d75e6da5c26" prot="public" virt="non-virtual"><scope>base::DelayedTaskManager::DelayedTask</scope><name>message_pump</name></member>
+      <member refid="structbase_1_1DelayedTaskManager_1_1DelayedTask_1a0c8dd0b4eb92005bdaef67115fb2a9cb" prot="public" virt="non-virtual"><scope>base::DelayedTaskManager::DelayedTask</scope><name>operator&lt;</name></member>
+      <member refid="structbase_1_1DelayedTaskManager_1_1DelayedTask_1a8a6eb4f05ac8dbea137500026076f419" prot="public" virt="non-virtual"><scope>base::DelayedTaskManager::DelayedTask</scope><name>pending_task</name></member>
+      <member refid="structbase_1_1DelayedTaskManager_1_1DelayedTask_1af064cc901a905be084a8c4efd85ff4cc" prot="public" virt="non-virtual"><scope>base::DelayedTaskManager::DelayedTask</scope><name>start_time</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

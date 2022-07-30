@@ -1,0 +1,14 @@
+.. _exhale_function_init_8h_1a0cb247fb3874530bc6e8fbe788256dbd:
+
+Function base::Initialize
+=========================
+
+- Defined in :ref:`file_base_init.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: base::Initialize(int, char *)
+   :project: libbase

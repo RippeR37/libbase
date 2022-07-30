@@ -1,0 +1,57 @@
+
+.. _file_base_time_time_ticks.h:
+
+File time_ticks.h
+=================
+
+|exhale_lsh| :ref:`Parent directory <dir_base_time>` (``base/time``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/time/time_ticks.h``)
+---------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``base/time/time_delta.h`` (:ref:`file_base_time_time_delta.h`)
+
+- ``cstdint``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_base_threading_delayed_task_manager.h`
+
+- :ref:`file_base_timer_elapsed_timer.h`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classbase_1_1TimeTicks`
+

@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="dir_63ba7ecf8883a410c1ada621900f383c" kind="dir">
+    <compoundname>base/trace_event</compoundname>
+    <innerfile refid="trace__argument__packer_8h">trace_argument_packer.h</innerfile>
+    <innerfile refid="trace__async_8h">trace_async.h</innerfile>
+    <innerfile refid="trace__complete_8h">trace_complete.h</innerfile>
+    <innerfile refid="trace__counter_8h">trace_counter.h</innerfile>
+    <innerfile refid="trace__event_8h">trace_event.h</innerfile>
+    <innerfile refid="trace__event__register_8h">trace_event_register.h</innerfile>
+    <innerfile refid="trace__events_8h">trace_events.h</innerfile>
+    <innerfile refid="trace__flow_8h">trace_flow.h</innerfile>
+    <innerfile refid="trace__flush_8h">trace_flush.h</innerfile>
+    <innerfile refid="trace__json__writer_8h">trace_json_writer.h</innerfile>
+    <innerfile refid="trace__metadata_8h">trace_metadata.h</innerfile>
+    <innerfile refid="trace__platform_8h">trace_platform.h</innerfile>
+    <innerfile refid="trace__signal_8h">trace_signal.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/trace_event/"/>
+  </compounddef>
+</doxygen>

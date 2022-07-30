@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="dir_802c9899d0a5219b30e5fe97f9d02030" kind="dir">
+    <compoundname>base/message_loop</compoundname>
+    <innerfile refid="message__loop_8h">message_loop.h</innerfile>
+    <innerfile refid="message__loop__impl_8h">message_loop_impl.h</innerfile>
+    <innerfile refid="message__pump_8h">message_pump.h</innerfile>
+    <innerfile refid="message__pump__impl_8h">message_pump_impl.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/message_loop/"/>
+  </compounddef>
+</doxygen>

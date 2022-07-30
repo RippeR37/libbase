@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="trace__metadata_8h" kind="file" language="C++">
+    <compoundname>trace_metadata.h</compoundname>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="trace__metadata_8h_1af42d9eb778e7e8250fea2e5976b20947" prot="public" static="no">
+        <name>TRACE_NAME_PROCESS</name>
+        <param><defname>name</defname></param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/trace_event/trace_metadata.h" line="17" column="9" bodyfile="base/trace_event/trace_metadata.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="trace__metadata_8h_1ad82f3ad577aecc88dc8f8aa7e70f0269" prot="public" static="no">
+        <name>TRACE_NAME_THREAD</name>
+        <param><defname>name</defname></param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/trace_event/trace_metadata.h" line="18" column="9" bodyfile="base/trace_event/trace_metadata.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/trace_event/trace_metadata.h"/>
+  </compounddef>
+</doxygen>

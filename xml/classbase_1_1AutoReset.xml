@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classbase_1_1AutoReset" kind="class" language="C++" prot="public">
+    <compoundname>base::AutoReset</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbase_1_1AutoReset_1a10dd1accc16d3f8507dff78f99ac7654" prot="private" static="no" mutable="no">
+        <type>T *const</type>
+        <definition>T* const base::AutoReset&lt; T &gt;::variable_</definition>
+        <argsstring></argsstring>
+        <name>variable_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/auto_reset.h" line="21" column="11" bodyfile="base/auto_reset.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1AutoReset_1a4d0292a6b3b8597b75e671e0bba9725c" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T base::AutoReset&lt; T &gt;::original_value_</definition>
+        <argsstring></argsstring>
+        <name>original_value_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/auto_reset.h" line="22" column="5" bodyfile="base/auto_reset.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1AutoReset_1a7265697adbad6cbb54ed565522999a74" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename U</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>base::AutoReset&lt; T &gt;::AutoReset</definition>
+        <argsstring>(T *variable, U &amp;&amp;new_value)</argsstring>
+        <name>AutoReset</name>
+        <param>
+          <type>T *</type>
+          <declname>variable</declname>
+        </param>
+        <param>
+          <type>U &amp;&amp;</type>
+          <declname>new_value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/auto_reset.h" line="11" column="3" bodyfile="base/auto_reset.h" bodystart="11" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1AutoReset_1a637a2d61eccb78e5d4f4a4f563341cb9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>base::AutoReset&lt; T &gt;::~AutoReset</definition>
+        <argsstring>()</argsstring>
+        <name>~AutoReset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/auto_reset.h" line="15" column="3" bodyfile="base/auto_reset.h" bodystart="15" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1AutoReset_1aa504dd05aab8e2401842ce34db440c6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::AutoReset&lt; T &gt;::AutoReset</definition>
+        <argsstring>(AutoReset &amp;&amp;)=delete</argsstring>
+        <name>AutoReset</name>
+        <param>
+          <type><ref refid="classbase_1_1AutoReset" kindref="compound">AutoReset</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/auto_reset.h" line="17" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1AutoReset_1a23878b5b5001ca7e5295cac9b9fdf85d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1AutoReset" kindref="compound">AutoReset</ref> &amp;</type>
+        <definition>AutoReset&amp; base::AutoReset&lt; T &gt;::operator=</definition>
+        <argsstring>(AutoReset &amp;&amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="classbase_1_1AutoReset" kindref="compound">AutoReset</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/auto_reset.h" line="18" column="13"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/auto_reset.h" line="8" column="16" bodyfile="base/auto_reset.h" bodystart="8" bodyend="23"/>
+    <listofallmembers>
+      <member refid="classbase_1_1AutoReset_1a7265697adbad6cbb54ed565522999a74" prot="public" virt="non-virtual"><scope>base::AutoReset</scope><name>AutoReset</name></member>
+      <member refid="classbase_1_1AutoReset_1aa504dd05aab8e2401842ce34db440c6d" prot="public" virt="non-virtual"><scope>base::AutoReset</scope><name>AutoReset</name></member>
+      <member refid="classbase_1_1AutoReset_1a23878b5b5001ca7e5295cac9b9fdf85d" prot="public" virt="non-virtual"><scope>base::AutoReset</scope><name>operator=</name></member>
+      <member refid="classbase_1_1AutoReset_1a4d0292a6b3b8597b75e671e0bba9725c" prot="private" virt="non-virtual"><scope>base::AutoReset</scope><name>original_value_</name></member>
+      <member refid="classbase_1_1AutoReset_1a10dd1accc16d3f8507dff78f99ac7654" prot="private" virt="non-virtual"><scope>base::AutoReset</scope><name>variable_</name></member>
+      <member refid="classbase_1_1AutoReset_1a637a2d61eccb78e5d4f4a4f563341cb9" prot="public" virt="non-virtual"><scope>base::AutoReset</scope><name>~AutoReset</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

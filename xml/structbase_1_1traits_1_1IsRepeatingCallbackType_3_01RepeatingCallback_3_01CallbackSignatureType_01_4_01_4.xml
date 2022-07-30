@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structbase_1_1traits_1_1IsRepeatingCallbackType_3_01RepeatingCallback_3_01CallbackSignatureType_01_4_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>base::traits::IsRepeatingCallbackType&lt; RepeatingCallback&lt; CallbackSignatureType &gt; &gt;</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename CallbackSignatureType</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structbase_1_1traits_1_1IsRepeatingCallbackType_3_01RepeatingCallback_3_01CallbackSignatureType_01_4_01_4_1ae54bc551c1d067469b3ad81d075234d7" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr bool</type>
+        <definition>constexpr bool base::traits::IsRepeatingCallbackType&lt; RepeatingCallback&lt; CallbackSignatureType &gt; &gt;::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="177" column="25" bodyfile="base/callback.h" bodystart="177" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/callback.h" line="176" column="32" bodyfile="base/callback.h" bodystart="176" bodyend="178"/>
+    <listofallmembers>
+      <member refid="structbase_1_1traits_1_1IsRepeatingCallbackType_3_01RepeatingCallback_3_01CallbackSignatureType_01_4_01_4_1ae54bc551c1d067469b3ad81d075234d7" prot="public" virt="non-virtual"><scope>base::traits::IsRepeatingCallbackType&lt; RepeatingCallback&lt; CallbackSignatureType &gt; &gt;</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

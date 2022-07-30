@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="logging_8h" kind="file" language="C++">
+    <compoundname>logging.h</compoundname>
+    <includes local="yes">glog/logging.h</includes>
+    <includedby refid="callback__helpers_8h" local="yes">base/callback_helpers.h</includedby>
+    <includedby refid="sequence__checker_8h" local="yes">base/sequence_checker.h</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>glog/logging.h</label>
+      </node>
+      <node id="1">
+        <label>base/logging.h</label>
+        <link refid="logging_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacebase">base</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="logging_8h_1a9f918755b601cf4bffca775992e6fb90" prot="public" static="no">
+        <name>NOMINMAX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/logging.h" line="11" column="9" bodyfile="base/logging.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/logging.h"/>
+  </compounddef>
+</doxygen>

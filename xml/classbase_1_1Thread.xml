@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classbase_1_1Thread" kind="class" language="C++" prot="public">
+    <compoundname>base::Thread</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbase_1_1Thread_1aa63565663694a47e3ac77147a630a050" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="classbase_1_1MessageLoop" kindref="compound">MessageLoop</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;MessageLoop&gt; base::Thread::message_loop_</definition>
+        <argsstring></argsstring>
+        <name>message_loop_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread.h" line="30" column="19" bodyfile="base/threading/thread.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1Thread_1a56ffdce970c419df5aa601d45d60f112" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; std::thread &gt;</type>
+        <definition>std::unique_ptr&lt;std::thread&gt; base::Thread::thread_</definition>
+        <argsstring></argsstring>
+        <name>thread_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread.h" line="31" column="19" bodyfile="base/threading/thread.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1Thread_1a620e3dd5a2e0a9603278c2b37bb0349e" prot="private" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classbase_1_1SequenceId" kindref="compound">base::SequenceId</ref> &gt;</type>
+        <definition>std::optional&lt;base::SequenceId&gt; base::Thread::sequence_id_</definition>
+        <argsstring></argsstring>
+        <name>sequence_id_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread.h" line="32" column="17" bodyfile="base/threading/thread.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1Thread_1afc6cb9559a93ca029cb511e3321a4e63" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classbase_1_1SingleThreadTaskRunner" kindref="compound">SingleThreadTaskRunner</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;SingleThreadTaskRunner&gt; base::Thread::task_runner_</definition>
+        <argsstring></argsstring>
+        <name>task_runner_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread.h" line="33" column="19" bodyfile="base/threading/thread.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1Thread_1a12271f62c83de1937a6aa0eb6fc183da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::Thread::Thread</definition>
+        <argsstring>()</argsstring>
+        <name>Thread</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread.h" line="17" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1Thread_1a6dad31657a300fdce9ed634fa5e7c565" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::Thread::~Thread</definition>
+        <argsstring>()</argsstring>
+        <name>~Thread</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread.h" line="18" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1Thread_1a51440a09dd587f7d838839cf57327ee4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::Thread::Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread.h" line="20" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1Thread_1a2814120e495e0b92192de55b1aee3ee2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::Thread::Stop</definition>
+        <argsstring>()</argsstring>
+        <name>Stop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread.h" line="21" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1Thread_1a4f642c9022c17a2db7301e29bf0ffe31" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::Thread::Stop</definition>
+        <argsstring>(SourceLocation location, OnceClosure last_task)</argsstring>
+        <name>Stop</name>
+        <param>
+          <type><ref refid="classbase_1_1SourceLocation" kindref="compound">SourceLocation</ref></type>
+          <declname>location</declname>
+        </param>
+        <param>
+          <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceClosure</ref></type>
+          <declname>last_task</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread.h" line="22" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1Thread_1a62821970d1ce3d880cdb3cd76a769a30" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::thread::id</type>
+        <definition>std::thread::id base::Thread::Id</definition>
+        <argsstring>() const</argsstring>
+        <name>Id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread.h" line="24" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1Thread_1a99c55783320dc3922562808e7c0db50f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classbase_1_1SingleThreadTaskRunner" kindref="compound">SingleThreadTaskRunner</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;SingleThreadTaskRunner&gt; base::Thread::TaskRunner</definition>
+        <argsstring>()</argsstring>
+        <name>TaskRunner</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread.h" line="25" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1Thread_1a587fe3d312974ebfe7518c09c79e8414" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::Thread::FlushForTesting</definition>
+        <argsstring>()</argsstring>
+        <name>FlushForTesting</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread.h" line="27" column="8"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/threading/thread.h" line="15" column="13" bodyfile="base/threading/thread.h" bodystart="15" bodyend="34"/>
+    <listofallmembers>
+      <member refid="classbase_1_1Thread_1a587fe3d312974ebfe7518c09c79e8414" prot="public" virt="non-virtual"><scope>base::Thread</scope><name>FlushForTesting</name></member>
+      <member refid="classbase_1_1Thread_1a62821970d1ce3d880cdb3cd76a769a30" prot="public" virt="non-virtual"><scope>base::Thread</scope><name>Id</name></member>
+      <member refid="classbase_1_1Thread_1aa63565663694a47e3ac77147a630a050" prot="private" virt="non-virtual"><scope>base::Thread</scope><name>message_loop_</name></member>
+      <member refid="classbase_1_1Thread_1a620e3dd5a2e0a9603278c2b37bb0349e" prot="private" virt="non-virtual"><scope>base::Thread</scope><name>sequence_id_</name></member>
+      <member refid="classbase_1_1Thread_1a51440a09dd587f7d838839cf57327ee4" prot="public" virt="non-virtual"><scope>base::Thread</scope><name>Start</name></member>
+      <member refid="classbase_1_1Thread_1a2814120e495e0b92192de55b1aee3ee2" prot="public" virt="non-virtual"><scope>base::Thread</scope><name>Stop</name></member>
+      <member refid="classbase_1_1Thread_1a4f642c9022c17a2db7301e29bf0ffe31" prot="public" virt="non-virtual"><scope>base::Thread</scope><name>Stop</name></member>
+      <member refid="classbase_1_1Thread_1afc6cb9559a93ca029cb511e3321a4e63" prot="private" virt="non-virtual"><scope>base::Thread</scope><name>task_runner_</name></member>
+      <member refid="classbase_1_1Thread_1a99c55783320dc3922562808e7c0db50f" prot="public" virt="non-virtual"><scope>base::Thread</scope><name>TaskRunner</name></member>
+      <member refid="classbase_1_1Thread_1a12271f62c83de1937a6aa0eb6fc183da" prot="public" virt="non-virtual"><scope>base::Thread</scope><name>Thread</name></member>
+      <member refid="classbase_1_1Thread_1a56ffdce970c419df5aa601d45d60f112" prot="private" virt="non-virtual"><scope>base::Thread</scope><name>thread_</name></member>
+      <member refid="classbase_1_1Thread_1a6dad31657a300fdce9ed634fa5e7c565" prot="public" virt="non-virtual"><scope>base::Thread</scope><name>~Thread</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

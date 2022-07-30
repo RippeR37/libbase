@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classbase_1_1AutoSignaller" kind="class" language="C++" prot="public">
+    <compoundname>base::AutoSignaller</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbase_1_1AutoSignaller_1a777ca84550eb220cc1c3b630ac1b6a4f" prot="private" static="no" mutable="no">
+        <type><ref refid="classbase_1_1WaitableEvent" kindref="compound">WaitableEvent</ref> *</type>
+        <definition>WaitableEvent* base::AutoSignaller::event_</definition>
+        <argsstring></argsstring>
+        <name>event_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/synchronization/auto_signaller.h" line="22" column="17" bodyfile="base/synchronization/auto_signaller.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1AutoSignaller_1adf524c48ffa51e4255a7a098f6381ae0" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::AutoSignaller::AutoSignaller</definition>
+        <argsstring>(WaitableEvent *event)</argsstring>
+        <name>AutoSignaller</name>
+        <param>
+          <type><ref refid="classbase_1_1WaitableEvent" kindref="compound">WaitableEvent</ref> *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/synchronization/auto_signaller.h" line="11" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1AutoSignaller_1aa6c5f5a45c6f239c85c0b0702b1dceb0" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::AutoSignaller::AutoSignaller</definition>
+        <argsstring>(std::nullptr_t)=delete</argsstring>
+        <name>AutoSignaller</name>
+        <param>
+          <type>std::nullptr_t</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/synchronization/auto_signaller.h" line="12" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1AutoSignaller_1aef07a32092119fc60d5fc65ee88d72c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::AutoSignaller::~AutoSignaller</definition>
+        <argsstring>()</argsstring>
+        <name>~AutoSignaller</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/synchronization/auto_signaller.h" line="13" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1AutoSignaller_1a498e253ace1f7da47d860c07c0f5de3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::AutoSignaller::AutoSignaller</definition>
+        <argsstring>(AutoSignaller &amp;&amp;other)</argsstring>
+        <name>AutoSignaller</name>
+        <param>
+          <type><ref refid="classbase_1_1AutoSignaller" kindref="compound">AutoSignaller</ref> &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/synchronization/auto_signaller.h" line="15" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1AutoSignaller_1a295ef04daf98907e22a064abf88c6cea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1AutoSignaller" kindref="compound">AutoSignaller</ref> &amp;</type>
+        <definition>AutoSignaller&amp; base::AutoSignaller::operator=</definition>
+        <argsstring>(AutoSignaller &amp;&amp;other)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="classbase_1_1AutoSignaller" kindref="compound">AutoSignaller</ref> &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/synchronization/auto_signaller.h" line="16" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1AutoSignaller_1a3c47160853b62c302939429482463061" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::AutoSignaller::SignalAndReset</definition>
+        <argsstring>()</argsstring>
+        <name>SignalAndReset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/synchronization/auto_signaller.h" line="18" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1AutoSignaller_1a6a5fb9aea80fc151416606632cb4f254" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::AutoSignaller::Cancel</definition>
+        <argsstring>()</argsstring>
+        <name>Cancel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/synchronization/auto_signaller.h" line="19" column="8"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/synchronization/auto_signaller.h" line="9" column="20" bodyfile="base/synchronization/auto_signaller.h" bodystart="9" bodyend="23"/>
+    <listofallmembers>
+      <member refid="classbase_1_1AutoSignaller_1adf524c48ffa51e4255a7a098f6381ae0" prot="public" virt="non-virtual"><scope>base::AutoSignaller</scope><name>AutoSignaller</name></member>
+      <member refid="classbase_1_1AutoSignaller_1aa6c5f5a45c6f239c85c0b0702b1dceb0" prot="public" virt="non-virtual"><scope>base::AutoSignaller</scope><name>AutoSignaller</name></member>
+      <member refid="classbase_1_1AutoSignaller_1a498e253ace1f7da47d860c07c0f5de3b" prot="public" virt="non-virtual"><scope>base::AutoSignaller</scope><name>AutoSignaller</name></member>
+      <member refid="classbase_1_1AutoSignaller_1a6a5fb9aea80fc151416606632cb4f254" prot="public" virt="non-virtual"><scope>base::AutoSignaller</scope><name>Cancel</name></member>
+      <member refid="classbase_1_1AutoSignaller_1a777ca84550eb220cc1c3b630ac1b6a4f" prot="private" virt="non-virtual"><scope>base::AutoSignaller</scope><name>event_</name></member>
+      <member refid="classbase_1_1AutoSignaller_1a295ef04daf98907e22a064abf88c6cea" prot="public" virt="non-virtual"><scope>base::AutoSignaller</scope><name>operator=</name></member>
+      <member refid="classbase_1_1AutoSignaller_1a3c47160853b62c302939429482463061" prot="public" virt="non-virtual"><scope>base::AutoSignaller</scope><name>SignalAndReset</name></member>
+      <member refid="classbase_1_1AutoSignaller_1aef07a32092119fc60d5fc65ee88d72c8" prot="public" virt="non-virtual"><scope>base::AutoSignaller</scope><name>~AutoSignaller</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

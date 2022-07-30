@@ -1,0 +1,14 @@
+.. _exhale_typedef_type__traits_8h_1aa86db756ce6265af44a292ec66cbe3a8:
+
+Typedef base::traits::TypesRangeT
+=================================
+
+- Defined in :ref:`file_base_type_traits.h`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: base::traits::TypesRangeT
+   :project: libbase

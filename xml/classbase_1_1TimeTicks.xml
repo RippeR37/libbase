@@ -1,0 +1,279 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classbase_1_1TimeTicks" kind="class" language="C++" prot="public">
+    <compoundname>base::TimeTicks</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbase_1_1TimeTicks_1aa59d5617c51153e48f67724a2bce9f83" prot="private" static="no" mutable="no">
+        <type>int64_t</type>
+        <definition>int64_t base::TimeTicks::us_time_</definition>
+        <argsstring></argsstring>
+        <name>us_time_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_ticks.h" line="32" column="11" bodyfile="base/time/time_ticks.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classbase_1_1TimeTicks_1ac930797d6adfaa7e390fd77720eaf2d3" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1TimeTicks" kindref="compound">TimeTicks</ref></type>
+        <definition>static TimeTicks base::TimeTicks::Now</definition>
+        <argsstring>()</argsstring>
+        <name>Now</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_ticks.h" line="11" column="20"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1TimeTicks_1a99a5600feae34c15ae0996902ce2915e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::TimeTicks::TimeTicks</definition>
+        <argsstring>()=default</argsstring>
+        <name>TimeTicks</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_ticks.h" line="13" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeTicks_1a86752a5e11c55ec1f10e0d70c0025943" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::TimeTicks::operator==</definition>
+        <argsstring>(TimeTicks other) const</argsstring>
+        <name>operator==</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeTicks" kindref="compound">TimeTicks</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_ticks.h" line="15" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeTicks_1a2d60150f62b7d852267dfce000920610" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::TimeTicks::operator!=</definition>
+        <argsstring>(TimeTicks other) const</argsstring>
+        <name>operator!=</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeTicks" kindref="compound">TimeTicks</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_ticks.h" line="16" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeTicks_1aac55b04cdd7d280ddd11542174ba0558" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::TimeTicks::operator&lt;</definition>
+        <argsstring>(TimeTicks other) const</argsstring>
+        <name>operator&lt;</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeTicks" kindref="compound">TimeTicks</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_ticks.h" line="17" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeTicks_1aab5f0190e792702489d95c4766e173f5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::TimeTicks::operator&gt;</definition>
+        <argsstring>(TimeTicks other) const</argsstring>
+        <name>operator&gt;</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeTicks" kindref="compound">TimeTicks</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_ticks.h" line="18" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeTicks_1a9e3e3526a30a5c7a302fa4e38618b19b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::TimeTicks::operator&lt;=</definition>
+        <argsstring>(TimeTicks other) const</argsstring>
+        <name>operator&lt;=</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeTicks" kindref="compound">TimeTicks</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_ticks.h" line="19" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeTicks_1abd79b00d48077e42efa5d28f0cc81c05" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::TimeTicks::operator&gt;=</definition>
+        <argsstring>(TimeTicks other) const</argsstring>
+        <name>operator&gt;=</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeTicks" kindref="compound">TimeTicks</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_ticks.h" line="20" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeTicks_1add0f8beb5540bfcc36516d94d9c90b90" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1TimeTicks" kindref="compound">TimeTicks</ref></type>
+        <definition>TimeTicks base::TimeTicks::operator+</definition>
+        <argsstring>(TimeDelta delta) const</argsstring>
+        <name>operator+</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+          <declname>delta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_ticks.h" line="22" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeTicks_1a287b03eb08a17f6325fc61d3252442e6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1TimeTicks" kindref="compound">TimeTicks</ref></type>
+        <definition>TimeTicks base::TimeTicks::operator-</definition>
+        <argsstring>(TimeDelta delta) const</argsstring>
+        <name>operator-</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+          <declname>delta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_ticks.h" line="23" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeTicks_1ae7354b2f2b3e8ef9072e44b467dd2ca1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1TimeTicks" kindref="compound">TimeTicks</ref> &amp;</type>
+        <definition>TimeTicks&amp; base::TimeTicks::operator+=</definition>
+        <argsstring>(TimeDelta delta)</argsstring>
+        <name>operator+=</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+          <declname>delta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_ticks.h" line="24" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeTicks_1a3faeb144f834863a6c0b4cf41b3f5018" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1TimeTicks" kindref="compound">TimeTicks</ref> &amp;</type>
+        <definition>TimeTicks&amp; base::TimeTicks::operator-=</definition>
+        <argsstring>(TimeDelta delta)</argsstring>
+        <name>operator-=</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+          <declname>delta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_ticks.h" line="25" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeTicks_1ab6ccfb98b6b6477759ecd351a9acf799" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+        <definition>TimeDelta base::TimeTicks::operator-</definition>
+        <argsstring>(TimeTicks other) const</argsstring>
+        <name>operator-</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeTicks" kindref="compound">TimeTicks</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_ticks.h" line="27" column="13"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classbase_1_1TimeTicks_1acaf72b63bf6a8f6fa22affa659473cf7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>base::TimeTicks::TimeTicks</definition>
+        <argsstring>(int64_t us_time)</argsstring>
+        <name>TimeTicks</name>
+        <param>
+          <type>int64_t</type>
+          <declname>us_time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_ticks.h" line="30" column="3" bodyfile="base/time/time_ticks.h" bodystart="30" bodyend="30"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/time/time_ticks.h" line="9" column="16" bodyfile="base/time/time_ticks.h" bodystart="9" bodyend="33"/>
+    <listofallmembers>
+      <member refid="classbase_1_1TimeTicks_1ac930797d6adfaa7e390fd77720eaf2d3" prot="public" virt="non-virtual"><scope>base::TimeTicks</scope><name>Now</name></member>
+      <member refid="classbase_1_1TimeTicks_1a2d60150f62b7d852267dfce000920610" prot="public" virt="non-virtual"><scope>base::TimeTicks</scope><name>operator!=</name></member>
+      <member refid="classbase_1_1TimeTicks_1add0f8beb5540bfcc36516d94d9c90b90" prot="public" virt="non-virtual"><scope>base::TimeTicks</scope><name>operator+</name></member>
+      <member refid="classbase_1_1TimeTicks_1ae7354b2f2b3e8ef9072e44b467dd2ca1" prot="public" virt="non-virtual"><scope>base::TimeTicks</scope><name>operator+=</name></member>
+      <member refid="classbase_1_1TimeTicks_1a287b03eb08a17f6325fc61d3252442e6" prot="public" virt="non-virtual"><scope>base::TimeTicks</scope><name>operator-</name></member>
+      <member refid="classbase_1_1TimeTicks_1ab6ccfb98b6b6477759ecd351a9acf799" prot="public" virt="non-virtual"><scope>base::TimeTicks</scope><name>operator-</name></member>
+      <member refid="classbase_1_1TimeTicks_1a3faeb144f834863a6c0b4cf41b3f5018" prot="public" virt="non-virtual"><scope>base::TimeTicks</scope><name>operator-=</name></member>
+      <member refid="classbase_1_1TimeTicks_1aac55b04cdd7d280ddd11542174ba0558" prot="public" virt="non-virtual"><scope>base::TimeTicks</scope><name>operator&lt;</name></member>
+      <member refid="classbase_1_1TimeTicks_1a9e3e3526a30a5c7a302fa4e38618b19b" prot="public" virt="non-virtual"><scope>base::TimeTicks</scope><name>operator&lt;=</name></member>
+      <member refid="classbase_1_1TimeTicks_1a86752a5e11c55ec1f10e0d70c0025943" prot="public" virt="non-virtual"><scope>base::TimeTicks</scope><name>operator==</name></member>
+      <member refid="classbase_1_1TimeTicks_1aab5f0190e792702489d95c4766e173f5" prot="public" virt="non-virtual"><scope>base::TimeTicks</scope><name>operator&gt;</name></member>
+      <member refid="classbase_1_1TimeTicks_1abd79b00d48077e42efa5d28f0cc81c05" prot="public" virt="non-virtual"><scope>base::TimeTicks</scope><name>operator&gt;=</name></member>
+      <member refid="classbase_1_1TimeTicks_1a99a5600feae34c15ae0996902ce2915e" prot="public" virt="non-virtual"><scope>base::TimeTicks</scope><name>TimeTicks</name></member>
+      <member refid="classbase_1_1TimeTicks_1acaf72b63bf6a8f6fa22affa659473cf7" prot="private" virt="non-virtual"><scope>base::TimeTicks</scope><name>TimeTicks</name></member>
+      <member refid="classbase_1_1TimeTicks_1aa59d5617c51153e48f67724a2bce9f83" prot="private" virt="non-virtual"><scope>base::TimeTicks</scope><name>us_time_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

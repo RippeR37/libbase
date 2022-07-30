@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classbase_1_1SequenceChecker" kind="class" language="C++" prot="public">
+    <compoundname>base::SequenceChecker</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbase_1_1SequenceChecker_1a1bccd703504ce31060923ea50d792c11" prot="private" static="no" mutable="yes">
+        <type>std::optional&lt; <ref refid="classbase_1_1SequenceId" kindref="compound">SequenceId</ref> &gt;</type>
+        <definition>std::optional&lt;SequenceId&gt; base::SequenceChecker::sequence_id_</definition>
+        <argsstring></argsstring>
+        <name>sequence_id_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/sequence_checker.h" line="38" column="25" bodyfile="base/sequence_checker.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1SequenceChecker_1a2a22126be739e6d2d6491d3493d862be" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::SequenceChecker::SequenceChecker</definition>
+        <argsstring>()</argsstring>
+        <name>SequenceChecker</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/sequence_checker.h" line="28" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1SequenceChecker_1af3a58572f478fb9a4189628be1203aea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::SequenceChecker::~SequenceChecker</definition>
+        <argsstring>()</argsstring>
+        <name>~SequenceChecker</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/sequence_checker.h" line="29" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1SequenceChecker_1a78d3e9c16f32259c22e36f359aee37d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::SequenceChecker::SequenceChecker</definition>
+        <argsstring>(SequenceChecker &amp;&amp;other)</argsstring>
+        <name>SequenceChecker</name>
+        <param>
+          <type><ref refid="classbase_1_1SequenceChecker" kindref="compound">SequenceChecker</ref> &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/sequence_checker.h" line="31" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1SequenceChecker_1a984fa9b7dd68a21f092983805d8f1f00" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1SequenceChecker" kindref="compound">SequenceChecker</ref> &amp;</type>
+        <definition>SequenceChecker&amp; base::SequenceChecker::operator=</definition>
+        <argsstring>(SequenceChecker &amp;&amp;other)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="classbase_1_1SequenceChecker" kindref="compound">SequenceChecker</ref> &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/sequence_checker.h" line="32" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1SequenceChecker_1a593dd430ffcd96ec01c079e4535a1eb9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::SequenceChecker::CalledOnValidSequence</definition>
+        <argsstring>() const</argsstring>
+        <name>CalledOnValidSequence</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/sequence_checker.h" line="34" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1SequenceChecker_1a4c977b6263c6ef0646a6a9c259b398ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::SequenceChecker::DetachFromSequence</definition>
+        <argsstring>()</argsstring>
+        <name>DetachFromSequence</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/sequence_checker.h" line="35" column="8"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/sequence_checker.h" line="26" column="22" bodyfile="base/sequence_checker.h" bodystart="26" bodyend="39"/>
+    <listofallmembers>
+      <member refid="classbase_1_1SequenceChecker_1a593dd430ffcd96ec01c079e4535a1eb9" prot="public" virt="non-virtual"><scope>base::SequenceChecker</scope><name>CalledOnValidSequence</name></member>
+      <member refid="classbase_1_1SequenceChecker_1a4c977b6263c6ef0646a6a9c259b398ad" prot="public" virt="non-virtual"><scope>base::SequenceChecker</scope><name>DetachFromSequence</name></member>
+      <member refid="classbase_1_1SequenceChecker_1a984fa9b7dd68a21f092983805d8f1f00" prot="public" virt="non-virtual"><scope>base::SequenceChecker</scope><name>operator=</name></member>
+      <member refid="classbase_1_1SequenceChecker_1a1bccd703504ce31060923ea50d792c11" prot="private" virt="non-virtual"><scope>base::SequenceChecker</scope><name>sequence_id_</name></member>
+      <member refid="classbase_1_1SequenceChecker_1a2a22126be739e6d2d6491d3493d862be" prot="public" virt="non-virtual"><scope>base::SequenceChecker</scope><name>SequenceChecker</name></member>
+      <member refid="classbase_1_1SequenceChecker_1a78d3e9c16f32259c22e36f359aee37d8" prot="public" virt="non-virtual"><scope>base::SequenceChecker</scope><name>SequenceChecker</name></member>
+      <member refid="classbase_1_1SequenceChecker_1af3a58572f478fb9a4189628be1203aea" prot="public" virt="non-virtual"><scope>base::SequenceChecker</scope><name>~SequenceChecker</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

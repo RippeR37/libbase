@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structbase_1_1MessagePump_1_1PendingTask" kind="struct" language="C++" prot="public">
+    <compoundname>base::MessagePump::PendingTask</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structbase_1_1MessagePump_1_1PendingTask_1acd75aef9e6210bb40f8cb7cf5ac90024" prot="public" static="no" mutable="no">
+        <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceClosure</ref></type>
+        <definition>OnceClosure base::MessagePump::PendingTask::task</definition>
+        <argsstring></argsstring>
+        <name>task</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_pump.h" line="20" column="17" bodyfile="base/message_loop/message_pump.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbase_1_1MessagePump_1_1PendingTask_1a51dfb7b47e931c15eb51da5da8c994b9" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="classbase_1_1SequenceId" kindref="compound">SequenceId</ref> &gt;</type>
+        <definition>std::optional&lt;SequenceId&gt; base::MessagePump::PendingTask::sequence_id</definition>
+        <argsstring></argsstring>
+        <name>sequence_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_pump.h" line="21" column="19" bodyfile="base/message_loop/message_pump.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbase_1_1MessagePump_1_1PendingTask_1a14f2b54624ce1f6c52e802f9d0ada6ee" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; ExecutorId &gt;</type>
+        <definition>std::optional&lt;ExecutorId&gt; base::MessagePump::PendingTask::allowed_executor_id</definition>
+        <argsstring></argsstring>
+        <name>allowed_executor_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_pump.h" line="22" column="19" bodyfile="base/message_loop/message_pump.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbase_1_1MessagePump_1_1PendingTask_1a47b67d2a80dcc0fd9193d1bce1f5a064" prot="public" static="no" mutable="no">
+        <type>std::weak_ptr&lt; <ref refid="classbase_1_1SequencedTaskRunner" kindref="compound">SequencedTaskRunner</ref> &gt;</type>
+        <definition>std::weak_ptr&lt;SequencedTaskRunner&gt; base::MessagePump::PendingTask::target_task_runner</definition>
+        <argsstring></argsstring>
+        <name>target_task_runner</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_pump.h" line="23" column="19" bodyfile="base/message_loop/message_pump.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structbase_1_1MessagePump_1_1PendingTask_1afddc69f1f5ed027972c4e392f4274c16" prot="public" static="no" const="yes" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>base::MessagePump::PendingTask::operator bool</definition>
+        <argsstring>() const</argsstring>
+        <name>operator bool</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_pump.h" line="18" column="14" bodyfile="base/message_loop/message_pump.h" bodystart="18" bodyend="18"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>base::OnceCallback&lt; void()&gt;</label>
+        <link refid="classbase_1_1OnceCallback"/>
+      </node>
+      <node id="1">
+        <label>base::MessagePump::PendingTask</label>
+        <link refid="structbase_1_1MessagePump_1_1PendingTask"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>task</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="base/message_loop/message_pump.h" line="17" column="20" bodyfile="base/message_loop/message_pump.h" bodystart="17" bodyend="24"/>
+    <listofallmembers>
+      <member refid="structbase_1_1MessagePump_1_1PendingTask_1a14f2b54624ce1f6c52e802f9d0ada6ee" prot="public" virt="non-virtual"><scope>base::MessagePump::PendingTask</scope><name>allowed_executor_id</name></member>
+      <member refid="structbase_1_1MessagePump_1_1PendingTask_1afddc69f1f5ed027972c4e392f4274c16" prot="public" virt="non-virtual"><scope>base::MessagePump::PendingTask</scope><name>operator bool</name></member>
+      <member refid="structbase_1_1MessagePump_1_1PendingTask_1a51dfb7b47e931c15eb51da5da8c994b9" prot="public" virt="non-virtual"><scope>base::MessagePump::PendingTask</scope><name>sequence_id</name></member>
+      <member refid="structbase_1_1MessagePump_1_1PendingTask_1a47b67d2a80dcc0fd9193d1bce1f5a064" prot="public" virt="non-virtual"><scope>base::MessagePump::PendingTask</scope><name>target_task_runner</name></member>
+      <member refid="structbase_1_1MessagePump_1_1PendingTask_1acd75aef9e6210bb40f8cb7cf5ac90024" prot="public" virt="non-virtual"><scope>base::MessagePump::PendingTask</scope><name>task</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

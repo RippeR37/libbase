@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="vlog__is__on_8h" kind="file" language="C++">
+    <compoundname>vlog_is_on.h</compoundname>
+    <includes local="yes">glog/vlog_is_on.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>glog/vlog_is_on.h</label>
+      </node>
+      <node id="1">
+        <label>base/vlog_is_on.h</label>
+        <link refid="vlog__is__on_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/vlog_is_on.h"/>
+  </compounddef>
+</doxygen>

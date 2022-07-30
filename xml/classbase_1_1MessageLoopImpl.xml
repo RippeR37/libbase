@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classbase_1_1MessageLoopImpl" kind="class" language="C++" prot="public">
+    <compoundname>base::MessageLoopImpl</compoundname>
+    <basecompoundref refid="classbase_1_1MessageLoop" prot="public" virt="non-virtual">base::MessageLoop</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbase_1_1MessageLoopImpl_1ab3ffc6406f8b085b4d1a6d8ad4159a5b" prot="private" static="no" mutable="no">
+        <type>const MessagePump::ExecutorId</type>
+        <definition>const MessagePump::ExecutorId base::MessageLoopImpl::executor_id_</definition>
+        <argsstring></argsstring>
+        <name>executor_id_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_loop_impl.h" line="26" column="33" bodyfile="base/message_loop/message_loop_impl.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1MessageLoopImpl_1a377b7843e8640be414801552b32603eb" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classbase_1_1MessagePump" kindref="compound">MessagePump</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;MessagePump&gt; base::MessageLoopImpl::message_pump_</definition>
+        <argsstring></argsstring>
+        <name>message_pump_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_loop_impl.h" line="27" column="19" bodyfile="base/message_loop/message_loop_impl.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1MessageLoopImpl_1a2482a372865a8e8e7feacac76a010cd5" prot="private" static="no" mutable="no">
+        <type>std::atomic_bool</type>
+        <definition>std::atomic_bool base::MessageLoopImpl::is_stopped_</definition>
+        <argsstring></argsstring>
+        <name>is_stopped_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_loop_impl.h" line="28" column="20" bodyfile="base/message_loop/message_loop_impl.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1MessageLoopImpl_1a88981803057fdd784f211127809542a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::MessageLoopImpl::MessageLoopImpl</definition>
+        <argsstring>(MessagePump::ExecutorId executor_id, std::shared_ptr&lt; MessagePump &gt; message_pump)</argsstring>
+        <name>MessageLoopImpl</name>
+        <param>
+          <type>MessagePump::ExecutorId</type>
+          <declname>executor_id</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classbase_1_1MessagePump" kindref="compound">MessagePump</ref> &gt;</type>
+          <declname>message_pump</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_loop_impl.h" line="13" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1MessageLoopImpl_1a1580665826efd752968f67d60a45f94a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::MessageLoopImpl::~MessageLoopImpl</definition>
+        <argsstring>() override</argsstring>
+        <name>~MessageLoopImpl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_loop_impl.h" line="15" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1MessageLoopImpl_1afdc86521f2da2b8596ce2454f9183410" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool base::MessageLoopImpl::RunOnce</definition>
+        <argsstring>() override</argsstring>
+        <name>RunOnce</name>
+        <reimplements refid="classbase_1_1MessageLoop_1a7a6f4fe9fb80ab834fa0ef3aedc34bba">RunOnce</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_loop_impl.h" line="18" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1MessageLoopImpl_1a9bfc998b6c25bd66065acbd530209bcb" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void base::MessageLoopImpl::RunUntilIdle</definition>
+        <argsstring>() override</argsstring>
+        <name>RunUntilIdle</name>
+        <reimplements refid="classbase_1_1MessageLoop_1a6c675774a48b6b26707b0c4dffd4f739">RunUntilIdle</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_loop_impl.h" line="19" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1MessageLoopImpl_1a65923f4c8f5a862b9a1cf43a5ddf5a67" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void base::MessageLoopImpl::Run</definition>
+        <argsstring>() override</argsstring>
+        <name>Run</name>
+        <reimplements refid="classbase_1_1MessageLoop_1a9c0ac0bf7e66eedaa341e3e8f09473ad">Run</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_loop_impl.h" line="20" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1MessageLoopImpl_1a247e085521238cd530509b3297ecbc65" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void base::MessageLoopImpl::Stop</definition>
+        <argsstring>(MessagePump::PendingTask last_task) override</argsstring>
+        <name>Stop</name>
+        <reimplements refid="classbase_1_1MessageLoop_1aff7b918225bbb22dbbc5b3b690076c24">Stop</reimplements>
+        <param>
+          <type><ref refid="structbase_1_1MessagePump_1_1PendingTask" kindref="compound">MessagePump::PendingTask</ref></type>
+          <declname>last_task</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_loop_impl.h" line="21" column="8"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classbase_1_1MessageLoopImpl_1a27bcbc6e07db724bf18963444c0a925a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::MessageLoopImpl::RunUntilIdleOrStop</definition>
+        <argsstring>()</argsstring>
+        <name>RunUntilIdleOrStop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_loop_impl.h" line="24" column="8"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>base::MessageLoopImpl</label>
+        <link refid="classbase_1_1MessageLoopImpl"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>base::MessageLoop</label>
+        <link refid="classbase_1_1MessageLoop"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>base::MessageLoopImpl</label>
+        <link refid="classbase_1_1MessageLoopImpl"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>base::MessageLoop</label>
+        <link refid="classbase_1_1MessageLoop"/>
+      </node>
+    </collaborationgraph>
+    <location file="base/message_loop/message_loop_impl.h" line="11" column="41" bodyfile="base/message_loop/message_loop_impl.h" bodystart="11" bodyend="29"/>
+    <listofallmembers>
+      <member refid="classbase_1_1MessageLoopImpl_1ab3ffc6406f8b085b4d1a6d8ad4159a5b" prot="private" virt="non-virtual"><scope>base::MessageLoopImpl</scope><name>executor_id_</name></member>
+      <member refid="classbase_1_1MessageLoopImpl_1a2482a372865a8e8e7feacac76a010cd5" prot="private" virt="non-virtual"><scope>base::MessageLoopImpl</scope><name>is_stopped_</name></member>
+      <member refid="classbase_1_1MessageLoopImpl_1a377b7843e8640be414801552b32603eb" prot="private" virt="non-virtual"><scope>base::MessageLoopImpl</scope><name>message_pump_</name></member>
+      <member refid="classbase_1_1MessageLoopImpl_1a88981803057fdd784f211127809542a6" prot="public" virt="non-virtual"><scope>base::MessageLoopImpl</scope><name>MessageLoopImpl</name></member>
+      <member refid="classbase_1_1MessageLoopImpl_1a65923f4c8f5a862b9a1cf43a5ddf5a67" prot="public" virt="virtual"><scope>base::MessageLoopImpl</scope><name>Run</name></member>
+      <member refid="classbase_1_1MessageLoopImpl_1afdc86521f2da2b8596ce2454f9183410" prot="public" virt="virtual"><scope>base::MessageLoopImpl</scope><name>RunOnce</name></member>
+      <member refid="classbase_1_1MessageLoopImpl_1a9bfc998b6c25bd66065acbd530209bcb" prot="public" virt="virtual"><scope>base::MessageLoopImpl</scope><name>RunUntilIdle</name></member>
+      <member refid="classbase_1_1MessageLoopImpl_1a27bcbc6e07db724bf18963444c0a925a" prot="private" virt="non-virtual"><scope>base::MessageLoopImpl</scope><name>RunUntilIdleOrStop</name></member>
+      <member refid="classbase_1_1MessageLoopImpl_1a247e085521238cd530509b3297ecbc65" prot="public" virt="virtual"><scope>base::MessageLoopImpl</scope><name>Stop</name></member>
+      <member refid="classbase_1_1MessageLoop_1aab518aebbb0c7c974ddc3c080479b133" prot="public" virt="virtual"><scope>base::MessageLoopImpl</scope><name>~MessageLoop</name></member>
+      <member refid="classbase_1_1MessageLoopImpl_1a1580665826efd752968f67d60a45f94a" prot="public" virt="non-virtual"><scope>base::MessageLoopImpl</scope><name>~MessageLoopImpl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

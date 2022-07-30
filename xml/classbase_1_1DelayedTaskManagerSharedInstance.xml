@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classbase_1_1DelayedTaskManagerSharedInstance" kind="class" language="C++" prot="public">
+    <compoundname>base::DelayedTaskManagerSharedInstance</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbase_1_1DelayedTaskManagerSharedInstance_1ac98a4c20b64650e0ab5c26db4d8b7897" prot="private" static="no" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex base::DelayedTaskManagerSharedInstance::mutex_</definition>
+        <argsstring></argsstring>
+        <name>mutex_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/delayed_task_manager_shared_instance.h" line="17" column="14" bodyfile="base/threading/delayed_task_manager_shared_instance.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1DelayedTaskManagerSharedInstance_1a46d5f34a809cb24e0324d8afcc620128" prot="private" static="no" mutable="no">
+        <type>std::weak_ptr&lt; <ref refid="classbase_1_1DelayedTaskManager" kindref="compound">DelayedTaskManager</ref> &gt;</type>
+        <definition>std::weak_ptr&lt;DelayedTaskManager&gt; base::DelayedTaskManagerSharedInstance::current_manager_</definition>
+        <argsstring></argsstring>
+        <name>current_manager_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/delayed_task_manager_shared_instance.h" line="18" column="17" bodyfile="base/threading/delayed_task_manager_shared_instance.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classbase_1_1DelayedTaskManagerSharedInstance_1ab65af0930565a24471458d3ce8adac85" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classbase_1_1DelayedTaskManager" kindref="compound">DelayedTaskManager</ref> &gt;</type>
+        <definition>static std::shared_ptr&lt;DelayedTaskManager&gt; base::DelayedTaskManagerSharedInstance::GetOrCreateSharedInstance</definition>
+        <argsstring>()</argsstring>
+        <name>GetOrCreateSharedInstance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/delayed_task_manager_shared_instance.h" line="12" column="26"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classbase_1_1DelayedTaskManagerSharedInstance_1ae19fc9e779855c044c2aa15f3fdf2a6e" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1DelayedTaskManagerSharedInstance" kindref="compound">DelayedTaskManagerSharedInstance</ref> &amp;</type>
+        <definition>static DelayedTaskManagerSharedInstance&amp; base::DelayedTaskManagerSharedInstance::GetInstance</definition>
+        <argsstring>()</argsstring>
+        <name>GetInstance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/delayed_task_manager_shared_instance.h" line="15" column="43"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/threading/delayed_task_manager_shared_instance.h" line="10" column="39" bodyfile="base/threading/delayed_task_manager_shared_instance.h" bodystart="10" bodyend="19"/>
+    <listofallmembers>
+      <member refid="classbase_1_1DelayedTaskManagerSharedInstance_1a46d5f34a809cb24e0324d8afcc620128" prot="private" virt="non-virtual"><scope>base::DelayedTaskManagerSharedInstance</scope><name>current_manager_</name></member>
+      <member refid="classbase_1_1DelayedTaskManagerSharedInstance_1ae19fc9e779855c044c2aa15f3fdf2a6e" prot="private" virt="non-virtual"><scope>base::DelayedTaskManagerSharedInstance</scope><name>GetInstance</name></member>
+      <member refid="classbase_1_1DelayedTaskManagerSharedInstance_1ab65af0930565a24471458d3ce8adac85" prot="public" virt="non-virtual"><scope>base::DelayedTaskManagerSharedInstance</scope><name>GetOrCreateSharedInstance</name></member>
+      <member refid="classbase_1_1DelayedTaskManagerSharedInstance_1ac98a4c20b64650e0ab5c26db4d8b7897" prot="private" virt="non-virtual"><scope>base::DelayedTaskManagerSharedInstance</scope><name>mutex_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

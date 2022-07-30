@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="sequenced__task__runner__internals_8h" kind="file" language="C++">
+    <compoundname>sequenced_task_runner_internals.h</compoundname>
+    <includes local="no">memory</includes>
+    <includedby refid="sequenced__task__runner_8h" local="yes">base/sequenced_task_runner.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>base/sequenced_task_runner_internals.h</label>
+        <link refid="sequenced__task__runner__internals_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/sequenced_task_runner_internals.h"/>
+  </compounddef>
+</doxygen>

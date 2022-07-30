@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structbase_1_1traits_1_1IsFunctionPointer_3_01T_07_5_08_07Args_8_8_8_08_4" kind="struct" language="C++" prot="public">
+    <compoundname>base::traits::IsFunctionPointer&lt; T(*)(Args...)&gt;</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">true_type</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+      <param>
+        <type>typename...</type>
+        <declname>Args</declname>
+        <defname>Args</defname>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>std::true_type</label>
+      </node>
+      <node id="1">
+        <label>base::traits::IsFunctionPointer&lt; T(*)(Args...)&gt;</label>
+        <link refid="structbase_1_1traits_1_1IsFunctionPointer_3_01T_07_5_08_07Args_8_8_8_08_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>std::true_type</label>
+      </node>
+      <node id="1">
+        <label>base::traits::IsFunctionPointer&lt; T(*)(Args...)&gt;</label>
+        <link refid="structbase_1_1traits_1_1IsFunctionPointer_3_01T_07_5_08_07Args_8_8_8_08_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="base/type_traits.h" line="82" column="40" bodyfile="base/type_traits.h" bodystart="82" bodyend="82"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

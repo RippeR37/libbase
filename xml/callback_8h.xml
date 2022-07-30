@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="callback_8h" kind="file" language="C++">
+    <compoundname>callback.h</compoundname>
+    <includes local="no">memory</includes>
+    <includes refid="bind_8h" local="yes">base/bind.h</includes>
+    <includes refid="callback__iface_8h" local="yes">base/callback_iface.h</includes>
+    <includes refid="callback__internals_8h" local="yes">base/callback_internals.h</includes>
+    <includedby refid="barrier__callback_8h" local="yes">base/barrier_callback.h</includedby>
+    <includedby refid="barrier__closure_8h" local="yes">base/barrier_closure.h</includedby>
+    <includedby refid="bind__post__task_8h" local="yes">base/bind_post_task.h</includedby>
+    <includedby refid="callback__helpers_8h" local="yes">base/callback_helpers.h</includedby>
+    <includedby refid="message__pump_8h" local="yes">base/message_loop/message_pump.h</includedby>
+    <includedby refid="task__runner_8h" local="yes">base/task_runner.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>base/callback.h</label>
+        <link refid="callback_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classbase_1_1OnceCallback" prot="public">base::OnceCallback</innerclass>
+    <innerclass refid="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4" prot="public">base::OnceCallback&lt; ReturnType(ArgumentTypes...)&gt;</innerclass>
+    <innerclass refid="classbase_1_1RepeatingCallback" prot="public">base::RepeatingCallback</innerclass>
+    <innerclass refid="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4" prot="public">base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;</innerclass>
+    <innerclass refid="structbase_1_1traits_1_1IsOnceCallbackType" prot="public">base::traits::IsOnceCallbackType</innerclass>
+    <innerclass refid="structbase_1_1traits_1_1IsOnceCallbackType_3_01OnceCallback_3_01CallbackSignatureType_01_4_01_4" prot="public">base::traits::IsOnceCallbackType&lt; OnceCallback&lt; CallbackSignatureType &gt; &gt;</innerclass>
+    <innerclass refid="structbase_1_1traits_1_1IsRepeatingCallbackType" prot="public">base::traits::IsRepeatingCallbackType</innerclass>
+    <innerclass refid="structbase_1_1traits_1_1IsRepeatingCallbackType_3_01RepeatingCallback_3_01CallbackSignatureType_01_4_01_4" prot="public">base::traits::IsRepeatingCallbackType&lt; RepeatingCallback&lt; CallbackSignatureType &gt; &gt;</innerclass>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <innernamespace refid="namespacebase_1_1traits">base::traits</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/callback.h"/>
+  </compounddef>
+</doxygen>

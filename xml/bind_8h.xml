@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="bind_8h" kind="file" language="C++">
+    <compoundname>bind.h</compoundname>
+    <includes local="no">utility</includes>
+    <includes refid="bind__internals_8h" local="yes">base/bind_internals.h</includes>
+    <includes refid="callback__forward_8h" local="yes">base/callback_forward.h</includes>
+    <includedby refid="barrier__callback_8h" local="yes">base/barrier_callback.h</includedby>
+    <includedby refid="callback_8h" local="yes">base/callback.h</includedby>
+    <includedby refid="callback__helpers_8h" local="yes">base/callback_helpers.h</includedby>
+    <includedby refid="sequenced__task__runner_8h" local="yes">base/sequenced_task_runner.h</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>utility</label>
+      </node>
+      <node id="1">
+        <label>base/bind.h</label>
+        <link refid="bind_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/bind.h"/>
+  </compounddef>
+</doxygen>

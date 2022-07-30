@@ -1,0 +1,293 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classbase_1_1MessagePumpImpl" kind="class" language="C++" prot="public">
+    <compoundname>base::MessagePumpImpl</compoundname>
+    <basecompoundref refid="classbase_1_1MessagePump" prot="public" virt="non-virtual">base::MessagePump</basecompoundref>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classbase_1_1MessagePumpImpl_1a78a51dd93d9129e108399c525fbe1417" prot="private" static="no">
+        <type>std::list&lt; <ref refid="structbase_1_1MessagePump_1_1PendingTask" kindref="compound">PendingTask</ref> &gt;</type>
+        <definition>using base::MessagePumpImpl::PendingTaskList =  std::list&lt;PendingTask&gt;</definition>
+        <argsstring></argsstring>
+        <name>PendingTaskList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_pump_impl.h" line="23" column="3" bodyfile="base/message_loop/message_pump_impl.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classbase_1_1MessagePumpImpl_1a24b52dbd1ffa6b97453e1da43e0cb660" prot="private" static="no">
+        <type>PendingTaskList::iterator</type>
+        <definition>using base::MessagePumpImpl::PendingTaskIter =  PendingTaskList::iterator</definition>
+        <argsstring></argsstring>
+        <name>PendingTaskIter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_pump_impl.h" line="24" column="3" bodyfile="base/message_loop/message_pump_impl.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbase_1_1MessagePumpImpl_1a950f6c6e127fab8205e08aaa2941bd75" prot="private" static="no" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex base::MessagePumpImpl::mutex_</definition>
+        <argsstring></argsstring>
+        <name>mutex_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_pump_impl.h" line="33" column="14" bodyfile="base/message_loop/message_pump_impl.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1MessagePumpImpl_1ab4e782e3097fadd1ebfd3305a1e11f53" prot="private" static="no" mutable="no">
+        <type>std::condition_variable</type>
+        <definition>std::condition_variable base::MessagePumpImpl::cond_var_</definition>
+        <argsstring></argsstring>
+        <name>cond_var_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_pump_impl.h" line="34" column="27" bodyfile="base/message_loop/message_pump_impl.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1MessagePumpImpl_1a6507ca1e00929799e95a06f09216fd1c" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool base::MessagePumpImpl::stopped_</definition>
+        <argsstring></argsstring>
+        <name>stopped_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_pump_impl.h" line="35" column="8" bodyfile="base/message_loop/message_pump_impl.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1MessagePumpImpl_1a11879f65d7a804c75af1f0a7516d6c07" prot="private" static="no" mutable="no">
+        <type>PendingTaskList</type>
+        <definition>PendingTaskList base::MessagePumpImpl::pending_tasks_</definition>
+        <argsstring></argsstring>
+        <name>pending_tasks_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_pump_impl.h" line="36" column="19" bodyfile="base/message_loop/message_pump_impl.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1MessagePumpImpl_1a13cf99d270cff8c5e6cacdd34beef4ed" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::optional&lt; <ref refid="classbase_1_1SequenceId" kindref="compound">SequenceId</ref> &gt; &gt;</type>
+        <definition>std::vector&lt;std::optional&lt;SequenceId&gt; &gt; base::MessagePumpImpl::active_sequences_</definition>
+        <argsstring></argsstring>
+        <name>active_sequences_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_pump_impl.h" line="37" column="15" bodyfile="base/message_loop/message_pump_impl.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1MessagePumpImpl_1a47605e5fdd13b6ded293801839a70e6f" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::MessagePumpImpl::MessagePumpImpl</definition>
+        <argsstring>(size_t executors_count)</argsstring>
+        <name>MessagePumpImpl</name>
+        <param>
+          <type>size_t</type>
+          <declname>executors_count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_pump_impl.h" line="15" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1MessagePumpImpl_1a8d5bbc486f744357082e3cc40750173f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="structbase_1_1MessagePump_1_1PendingTask" kindref="compound">PendingTask</ref></type>
+        <definition>PendingTask base::MessagePumpImpl::GetNextPendingTask</definition>
+        <argsstring>(ExecutorId executor_id) override</argsstring>
+        <name>GetNextPendingTask</name>
+        <reimplements refid="classbase_1_1MessagePump_1ab3009cf8c1631dcb171293f7e66d6e89">GetNextPendingTask</reimplements>
+        <param>
+          <type>ExecutorId</type>
+          <declname>executor_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_pump_impl.h" line="18" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1MessagePumpImpl_1a7a4271b179751b6b90207f3ae11a796a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool base::MessagePumpImpl::QueuePendingTask</definition>
+        <argsstring>(PendingTask pending_task) override</argsstring>
+        <name>QueuePendingTask</name>
+        <reimplements refid="classbase_1_1MessagePump_1ad8c3cd63106f10e1227af88faffe13b3">QueuePendingTask</reimplements>
+        <param>
+          <type><ref refid="structbase_1_1MessagePump_1_1PendingTask" kindref="compound">PendingTask</ref></type>
+          <declname>pending_task</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_pump_impl.h" line="19" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1MessagePumpImpl_1a3a507baa5d43f106293e068dae329204" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void base::MessagePumpImpl::Stop</definition>
+        <argsstring>(PendingTask last_task) override</argsstring>
+        <name>Stop</name>
+        <reimplements refid="classbase_1_1MessagePump_1ab63cb2144c3bea2e80dc9d9d20f82c8a">Stop</reimplements>
+        <param>
+          <type><ref refid="structbase_1_1MessagePump_1_1PendingTask" kindref="compound">PendingTask</ref></type>
+          <declname>last_task</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_pump_impl.h" line="20" column="8"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classbase_1_1MessagePumpImpl_1a38592d93eae86a65bc327cf24efe361e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbase_1_1MessagePump_1_1PendingTask" kindref="compound">PendingTask</ref></type>
+        <definition>PendingTask base::MessagePumpImpl::GetNextPendingTask_Locked</definition>
+        <argsstring>(ExecutorId executor_id)</argsstring>
+        <name>GetNextPendingTask_Locked</name>
+        <param>
+          <type>ExecutorId</type>
+          <declname>executor_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_pump_impl.h" line="26" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1MessagePumpImpl_1aa86555e478ed46ca235142d17dc54c2e" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::MessagePumpImpl::IsTaskFromSequenceCurrentlyProcessed_Locked</definition>
+        <argsstring>(SequenceId sequence_id) const</argsstring>
+        <name>IsTaskFromSequenceCurrentlyProcessed_Locked</name>
+        <param>
+          <type><ref refid="classbase_1_1SequenceId" kindref="compound">SequenceId</ref></type>
+          <declname>sequence_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_pump_impl.h" line="27" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1MessagePumpImpl_1a9160dc0a79ef233d6690e0c8c72118ee" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::MessagePumpImpl::HasAllowedPendingTasks_Locked</definition>
+        <argsstring>(ExecutorId executor_id)</argsstring>
+        <name>HasAllowedPendingTasks_Locked</name>
+        <param>
+          <type>ExecutorId</type>
+          <declname>executor_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_pump_impl.h" line="29" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1MessagePumpImpl_1a4242f3cc5b4df4bfa2b44649be589d6f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>PendingTaskIter</type>
+        <definition>PendingTaskIter base::MessagePumpImpl::FindFirstAllowedPendingTaskIter_Locked</definition>
+        <argsstring>(ExecutorId executor_id)</argsstring>
+        <name>FindFirstAllowedPendingTaskIter_Locked</name>
+        <param>
+          <type>ExecutorId</type>
+          <declname>executor_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/message_pump_impl.h" line="30" column="19"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>base::MessagePump</label>
+        <link refid="classbase_1_1MessagePump"/>
+      </node>
+      <node id="1">
+        <label>base::MessagePumpImpl</label>
+        <link refid="classbase_1_1MessagePumpImpl"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>base::MessagePump</label>
+        <link refid="classbase_1_1MessagePump"/>
+      </node>
+      <node id="1">
+        <label>base::MessagePumpImpl</label>
+        <link refid="classbase_1_1MessagePumpImpl"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="base/message_loop/message_pump_impl.h" line="13" column="41" bodyfile="base/message_loop/message_pump_impl.h" bodystart="13" bodyend="38"/>
+    <listofallmembers>
+      <member refid="classbase_1_1MessagePumpImpl_1a13cf99d270cff8c5e6cacdd34beef4ed" prot="private" virt="non-virtual"><scope>base::MessagePumpImpl</scope><name>active_sequences_</name></member>
+      <member refid="classbase_1_1MessagePumpImpl_1ab4e782e3097fadd1ebfd3305a1e11f53" prot="private" virt="non-virtual"><scope>base::MessagePumpImpl</scope><name>cond_var_</name></member>
+      <member refid="classbase_1_1MessagePump_1a3c95e47c66c83ca726a9e0735be08e49" prot="public" virt="non-virtual"><scope>base::MessagePumpImpl</scope><name>ExecutorId</name></member>
+      <member refid="classbase_1_1MessagePumpImpl_1a4242f3cc5b4df4bfa2b44649be589d6f" prot="private" virt="non-virtual"><scope>base::MessagePumpImpl</scope><name>FindFirstAllowedPendingTaskIter_Locked</name></member>
+      <member refid="classbase_1_1MessagePumpImpl_1a8d5bbc486f744357082e3cc40750173f" prot="public" virt="virtual"><scope>base::MessagePumpImpl</scope><name>GetNextPendingTask</name></member>
+      <member refid="classbase_1_1MessagePumpImpl_1a38592d93eae86a65bc327cf24efe361e" prot="private" virt="non-virtual"><scope>base::MessagePumpImpl</scope><name>GetNextPendingTask_Locked</name></member>
+      <member refid="classbase_1_1MessagePumpImpl_1a9160dc0a79ef233d6690e0c8c72118ee" prot="private" virt="non-virtual"><scope>base::MessagePumpImpl</scope><name>HasAllowedPendingTasks_Locked</name></member>
+      <member refid="classbase_1_1MessagePumpImpl_1aa86555e478ed46ca235142d17dc54c2e" prot="private" virt="non-virtual"><scope>base::MessagePumpImpl</scope><name>IsTaskFromSequenceCurrentlyProcessed_Locked</name></member>
+      <member refid="classbase_1_1MessagePumpImpl_1a47605e5fdd13b6ded293801839a70e6f" prot="public" virt="non-virtual"><scope>base::MessagePumpImpl</scope><name>MessagePumpImpl</name></member>
+      <member refid="classbase_1_1MessagePumpImpl_1a950f6c6e127fab8205e08aaa2941bd75" prot="private" virt="non-virtual"><scope>base::MessagePumpImpl</scope><name>mutex_</name></member>
+      <member refid="classbase_1_1MessagePumpImpl_1a11879f65d7a804c75af1f0a7516d6c07" prot="private" virt="non-virtual"><scope>base::MessagePumpImpl</scope><name>pending_tasks_</name></member>
+      <member refid="classbase_1_1MessagePumpImpl_1a24b52dbd1ffa6b97453e1da43e0cb660" prot="private" virt="non-virtual"><scope>base::MessagePumpImpl</scope><name>PendingTaskIter</name></member>
+      <member refid="classbase_1_1MessagePumpImpl_1a78a51dd93d9129e108399c525fbe1417" prot="private" virt="non-virtual"><scope>base::MessagePumpImpl</scope><name>PendingTaskList</name></member>
+      <member refid="classbase_1_1MessagePumpImpl_1a7a4271b179751b6b90207f3ae11a796a" prot="public" virt="virtual"><scope>base::MessagePumpImpl</scope><name>QueuePendingTask</name></member>
+      <member refid="classbase_1_1MessagePumpImpl_1a3a507baa5d43f106293e068dae329204" prot="public" virt="virtual"><scope>base::MessagePumpImpl</scope><name>Stop</name></member>
+      <member refid="classbase_1_1MessagePumpImpl_1a6507ca1e00929799e95a06f09216fd1c" prot="private" virt="non-virtual"><scope>base::MessagePumpImpl</scope><name>stopped_</name></member>
+      <member refid="classbase_1_1MessagePump_1a345b0ddb4feb7108fa525e4e7a141429" prot="public" virt="virtual"><scope>base::MessagePumpImpl</scope><name>~MessagePump</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

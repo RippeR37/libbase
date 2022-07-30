@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="dir_634669b979a0cc3c2c60dd130930a30f" kind="dir">
+    <compoundname>base/threading</compoundname>
+    <innerfile refid="delayed__task__manager_8h">delayed_task_manager.h</innerfile>
+    <innerfile refid="delayed__task__manager__shared__instance_8h">delayed_task_manager_shared_instance.h</innerfile>
+    <innerfile refid="sequenced__task__runner__handle_8h">sequenced_task_runner_handle.h</innerfile>
+    <innerfile refid="task__runner__impl_8h">task_runner_impl.h</innerfile>
+    <innerfile refid="thread_8h">thread.h</innerfile>
+    <innerfile refid="thread__pool_8h">thread_pool.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/threading/"/>
+  </compounddef>
+</doxygen>

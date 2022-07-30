@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="dir_6990e531c71adeaa0148d4627b01589a" kind="dir">
+    <compoundname>base/time</compoundname>
+    <innerfile refid="time_8h">time.h</innerfile>
+    <innerfile refid="time__delta_8h">time_delta.h</innerfile>
+    <innerfile refid="time__ticks_8h">time_ticks.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/time/"/>
+  </compounddef>
+</doxygen>

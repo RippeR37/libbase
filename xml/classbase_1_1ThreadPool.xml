@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classbase_1_1ThreadPool" kind="class" language="C++" prot="public">
+    <compoundname>base::ThreadPool</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbase_1_1ThreadPool_1ab2bb04e04d2a2eae10d7aed1b15beb03" prot="private" static="no" mutable="no">
+        <type>const size_t</type>
+        <definition>const size_t base::ThreadPool::initial_size_</definition>
+        <argsstring></argsstring>
+        <name>initial_size_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread_pool.h" line="28" column="16" bodyfile="base/threading/thread_pool.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1ThreadPool_1a85b23dacb595028f81a8a7c9cbe484d7" prot="private" static="no" mutable="no">
+        <type>std::weak_ptr&lt; <ref refid="classbase_1_1MessagePump" kindref="compound">MessagePump</ref> &gt;</type>
+        <definition>std::weak_ptr&lt;MessagePump&gt; base::ThreadPool::pump_</definition>
+        <argsstring></argsstring>
+        <name>pump_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread_pool.h" line="29" column="17" bodyfile="base/threading/thread_pool.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1ThreadPool_1a8ce77e75d24bf793f5244330d62d0742" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; ThreadData &gt;</type>
+        <definition>std::vector&lt;ThreadData&gt; base::ThreadPool::threads_</definition>
+        <argsstring></argsstring>
+        <name>threads_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread_pool.h" line="30" column="15" bodyfile="base/threading/thread_pool.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1ThreadPool_1a68c6531d2ca5759e0291394ceef30aed" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classbase_1_1TaskRunner" kindref="compound">TaskRunner</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;TaskRunner&gt; base::ThreadPool::task_runner_</definition>
+        <argsstring></argsstring>
+        <name>task_runner_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread_pool.h" line="31" column="19" bodyfile="base/threading/thread_pool.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1ThreadPool_1a5aad2c135f3f22be3a2ce58a48a7292c" prot="private" static="no" mutable="no">
+        <type>std::mt19937</type>
+        <definition>std::mt19937 base::ThreadPool::random_generator_</definition>
+        <argsstring></argsstring>
+        <name>random_generator_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread_pool.h" line="32" column="16" bodyfile="base/threading/thread_pool.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1ThreadPool_1a08d2d8d1e1e8d7fdee0cf25fd94c40c4" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::ThreadPool::ThreadPool</definition>
+        <argsstring>(size_t initial_size)</argsstring>
+        <name>ThreadPool</name>
+        <param>
+          <type>size_t</type>
+          <declname>initial_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread_pool.h" line="15" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1ThreadPool_1a7a63d2fc9721d6f82de27428b949ca4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::ThreadPool::~ThreadPool</definition>
+        <argsstring>()</argsstring>
+        <name>~ThreadPool</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread_pool.h" line="16" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1ThreadPool_1abb969c95d62c3b34d2e532e2fbe1c0ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::ThreadPool::Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread_pool.h" line="18" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1ThreadPool_1a0eab6fa26e638473d915ebe19ddc93da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::ThreadPool::Stop</definition>
+        <argsstring>()</argsstring>
+        <name>Stop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread_pool.h" line="19" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1ThreadPool_1a7f2758304ca8eabe3149f11eb177cacc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classbase_1_1TaskRunner" kindref="compound">TaskRunner</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;TaskRunner&gt; base::ThreadPool::GetTaskRunner</definition>
+        <argsstring>() const</argsstring>
+        <name>GetTaskRunner</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread_pool.h" line="21" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1ThreadPool_1a652c174d45eb84b827afc8e03a7f9f35" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classbase_1_1SequencedTaskRunner" kindref="compound">SequencedTaskRunner</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;SequencedTaskRunner&gt; base::ThreadPool::CreateSequencedTaskRunner</definition>
+        <argsstring>()</argsstring>
+        <name>CreateSequencedTaskRunner</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread_pool.h" line="22" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1ThreadPool_1a859504531db705a0954524fe383794ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classbase_1_1SingleThreadTaskRunner" kindref="compound">SingleThreadTaskRunner</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;SingleThreadTaskRunner&gt; base::ThreadPool::CreateSingleThreadTaskRunner</definition>
+        <argsstring>()</argsstring>
+        <name>CreateSingleThreadTaskRunner</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/thread_pool.h" line="23" column="19"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/threading/thread_pool.h" line="13" column="17" bodyfile="base/threading/thread_pool.h" bodystart="13" bodyend="33"/>
+    <listofallmembers>
+      <member refid="classbase_1_1ThreadPool_1a652c174d45eb84b827afc8e03a7f9f35" prot="public" virt="non-virtual"><scope>base::ThreadPool</scope><name>CreateSequencedTaskRunner</name></member>
+      <member refid="classbase_1_1ThreadPool_1a859504531db705a0954524fe383794ef" prot="public" virt="non-virtual"><scope>base::ThreadPool</scope><name>CreateSingleThreadTaskRunner</name></member>
+      <member refid="classbase_1_1ThreadPool_1a7f2758304ca8eabe3149f11eb177cacc" prot="public" virt="non-virtual"><scope>base::ThreadPool</scope><name>GetTaskRunner</name></member>
+      <member refid="classbase_1_1ThreadPool_1ab2bb04e04d2a2eae10d7aed1b15beb03" prot="private" virt="non-virtual"><scope>base::ThreadPool</scope><name>initial_size_</name></member>
+      <member refid="classbase_1_1ThreadPool_1a85b23dacb595028f81a8a7c9cbe484d7" prot="private" virt="non-virtual"><scope>base::ThreadPool</scope><name>pump_</name></member>
+      <member refid="classbase_1_1ThreadPool_1a5aad2c135f3f22be3a2ce58a48a7292c" prot="private" virt="non-virtual"><scope>base::ThreadPool</scope><name>random_generator_</name></member>
+      <member refid="classbase_1_1ThreadPool_1abb969c95d62c3b34d2e532e2fbe1c0ba" prot="public" virt="non-virtual"><scope>base::ThreadPool</scope><name>Start</name></member>
+      <member refid="classbase_1_1ThreadPool_1a0eab6fa26e638473d915ebe19ddc93da" prot="public" virt="non-virtual"><scope>base::ThreadPool</scope><name>Stop</name></member>
+      <member refid="classbase_1_1ThreadPool_1a68c6531d2ca5759e0291394ceef30aed" prot="private" virt="non-virtual"><scope>base::ThreadPool</scope><name>task_runner_</name></member>
+      <member refid="classbase_1_1ThreadPool_1a08d2d8d1e1e8d7fdee0cf25fd94c40c4" prot="public" virt="non-virtual"><scope>base::ThreadPool</scope><name>ThreadPool</name></member>
+      <member refid="classbase_1_1ThreadPool_1a8ce77e75d24bf793f5244330d62d0742" prot="private" virt="non-virtual"><scope>base::ThreadPool</scope><name>threads_</name></member>
+      <member refid="classbase_1_1ThreadPool_1a7a63d2fc9721d6f82de27428b949ca4d" prot="public" virt="non-virtual"><scope>base::ThreadPool</scope><name>~ThreadPool</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

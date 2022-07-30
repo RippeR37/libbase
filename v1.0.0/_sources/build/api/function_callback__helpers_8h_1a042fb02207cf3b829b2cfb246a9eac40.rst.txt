@@ -1,0 +1,14 @@
+.. _exhale_function_callback__helpers_8h_1a042fb02207cf3b829b2cfb246a9eac40:
+
+Template Function base::SplitOnceCallback
+=========================================
+
+- Defined in :ref:`file_base_callback_helpers.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: base::SplitOnceCallback(OnceCallback<ReturnType(ArgumentTypes...)>)
+   :project: libbase

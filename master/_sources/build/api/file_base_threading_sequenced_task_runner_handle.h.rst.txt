@@ -1,0 +1,47 @@
+
+.. _file_base_threading_sequenced_task_runner_handle.h:
+
+File sequenced_task_runner_handle.h
+===================================
+
+|exhale_lsh| :ref:`Parent directory <dir_base_threading>` (``base/threading``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/threading/sequenced_task_runner_handle.h``)
+--------------------------------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``memory`` (:ref:`file_base_memory_weak_ptr.h`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classbase_1_1SequencedTaskRunnerHandle`
+

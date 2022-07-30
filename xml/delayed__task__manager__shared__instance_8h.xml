@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="delayed__task__manager__shared__instance_8h" kind="file" language="C++">
+    <compoundname>delayed_task_manager_shared_instance.h</compoundname>
+    <includes local="no">memory</includes>
+    <includes local="no">mutex</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>base/threading/delayed_task_manager_shared_instance.h</label>
+        <link refid="delayed__task__manager__shared__instance_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>mutex</label>
+      </node>
+      <node id="2">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classbase_1_1DelayedTaskManagerSharedInstance" prot="public">base::DelayedTaskManagerSharedInstance</innerclass>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/threading/delayed_task_manager_shared_instance.h"/>
+  </compounddef>
+</doxygen>

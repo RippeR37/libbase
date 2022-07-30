@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classbase_1_1SequencedTaskRunner" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>base::SequencedTaskRunner</compoundname>
+    <basecompoundref refid="classbase_1_1TaskRunner" prot="public" virt="non-virtual">base::TaskRunner</basecompoundref>
+    <derivedcompoundref refid="classbase_1_1SequencedTaskRunnerImpl" prot="public" virt="non-virtual">base::SequencedTaskRunnerImpl</derivedcompoundref>
+    <derivedcompoundref refid="classbase_1_1SingleThreadTaskRunner" prot="public" virt="non-virtual">base::SingleThreadTaskRunner</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1SequencedTaskRunner_1ad8453ef90f4052b0bba4df86f7b65d36" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool base::SequencedTaskRunner::RunsTasksInCurrentSequence</definition>
+        <argsstring>() const =0</argsstring>
+        <name>RunsTasksInCurrentSequence</name>
+        <reimplementedby refid="classbase_1_1SequencedTaskRunnerImpl_1affa918990c534d2ba9837e7877b64ece">RunsTasksInCurrentSequence</reimplementedby>
+        <reimplementedby refid="classbase_1_1SingleThreadTaskRunnerImpl_1a4490fa95f9f592d657f1d7a87af26ae6">RunsTasksInCurrentSequence</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/sequenced_task_runner.h" line="16" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1SequencedTaskRunner_1a51c585c600a5469711c6a15ea673f141" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool base::SequencedTaskRunner::DeleteSoon</definition>
+        <argsstring>(SourceLocation location, std::unique_ptr&lt; T &gt; object)</argsstring>
+        <name>DeleteSoon</name>
+        <param>
+          <type><ref refid="classbase_1_1SourceLocation" kindref="compound">SourceLocation</ref></type>
+          <declname>location</declname>
+        </param>
+        <param>
+          <type>std::unique_ptr&lt; T &gt;</type>
+          <declname>object</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/sequenced_task_runner.h" line="19" column="8" bodyfile="base/sequenced_task_runner.h" bodystart="19" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1SequencedTaskRunner_1aae581e5ac5ec7e992f76c9c221017410" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool base::SequencedTaskRunner::DeleteSoon</definition>
+        <argsstring>(SourceLocation location, const T *object)</argsstring>
+        <name>DeleteSoon</name>
+        <param>
+          <type><ref refid="classbase_1_1SourceLocation" kindref="compound">SourceLocation</ref></type>
+          <declname>location</declname>
+        </param>
+        <param>
+          <type>const T *</type>
+          <declname>object</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/sequenced_task_runner.h" line="26" column="8" bodyfile="base/sequenced_task_runner.h" bodystart="26" bodyend="29"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>base::SequencedTaskRunnerImpl</label>
+        <link refid="classbase_1_1SequencedTaskRunnerImpl"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>base::SingleThreadTaskRunnerImpl</label>
+        <link refid="classbase_1_1SingleThreadTaskRunnerImpl"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>base::SequencedTaskRunner</label>
+        <link refid="classbase_1_1SequencedTaskRunner"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>base::SingleThreadTaskRunner</label>
+        <link refid="classbase_1_1SingleThreadTaskRunner"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>base::TaskRunner</label>
+        <link refid="classbase_1_1TaskRunner"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>base::SequencedTaskRunner</label>
+        <link refid="classbase_1_1SequencedTaskRunner"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>base::TaskRunner</label>
+        <link refid="classbase_1_1TaskRunner"/>
+      </node>
+    </collaborationgraph>
+    <location file="base/sequenced_task_runner.h" line="9" column="44" bodyfile="base/sequenced_task_runner.h" bodystart="9" bodyend="30"/>
+    <listofallmembers>
+      <member refid="classbase_1_1SequencedTaskRunner_1a51c585c600a5469711c6a15ea673f141" prot="public" virt="non-virtual"><scope>base::SequencedTaskRunner</scope><name>DeleteSoon</name></member>
+      <member refid="classbase_1_1SequencedTaskRunner_1aae581e5ac5ec7e992f76c9c221017410" prot="public" virt="non-virtual"><scope>base::SequencedTaskRunner</scope><name>DeleteSoon</name></member>
+      <member refid="classbase_1_1TaskRunner_1a9718748b69467d9f2bfcdb31dd090792" prot="public" virt="pure-virtual"><scope>base::SequencedTaskRunner</scope><name>PostDelayedTask</name></member>
+      <member refid="classbase_1_1TaskRunner_1afa234d22c5865bc0f5deff0cac900797" prot="public" virt="non-virtual"><scope>base::SequencedTaskRunner</scope><name>PostTask</name></member>
+      <member refid="classbase_1_1TaskRunner_1aba59920cc89afd3f4044629f5a20f9ab" prot="public" virt="non-virtual"><scope>base::SequencedTaskRunner</scope><name>PostTaskAndReply</name></member>
+      <member refid="classbase_1_1TaskRunner_1a8ed5933dc9cedef9d5b3bc6daf417900" prot="public" virt="non-virtual"><scope>base::SequencedTaskRunner</scope><name>PostTaskAndReplyWithResult</name></member>
+      <member refid="classbase_1_1SequencedTaskRunner_1ad8453ef90f4052b0bba4df86f7b65d36" prot="public" virt="pure-virtual"><scope>base::SequencedTaskRunner</scope><name>RunsTasksInCurrentSequence</name></member>
+      <member refid="classbase_1_1TaskRunner_1ab9c6a11cf7be935ed913c21979d580bd" prot="public" virt="virtual"><scope>base::SequencedTaskRunner</scope><name>~TaskRunner</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

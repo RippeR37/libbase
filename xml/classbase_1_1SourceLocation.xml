@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classbase_1_1SourceLocation" kind="class" language="C++" prot="public">
+    <compoundname>base::SourceLocation</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classbase_1_1SourceLocation_1a59194e3d96a36519c807ebc5f7ae960a" prot="public" static="no" mutable="no">
+        <type>const char *</type>
+        <definition>const char* base::SourceLocation::file</definition>
+        <argsstring></argsstring>
+        <name>file</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/source_location.h" line="11" column="14" bodyfile="base/source_location.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1SourceLocation_1a3ea4f1eaf17b58fc9d347bd3dd6a27c9" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t base::SourceLocation::line</definition>
+        <argsstring></argsstring>
+        <name>line</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/source_location.h" line="12" column="10" bodyfile="base/source_location.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1SourceLocation_1ac70789a09c24e8a1f4c13db70d800329" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>base::SourceLocation::SourceLocation</definition>
+        <argsstring>(const char *file, size_t line)</argsstring>
+        <name>SourceLocation</name>
+        <param>
+          <type>const char *</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/source_location.h" line="9" column="3" bodyfile="base/source_location.h" bodystart="9" bodyend="9"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/source_location.h" line="7" column="21" bodyfile="base/source_location.h" bodystart="7" bodyend="13"/>
+    <listofallmembers>
+      <member refid="classbase_1_1SourceLocation_1a59194e3d96a36519c807ebc5f7ae960a" prot="public" virt="non-virtual"><scope>base::SourceLocation</scope><name>file</name></member>
+      <member refid="classbase_1_1SourceLocation_1a3ea4f1eaf17b58fc9d347bd3dd6a27c9" prot="public" virt="non-virtual"><scope>base::SourceLocation</scope><name>line</name></member>
+      <member refid="classbase_1_1SourceLocation_1ac70789a09c24e8a1f4c13db70d800329" prot="public" virt="non-virtual"><scope>base::SourceLocation</scope><name>SourceLocation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

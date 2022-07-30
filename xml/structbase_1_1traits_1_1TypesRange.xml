@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structbase_1_1traits_1_1TypesRange" kind="struct" language="C++" prot="public">
+    <compoundname>base::traits::TypesRange</compoundname>
+    <templateparamlist>
+      <param>
+        <type>size_t</type>
+        <declname>Offset</declname>
+        <defname>Offset</defname>
+      </param>
+      <param>
+        <type>typename TupleType</type>
+      </param>
+      <param>
+        <type>typename IndexSequence</type>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/type_traits.h" line="43" column="17" bodyfile="base/type_traits.h" bodystart="43" bodyend="43"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

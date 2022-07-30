@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="dir_e914ee4d4a44400f1fdb170cb4ead18a" kind="dir">
+    <compoundname>base</compoundname>
+    <innerdir refid="dir_b61bbd7d460f26f4c3b7642f28c67f30">base/memory</innerdir>
+    <innerdir refid="dir_802c9899d0a5219b30e5fe97f9d02030">base/message_loop</innerdir>
+    <innerdir refid="dir_9449fdd6eae23017b58bec2fd411a57b">base/synchronization</innerdir>
+    <innerdir refid="dir_634669b979a0cc3c2c60dd130930a30f">base/threading</innerdir>
+    <innerdir refid="dir_6990e531c71adeaa0148d4627b01589a">base/time</innerdir>
+    <innerdir refid="dir_2591cf406277c6183859abd36813c2a4">base/timer</innerdir>
+    <innerdir refid="dir_63ba7ecf8883a410c1ada621900f383c">base/trace_event</innerdir>
+    <innerfile refid="auto__reset_8h">auto_reset.h</innerfile>
+    <innerfile refid="barrier__callback_8h">barrier_callback.h</innerfile>
+    <innerfile refid="barrier__closure_8h">barrier_closure.h</innerfile>
+    <innerfile refid="bind_8h">bind.h</innerfile>
+    <innerfile refid="bind__internals_8h">bind_internals.h</innerfile>
+    <innerfile refid="bind__post__task_8h">bind_post_task.h</innerfile>
+    <innerfile refid="callback_8h">callback.h</innerfile>
+    <innerfile refid="callback__forward_8h">callback_forward.h</innerfile>
+    <innerfile refid="callback__helpers_8h">callback_helpers.h</innerfile>
+    <innerfile refid="callback__iface_8h">callback_iface.h</innerfile>
+    <innerfile refid="callback__internals_8h">callback_internals.h</innerfile>
+    <innerfile refid="init_8h">init.h</innerfile>
+    <innerfile refid="logging_8h">logging.h</innerfile>
+    <innerfile refid="sequence__checker_8h">sequence_checker.h</innerfile>
+    <innerfile refid="sequence__id_8h">sequence_id.h</innerfile>
+    <innerfile refid="sequenced__task__runner_8h">sequenced_task_runner.h</innerfile>
+    <innerfile refid="sequenced__task__runner__helpers_8h">sequenced_task_runner_helpers.h</innerfile>
+    <innerfile refid="sequenced__task__runner__internals_8h">sequenced_task_runner_internals.h</innerfile>
+    <innerfile refid="single__thread__task__runner_8h">single_thread_task_runner.h</innerfile>
+    <innerfile refid="source__location_8h">source_location.h</innerfile>
+    <innerfile refid="task__runner_8h">task_runner.h</innerfile>
+    <innerfile refid="task__runner__internals_8h">task_runner_internals.h</innerfile>
+    <innerfile refid="type__traits_8h">type_traits.h</innerfile>
+    <innerfile refid="vlog__is__on_8h">vlog_is_on.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/"/>
+  </compounddef>
+</doxygen>

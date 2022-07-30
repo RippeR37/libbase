@@ -1,0 +1,17 @@
+.. _exhale_class_classbase_1_1SequenceChecker:
+
+Class SequenceChecker
+=====================
+
+- Defined in :ref:`file_base_sequence_checker.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::SequenceChecker
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

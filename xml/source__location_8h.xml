@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="source__location_8h" kind="file" language="C++">
+    <compoundname>source_location.h</compoundname>
+    <includes local="no">cstddef</includes>
+    <includedby refid="task__runner_8h" local="yes">base/task_runner.h</includedby>
+    <includedby refid="thread_8h" local="yes">base/threading/thread.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>base/source_location.h</label>
+        <link refid="source__location_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>cstddef</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classbase_1_1SourceLocation" prot="public">base::SourceLocation</innerclass>
+    <innernamespace refid="namespacebase">base</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="source__location_8h_1aa4b9d8432798552dc1aa25ab49a6c595" prot="public" static="no">
+        <name>FROM_HERE</name>
+        <initializer>::<ref refid="classbase_1_1SourceLocation" kindref="compound">base::SourceLocation</ref> { __FILE__, __LINE__ }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/source_location.h" line="17" column="9" bodyfile="base/source_location.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/source_location.h"/>
+  </compounddef>
+</doxygen>

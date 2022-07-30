@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="namespacebase_1_1traits" kind="namespace" language="C++">
+    <compoundname>base::traits</compoundname>
+    <innerclass refid="structbase_1_1traits_1_1IdentityType" prot="public">base::traits::IdentityType</innerclass>
+    <innerclass refid="structbase_1_1traits_1_1IsCapturelessLambda" prot="public">base::traits::IsCapturelessLambda</innerclass>
+    <innerclass refid="structbase_1_1traits_1_1IsCapturelessLambda_3_01Lambda_00_01std_1_1enable__if__t_3_01traits_1_1If8dd78fe42ca6c93819d1e3d1f57c337" prot="public">base::traits::IsCapturelessLambda&lt; Lambda, std::enable_if_t&lt; traits::IsCapturelessLambdaSfinaeV&lt; Lambda &gt; &gt; &gt;</innerclass>
+    <innerclass refid="structbase_1_1traits_1_1IsFunctionPointer" prot="public">base::traits::IsFunctionPointer</innerclass>
+    <innerclass refid="structbase_1_1traits_1_1IsFunctionPointer_3_01T_07_5_08_07Args_8_8_8_08_4" prot="public">base::traits::IsFunctionPointer&lt; T(*)(Args...)&gt;</innerclass>
+    <innerclass refid="structbase_1_1traits_1_1IsOnceCallbackType" prot="public">base::traits::IsOnceCallbackType</innerclass>
+    <innerclass refid="structbase_1_1traits_1_1IsOnceCallbackType_3_01OnceCallback_3_01CallbackSignatureType_01_4_01_4" prot="public">base::traits::IsOnceCallbackType&lt; OnceCallback&lt; CallbackSignatureType &gt; &gt;</innerclass>
+    <innerclass refid="structbase_1_1traits_1_1IsRepeatingCallbackType" prot="public">base::traits::IsRepeatingCallbackType</innerclass>
+    <innerclass refid="structbase_1_1traits_1_1IsRepeatingCallbackType_3_01RepeatingCallback_3_01CallbackSignatureType_01_4_01_4" prot="public">base::traits::IsRepeatingCallbackType&lt; RepeatingCallback&lt; CallbackSignatureType &gt; &gt;</innerclass>
+    <innerclass refid="structbase_1_1traits_1_1RemoveCVRef" prot="public">base::traits::RemoveCVRef</innerclass>
+    <innerclass refid="structbase_1_1traits_1_1TypesRange" prot="public">base::traits::TypesRange</innerclass>
+    <innerclass refid="structbase_1_1traits_1_1TypesRange_3_01Offset_00_01TupleType_00_01std_1_1index__sequence_3_01Indexes_8_8_8_01_4_01_4" prot="public">base::traits::TypesRange&lt; Offset, TupleType, std::index_sequence&lt; Indexes... &gt; &gt;</innerclass>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="type__traits_8h_1a4bba8383fa06060652b703dcee1e01c1" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>typename <ref refid="structbase_1_1traits_1_1IdentityType" kindref="compound">IdentityType</ref>&lt; T &gt;::type</type>
+        <definition>using base::traits::IdentityT = typedef typename IdentityType&lt;T&gt;::type</definition>
+        <argsstring></argsstring>
+        <name>IdentityT</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/type_traits.h" line="23" column="1" bodyfile="base/type_traits.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="type__traits_8h_1abe8425c54607044479761476ec3ce239" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>typename <ref refid="structbase_1_1traits_1_1RemoveCVRef" kindref="compound">RemoveCVRef</ref>&lt; T &gt;::type</type>
+        <definition>using base::traits::RemoveCVRefT = typedef typename RemoveCVRef&lt;T&gt;::type</definition>
+        <argsstring></argsstring>
+        <name>RemoveCVRefT</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/type_traits.h" line="35" column="1" bodyfile="base/type_traits.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="type__traits_8h_1aa86db756ce6265af44a292ec66cbe3a8" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>size_t</type>
+            <declname>Offset</declname>
+            <defname>Offset</defname>
+          </param>
+          <param>
+            <type>size_t</type>
+            <declname>Count</declname>
+            <defname>Count</defname>
+          </param>
+          <param>
+            <type>typename TupleType</type>
+          </param>
+        </templateparamlist>
+        <type>typename <ref refid="structbase_1_1traits_1_1TypesRange" kindref="compound">TypesRange</ref>&lt; Offset, TupleType, std::make_index_sequence&lt; Count &gt; &gt;::type</type>
+        <definition>using base::traits::TypesRangeT = typedef typename TypesRange&lt;Offset, TupleType, std::make_index_sequence&lt;Count&gt; &gt;::type</definition>
+        <argsstring></argsstring>
+        <name>TypesRangeT</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/type_traits.h" line="61" column="1" bodyfile="base/type_traits.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="type__traits_8h_1ab7acc86ecbfa1c9d19f5e3bbddc3aaed" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>size_t</type>
+            <declname>Count</declname>
+            <defname>Count</defname>
+          </param>
+          <param>
+            <type>typename TupleType</type>
+          </param>
+        </templateparamlist>
+        <type>TypesRangeT&lt; 0, Count, TupleType &gt;</type>
+        <definition>using base::traits::HeadTypesRangeT = typedef TypesRangeT&lt;0, Count, TupleType&gt;</definition>
+        <argsstring></argsstring>
+        <name>HeadTypesRangeT</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/type_traits.h" line="73" column="1" bodyfile="base/type_traits.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="callback_8h_1af6b47086eb59b691e2bafda006a39ee8" prot="public" static="no" constexpr="yes" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename CallbackType</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr bool</type>
+        <definition>constexpr bool base::traits::IsOnceCallbackV</definition>
+        <argsstring></argsstring>
+        <name>IsOnceCallbackV</name>
+        <initializer>= <ref refid="structbase_1_1traits_1_1IsOnceCallbackType" kindref="compound">IsOnceCallbackType</ref>&lt;CallbackType&gt;::value</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="181" column="23" bodyfile="base/callback.h" bodystart="181" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="callback_8h_1aa05fd00751e9212347ae5e2bc132d21b" prot="public" static="no" constexpr="yes" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename CallbackType</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr bool</type>
+        <definition>constexpr bool base::traits::IsRepeatingCallbackV</definition>
+        <argsstring></argsstring>
+        <name>IsRepeatingCallbackV</name>
+        <initializer>=
+    <ref refid="structbase_1_1traits_1_1IsRepeatingCallbackType" kindref="compound">IsRepeatingCallbackType</ref>&lt;CallbackType&gt;::value</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="183" column="23" bodyfile="base/callback.h" bodystart="183" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="callback_8h_1aacae931da3f6079b8f832b3fab110386" prot="public" static="no" constexpr="yes" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename CallbackType</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr bool</type>
+        <definition>constexpr bool base::traits::IsCallbackV</definition>
+        <argsstring></argsstring>
+        <name>IsCallbackV</name>
+        <initializer>=
+    IsOnceCallbackV&lt;CallbackType&gt; || IsRepeatingCallbackV&lt;CallbackType&gt;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="186" column="23" bodyfile="base/callback.h" bodystart="186" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="type__traits_8h_1ab7cc3c8e03545cc299eed463e370e728" prot="public" static="no" constexpr="yes" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr bool</type>
+        <definition>constexpr bool base::traits::IsFunctionPointerV</definition>
+        <argsstring></argsstring>
+        <name>IsFunctionPointerV</name>
+        <initializer>= <ref refid="structbase_1_1traits_1_1IsFunctionPointer" kindref="compound">IsFunctionPointer</ref>&lt;T&gt;::value</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/type_traits.h" line="85" column="23" bodyfile="base/type_traits.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="type__traits_8h_1a0c6de81cab3853d2f0f0c8bd6234bcce" prot="public" static="no" constexpr="yes" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename</type>
+            <defval>decltype(+std::declval&lt;T&gt;())</defval>
+          </param>
+        </templateparamlist>
+        <type>constexpr bool</type>
+        <definition>constexpr bool base::traits::IsCapturelessLambdaSfinaeV</definition>
+        <argsstring></argsstring>
+        <name>IsCapturelessLambdaSfinaeV</name>
+        <initializer>=
+    !std::is_pointer_v&lt;T&gt; &amp;&amp; IsFunctionPointerV&lt;decltype(+std::declval&lt;T&gt;())&gt;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/type_traits.h" line="91" column="23" bodyfile="base/type_traits.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="type__traits_8h_1a126f4cf1dd4ff094880392783a63472a" prot="public" static="no" constexpr="yes" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename Lambda</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr bool</type>
+        <definition>constexpr bool base::traits::IsCapturelessLambdaV</definition>
+        <argsstring></argsstring>
+        <name>IsCapturelessLambdaV</name>
+        <initializer>= <ref refid="structbase_1_1traits_1_1IsCapturelessLambda" kindref="compound">IsCapturelessLambda</ref>&lt;Lambda&gt;::value</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/type_traits.h" line="107" column="23" bodyfile="base/type_traits.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/callback.h" line="158" column="16"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structbase_1_1traits_1_1IsCapturelessLambda" kind="struct" language="C++" prot="public">
+    <compoundname>base::traits::IsCapturelessLambda</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename Lambda</type>
+      </param>
+      <param>
+        <type>typename</type>
+        <defval>void</defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structbase_1_1traits_1_1IsCapturelessLambda_1a482d7ec84eae535956d63758eabe11a1" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr bool</type>
+        <definition>constexpr bool base::traits::IsCapturelessLambda&lt; Lambda, typename &gt;::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/type_traits.h" line="96" column="25" bodyfile="base/type_traits.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/type_traits.h" line="95" column="26" bodyfile="base/type_traits.h" bodystart="95" bodyend="97"/>
+    <listofallmembers>
+      <member refid="structbase_1_1traits_1_1IsCapturelessLambda_1a482d7ec84eae535956d63758eabe11a1" prot="public" virt="non-virtual"><scope>base::traits::IsCapturelessLambda</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

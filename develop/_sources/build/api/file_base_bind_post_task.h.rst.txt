@@ -1,0 +1,53 @@
+
+.. _file_base_bind_post_task.h:
+
+File bind_post_task.h
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_base>` (``base``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/bind_post_task.h``)
+--------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``base/callback.h`` (:ref:`file_base_callback.h`)
+
+- ``base/task_runner.h`` (:ref:`file_base_task_runner.h`)
+
+- ``type_traits`` (:ref:`file_base_type_traits.h`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_bind__post__task_8h_1ac3f226b6b486702cb57c542d2e85c56f`
+
+- :ref:`exhale_function_bind__post__task_8h_1a8c8946a116fd0c254e12b68ca1795caa`
+

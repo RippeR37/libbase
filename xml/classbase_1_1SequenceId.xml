@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classbase_1_1SequenceId" kind="class" language="C++" prot="public">
+    <compoundname>base::SequenceId</compoundname>
+    <includes local="no">sequence_id.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbase_1_1SequenceId_1a8f6f420f4a6895618851a20017f7babd" prot="private" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t base::SequenceId::id_</definition>
+        <argsstring></argsstring>
+        <name>id_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/sequence_id.h" line="27" column="12" bodyfile="base/sequence_id.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1SequenceId_1a609c3e1feb2948ddba6fe7c67c6018c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::SequenceId::SequenceId</definition>
+        <argsstring>(const SequenceId &amp;)=default</argsstring>
+        <name>SequenceId</name>
+        <param>
+          <type>const <ref refid="classbase_1_1SequenceId" kindref="compound">SequenceId</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/sequence_id.h" line="16" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1SequenceId_1a7d726a884a5992943807aec8b38feb5c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1SequenceId" kindref="compound">SequenceId</ref> &amp;</type>
+        <definition>SequenceId&amp; base::SequenceId::operator=</definition>
+        <argsstring>(const SequenceId &amp;)=default</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classbase_1_1SequenceId" kindref="compound">SequenceId</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/sequence_id.h" line="17" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1SequenceId_1aea70d11a19abb986f9e6b1217625ad06" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::SequenceId::operator==</definition>
+        <argsstring>(const SequenceId &amp;other) const</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>const <ref refid="classbase_1_1SequenceId" kindref="compound">SequenceId</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/sequence_id.h" line="19" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1SequenceId_1ac7bb17d030b97d9ca13cd73746e40459" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::SequenceId::operator!=</definition>
+        <argsstring>(const SequenceId &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <param>
+          <type>const <ref refid="classbase_1_1SequenceId" kindref="compound">SequenceId</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/sequence_id.h" line="20" column="8"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classbase_1_1SequenceId_1ad0d511f503e95f690e41f9930eb97b9d" prot="private" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::SequenceId::SequenceId</definition>
+        <argsstring>(uint64_t id)</argsstring>
+        <name>SequenceId</name>
+        <param>
+          <type>uint64_t</type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/sequence_id.h" line="25" column="12"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>This class represents an id of a sequence for <ref refid="classbase_1_1SequencedTaskRunner" kindref="compound">SequencedTaskRunner</ref>. </para>
+    </detaileddescription>
+    <location file="base/sequence_id.h" line="14" column="17" bodyfile="base/sequence_id.h" bodystart="14" bodyend="28"/>
+    <listofallmembers>
+      <member refid="classbase_1_1SequenceId_1a8f6f420f4a6895618851a20017f7babd" prot="private" virt="non-virtual"><scope>base::SequenceId</scope><name>id_</name></member>
+      <member refid="classbase_1_1SequenceId_1ac7bb17d030b97d9ca13cd73746e40459" prot="public" virt="non-virtual"><scope>base::SequenceId</scope><name>operator!=</name></member>
+      <member refid="classbase_1_1SequenceId_1a7d726a884a5992943807aec8b38feb5c" prot="public" virt="non-virtual"><scope>base::SequenceId</scope><name>operator=</name></member>
+      <member refid="classbase_1_1SequenceId_1aea70d11a19abb986f9e6b1217625ad06" prot="public" virt="non-virtual"><scope>base::SequenceId</scope><name>operator==</name></member>
+      <member refid="classbase_1_1SequenceId_1a609c3e1feb2948ddba6fe7c67c6018c0" prot="public" virt="non-virtual"><scope>base::SequenceId</scope><name>SequenceId</name></member>
+      <member refid="classbase_1_1SequenceId_1ad0d511f503e95f690e41f9930eb97b9d" prot="private" virt="non-virtual"><scope>base::SequenceId</scope><name>SequenceId</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

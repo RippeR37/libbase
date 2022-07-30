@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="auto__signaller_8h" kind="file" language="C++">
+    <compoundname>auto_signaller.h</compoundname>
+    <includes local="no">cstddef</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>base/synchronization/auto_signaller.h</label>
+        <link refid="auto__signaller_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>cstddef</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classbase_1_1AutoSignaller" prot="public">base::AutoSignaller</innerclass>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/synchronization/auto_signaller.h"/>
+  </compounddef>
+</doxygen>

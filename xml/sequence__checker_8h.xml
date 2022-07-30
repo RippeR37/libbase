@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="sequence__checker_8h" kind="file" language="C++">
+    <compoundname>sequence_checker.h</compoundname>
+    <includes local="no">optional</includes>
+    <includes refid="logging_8h" local="yes">base/logging.h</includes>
+    <includes refid="sequenced__task__runner__helpers_8h" local="yes">base/sequenced_task_runner_helpers.h</includes>
+    <includedby refid="weak__ptr_8h" local="yes">base/memory/weak_ptr.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>base/sequence_checker.h</label>
+        <link refid="sequence__checker_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>optional</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classbase_1_1SequenceChecker" prot="public">base::SequenceChecker</innerclass>
+    <innernamespace refid="namespacebase">base</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="sequence__checker_8h_1a6e1de0e8bf469bc7898cbaf88725254f" prot="public" static="no">
+        <name>SEQUENCE_CHECKER</name>
+        <param><defname>name</defname></param>
+        <initializer>static_assert(true, &quot;&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/sequence_checker.h" line="20" column="9" bodyfile="base/sequence_checker.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="sequence__checker_8h_1a4d9e87e3566670d3068ebfaef0970676" prot="public" static="no">
+        <name>DCHECK_CALLED_ON_VALID_SEQUENCE</name>
+        <param><defname>sequence_checker</defname></param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/sequence_checker.h" line="21" column="9" bodyfile="base/sequence_checker.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="sequence__checker_8h_1ae91683dfb0f104276ed8956474f261da" prot="public" static="no">
+        <name>DETACH_FROM_SEQUENCE</name>
+        <param><defname>sequence_checker</defname></param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/sequence_checker.h" line="22" column="9" bodyfile="base/sequence_checker.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/sequence_checker.h"/>
+  </compounddef>
+</doxygen>

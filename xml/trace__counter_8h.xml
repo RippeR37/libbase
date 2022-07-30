@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="trace__counter_8h" kind="file" language="C++">
+    <compoundname>trace_counter.h</compoundname>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="trace__counter_8h_1a7dec43654f584ea55475e2f11568ac0d" prot="public" static="no">
+        <name>TRACE_COUNTER</name>
+        <param><defname>categories</defname></param>
+        <param><defname>name</defname></param>
+        <param><defname>arg1_key</defname></param>
+        <param><defname>arg1_value</defname></param>
+        <param><defname>...</defname></param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/trace_event/trace_counter.h" line="17" column="9" bodyfile="base/trace_event/trace_counter.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="trace__counter_8h_1adf69ea16b20e716072c3f20399695650" prot="public" static="no">
+        <name>TRACE_COUNTER_ID</name>
+        <param><defname>categories</defname></param>
+        <param><defname>name</defname></param>
+        <param><defname>id</defname></param>
+        <param><defname>arg1_key</defname></param>
+        <param><defname>arg1_value</defname></param>
+        <param><defname>...</defname></param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/trace_event/trace_counter.h" line="18" column="9" bodyfile="base/trace_event/trace_counter.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/trace_event/trace_counter.h"/>
+  </compounddef>
+</doxygen>

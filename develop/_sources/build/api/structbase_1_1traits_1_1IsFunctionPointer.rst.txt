@@ -1,0 +1,26 @@
+.. _exhale_struct_structbase_1_1traits_1_1IsFunctionPointer:
+
+Template Struct IsFunctionPointer
+=================================
+
+- Defined in :ref:`file_base_type_traits.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public false_type``
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: base::traits::IsFunctionPointer
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

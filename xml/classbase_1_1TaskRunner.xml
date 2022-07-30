@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classbase_1_1TaskRunner" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>base::TaskRunner</compoundname>
+    <derivedcompoundref refid="classbase_1_1SequencedTaskRunner" prot="public" virt="non-virtual">base::SequencedTaskRunner</derivedcompoundref>
+    <derivedcompoundref refid="classbase_1_1TaskRunnerImpl" prot="public" virt="non-virtual">base::TaskRunnerImpl</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1TaskRunner_1ab9c6a11cf7be935ed913c21979d580bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual base::TaskRunner::~TaskRunner</definition>
+        <argsstring>()=default</argsstring>
+        <name>~TaskRunner</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/task_runner.h" line="14" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TaskRunner_1afa234d22c5865bc0f5deff0cac900797" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::TaskRunner::PostTask</definition>
+        <argsstring>(SourceLocation location, OnceClosure task)</argsstring>
+        <name>PostTask</name>
+        <param>
+          <type><ref refid="classbase_1_1SourceLocation" kindref="compound">SourceLocation</ref></type>
+          <declname>location</declname>
+        </param>
+        <param>
+          <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceClosure</ref></type>
+          <declname>task</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/task_runner.h" line="16" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TaskRunner_1a9718748b69467d9f2bfcdb31dd090792" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>bool</type>
+        <definition>virtual bool base::TaskRunner::PostDelayedTask</definition>
+        <argsstring>(SourceLocation location, OnceClosure task, TimeDelta delay)=0</argsstring>
+        <name>PostDelayedTask</name>
+        <reimplementedby refid="classbase_1_1TaskRunnerImpl_1a9e8bd6be2656735b6198bdf2c42be050">PostDelayedTask</reimplementedby>
+        <reimplementedby refid="classbase_1_1SequencedTaskRunnerImpl_1ac021920cf85ed104caf05e18efe43c8e">PostDelayedTask</reimplementedby>
+        <reimplementedby refid="classbase_1_1SingleThreadTaskRunnerImpl_1ae2b80e8a78fe95c1a81ae69f0bbd4065">PostDelayedTask</reimplementedby>
+        <param>
+          <type><ref refid="classbase_1_1SourceLocation" kindref="compound">SourceLocation</ref></type>
+          <declname>location</declname>
+        </param>
+        <param>
+          <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceClosure</ref></type>
+          <declname>task</declname>
+        </param>
+        <param>
+          <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+          <declname>delay</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/task_runner.h" line="18" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TaskRunner_1aba59920cc89afd3f4044629f5a20f9ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::TaskRunner::PostTaskAndReply</definition>
+        <argsstring>(SourceLocation location, OnceClosure task, OnceClosure reply)</argsstring>
+        <name>PostTaskAndReply</name>
+        <param>
+          <type><ref refid="classbase_1_1SourceLocation" kindref="compound">SourceLocation</ref></type>
+          <declname>location</declname>
+        </param>
+        <param>
+          <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceClosure</ref></type>
+          <declname>task</declname>
+        </param>
+        <param>
+          <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceClosure</ref></type>
+          <declname>reply</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/task_runner.h" line="22" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TaskRunner_1a8ed5933dc9cedef9d5b3bc6daf417900" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename TaskResult</type>
+          </param>
+          <param>
+            <type>typename ReplyArgument</type>
+          </param>
+          <param>
+            <type>template&lt; typename &gt; class</type>
+            <declname>TaskCallback</declname>
+            <defname>TaskCallback</defname>
+          </param>
+          <param>
+            <type>template&lt; typename &gt; class</type>
+            <declname>ReplyCallback</declname>
+            <defname>ReplyCallback</defname>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool base::TaskRunner::PostTaskAndReplyWithResult</definition>
+        <argsstring>(SourceLocation location, TaskCallback&lt; TaskResult()&gt; task, ReplyCallback&lt; void(ReplyArgument)&gt; reply)</argsstring>
+        <name>PostTaskAndReplyWithResult</name>
+        <param>
+          <type><ref refid="classbase_1_1SourceLocation" kindref="compound">SourceLocation</ref></type>
+          <declname>location</declname>
+        </param>
+        <param>
+          <type>TaskCallback&lt; TaskResult()&gt;</type>
+          <declname>task</declname>
+        </param>
+        <param>
+          <type>ReplyCallback&lt; void(ReplyArgument)&gt;</type>
+          <declname>reply</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/task_runner.h" line="32" column="8" bodyfile="base/task_runner.h" bodystart="32" bodyend="47"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="6">
+        <label>base::TaskRunnerImpl</label>
+        <link refid="classbase_1_1TaskRunnerImpl"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>base::SequencedTaskRunnerImpl</label>
+        <link refid="classbase_1_1SequencedTaskRunnerImpl"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>base::SingleThreadTaskRunnerImpl</label>
+        <link refid="classbase_1_1SingleThreadTaskRunnerImpl"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>base::SequencedTaskRunner</label>
+        <link refid="classbase_1_1SequencedTaskRunner"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>base::SingleThreadTaskRunner</label>
+        <link refid="classbase_1_1SingleThreadTaskRunner"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>base::TaskRunner</label>
+        <link refid="classbase_1_1TaskRunner"/>
+      </node>
+    </inheritancegraph>
+    <location file="base/task_runner.h" line="12" column="17" bodyfile="base/task_runner.h" bodystart="12" bodyend="48"/>
+    <listofallmembers>
+      <member refid="classbase_1_1TaskRunner_1a9718748b69467d9f2bfcdb31dd090792" prot="public" virt="pure-virtual"><scope>base::TaskRunner</scope><name>PostDelayedTask</name></member>
+      <member refid="classbase_1_1TaskRunner_1afa234d22c5865bc0f5deff0cac900797" prot="public" virt="non-virtual"><scope>base::TaskRunner</scope><name>PostTask</name></member>
+      <member refid="classbase_1_1TaskRunner_1aba59920cc89afd3f4044629f5a20f9ab" prot="public" virt="non-virtual"><scope>base::TaskRunner</scope><name>PostTaskAndReply</name></member>
+      <member refid="classbase_1_1TaskRunner_1a8ed5933dc9cedef9d5b3bc6daf417900" prot="public" virt="non-virtual"><scope>base::TaskRunner</scope><name>PostTaskAndReplyWithResult</name></member>
+      <member refid="classbase_1_1TaskRunner_1ab9c6a11cf7be935ed913c21979d580bd" prot="public" virt="virtual"><scope>base::TaskRunner</scope><name>~TaskRunner</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="sequenced__task__runner_8h" kind="file" language="C++">
+    <compoundname>sequenced_task_runner.h</compoundname>
+    <includes refid="bind_8h" local="yes">base/bind.h</includes>
+    <includes refid="sequenced__task__runner__internals_8h" local="yes">base/sequenced_task_runner_internals.h</includes>
+    <includes refid="task__runner_8h" local="yes">base/task_runner.h</includes>
+    <includedby refid="single__thread__task__runner_8h" local="yes">base/single_thread_task_runner.h</includedby>
+    <includedby refid="task__runner__impl_8h" local="yes">base/threading/task_runner_impl.h</includedby>
+    <innerclass refid="classbase_1_1SequencedTaskRunner" prot="public">base::SequencedTaskRunner</innerclass>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/sequenced_task_runner.h"/>
+  </compounddef>
+</doxygen>

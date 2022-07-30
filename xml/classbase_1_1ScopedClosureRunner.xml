@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classbase_1_1ScopedClosureRunner" kind="class" language="C++" prot="public">
+    <compoundname>base::ScopedClosureRunner</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbase_1_1ScopedClosureRunner_1a45ad3bce9eeb47588f80afcd717d3873" prot="private" static="no" mutable="no">
+        <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceClosure</ref></type>
+        <definition>OnceClosure base::ScopedClosureRunner::closure_</definition>
+        <argsstring></argsstring>
+        <name>closure_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback_helpers.h" line="44" column="15" bodyfile="base/callback_helpers.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1ScopedClosureRunner_1a8319a558edccf6ee0a7a8c3aeba1abe3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::ScopedClosureRunner::ScopedClosureRunner</definition>
+        <argsstring>()</argsstring>
+        <name>ScopedClosureRunner</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback_helpers.h" line="30" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1ScopedClosureRunner_1addd46da194d1b744d55de28085851e33" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::ScopedClosureRunner::ScopedClosureRunner</definition>
+        <argsstring>(OnceClosure closure)</argsstring>
+        <name>ScopedClosureRunner</name>
+        <param>
+          <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceClosure</ref></type>
+          <declname>closure</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback_helpers.h" line="31" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1ScopedClosureRunner_1a71d33ba78f84c116bafff9df5afb861c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::ScopedClosureRunner::ScopedClosureRunner</definition>
+        <argsstring>(ScopedClosureRunner &amp;&amp;)</argsstring>
+        <name>ScopedClosureRunner</name>
+        <param>
+          <type><ref refid="classbase_1_1ScopedClosureRunner" kindref="compound">ScopedClosureRunner</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback_helpers.h" line="32" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1ScopedClosureRunner_1a46a443508b9dc7d60e2b686fcc97960e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::ScopedClosureRunner::~ScopedClosureRunner</definition>
+        <argsstring>()</argsstring>
+        <name>~ScopedClosureRunner</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback_helpers.h" line="33" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1ScopedClosureRunner_1a9a07b7d38d26a8fc54a3624142a87b29" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1ScopedClosureRunner" kindref="compound">ScopedClosureRunner</ref> &amp;</type>
+        <definition>ScopedClosureRunner&amp; base::ScopedClosureRunner::operator=</definition>
+        <argsstring>(ScopedClosureRunner &amp;&amp;other)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="classbase_1_1ScopedClosureRunner" kindref="compound">ScopedClosureRunner</ref> &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback_helpers.h" line="35" column="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1ScopedClosureRunner_1a67f68859ab881d6c1c296acf50de3c9c" prot="public" static="no" const="yes" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::ScopedClosureRunner::operator bool</definition>
+        <argsstring>() const</argsstring>
+        <name>operator bool</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback_helpers.h" line="37" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1ScopedClosureRunner_1a86376b51be500fe2bbbca458389ca899" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::ScopedClosureRunner::RunAndReset</definition>
+        <argsstring>()</argsstring>
+        <name>RunAndReset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback_helpers.h" line="39" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1ScopedClosureRunner_1a376c5a66e962144f67fefdf8aef5a09c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::ScopedClosureRunner::ReplaceClosure</definition>
+        <argsstring>(OnceClosure new_closure)</argsstring>
+        <name>ReplaceClosure</name>
+        <param>
+          <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceClosure</ref></type>
+          <declname>new_closure</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback_helpers.h" line="40" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1ScopedClosureRunner_1a9be4d4cc5c6f4fae5a3582b053cdf709" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceClosure</ref></type>
+        <definition>OnceClosure base::ScopedClosureRunner::Release</definition>
+        <argsstring>()</argsstring>
+        <name>Release</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback_helpers.h" line="41" column="15"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/callback_helpers.h" line="28" column="26" bodyfile="base/callback_helpers.h" bodystart="28" bodyend="45"/>
+    <listofallmembers>
+      <member refid="classbase_1_1ScopedClosureRunner_1a45ad3bce9eeb47588f80afcd717d3873" prot="private" virt="non-virtual"><scope>base::ScopedClosureRunner</scope><name>closure_</name></member>
+      <member refid="classbase_1_1ScopedClosureRunner_1a67f68859ab881d6c1c296acf50de3c9c" prot="public" virt="non-virtual"><scope>base::ScopedClosureRunner</scope><name>operator bool</name></member>
+      <member refid="classbase_1_1ScopedClosureRunner_1a9a07b7d38d26a8fc54a3624142a87b29" prot="public" virt="non-virtual"><scope>base::ScopedClosureRunner</scope><name>operator=</name></member>
+      <member refid="classbase_1_1ScopedClosureRunner_1a9be4d4cc5c6f4fae5a3582b053cdf709" prot="public" virt="non-virtual"><scope>base::ScopedClosureRunner</scope><name>Release</name></member>
+      <member refid="classbase_1_1ScopedClosureRunner_1a376c5a66e962144f67fefdf8aef5a09c" prot="public" virt="non-virtual"><scope>base::ScopedClosureRunner</scope><name>ReplaceClosure</name></member>
+      <member refid="classbase_1_1ScopedClosureRunner_1a86376b51be500fe2bbbca458389ca899" prot="public" virt="non-virtual"><scope>base::ScopedClosureRunner</scope><name>RunAndReset</name></member>
+      <member refid="classbase_1_1ScopedClosureRunner_1a8319a558edccf6ee0a7a8c3aeba1abe3" prot="public" virt="non-virtual"><scope>base::ScopedClosureRunner</scope><name>ScopedClosureRunner</name></member>
+      <member refid="classbase_1_1ScopedClosureRunner_1addd46da194d1b744d55de28085851e33" prot="public" virt="non-virtual"><scope>base::ScopedClosureRunner</scope><name>ScopedClosureRunner</name></member>
+      <member refid="classbase_1_1ScopedClosureRunner_1a71d33ba78f84c116bafff9df5afb861c" prot="public" virt="non-virtual"><scope>base::ScopedClosureRunner</scope><name>ScopedClosureRunner</name></member>
+      <member refid="classbase_1_1ScopedClosureRunner_1a46a443508b9dc7d60e2b686fcc97960e" prot="public" virt="non-virtual"><scope>base::ScopedClosureRunner</scope><name>~ScopedClosureRunner</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

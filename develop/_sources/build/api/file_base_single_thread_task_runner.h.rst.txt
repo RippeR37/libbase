@@ -1,0 +1,57 @@
+
+.. _file_base_single_thread_task_runner.h:
+
+File single_thread_task_runner.h
+================================
+
+|exhale_lsh| :ref:`Parent directory <dir_base>` (``base``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/single_thread_task_runner.h``)
+-------------------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``base/sequenced_task_runner.h`` (:ref:`file_base_sequenced_task_runner.h`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_base_threading_task_runner_impl.h`
+
+- :ref:`file_base_threading_thread.h`
+
+- :ref:`file_base_threading_thread_pool.h`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classbase_1_1SingleThreadTaskRunner`
+

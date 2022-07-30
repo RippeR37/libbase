@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structbase_1_1traits_1_1TypesRange_3_01Offset_00_01TupleType_00_01std_1_1index__sequence_3_01Indexes_8_8_8_01_4_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>base::traits::TypesRange&lt; Offset, TupleType, std::index_sequence&lt; Indexes... &gt; &gt;</compoundname>
+    <templateparamlist>
+      <param>
+        <type>size_t</type>
+        <declname>Offset</declname>
+        <defname>Offset</defname>
+      </param>
+      <param>
+        <type>typename TupleType</type>
+      </param>
+      <param>
+        <type>size_t...</type>
+        <declname>Indexes</declname>
+        <defname>Indexes</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structbase_1_1traits_1_1TypesRange_3_01Offset_00_01TupleType_00_01std_1_1index__sequence_3_01Indexes_8_8_8_01_4_01_4_1a6b5ea4a71c4692b41b8ea847fe3daebd" prot="public" static="no">
+        <type>std::tuple&lt; typename std::tuple_element&lt; Indexes+Offset, TupleType &gt;::type... &gt;</type>
+        <definition>using base::traits::TypesRange&lt; Offset, TupleType, std::index_sequence&lt; Indexes... &gt; &gt;::type =  std::tuple&lt; typename std::tuple_element&lt;Indexes + Offset, TupleType&gt;::type...&gt;</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/type_traits.h" line="49" column="3" bodyfile="base/type_traits.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/type_traits.h" line="46" column="19" bodyfile="base/type_traits.h" bodystart="46" bodyend="51"/>
+    <listofallmembers>
+      <member refid="structbase_1_1traits_1_1TypesRange_3_01Offset_00_01TupleType_00_01std_1_1index__sequence_3_01Indexes_8_8_8_01_4_01_4_1a6b5ea4a71c4692b41b8ea847fe3daebd" prot="public" virt="non-virtual"><scope>base::traits::TypesRange&lt; Offset, TupleType, std::index_sequence&lt; Indexes... &gt; &gt;</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

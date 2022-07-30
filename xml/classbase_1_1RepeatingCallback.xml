@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classbase_1_1RepeatingCallback" kind="class" language="C++" prot="public">
+    <compoundname>base::RepeatingCallback</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename Signature</type>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/callback.h" line="77" column="24" bodyfile="base/callback.h" bodystart="77" bodyend="79"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,245 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classbase_1_1DelayedTaskManager" kind="class" language="C++" prot="public">
+    <compoundname>base::DelayedTaskManager</compoundname>
+    <innerclass refid="structbase_1_1DelayedTaskManager_1_1DelayedTask" prot="public">base::DelayedTaskManager::DelayedTask</innerclass>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classbase_1_1DelayedTaskManager_1ac9d3300b62bc4a04ea5e2ec6610d629a" prot="public" static="no">
+        <type><ref refid="classbase_1_1TimeTicks" kindref="compound">TimeTicks</ref>(*)()</type>
+        <definition>using base::DelayedTaskManager::TimeTicksProvider =  TimeTicks (*)()</definition>
+        <argsstring></argsstring>
+        <name>TimeTicksProvider</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/delayed_task_manager.h" line="25" column="3" bodyfile="base/threading/delayed_task_manager.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbase_1_1DelayedTaskManager_1ac748e36421eb3f3f26b743d21687ec24" prot="private" static="no" mutable="no">
+        <type>const TimeTicksProvider</type>
+        <definition>const TimeTicksProvider base::DelayedTaskManager::time_ticks_provider_</definition>
+        <argsstring></argsstring>
+        <name>time_ticks_provider_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/delayed_task_manager.h" line="40" column="27" bodyfile="base/threading/delayed_task_manager.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1DelayedTaskManager_1ab3a97441be25519d82c582aad572df60" prot="private" static="no" mutable="no">
+        <type>std::thread</type>
+        <definition>std::thread base::DelayedTaskManager::scheduler_thread_</definition>
+        <argsstring></argsstring>
+        <name>scheduler_thread_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/delayed_task_manager.h" line="42" column="15" bodyfile="base/threading/delayed_task_manager.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1DelayedTaskManager_1a13a97d2eaf78929d67f209bfa8f2451a" prot="private" static="no" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex base::DelayedTaskManager::mutex_</definition>
+        <argsstring></argsstring>
+        <name>mutex_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/delayed_task_manager.h" line="43" column="14" bodyfile="base/threading/delayed_task_manager.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1DelayedTaskManager_1adf2f6e6dc4d32b550ca865e5df4d910d" prot="private" static="no" mutable="no">
+        <type>std::condition_variable</type>
+        <definition>std::condition_variable base::DelayedTaskManager::cond_var_</definition>
+        <argsstring></argsstring>
+        <name>cond_var_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/delayed_task_manager.h" line="44" column="27" bodyfile="base/threading/delayed_task_manager.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1DelayedTaskManager_1ac740765f2e4a29ca334fc8a84fd424ea" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool base::DelayedTaskManager::stopped_</definition>
+        <argsstring></argsstring>
+        <name>stopped_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/delayed_task_manager.h" line="47" column="8" bodyfile="base/threading/delayed_task_manager.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1DelayedTaskManager_1a5f5c401d907e5b61fa54ec70b42549c8" prot="private" static="no" mutable="no">
+        <type>std::priority_queue&lt; <ref refid="structbase_1_1DelayedTaskManager_1_1DelayedTask" kindref="compound">DelayedTask</ref> &gt;</type>
+        <definition>std::priority_queue&lt;DelayedTask&gt; base::DelayedTaskManager::delayed_tasks_</definition>
+        <argsstring></argsstring>
+        <name>delayed_tasks_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/delayed_task_manager.h" line="48" column="23" bodyfile="base/threading/delayed_task_manager.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1DelayedTaskManager_1a12be0d5012fc8b0ab5132d6672b36fe8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::DelayedTaskManager::DelayedTaskManager</definition>
+        <argsstring>(TimeTicksProvider time_ticks_provider=&amp;TimeTicks::Now)</argsstring>
+        <name>DelayedTaskManager</name>
+        <param>
+          <type>TimeTicksProvider</type>
+          <declname>time_ticks_provider</declname>
+          <defval>&amp;TimeTicks::Now</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/delayed_task_manager.h" line="27" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1DelayedTaskManager_1ad8c722e9b4fc17b188268776e9e28f1d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::DelayedTaskManager::~DelayedTaskManager</definition>
+        <argsstring>()</argsstring>
+        <name>~DelayedTaskManager</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/delayed_task_manager.h" line="28" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1DelayedTaskManager_1a628c1ff42cfa24d5c7220188a48e172a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::DelayedTaskManager::QueueDelayedTask</definition>
+        <argsstring>(DelayedTask delayed_task)</argsstring>
+        <name>QueueDelayedTask</name>
+        <param>
+          <type><ref refid="structbase_1_1DelayedTaskManager_1_1DelayedTask" kindref="compound">DelayedTask</ref></type>
+          <declname>delayed_task</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/delayed_task_manager.h" line="30" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1DelayedTaskManager_1af944b7556677e697f297ca97d8f76914" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::DelayedTaskManager::ScheduleAllReadyTasksForTests</definition>
+        <argsstring>()</argsstring>
+        <name>ScheduleAllReadyTasksForTests</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/delayed_task_manager.h" line="32" column="8"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classbase_1_1DelayedTaskManager_1a18b5d10b57262cbecc366c7c6183181e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::DelayedTaskManager::ScheduleTasksUntilStop</definition>
+        <argsstring>()</argsstring>
+        <name>ScheduleTasksUntilStop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/delayed_task_manager.h" line="35" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1DelayedTaskManager_1a2273e4a4e5c86f0081e3b2a05913d5ff" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::DelayedTaskManager::ScheduleAllReadyTasksLocked</definition>
+        <argsstring>()</argsstring>
+        <name>ScheduleAllReadyTasksLocked</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/delayed_task_manager.h" line="36" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1DelayedTaskManager_1a1e577676f7dd07afc0997dfa698e99db" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::DelayedTaskManager::WaitForNextTaskOrStopLocked</definition>
+        <argsstring>(std::unique_lock&lt; std::mutex &gt; &amp;lock)</argsstring>
+        <name>WaitForNextTaskOrStopLocked</name>
+        <param>
+          <type>std::unique_lock&lt; std::mutex &gt; &amp;</type>
+          <declname>lock</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/delayed_task_manager.h" line="37" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1DelayedTaskManager_1a4f17df695950795d764820faa3edd6f3" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::optional&lt; <ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref> &gt;</type>
+        <definition>std::optional&lt;TimeDelta&gt; base::DelayedTaskManager::NextTaskRemainingDelayLocked</definition>
+        <argsstring>() const</argsstring>
+        <name>NextTaskRemainingDelayLocked</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/delayed_task_manager.h" line="38" column="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/threading/delayed_task_manager.h" line="15" column="25" bodyfile="base/threading/delayed_task_manager.h" bodystart="15" bodyend="49"/>
+    <listofallmembers>
+      <member refid="classbase_1_1DelayedTaskManager_1adf2f6e6dc4d32b550ca865e5df4d910d" prot="private" virt="non-virtual"><scope>base::DelayedTaskManager</scope><name>cond_var_</name></member>
+      <member refid="classbase_1_1DelayedTaskManager_1a5f5c401d907e5b61fa54ec70b42549c8" prot="private" virt="non-virtual"><scope>base::DelayedTaskManager</scope><name>delayed_tasks_</name></member>
+      <member refid="classbase_1_1DelayedTaskManager_1a12be0d5012fc8b0ab5132d6672b36fe8" prot="public" virt="non-virtual"><scope>base::DelayedTaskManager</scope><name>DelayedTaskManager</name></member>
+      <member refid="classbase_1_1DelayedTaskManager_1a13a97d2eaf78929d67f209bfa8f2451a" prot="private" virt="non-virtual"><scope>base::DelayedTaskManager</scope><name>mutex_</name></member>
+      <member refid="classbase_1_1DelayedTaskManager_1a4f17df695950795d764820faa3edd6f3" prot="private" virt="non-virtual"><scope>base::DelayedTaskManager</scope><name>NextTaskRemainingDelayLocked</name></member>
+      <member refid="classbase_1_1DelayedTaskManager_1a628c1ff42cfa24d5c7220188a48e172a" prot="public" virt="non-virtual"><scope>base::DelayedTaskManager</scope><name>QueueDelayedTask</name></member>
+      <member refid="classbase_1_1DelayedTaskManager_1af944b7556677e697f297ca97d8f76914" prot="public" virt="non-virtual"><scope>base::DelayedTaskManager</scope><name>ScheduleAllReadyTasksForTests</name></member>
+      <member refid="classbase_1_1DelayedTaskManager_1a2273e4a4e5c86f0081e3b2a05913d5ff" prot="private" virt="non-virtual"><scope>base::DelayedTaskManager</scope><name>ScheduleAllReadyTasksLocked</name></member>
+      <member refid="classbase_1_1DelayedTaskManager_1ab3a97441be25519d82c582aad572df60" prot="private" virt="non-virtual"><scope>base::DelayedTaskManager</scope><name>scheduler_thread_</name></member>
+      <member refid="classbase_1_1DelayedTaskManager_1a18b5d10b57262cbecc366c7c6183181e" prot="private" virt="non-virtual"><scope>base::DelayedTaskManager</scope><name>ScheduleTasksUntilStop</name></member>
+      <member refid="classbase_1_1DelayedTaskManager_1ac740765f2e4a29ca334fc8a84fd424ea" prot="private" virt="non-virtual"><scope>base::DelayedTaskManager</scope><name>stopped_</name></member>
+      <member refid="classbase_1_1DelayedTaskManager_1ac748e36421eb3f3f26b743d21687ec24" prot="private" virt="non-virtual"><scope>base::DelayedTaskManager</scope><name>time_ticks_provider_</name></member>
+      <member refid="classbase_1_1DelayedTaskManager_1ac9d3300b62bc4a04ea5e2ec6610d629a" prot="public" virt="non-virtual"><scope>base::DelayedTaskManager</scope><name>TimeTicksProvider</name></member>
+      <member refid="classbase_1_1DelayedTaskManager_1a1e577676f7dd07afc0997dfa698e99db" prot="private" virt="non-virtual"><scope>base::DelayedTaskManager</scope><name>WaitForNextTaskOrStopLocked</name></member>
+      <member refid="classbase_1_1DelayedTaskManager_1ad8c722e9b4fc17b188268776e9e28f1d" prot="public" virt="non-virtual"><scope>base::DelayedTaskManager</scope><name>~DelayedTaskManager</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

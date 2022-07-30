@@ -1,0 +1,64 @@
+
+.. _file_base_callback_helpers.h:
+
+File callback_helpers.h
+=======================
+
+|exhale_lsh| :ref:`Parent directory <dir_base>` (``base``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/callback_helpers.h``)
+----------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``atomic``
+
+- ``base/bind.h`` (:ref:`file_base_bind.h`)
+
+- ``base/callback.h`` (:ref:`file_base_callback.h`)
+
+- ``base/logging.h`` (:ref:`file_base_logging.h`)
+
+- ``utility``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classbase_1_1DoNothing`
+
+- :ref:`exhale_class_classbase_1_1ScopedClosureRunner`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_callback__helpers_8h_1a042fb02207cf3b829b2cfb246a9eac40`
+

@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="sequence__id_8h" kind="file" language="C++">
+    <compoundname>sequence_id.h</compoundname>
+    <includes local="no">cstdint</includes>
+    <includedby refid="message__pump_8h" local="yes">base/message_loop/message_pump.h</includedby>
+    <includedby refid="sequenced__task__runner__helpers_8h" local="yes">base/sequenced_task_runner_helpers.h</includedby>
+    <includedby refid="thread_8h" local="yes">base/threading/thread.h</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>cstdint</label>
+      </node>
+      <node id="1">
+        <label>base/sequence_id.h</label>
+        <link refid="sequence__id_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classbase_1_1SequenceId" prot="public">base::SequenceId</innerclass>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/sequence_id.h"/>
+  </compounddef>
+</doxygen>

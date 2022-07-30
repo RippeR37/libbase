@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="elapsed__timer_8h" kind="file" language="C++">
+    <compoundname>elapsed_timer.h</compoundname>
+    <includes refid="time__ticks_8h" local="yes">base/time/time_ticks.h</includes>
+    <innerclass refid="classbase_1_1ElapsedTimer" prot="public">base::ElapsedTimer</innerclass>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/timer/elapsed_timer.h"/>
+  </compounddef>
+</doxygen>

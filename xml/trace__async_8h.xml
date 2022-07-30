@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="trace__async_8h" kind="file" language="C++">
+    <compoundname>trace_async.h</compoundname>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="trace__async_8h_1ad6580e98c5d7661b2646a6d0e02ae00f" prot="public" static="no">
+        <name>TRACE_EVENT_ASYNC_BEGIN</name>
+        <param><defname>categories</defname></param>
+        <param><defname>name</defname></param>
+        <param><defname>id</defname></param>
+        <param><defname>...</defname></param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/trace_event/trace_async.h" line="21" column="9" bodyfile="base/trace_event/trace_async.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="trace__async_8h_1a4d0dec35deab6a1ab8a283843c68ac01" prot="public" static="no">
+        <name>TRACE_EVENT_ASYNC_STEP</name>
+        <param><defname>categories</defname></param>
+        <param><defname>name</defname></param>
+        <param><defname>id</defname></param>
+        <param><defname>...</defname></param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/trace_event/trace_async.h" line="22" column="9" bodyfile="base/trace_event/trace_async.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="trace__async_8h_1a11beb9695695f4b2795d91f3a70088d1" prot="public" static="no">
+        <name>TRACE_EVENT_ASYNC_END</name>
+        <param><defname>categories</defname></param>
+        <param><defname>name</defname></param>
+        <param><defname>id</defname></param>
+        <param><defname>...</defname></param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/trace_event/trace_async.h" line="23" column="9" bodyfile="base/trace_event/trace_async.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/trace_event/trace_async.h"/>
+  </compounddef>
+</doxygen>

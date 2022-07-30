@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="trace__signal_8h" kind="file" language="C++">
+    <compoundname>trace_signal.h</compoundname>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="trace__signal_8h_1a7455b881f5f684142a1a9c3999a0243e" prot="public" static="no">
+        <name>TRACE_SIGNAL</name>
+        <param><defname>categories</defname></param>
+        <param><defname>name</defname></param>
+        <param><defname>...</defname></param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/trace_event/trace_signal.h" line="21" column="9" bodyfile="base/trace_event/trace_signal.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="trace__signal_8h_1ac62ea382085eb5e904b23c437f542163" prot="public" static="no">
+        <name>TRACE_SIGNAL_THREAD</name>
+        <param><defname>categories</defname></param>
+        <param><defname>name</defname></param>
+        <param><defname>...</defname></param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/trace_event/trace_signal.h" line="22" column="9" bodyfile="base/trace_event/trace_signal.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="trace__signal_8h_1a52e34069027795f458a6463139a8aeac" prot="public" static="no">
+        <name>TRACE_SIGNAL_PROCESS</name>
+        <param><defname>categories</defname></param>
+        <param><defname>name</defname></param>
+        <param><defname>...</defname></param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/trace_event/trace_signal.h" line="23" column="9" bodyfile="base/trace_event/trace_signal.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/trace_event/trace_signal.h"/>
+  </compounddef>
+</doxygen>

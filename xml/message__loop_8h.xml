@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="message__loop_8h" kind="file" language="C++">
+    <compoundname>message_loop.h</compoundname>
+    <includes refid="callback__forward_8h" local="yes">base/callback_forward.h</includes>
+    <includes refid="message__pump_8h" local="yes">base/message_loop/message_pump.h</includes>
+    <includedby refid="message__loop__impl_8h" local="yes">base/message_loop/message_loop_impl.h</includedby>
+    <includedby refid="thread_8h" local="yes">base/threading/thread.h</includedby>
+    <innerclass refid="classbase_1_1MessageLoop" prot="public">base::MessageLoop</innerclass>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/message_loop/message_loop.h"/>
+  </compounddef>
+</doxygen>

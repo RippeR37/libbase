@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="trace__flush_8h" kind="file" language="C++">
+    <compoundname>trace_flush.h</compoundname>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="trace__flush_8h_1a52f3d33d381f698beed87d80b0b259b3" prot="public" static="no">
+        <name>TRACE_EVENT_FLUSH_TO_FILE</name>
+        <param><defname>file</defname></param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/trace_event/trace_flush.h" line="15" column="9" bodyfile="base/trace_event/trace_flush.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="trace__flush_8h_1aabfa93781b3ccffd8d794a7c77d7f740" prot="public" static="no">
+        <name>TRACE_EVENT_FLUSH_TO_STREAM</name>
+        <param><defname>stream</defname></param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/trace_event/trace_flush.h" line="16" column="9" bodyfile="base/trace_event/trace_flush.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/trace_event/trace_flush.h"/>
+  </compounddef>
+</doxygen>

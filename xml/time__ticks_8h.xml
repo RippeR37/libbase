@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="time__ticks_8h" kind="file" language="C++">
+    <compoundname>time_ticks.h</compoundname>
+    <includes local="no">cstdint</includes>
+    <includes refid="time__delta_8h" local="yes">base/time/time_delta.h</includes>
+    <includedby refid="delayed__task__manager_8h" local="yes">base/threading/delayed_task_manager.h</includedby>
+    <includedby refid="elapsed__timer_8h" local="yes">base/timer/elapsed_timer.h</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>cstdint</label>
+      </node>
+      <node id="1">
+        <label>base/time/time_ticks.h</label>
+        <link refid="time__ticks_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classbase_1_1TimeTicks" prot="public">base::TimeTicks</innerclass>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/time/time_ticks.h"/>
+  </compounddef>
+</doxygen>

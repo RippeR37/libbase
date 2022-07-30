@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="callback__internals_8h" kind="file" language="C++">
+    <compoundname>callback_internals.h</compoundname>
+    <includes refid="type__traits_8h" local="yes">base/type_traits.h</includes>
+    <includedby refid="callback_8h" local="yes">base/callback.h</includedby>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/callback_internals.h"/>
+  </compounddef>
+</doxygen>

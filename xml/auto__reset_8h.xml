@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="auto__reset_8h" kind="file" language="C++">
+    <compoundname>auto_reset.h</compoundname>
+    <includes local="no">utility</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>base/auto_reset.h</label>
+        <link refid="auto__reset_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>utility</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classbase_1_1AutoReset" prot="public">base::AutoReset</innerclass>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/auto_reset.h"/>
+  </compounddef>
+</doxygen>

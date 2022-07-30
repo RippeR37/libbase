@@ -1,0 +1,311 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classbase_1_1Time" kind="class" language="C++" prot="public">
+    <compoundname>base::Time</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbase_1_1Time_1a251c3ec434849fbad609811b307d59d4" prot="private" static="no" mutable="no">
+        <type>int64_t</type>
+        <definition>int64_t base::Time::us_time_</definition>
+        <argsstring></argsstring>
+        <name>us_time_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time.h" line="41" column="11" bodyfile="base/time/time.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classbase_1_1Time_1a3992766dc5c29f992f2a1dd35eac6412" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1Time" kindref="compound">Time</ref></type>
+        <definition>static Time base::Time::Now</definition>
+        <argsstring>()</argsstring>
+        <name>Now</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time.h" line="12" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1Time_1ab40e71213b9391d0126454d342895b66" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1Time" kindref="compound">Time</ref></type>
+        <definition>static Time base::Time::FromTimeT</definition>
+        <argsstring>(time_t tt)</argsstring>
+        <name>FromTimeT</name>
+        <param>
+          <type>time_t</type>
+          <declname>tt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time.h" line="16" column="15"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1Time_1aca39fadcbc9a283e0993d980f923fbb5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::Time::Time</definition>
+        <argsstring>()=default</argsstring>
+        <name>Time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time.h" line="14" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1Time_1a91a7dfa485fb6aa55b746095dd52cd8c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>time_t</type>
+        <definition>time_t base::Time::ToTimeT</definition>
+        <argsstring>() const</argsstring>
+        <name>ToTimeT</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time.h" line="17" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1Time_1ab725602c06c33ef6f654e4218712fb36" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::Time::operator==</definition>
+        <argsstring>(Time other) const</argsstring>
+        <name>operator==</name>
+        <param>
+          <type><ref refid="classbase_1_1Time" kindref="compound">Time</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time.h" line="24" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1Time_1a4a5225407eb386e2a2917a6a95fd449c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::Time::operator!=</definition>
+        <argsstring>(Time other) const</argsstring>
+        <name>operator!=</name>
+        <param>
+          <type><ref refid="classbase_1_1Time" kindref="compound">Time</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time.h" line="25" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1Time_1a0a96c11744d64aae8980af58cd93377f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::Time::operator&lt;</definition>
+        <argsstring>(Time other) const</argsstring>
+        <name>operator&lt;</name>
+        <param>
+          <type><ref refid="classbase_1_1Time" kindref="compound">Time</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time.h" line="26" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1Time_1ab4767660d494debbe8aa6630e5d1d270" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::Time::operator&gt;</definition>
+        <argsstring>(Time other) const</argsstring>
+        <name>operator&gt;</name>
+        <param>
+          <type><ref refid="classbase_1_1Time" kindref="compound">Time</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time.h" line="27" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1Time_1a9f702f5b9942bb2d5b112de1308014fc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::Time::operator&lt;=</definition>
+        <argsstring>(Time other) const</argsstring>
+        <name>operator&lt;=</name>
+        <param>
+          <type><ref refid="classbase_1_1Time" kindref="compound">Time</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time.h" line="28" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1Time_1a1c13bc97f77a7e7403b454b1e815ce70" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::Time::operator&gt;=</definition>
+        <argsstring>(Time other) const</argsstring>
+        <name>operator&gt;=</name>
+        <param>
+          <type><ref refid="classbase_1_1Time" kindref="compound">Time</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time.h" line="29" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1Time_1ac9412099c69412224edd1a764498d48f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1Time" kindref="compound">Time</ref></type>
+        <definition>Time base::Time::operator+</definition>
+        <argsstring>(TimeDelta delta) const</argsstring>
+        <name>operator+</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+          <declname>delta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time.h" line="31" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1Time_1ac16fa958b7845dc065317fdfc2a98070" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1Time" kindref="compound">Time</ref></type>
+        <definition>Time base::Time::operator-</definition>
+        <argsstring>(TimeDelta delta) const</argsstring>
+        <name>operator-</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+          <declname>delta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time.h" line="32" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1Time_1ab5e991bad67dd58d9ab7403a65a3381e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1Time" kindref="compound">Time</ref> &amp;</type>
+        <definition>Time&amp; base::Time::operator+=</definition>
+        <argsstring>(TimeDelta delta)</argsstring>
+        <name>operator+=</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+          <declname>delta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time.h" line="33" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1Time_1abbb8606599e23ec173b1383844cd7f7b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1Time" kindref="compound">Time</ref> &amp;</type>
+        <definition>Time&amp; base::Time::operator-=</definition>
+        <argsstring>(TimeDelta delta)</argsstring>
+        <name>operator-=</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+          <declname>delta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time.h" line="34" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1Time_1a6fc7635399c4e4c0a8826bf30028165c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+        <definition>TimeDelta base::Time::operator-</definition>
+        <argsstring>(Time other) const</argsstring>
+        <name>operator-</name>
+        <param>
+          <type><ref refid="classbase_1_1Time" kindref="compound">Time</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time.h" line="36" column="13"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classbase_1_1Time_1af48af4faf69b785203e7ed5c44a355f0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>base::Time::Time</definition>
+        <argsstring>(int64_t us_time)</argsstring>
+        <name>Time</name>
+        <param>
+          <type>int64_t</type>
+          <declname>us_time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time.h" line="39" column="3" bodyfile="base/time/time.h" bodystart="39" bodyend="39"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/time/time.h" line="10" column="11" bodyfile="base/time/time.h" bodystart="10" bodyend="42"/>
+    <listofallmembers>
+      <member refid="classbase_1_1Time_1ab40e71213b9391d0126454d342895b66" prot="public" virt="non-virtual"><scope>base::Time</scope><name>FromTimeT</name></member>
+      <member refid="classbase_1_1Time_1a3992766dc5c29f992f2a1dd35eac6412" prot="public" virt="non-virtual"><scope>base::Time</scope><name>Now</name></member>
+      <member refid="classbase_1_1Time_1a4a5225407eb386e2a2917a6a95fd449c" prot="public" virt="non-virtual"><scope>base::Time</scope><name>operator!=</name></member>
+      <member refid="classbase_1_1Time_1ac9412099c69412224edd1a764498d48f" prot="public" virt="non-virtual"><scope>base::Time</scope><name>operator+</name></member>
+      <member refid="classbase_1_1Time_1ab5e991bad67dd58d9ab7403a65a3381e" prot="public" virt="non-virtual"><scope>base::Time</scope><name>operator+=</name></member>
+      <member refid="classbase_1_1Time_1ac16fa958b7845dc065317fdfc2a98070" prot="public" virt="non-virtual"><scope>base::Time</scope><name>operator-</name></member>
+      <member refid="classbase_1_1Time_1a6fc7635399c4e4c0a8826bf30028165c" prot="public" virt="non-virtual"><scope>base::Time</scope><name>operator-</name></member>
+      <member refid="classbase_1_1Time_1abbb8606599e23ec173b1383844cd7f7b" prot="public" virt="non-virtual"><scope>base::Time</scope><name>operator-=</name></member>
+      <member refid="classbase_1_1Time_1a0a96c11744d64aae8980af58cd93377f" prot="public" virt="non-virtual"><scope>base::Time</scope><name>operator&lt;</name></member>
+      <member refid="classbase_1_1Time_1a9f702f5b9942bb2d5b112de1308014fc" prot="public" virt="non-virtual"><scope>base::Time</scope><name>operator&lt;=</name></member>
+      <member refid="classbase_1_1Time_1ab725602c06c33ef6f654e4218712fb36" prot="public" virt="non-virtual"><scope>base::Time</scope><name>operator==</name></member>
+      <member refid="classbase_1_1Time_1ab4767660d494debbe8aa6630e5d1d270" prot="public" virt="non-virtual"><scope>base::Time</scope><name>operator&gt;</name></member>
+      <member refid="classbase_1_1Time_1a1c13bc97f77a7e7403b454b1e815ce70" prot="public" virt="non-virtual"><scope>base::Time</scope><name>operator&gt;=</name></member>
+      <member refid="classbase_1_1Time_1aca39fadcbc9a283e0993d980f923fbb5" prot="public" virt="non-virtual"><scope>base::Time</scope><name>Time</name></member>
+      <member refid="classbase_1_1Time_1af48af4faf69b785203e7ed5c44a355f0" prot="private" virt="non-virtual"><scope>base::Time</scope><name>Time</name></member>
+      <member refid="classbase_1_1Time_1a91a7dfa485fb6aa55b746095dd52cd8c" prot="public" virt="non-virtual"><scope>base::Time</scope><name>ToTimeT</name></member>
+      <member refid="classbase_1_1Time_1a251c3ec434849fbad609811b307d59d4" prot="private" virt="non-virtual"><scope>base::Time</scope><name>us_time_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="weak__ptr_8h" kind="file" language="C++">
+    <compoundname>weak_ptr.h</compoundname>
+    <includes local="no">atomic</includes>
+    <includes local="no">cstddef</includes>
+    <includes local="no">memory</includes>
+    <includes local="no">utility</includes>
+    <includes refid="sequence__checker_8h" local="yes">base/sequence_checker.h</includes>
+    <includedby refid="bind__internals_8h" local="yes">base/bind_internals.h</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>atomic</label>
+      </node>
+      <node id="1">
+        <label>base/memory/weak_ptr.h</label>
+        <link refid="weak__ptr_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>utility</label>
+      </node>
+      <node id="3">
+        <label>cstddef</label>
+      </node>
+      <node id="4">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classbase_1_1WeakPtr" prot="public">base::WeakPtr</innerclass>
+    <innerclass refid="classbase_1_1WeakPtrFactory" prot="public">base::WeakPtrFactory</innerclass>
+    <innerclass refid="classbase_1_1WeakPtr" prot="public">base::WeakPtr</innerclass>
+    <innerclass refid="classbase_1_1WeakPtrFactory" prot="public">base::WeakPtrFactory</innerclass>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/memory/weak_ptr.h"/>
+  </compounddef>
+</doxygen>

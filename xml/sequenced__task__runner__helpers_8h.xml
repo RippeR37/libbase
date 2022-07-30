@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="sequenced__task__runner__helpers_8h" kind="file" language="C++">
+    <compoundname>sequenced_task_runner_helpers.h</compoundname>
+    <includes local="no">atomic</includes>
+    <includes local="no">optional</includes>
+    <includes refid="sequence__id_8h" local="yes">base/sequence_id.h</includes>
+    <includedby refid="sequence__checker_8h" local="yes">base/sequence_checker.h</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>atomic</label>
+      </node>
+      <node id="3">
+        <label>optional</label>
+      </node>
+      <node id="1">
+        <label>base/sequenced_task_runner_helpers.h</label>
+        <link refid="sequenced__task__runner__helpers_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/sequenced_task_runner_helpers.h"/>
+  </compounddef>
+</doxygen>

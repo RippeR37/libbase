@@ -1,0 +1,287 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4" kind="class" language="C++" prot="public">
+    <compoundname>base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename ReturnType</type>
+      </param>
+      <param>
+        <type>typename...</type>
+        <declname>ArgumentTypes</declname>
+        <defname>ArgumentTypes</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a08665748d665db0b751bbf236d2f8e14" prot="private" static="no">
+        <type>std::unique_ptr&lt; detail::RepeatingCallbackInterface&lt; ReturnType, ArgumentTypes... &gt; &gt;</type>
+        <definition>using base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;::ImplPtr =  std::unique_ptr&lt; detail::RepeatingCallbackInterface&lt;ReturnType, ArgumentTypes...&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>ImplPtr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="134" column="3" bodyfile="base/callback.h" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1ab79705700a0be89a31bf5dc363200944" prot="private" static="no" mutable="no">
+        <type>ImplPtr</type>
+        <definition>ImplPtr base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;::impl_</definition>
+        <argsstring></argsstring>
+        <name>impl_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="144" column="11" bodyfile="base/callback.h" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a48bde408be8e61a2e269d76983a0b9b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;::RepeatingCallback</definition>
+        <argsstring>()=default</argsstring>
+        <name>RepeatingCallback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="84" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a1d315fdb663e1c69010f744f403187bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;::RepeatingCallback</definition>
+        <argsstring>(RepeatingCallback &amp;&amp;)=default</argsstring>
+        <name>RepeatingCallback</name>
+        <param>
+          <type><ref refid="classbase_1_1RepeatingCallback" kindref="compound">RepeatingCallback</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="85" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a8c34f2e9518ecdcbc12b204fe72e9bab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1RepeatingCallback" kindref="compound">RepeatingCallback</ref> &amp;</type>
+        <definition>RepeatingCallback&amp; base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;::operator=</definition>
+        <argsstring>(RepeatingCallback &amp;&amp;)=default</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="classbase_1_1RepeatingCallback" kindref="compound">RepeatingCallback</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="86" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1ab997a844fbe4075dc0dbb68c452db5bf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;::RepeatingCallback</definition>
+        <argsstring>(const RepeatingCallback &amp;other)</argsstring>
+        <name>RepeatingCallback</name>
+        <param>
+          <type>const <ref refid="classbase_1_1RepeatingCallback" kindref="compound">RepeatingCallback</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="88" column="3" bodyfile="base/callback.h" bodystart="88" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a787ceaa77408460b9d7ca2c6041ee37d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classbase_1_1RepeatingCallback" kindref="compound">RepeatingCallback</ref> &amp;</type>
+        <definition>RepeatingCallback&amp; base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;::operator=</definition>
+        <argsstring>(const RepeatingCallback &amp;other)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classbase_1_1RepeatingCallback" kindref="compound">RepeatingCallback</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="91" column="21" bodyfile="base/callback.h" bodystart="91" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a23353b9a1c5f3dababcad6541b4b3b98" prot="public" static="no" const="yes" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;::operator bool</definition>
+        <argsstring>() const</argsstring>
+        <name>operator bool</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="96" column="12" bodyfile="base/callback.h" bodystart="96" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1aac04ced0f9b3561d9b371f9476b24316" prot="public" static="no" const="yes" explicit="no" inline="yes" refqual="lvalue" virt="non-virtual">
+        <type>ReturnType</type>
+        <definition>ReturnType base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;::Run</definition>
+        <argsstring>(ArgumentTypes... arguments) const &amp;</argsstring>
+        <name>Run</name>
+        <param>
+          <type>ArgumentTypes...</type>
+          <declname>arguments</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="98" column="14" bodyfile="base/callback.h" bodystart="98" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a3a25803935c15488fc5ce7c066d9b32c" prot="public" static="no" const="no" explicit="no" inline="yes" refqual="rvalue" virt="non-virtual">
+        <type>ReturnType</type>
+        <definition>ReturnType base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;::Run</definition>
+        <argsstring>(ArgumentTypes... arguments) &amp;&amp;</argsstring>
+        <name>Run</name>
+        <param>
+          <type>ArgumentTypes...</type>
+          <declname>arguments</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="102" column="14" bodyfile="base/callback.h" bodystart="102" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a4b63be8b3e8256dd34c0f2dc5e174399" prot="public" static="no" const="yes" explicit="no" inline="yes" refqual="lvalue" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename ThenReturn</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>ThenArguments</declname>
+            <defname>ThenArguments</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classbase_1_1RepeatingCallback" kindref="compound">RepeatingCallback</ref>&lt; ThenReturn(ArgumentTypes...)&gt;</type>
+        <definition>RepeatingCallback&lt;ThenReturn(ArgumentTypes...)&gt; base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;::Then</definition>
+        <argsstring>(RepeatingCallback&lt; ThenReturn(ThenArguments...)&gt; then) const &amp;</argsstring>
+        <name>Then</name>
+        <param>
+          <type><ref refid="classbase_1_1RepeatingCallback" kindref="compound">RepeatingCallback</ref>&lt; ThenReturn(ThenArguments...)&gt;</type>
+          <declname>then</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="108" column="21" bodyfile="base/callback.h" bodystart="108" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1aef8daf01653ed50720765bdd8a443a96" prot="public" static="no" const="no" explicit="no" inline="yes" refqual="rvalue" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename ThenReturn</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>ThenArguments</declname>
+            <defname>ThenArguments</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classbase_1_1RepeatingCallback" kindref="compound">RepeatingCallback</ref>&lt; ThenReturn(ArgumentTypes...)&gt;</type>
+        <definition>RepeatingCallback&lt;ThenReturn(ArgumentTypes...)&gt; base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;::Then</definition>
+        <argsstring>(RepeatingCallback&lt; ThenReturn(ThenArguments...)&gt; then) &amp;&amp;</argsstring>
+        <name>Then</name>
+        <param>
+          <type><ref refid="classbase_1_1RepeatingCallback" kindref="compound">RepeatingCallback</ref>&lt; ThenReturn(ThenArguments...)&gt;</type>
+          <declname>then</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="115" column="21" bodyfile="base/callback.h" bodystart="115" bodyend="123"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a0693718e1030e075a4f4fe7714e9363e" prot="private" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;::RepeatingCallback</definition>
+        <argsstring>(std::unique_ptr&lt; detail::RepeatingCallbackInterface&lt; ReturnType, ArgumentTypes... &gt;&gt; impl)</argsstring>
+        <name>RepeatingCallback</name>
+        <param>
+          <type>std::unique_ptr&lt; detail::RepeatingCallbackInterface&lt; ReturnType, ArgumentTypes... &gt;&gt;</type>
+          <declname>impl</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="128" column="12" bodyfile="base/callback.h" bodystart="128" bodyend="132"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1ae24d780e454b01d7d3bd21af10fc48fa" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ImplPtr</type>
+        <definition>static ImplPtr base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;::CloneImpl</definition>
+        <argsstring>(const ImplPtr &amp;impl)</argsstring>
+        <name>CloneImpl</name>
+        <param>
+          <type>const ImplPtr &amp;</type>
+          <declname>impl</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="137" column="18" bodyfile="base/callback.h" bodystart="137" bodyend="142"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/callback.h" line="82" column="25" bodyfile="base/callback.h" bodystart="82" bodyend="145"/>
+    <listofallmembers>
+      <member refid="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1ae24d780e454b01d7d3bd21af10fc48fa" prot="private" virt="non-virtual"><scope>base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>CloneImpl</name></member>
+      <member refid="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1ab79705700a0be89a31bf5dc363200944" prot="private" virt="non-virtual"><scope>base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>impl_</name></member>
+      <member refid="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a08665748d665db0b751bbf236d2f8e14" prot="private" virt="non-virtual"><scope>base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>ImplPtr</name></member>
+      <member refid="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a23353b9a1c5f3dababcad6541b4b3b98" prot="public" virt="non-virtual"><scope>base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>operator bool</name></member>
+      <member refid="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a8c34f2e9518ecdcbc12b204fe72e9bab" prot="public" virt="non-virtual"><scope>base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>operator=</name></member>
+      <member refid="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a787ceaa77408460b9d7ca2c6041ee37d" prot="public" virt="non-virtual"><scope>base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>operator=</name></member>
+      <member refid="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a48bde408be8e61a2e269d76983a0b9b0" prot="public" virt="non-virtual"><scope>base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>RepeatingCallback</name></member>
+      <member refid="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a1d315fdb663e1c69010f744f403187bb" prot="public" virt="non-virtual"><scope>base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>RepeatingCallback</name></member>
+      <member refid="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1ab997a844fbe4075dc0dbb68c452db5bf" prot="public" virt="non-virtual"><scope>base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>RepeatingCallback</name></member>
+      <member refid="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a0693718e1030e075a4f4fe7714e9363e" prot="private" virt="non-virtual"><scope>base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>RepeatingCallback</name></member>
+      <member refid="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1aac04ced0f9b3561d9b371f9476b24316" prot="public" virt="non-virtual"><scope>base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>Run</name></member>
+      <member refid="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a3a25803935c15488fc5ce7c066d9b32c" prot="public" virt="non-virtual"><scope>base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>Run</name></member>
+      <member refid="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a4b63be8b3e8256dd34c0f2dc5e174399" prot="public" virt="non-virtual"><scope>base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>Then</name></member>
+      <member refid="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1aef8daf01653ed50720765bdd8a443a96" prot="public" virt="non-virtual"><scope>base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>Then</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

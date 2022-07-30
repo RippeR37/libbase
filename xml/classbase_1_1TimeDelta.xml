@@ -1,0 +1,817 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classbase_1_1TimeDelta" kind="class" language="C++" prot="public">
+    <compoundname>base::TimeDelta</compoundname>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classbase_1_1TimeDelta_1a4638b7e7c4a9d32a59f736fe6e5ff8a2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class Time</definition>
+        <argsstring></argsstring>
+        <name>Time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="83" column="3" bodyfile="base/time/time_delta.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classbase_1_1TimeDelta_1a7498f214ba5f885cd8cf80e8d438ee83" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class TimeTicks</definition>
+        <argsstring></argsstring>
+        <name>TimeTicks</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="84" column="3" bodyfile="base/time/time_delta.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classbase_1_1TimeDelta_1a12a602de46a2cac41e585e01996b290d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>friend <ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+        <definition>TimeDelta Days</definition>
+        <argsstring>(T)</argsstring>
+        <name>Days</name>
+        <param>
+          <type>T</type>
+          <defname>n</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="69" column="20" bodyfile="base/time/time_delta.h" bodystart="100" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="friend" id="classbase_1_1TimeDelta_1ad90a56b6071315ba1a113d6c40d35adf" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>friend <ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+        <definition>TimeDelta Hours</definition>
+        <argsstring>(T)</argsstring>
+        <name>Hours</name>
+        <param>
+          <type>T</type>
+          <defname>n</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="71" column="20" bodyfile="base/time/time_delta.h" bodystart="105" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="friend" id="classbase_1_1TimeDelta_1abc1d59b4c858bb29a3bcde466c05bf29" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>friend <ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+        <definition>TimeDelta Minutes</definition>
+        <argsstring>(T)</argsstring>
+        <name>Minutes</name>
+        <param>
+          <type>T</type>
+          <defname>n</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="73" column="20" bodyfile="base/time/time_delta.h" bodystart="110" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="friend" id="classbase_1_1TimeDelta_1aa600f610bec959ae4b5d55c4e945c37e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>friend <ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+        <definition>TimeDelta Seconds</definition>
+        <argsstring>(T)</argsstring>
+        <name>Seconds</name>
+        <param>
+          <type>T</type>
+          <defname>n</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="75" column="20" bodyfile="base/time/time_delta.h" bodystart="115" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="friend" id="classbase_1_1TimeDelta_1a9067dba5c03d29a34b80269cf54eb022" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>friend <ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+        <definition>TimeDelta Milliseconds</definition>
+        <argsstring>(T)</argsstring>
+        <name>Milliseconds</name>
+        <param>
+          <type>T</type>
+          <defname>n</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="77" column="20" bodyfile="base/time/time_delta.h" bodystart="120" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="friend" id="classbase_1_1TimeDelta_1ab6151f0ea439cc1a43086f38ba704fb5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>friend <ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+        <definition>TimeDelta Microseconds</definition>
+        <argsstring>(T)</argsstring>
+        <name>Microseconds</name>
+        <param>
+          <type>T</type>
+          <defname>n</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="79" column="20" bodyfile="base/time/time_delta.h" bodystart="126" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="friend" id="classbase_1_1TimeDelta_1a83d1fc4790a94fdffb4328427352aa5a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>friend <ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+        <definition>TimeDelta Nanoseconds</definition>
+        <argsstring>(T)</argsstring>
+        <name>Nanoseconds</name>
+        <param>
+          <type>T</type>
+          <defname>n</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="81" column="20" bodyfile="base/time/time_delta.h" bodystart="131" bodyend="134"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classbase_1_1TimeDelta_1a8e28623409fe5075fbe07ca0f326ad7a" prot="private" static="yes" mutable="no">
+        <type>const int64_t</type>
+        <definition>const int64_t base::TimeDelta::kNanosecondsInMicroseconds</definition>
+        <argsstring></argsstring>
+        <name>kNanosecondsInMicroseconds</name>
+        <initializer>= 1000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="86" column="24" bodyfile="base/time/time_delta.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1TimeDelta_1a18f48b53c648646ab5d2b46461fdfb7c" prot="private" static="yes" mutable="no">
+        <type>const int64_t</type>
+        <definition>const int64_t base::TimeDelta::kMicrosecondsInMilliseconds</definition>
+        <argsstring></argsstring>
+        <name>kMicrosecondsInMilliseconds</name>
+        <initializer>= 1000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="87" column="24" bodyfile="base/time/time_delta.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1TimeDelta_1aad82207ccb41126fe044f24cfa74359d" prot="private" static="yes" mutable="no">
+        <type>const int64_t</type>
+        <definition>const int64_t base::TimeDelta::kMicrosecondsInSeconds</definition>
+        <argsstring></argsstring>
+        <name>kMicrosecondsInSeconds</name>
+        <initializer>=
+      1000 * kMicrosecondsInMilliseconds</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="88" column="24" bodyfile="base/time/time_delta.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1TimeDelta_1a889635d86f4cc29dfb29668466da93fb" prot="private" static="yes" mutable="no">
+        <type>const int64_t</type>
+        <definition>const int64_t base::TimeDelta::kMicrosecondsInMinutes</definition>
+        <argsstring></argsstring>
+        <name>kMicrosecondsInMinutes</name>
+        <initializer>= 60 * kMicrosecondsInSeconds</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="90" column="24" bodyfile="base/time/time_delta.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1TimeDelta_1a72912619afd56bae7e00596c7246fe0b" prot="private" static="yes" mutable="no">
+        <type>const int64_t</type>
+        <definition>const int64_t base::TimeDelta::kMicrosecondsInHours</definition>
+        <argsstring></argsstring>
+        <name>kMicrosecondsInHours</name>
+        <initializer>= 60 * kMicrosecondsInMinutes</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="91" column="24" bodyfile="base/time/time_delta.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1TimeDelta_1adc57331cd75b273935d7602506623057" prot="private" static="yes" mutable="no">
+        <type>const int64_t</type>
+        <definition>const int64_t base::TimeDelta::kMicrosecondsInDays</definition>
+        <argsstring></argsstring>
+        <name>kMicrosecondsInDays</name>
+        <initializer>= 24 * kMicrosecondsInHours</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="92" column="24" bodyfile="base/time/time_delta.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbase_1_1TimeDelta_1a7d3cb48a33fa7d3762eda89a8c13260d" prot="private" static="no" mutable="no">
+        <type>int64_t</type>
+        <definition>int64_t base::TimeDelta::us_delta_</definition>
+        <argsstring></argsstring>
+        <name>us_delta_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="96" column="11" bodyfile="base/time/time_delta.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1a4675140f14e29e27b04a2792a052a7d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::TimeDelta::TimeDelta</definition>
+        <argsstring>()=default</argsstring>
+        <name>TimeDelta</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="17" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1af9fd37d4a9ff540e27d80794c326ca5f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::TimeDelta::IsZero</definition>
+        <argsstring>() const</argsstring>
+        <name>IsZero</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="19" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1a7cba665f930396f8ab08ae6bcfe4e7d3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::TimeDelta::IsPositive</definition>
+        <argsstring>() const</argsstring>
+        <name>IsPositive</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="20" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1a7655c4963c15ac9488e069700c15c3b5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::TimeDelta::IsNegative</definition>
+        <argsstring>() const</argsstring>
+        <name>IsNegative</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="21" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1a14cfb6a109c6b358390c5305ef998058" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int base::TimeDelta::InDays</definition>
+        <argsstring>() const</argsstring>
+        <name>InDays</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="23" column="7"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1a63ec1edcc96fec79298822522477dfd9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int base::TimeDelta::InHours</definition>
+        <argsstring>() const</argsstring>
+        <name>InHours</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="24" column="7"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1a7477bb883c32de060717e4151b30d26e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int base::TimeDelta::InMinutes</definition>
+        <argsstring>() const</argsstring>
+        <name>InMinutes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="25" column="7"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1a3d5e3ccac26c0dbcca8d01fec5b6e711" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double base::TimeDelta::InSecondsF</definition>
+        <argsstring>() const</argsstring>
+        <name>InSecondsF</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="26" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1a526f219dfc59134824bfce2612f4f026" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int64_t</type>
+        <definition>int64_t base::TimeDelta::InSeconds</definition>
+        <argsstring>() const</argsstring>
+        <name>InSeconds</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="27" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1ab543a425ac14dbce22a17d02d49b18e8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double base::TimeDelta::InMillisecondsF</definition>
+        <argsstring>() const</argsstring>
+        <name>InMillisecondsF</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="28" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1a397f244b9437a7cbf7b783758c2976fe" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int64_t</type>
+        <definition>int64_t base::TimeDelta::InMilliseconds</definition>
+        <argsstring>() const</argsstring>
+        <name>InMilliseconds</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="29" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1a386cd9d8658fcf4c3a8c2b2aa9816065" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int64_t</type>
+        <definition>int64_t base::TimeDelta::InMicroseconds</definition>
+        <argsstring>() const</argsstring>
+        <name>InMicroseconds</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="30" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1a42176c1eabb2a680881f978fe7d85a38" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double base::TimeDelta::InMicrosecondsF</definition>
+        <argsstring>() const</argsstring>
+        <name>InMicrosecondsF</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="31" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1acfac42aa04d86121864012f34a32c916" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int64_t</type>
+        <definition>int64_t base::TimeDelta::InNanoseconds</definition>
+        <argsstring>() const</argsstring>
+        <name>InNanoseconds</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="32" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1ab4eeb7dd3a587ba56a86ff69e3271747" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+        <definition>TimeDelta base::TimeDelta::operator+</definition>
+        <argsstring>(TimeDelta other) const</argsstring>
+        <name>operator+</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="34" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1a42551c388c4c923da2384ac0832ff05a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+        <definition>TimeDelta base::TimeDelta::operator-</definition>
+        <argsstring>(TimeDelta other) const</argsstring>
+        <name>operator-</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="35" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1ae6c7b9181477a80b05369f35cef6abb2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref> &amp;</type>
+        <definition>TimeDelta&amp; base::TimeDelta::operator+=</definition>
+        <argsstring>(TimeDelta other)</argsstring>
+        <name>operator+=</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="36" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1a759b1a8676cb5c11d5a54ef4c0171c1f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref> &amp;</type>
+        <definition>TimeDelta&amp; base::TimeDelta::operator-=</definition>
+        <argsstring>(TimeDelta other)</argsstring>
+        <name>operator-=</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="37" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1ab971fdf1edb294dddcc837d2c750216a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+        <definition>TimeDelta base::TimeDelta::operator-</definition>
+        <argsstring>() const</argsstring>
+        <name>operator-</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="38" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1a1de70a6c03963d2312dc081f11f2a1a2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+        <definition>TimeDelta base::TimeDelta::operator*</definition>
+        <argsstring>(T a) const</argsstring>
+        <name>operator*</name>
+        <param>
+          <type>T</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="41" column="13" bodyfile="base/time/time_delta.h" bodystart="41" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1a87e0c51a426d84a1f7225d36f9c1bd01" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+        <definition>TimeDelta base::TimeDelta::operator/</definition>
+        <argsstring>(T a) const</argsstring>
+        <name>operator/</name>
+        <param>
+          <type>T</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="46" column="13" bodyfile="base/time/time_delta.h" bodystart="46" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1a24d9b0066e6d36bd9f0dd00239f7f11a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref> &amp;</type>
+        <definition>TimeDelta&amp; base::TimeDelta::operator*=</definition>
+        <argsstring>(T a)</argsstring>
+        <name>operator*=</name>
+        <param>
+          <type>T</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="51" column="13" bodyfile="base/time/time_delta.h" bodystart="51" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1a3df57a7e6ee8759fff258ae1a490247c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref> &amp;</type>
+        <definition>TimeDelta&amp; base::TimeDelta::operator/=</definition>
+        <argsstring>(T a)</argsstring>
+        <name>operator/=</name>
+        <param>
+          <type>T</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="56" column="13" bodyfile="base/time/time_delta.h" bodystart="56" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1a3b9d9158b220e69b0b32d9fdad81715a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::TimeDelta::operator==</definition>
+        <argsstring>(TimeDelta other) const</argsstring>
+        <name>operator==</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="60" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1a459767659ae6bfdfe70ef50dae733135" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::TimeDelta::operator!=</definition>
+        <argsstring>(TimeDelta other) const</argsstring>
+        <name>operator!=</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="61" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1a45a5a653b6dc68a9220e21cdfe9f05bc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::TimeDelta::operator&lt;</definition>
+        <argsstring>(TimeDelta other) const</argsstring>
+        <name>operator&lt;</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="62" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1ac1f39b28311a0c46680d567fb9cb3073" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::TimeDelta::operator&lt;=</definition>
+        <argsstring>(TimeDelta other) const</argsstring>
+        <name>operator&lt;=</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="63" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1a6c2f782fde4040f59eadca9a97c32ede" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::TimeDelta::operator&gt;</definition>
+        <argsstring>(TimeDelta other) const</argsstring>
+        <name>operator&gt;</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="64" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1a716e310a61d898eb779bd25819744d9d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::TimeDelta::operator&gt;=</definition>
+        <argsstring>(TimeDelta other) const</argsstring>
+        <name>operator&gt;=</name>
+        <param>
+          <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="65" column="8"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classbase_1_1TimeDelta_1aea1dddff5a8d2a3bbf9303dcfc207b75" prot="private" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>base::TimeDelta::TimeDelta</definition>
+        <argsstring>(int64_t us_delta)</argsstring>
+        <name>TimeDelta</name>
+        <param>
+          <type>int64_t</type>
+          <declname>us_delta</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="94" column="12" bodyfile="base/time/time_delta.h" bodystart="94" bodyend="94"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/time/time_delta.h" line="11" column="16" bodyfile="base/time/time_delta.h" bodystart="11" bodyend="97"/>
+    <listofallmembers>
+      <member refid="classbase_1_1TimeDelta_1a12a602de46a2cac41e585e01996b290d" prot="private" virt="non-virtual"><scope>base::TimeDelta</scope><name>Days</name></member>
+      <member refid="classbase_1_1TimeDelta_1ad90a56b6071315ba1a113d6c40d35adf" prot="private" virt="non-virtual"><scope>base::TimeDelta</scope><name>Hours</name></member>
+      <member refid="classbase_1_1TimeDelta_1a14cfb6a109c6b358390c5305ef998058" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>InDays</name></member>
+      <member refid="classbase_1_1TimeDelta_1a63ec1edcc96fec79298822522477dfd9" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>InHours</name></member>
+      <member refid="classbase_1_1TimeDelta_1a386cd9d8658fcf4c3a8c2b2aa9816065" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>InMicroseconds</name></member>
+      <member refid="classbase_1_1TimeDelta_1a42176c1eabb2a680881f978fe7d85a38" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>InMicrosecondsF</name></member>
+      <member refid="classbase_1_1TimeDelta_1a397f244b9437a7cbf7b783758c2976fe" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>InMilliseconds</name></member>
+      <member refid="classbase_1_1TimeDelta_1ab543a425ac14dbce22a17d02d49b18e8" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>InMillisecondsF</name></member>
+      <member refid="classbase_1_1TimeDelta_1a7477bb883c32de060717e4151b30d26e" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>InMinutes</name></member>
+      <member refid="classbase_1_1TimeDelta_1acfac42aa04d86121864012f34a32c916" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>InNanoseconds</name></member>
+      <member refid="classbase_1_1TimeDelta_1a526f219dfc59134824bfce2612f4f026" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>InSeconds</name></member>
+      <member refid="classbase_1_1TimeDelta_1a3d5e3ccac26c0dbcca8d01fec5b6e711" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>InSecondsF</name></member>
+      <member refid="classbase_1_1TimeDelta_1a7655c4963c15ac9488e069700c15c3b5" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>IsNegative</name></member>
+      <member refid="classbase_1_1TimeDelta_1a7cba665f930396f8ab08ae6bcfe4e7d3" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>IsPositive</name></member>
+      <member refid="classbase_1_1TimeDelta_1af9fd37d4a9ff540e27d80794c326ca5f" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>IsZero</name></member>
+      <member refid="classbase_1_1TimeDelta_1adc57331cd75b273935d7602506623057" prot="private" virt="non-virtual"><scope>base::TimeDelta</scope><name>kMicrosecondsInDays</name></member>
+      <member refid="classbase_1_1TimeDelta_1a72912619afd56bae7e00596c7246fe0b" prot="private" virt="non-virtual"><scope>base::TimeDelta</scope><name>kMicrosecondsInHours</name></member>
+      <member refid="classbase_1_1TimeDelta_1a18f48b53c648646ab5d2b46461fdfb7c" prot="private" virt="non-virtual"><scope>base::TimeDelta</scope><name>kMicrosecondsInMilliseconds</name></member>
+      <member refid="classbase_1_1TimeDelta_1a889635d86f4cc29dfb29668466da93fb" prot="private" virt="non-virtual"><scope>base::TimeDelta</scope><name>kMicrosecondsInMinutes</name></member>
+      <member refid="classbase_1_1TimeDelta_1aad82207ccb41126fe044f24cfa74359d" prot="private" virt="non-virtual"><scope>base::TimeDelta</scope><name>kMicrosecondsInSeconds</name></member>
+      <member refid="classbase_1_1TimeDelta_1a8e28623409fe5075fbe07ca0f326ad7a" prot="private" virt="non-virtual"><scope>base::TimeDelta</scope><name>kNanosecondsInMicroseconds</name></member>
+      <member refid="classbase_1_1TimeDelta_1ab6151f0ea439cc1a43086f38ba704fb5" prot="private" virt="non-virtual"><scope>base::TimeDelta</scope><name>Microseconds</name></member>
+      <member refid="classbase_1_1TimeDelta_1a9067dba5c03d29a34b80269cf54eb022" prot="private" virt="non-virtual"><scope>base::TimeDelta</scope><name>Milliseconds</name></member>
+      <member refid="classbase_1_1TimeDelta_1abc1d59b4c858bb29a3bcde466c05bf29" prot="private" virt="non-virtual"><scope>base::TimeDelta</scope><name>Minutes</name></member>
+      <member refid="classbase_1_1TimeDelta_1a83d1fc4790a94fdffb4328427352aa5a" prot="private" virt="non-virtual"><scope>base::TimeDelta</scope><name>Nanoseconds</name></member>
+      <member refid="classbase_1_1TimeDelta_1a459767659ae6bfdfe70ef50dae733135" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>operator!=</name></member>
+      <member refid="classbase_1_1TimeDelta_1a1de70a6c03963d2312dc081f11f2a1a2" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>operator*</name></member>
+      <member refid="classbase_1_1TimeDelta_1a24d9b0066e6d36bd9f0dd00239f7f11a" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>operator*=</name></member>
+      <member refid="classbase_1_1TimeDelta_1ab4eeb7dd3a587ba56a86ff69e3271747" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>operator+</name></member>
+      <member refid="classbase_1_1TimeDelta_1ae6c7b9181477a80b05369f35cef6abb2" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>operator+=</name></member>
+      <member refid="classbase_1_1TimeDelta_1a42551c388c4c923da2384ac0832ff05a" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>operator-</name></member>
+      <member refid="classbase_1_1TimeDelta_1ab971fdf1edb294dddcc837d2c750216a" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>operator-</name></member>
+      <member refid="classbase_1_1TimeDelta_1a759b1a8676cb5c11d5a54ef4c0171c1f" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>operator-=</name></member>
+      <member refid="classbase_1_1TimeDelta_1a87e0c51a426d84a1f7225d36f9c1bd01" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>operator/</name></member>
+      <member refid="classbase_1_1TimeDelta_1a3df57a7e6ee8759fff258ae1a490247c" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>operator/=</name></member>
+      <member refid="classbase_1_1TimeDelta_1a45a5a653b6dc68a9220e21cdfe9f05bc" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>operator&lt;</name></member>
+      <member refid="classbase_1_1TimeDelta_1ac1f39b28311a0c46680d567fb9cb3073" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>operator&lt;=</name></member>
+      <member refid="classbase_1_1TimeDelta_1a3b9d9158b220e69b0b32d9fdad81715a" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>operator==</name></member>
+      <member refid="classbase_1_1TimeDelta_1a6c2f782fde4040f59eadca9a97c32ede" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>operator&gt;</name></member>
+      <member refid="classbase_1_1TimeDelta_1a716e310a61d898eb779bd25819744d9d" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>operator&gt;=</name></member>
+      <member refid="classbase_1_1TimeDelta_1aa600f610bec959ae4b5d55c4e945c37e" prot="private" virt="non-virtual"><scope>base::TimeDelta</scope><name>Seconds</name></member>
+      <member refid="classbase_1_1TimeDelta_1a4638b7e7c4a9d32a59f736fe6e5ff8a2" prot="private" virt="non-virtual"><scope>base::TimeDelta</scope><name>Time</name></member>
+      <member refid="classbase_1_1TimeDelta_1a4675140f14e29e27b04a2792a052a7d4" prot="public" virt="non-virtual"><scope>base::TimeDelta</scope><name>TimeDelta</name></member>
+      <member refid="classbase_1_1TimeDelta_1aea1dddff5a8d2a3bbf9303dcfc207b75" prot="private" virt="non-virtual"><scope>base::TimeDelta</scope><name>TimeDelta</name></member>
+      <member refid="classbase_1_1TimeDelta_1a7498f214ba5f885cd8cf80e8d438ee83" prot="private" virt="non-virtual"><scope>base::TimeDelta</scope><name>TimeTicks</name></member>
+      <member refid="classbase_1_1TimeDelta_1a7d3cb48a33fa7d3762eda89a8c13260d" prot="private" virt="non-virtual"><scope>base::TimeDelta</scope><name>us_delta_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

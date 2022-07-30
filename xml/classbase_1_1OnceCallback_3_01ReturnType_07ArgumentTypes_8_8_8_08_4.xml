@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4" kind="class" language="C++" prot="public">
+    <compoundname>base::OnceCallback&lt; ReturnType(ArgumentTypes...)&gt;</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename ReturnType</type>
+      </param>
+      <param>
+        <type>typename...</type>
+        <declname>ArgumentTypes</declname>
+        <defname>ArgumentTypes</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1ab3e8d31fb41f1d987dd3cfb528f066be" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; detail::OnceCallbackInterface&lt; ReturnType, ArgumentTypes... &gt; &gt;</type>
+        <definition>std::unique_ptr&lt;detail::OnceCallbackInterface&lt;ReturnType, ArgumentTypes...&gt; &gt; base::OnceCallback&lt; ReturnType(ArgumentTypes...)&gt;::impl_</definition>
+        <argsstring></argsstring>
+        <name>impl_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="69" column="7" bodyfile="base/callback.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a71d631c324d0eccd822e8e5d028aa958" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::OnceCallback&lt; ReturnType(ArgumentTypes...)&gt;::OnceCallback</definition>
+        <argsstring>()=default</argsstring>
+        <name>OnceCallback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="27" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a22d95f7c7f398f27ac8891c6550b9ba5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::OnceCallback&lt; ReturnType(ArgumentTypes...)&gt;::OnceCallback</definition>
+        <argsstring>(OnceCallback &amp;&amp;other)=default</argsstring>
+        <name>OnceCallback</name>
+        <param>
+          <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceCallback</ref> &amp;&amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="28" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a4445b8b096ea85ae6ed159cf1e5f3af0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceCallback</ref> &amp;</type>
+        <definition>OnceCallback&amp; base::OnceCallback&lt; ReturnType(ArgumentTypes...)&gt;::operator=</definition>
+        <argsstring>(OnceCallback &amp;&amp;)=default</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceCallback</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="29" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a94a574e57407c986c8dfe8f343b10101" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>base::OnceCallback&lt; ReturnType(ArgumentTypes...)&gt;::OnceCallback</definition>
+        <argsstring>(RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt; callback)</argsstring>
+        <name>OnceCallback</name>
+        <param>
+          <type><ref refid="classbase_1_1RepeatingCallback" kindref="compound">RepeatingCallback</ref>&lt; ReturnType(ArgumentTypes...)&gt;</type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="31" column="3" bodyfile="base/callback.h" bodystart="31" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a0624a16d8765a6ead692686ada7662c9" prot="public" static="no" const="yes" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>base::OnceCallback&lt; ReturnType(ArgumentTypes...)&gt;::operator bool</definition>
+        <argsstring>() const</argsstring>
+        <name>operator bool</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="35" column="12" bodyfile="base/callback.h" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1ab482fd876c0fd193db73b8ab1e4e75b2" prot="public" static="no" const="no" explicit="no" inline="yes" refqual="rvalue" virt="non-virtual">
+        <type>ReturnType</type>
+        <definition>ReturnType base::OnceCallback&lt; ReturnType(ArgumentTypes...)&gt;::Run</definition>
+        <argsstring>(ArgumentTypes... arguments) &amp;&amp;</argsstring>
+        <name>Run</name>
+        <param>
+          <type>ArgumentTypes...</type>
+          <declname>arguments</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="37" column="14" bodyfile="base/callback.h" bodystart="37" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a73125b905193a72157737b073f457e5b" prot="public" static="no" const="no" explicit="no" inline="yes" refqual="rvalue" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename ThenReturn</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>ThenArguments</declname>
+            <defname>ThenArguments</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceCallback</ref>&lt; ThenReturn(ArgumentTypes...)&gt;</type>
+        <definition>OnceCallback&lt;ThenReturn(ArgumentTypes...)&gt; base::OnceCallback&lt; ReturnType(ArgumentTypes...)&gt;::Then</definition>
+        <argsstring>(OnceCallback&lt; ThenReturn(ThenArguments...)&gt; then) &amp;&amp;</argsstring>
+        <name>Then</name>
+        <param>
+          <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceCallback</ref>&lt; ThenReturn(ThenArguments...)&gt;</type>
+          <declname>then</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="43" column="16" bodyfile="base/callback.h" bodystart="43" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1ad8c25326cecea51ed748bfc92712892c" prot="public" static="no" const="no" explicit="no" inline="yes" refqual="rvalue" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename ThenReturn</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>ThenArguments</declname>
+            <defname>ThenArguments</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceCallback</ref>&lt; ThenReturn(ArgumentTypes...)&gt;</type>
+        <definition>OnceCallback&lt;ThenReturn(ArgumentTypes...)&gt; base::OnceCallback&lt; ReturnType(ArgumentTypes...)&gt;::Then</definition>
+        <argsstring>(RepeatingCallback&lt; ThenReturn(ThenArguments...)&gt; then) &amp;&amp;</argsstring>
+        <name>Then</name>
+        <param>
+          <type><ref refid="classbase_1_1RepeatingCallback" kindref="compound">RepeatingCallback</ref>&lt; ThenReturn(ThenArguments...)&gt;</type>
+          <declname>then</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="54" column="16" bodyfile="base/callback.h" bodystart="54" bodyend="58"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a1d1b0d65a958d709ff9f737511061b3e" prot="private" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>base::OnceCallback&lt; ReturnType(ArgumentTypes...)&gt;::OnceCallback</definition>
+        <argsstring>(std::unique_ptr&lt; detail::OnceCallbackInterface&lt; ReturnType, ArgumentTypes... &gt;&gt; impl)</argsstring>
+        <name>OnceCallback</name>
+        <param>
+          <type>std::unique_ptr&lt; detail::OnceCallbackInterface&lt; ReturnType, ArgumentTypes... &gt;&gt;</type>
+          <declname>impl</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="63" column="12" bodyfile="base/callback.h" bodystart="63" bodyend="66"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/callback.h" line="25" column="20" bodyfile="base/callback.h" bodystart="25" bodyend="70"/>
+    <listofallmembers>
+      <member refid="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1ab3e8d31fb41f1d987dd3cfb528f066be" prot="private" virt="non-virtual"><scope>base::OnceCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>impl_</name></member>
+      <member refid="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a71d631c324d0eccd822e8e5d028aa958" prot="public" virt="non-virtual"><scope>base::OnceCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>OnceCallback</name></member>
+      <member refid="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a22d95f7c7f398f27ac8891c6550b9ba5" prot="public" virt="non-virtual"><scope>base::OnceCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>OnceCallback</name></member>
+      <member refid="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a94a574e57407c986c8dfe8f343b10101" prot="public" virt="non-virtual"><scope>base::OnceCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>OnceCallback</name></member>
+      <member refid="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a1d1b0d65a958d709ff9f737511061b3e" prot="private" virt="non-virtual"><scope>base::OnceCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>OnceCallback</name></member>
+      <member refid="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a0624a16d8765a6ead692686ada7662c9" prot="public" virt="non-virtual"><scope>base::OnceCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>operator bool</name></member>
+      <member refid="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a4445b8b096ea85ae6ed159cf1e5f3af0" prot="public" virt="non-virtual"><scope>base::OnceCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>operator=</name></member>
+      <member refid="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1ab482fd876c0fd193db73b8ab1e4e75b2" prot="public" virt="non-virtual"><scope>base::OnceCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>Run</name></member>
+      <member refid="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1a73125b905193a72157737b073f457e5b" prot="public" virt="non-virtual"><scope>base::OnceCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>Then</name></member>
+      <member refid="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4_1ad8c25326cecea51ed748bfc92712892c" prot="public" virt="non-virtual"><scope>base::OnceCallback&lt; ReturnType(ArgumentTypes...)&gt;</scope><name>Then</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,734 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="namespacebase" kind="namespace" language="C++">
+    <compoundname>base</compoundname>
+    <innerclass refid="classbase_1_1AutoReset" prot="public">base::AutoReset</innerclass>
+    <innerclass refid="classbase_1_1AutoSignaller" prot="public">base::AutoSignaller</innerclass>
+    <innerclass refid="classbase_1_1DelayedTaskManager" prot="public">base::DelayedTaskManager</innerclass>
+    <innerclass refid="classbase_1_1DelayedTaskManagerSharedInstance" prot="public">base::DelayedTaskManagerSharedInstance</innerclass>
+    <innerclass refid="classbase_1_1DoNothing" prot="public">base::DoNothing</innerclass>
+    <innerclass refid="classbase_1_1ElapsedTimer" prot="public">base::ElapsedTimer</innerclass>
+    <innerclass refid="classbase_1_1MessageLoop" prot="public">base::MessageLoop</innerclass>
+    <innerclass refid="classbase_1_1MessageLoopImpl" prot="public">base::MessageLoopImpl</innerclass>
+    <innerclass refid="classbase_1_1MessagePump" prot="public">base::MessagePump</innerclass>
+    <innerclass refid="classbase_1_1MessagePumpImpl" prot="public">base::MessagePumpImpl</innerclass>
+    <innerclass refid="classbase_1_1OnceCallback" prot="public">base::OnceCallback</innerclass>
+    <innerclass refid="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4" prot="public">base::OnceCallback&lt; ReturnType(ArgumentTypes...)&gt;</innerclass>
+    <innerclass refid="classbase_1_1RepeatingCallback" prot="public">base::RepeatingCallback</innerclass>
+    <innerclass refid="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4" prot="public">base::RepeatingCallback&lt; ReturnType(ArgumentTypes...)&gt;</innerclass>
+    <innerclass refid="classbase_1_1ScopedClosureRunner" prot="public">base::ScopedClosureRunner</innerclass>
+    <innerclass refid="classbase_1_1SequenceChecker" prot="public">base::SequenceChecker</innerclass>
+    <innerclass refid="classbase_1_1SequencedTaskRunner" prot="public">base::SequencedTaskRunner</innerclass>
+    <innerclass refid="classbase_1_1SequencedTaskRunnerHandle" prot="public">base::SequencedTaskRunnerHandle</innerclass>
+    <innerclass refid="classbase_1_1SequencedTaskRunnerImpl" prot="public">base::SequencedTaskRunnerImpl</innerclass>
+    <innerclass refid="classbase_1_1SequenceId" prot="public">base::SequenceId</innerclass>
+    <innerclass refid="classbase_1_1SingleThreadTaskRunner" prot="public">base::SingleThreadTaskRunner</innerclass>
+    <innerclass refid="classbase_1_1SingleThreadTaskRunnerImpl" prot="public">base::SingleThreadTaskRunnerImpl</innerclass>
+    <innerclass refid="classbase_1_1SourceLocation" prot="public">base::SourceLocation</innerclass>
+    <innerclass refid="classbase_1_1TaskRunner" prot="public">base::TaskRunner</innerclass>
+    <innerclass refid="classbase_1_1TaskRunnerImpl" prot="public">base::TaskRunnerImpl</innerclass>
+    <innerclass refid="classbase_1_1Thread" prot="public">base::Thread</innerclass>
+    <innerclass refid="classbase_1_1ThreadPool" prot="public">base::ThreadPool</innerclass>
+    <innerclass refid="classbase_1_1Time" prot="public">base::Time</innerclass>
+    <innerclass refid="classbase_1_1TimeDelta" prot="public">base::TimeDelta</innerclass>
+    <innerclass refid="classbase_1_1TimeTicks" prot="public">base::TimeTicks</innerclass>
+    <innerclass refid="classbase_1_1WaitableEvent" prot="public">base::WaitableEvent</innerclass>
+    <innerclass refid="classbase_1_1WeakPtr" prot="public">base::WeakPtr</innerclass>
+    <innerclass refid="classbase_1_1WeakPtrFactory" prot="public">base::WeakPtrFactory</innerclass>
+    <innernamespace refid="namespacebase_1_1traits">base::traits</innernamespace>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="callback_8h_1a59567d24a110228ba40af5b34848458f" prot="public" static="no">
+        <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceCallback</ref>&lt; void()&gt;</type>
+        <definition>typedef OnceCallback&lt; void()&gt; base::OnceClosure</definition>
+        <argsstring></argsstring>
+        <name>OnceClosure</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="151" column="1" bodyfile="base/callback.h" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="callback_8h_1ac4a76f1827e048560c85b9f94dd96ed4" prot="public" static="no">
+        <type><ref refid="classbase_1_1RepeatingCallback" kindref="compound">RepeatingCallback</ref>&lt; void()&gt;</type>
+        <definition>typedef RepeatingCallback&lt; void()&gt; base::RepeatingClosure</definition>
+        <argsstring></argsstring>
+        <name>RepeatingClosure</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="152" column="1" bodyfile="base/callback.h" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="barrier__callback_8h_1aeaf80813bef2ecb0373e2b63d5e78bcb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename ElementType</type>
+          </param>
+          <param>
+            <type>typename CallbackArgumentsType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classbase_1_1RepeatingCallback" kindref="compound">RepeatingCallback</ref>&lt; void(ElementType)&gt;</type>
+        <definition>RepeatingCallback&lt;void(ElementType)&gt; base::BarrierCallback</definition>
+        <argsstring>(size_t required_run_count, OnceCallback&lt; void(CallbackArgumentsType)&gt; callback)</argsstring>
+        <name>BarrierCallback</name>
+        <param>
+          <type>size_t</type>
+          <declname>required_run_count</declname>
+        </param>
+        <param>
+          <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceCallback</ref>&lt; void(CallbackArgumentsType)&gt;</type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/barrier_callback.h" line="45" column="19" bodyfile="base/barrier_callback.h" bodystart="45" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="barrier__callback_8h_1a9ebaeff49781d74781cbf615f6aa864a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename ElementType</type>
+          </param>
+          <param>
+            <type>typename CallbackArgumentsType</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classbase_1_1RepeatingCallback" kindref="compound">RepeatingCallback</ref>&lt; void(ElementType)&gt;</type>
+        <definition>RepeatingCallback&lt;void(ElementType)&gt; base::BarrierCallback</definition>
+        <argsstring>(size_t required_run_count, RepeatingCallback&lt; void(CallbackArgumentsType)&gt; callback)</argsstring>
+        <name>BarrierCallback</name>
+        <param>
+          <type>size_t</type>
+          <declname>required_run_count</declname>
+        </param>
+        <param>
+          <type><ref refid="classbase_1_1RepeatingCallback" kindref="compound">RepeatingCallback</ref>&lt; void(CallbackArgumentsType)&gt;</type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/barrier_callback.h" line="61" column="19" bodyfile="base/barrier_callback.h" bodystart="61" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="barrier__closure_8h_1ac63e035ad926f27f95b2275245357c0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1RepeatingCallback" kindref="compound">RepeatingClosure</ref></type>
+        <definition>RepeatingClosure base::BarrierClosure</definition>
+        <argsstring>(size_t required_run_count, OnceClosure callback)</argsstring>
+        <name>BarrierClosure</name>
+        <param>
+          <type>size_t</type>
+          <declname>required_run_count</declname>
+        </param>
+        <param>
+          <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceClosure</ref></type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/barrier_closure.h" line="9" column="18" declfile="base/barrier_closure.h" declline="9" declcolumn="18"/>
+      </memberdef>
+      <memberdef kind="function" id="bind_8h_1a93f52b871dd8441675fd964165924e8f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Functor</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>Arguments</declname>
+            <defname>Arguments</defname>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto base::BindOnce</definition>
+        <argsstring>(Functor &amp;&amp;functor, Arguments &amp;&amp;... arguments)</argsstring>
+        <name>BindOnce</name>
+        <param>
+          <type>Functor &amp;&amp;</type>
+          <declname>functor</declname>
+        </param>
+        <param>
+          <type>Arguments &amp;&amp;...</type>
+          <declname>arguments</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/bind.h" line="15" column="6" bodyfile="base/bind.h" bodystart="15" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="bind_8h_1af69e87ed12e057256882baa1052326e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Functor</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>Arguments</declname>
+            <defname>Arguments</defname>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto base::BindRepeating</definition>
+        <argsstring>(Functor &amp;&amp;functor, Arguments &amp;&amp;... arguments)</argsstring>
+        <name>BindRepeating</name>
+        <param>
+          <type>Functor &amp;&amp;</type>
+          <declname>functor</declname>
+        </param>
+        <param>
+          <type>Arguments &amp;&amp;...</type>
+          <declname>arguments</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/bind.h" line="21" column="6" bodyfile="base/bind.h" bodystart="21" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="bind_8h_1ad5d66862bbd0dbeebce8e46adda08f8e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename InstanceType</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto base::Unretained</definition>
+        <argsstring>(InstanceType *instance_ptr)</argsstring>
+        <name>Unretained</name>
+        <param>
+          <type>InstanceType *</type>
+          <declname>instance_ptr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/bind.h" line="31" column="13" bodyfile="base/bind.h" bodystart="31" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="bind_8h_1ae9bbece310034980402ba6320c1e1801" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename InstanceType</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto base::RetainedRef</definition>
+        <argsstring>(std::shared_ptr&lt; InstanceType &gt; instance_ptr)</argsstring>
+        <name>RetainedRef</name>
+        <param>
+          <type>std::shared_ptr&lt; InstanceType &gt;</type>
+          <declname>instance_ptr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/bind.h" line="36" column="13" bodyfile="base/bind.h" bodystart="36" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="bind_8h_1a757b196e60d6f4d93f8ec22d554fbf9a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename InstanceType</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto base::Owned</definition>
+        <argsstring>(std::unique_ptr&lt; InstanceType &gt; instance)</argsstring>
+        <name>Owned</name>
+        <param>
+          <type>std::unique_ptr&lt; InstanceType &gt;</type>
+          <declname>instance</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/bind.h" line="41" column="13" bodyfile="base/bind.h" bodystart="41" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="bind_8h_1a5452c26d25fe20be80ec370581653525" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename InstanceType</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto base::Owned</definition>
+        <argsstring>(InstanceType *instance_ptr)</argsstring>
+        <name>Owned</name>
+        <param>
+          <type>InstanceType *</type>
+          <declname>instance_ptr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/bind.h" line="46" column="13" bodyfile="base/bind.h" bodystart="46" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="bind_8h_1acfa44e3724b6e74d1bfbccba23bbf2c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename InstanceType</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto base::OwnedRef</definition>
+        <argsstring>(InstanceType &amp;&amp;instance)</argsstring>
+        <name>OwnedRef</name>
+        <param>
+          <type>InstanceType &amp;&amp;</type>
+          <declname>instance</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/bind.h" line="51" column="13" bodyfile="base/bind.h" bodystart="51" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="bind_8h_1a027b226247fe184c655649dc5767cfe9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Functor</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto base::IgnoreResult</definition>
+        <argsstring>(Functor functor)</argsstring>
+        <name>IgnoreResult</name>
+        <param>
+          <type>Functor</type>
+          <declname>functor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/bind.h" line="57" column="13" bodyfile="base/bind.h" bodystart="57" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="bind__post__task_8h_1a8c8946a116fd0c254e12b68ca1795caa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Return</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>Arguments</declname>
+            <defname>Arguments</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceCallback</ref>&lt; Return(Arguments...)&gt;</type>
+        <definition>OnceCallback&lt;Return(Arguments...)&gt; base::BindPostTask</definition>
+        <argsstring>(std::shared_ptr&lt; TaskRunner &gt; task_runner, OnceCallback&lt; Return(Arguments...)&gt; callback, SourceLocation location)</argsstring>
+        <name>BindPostTask</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classbase_1_1TaskRunner" kindref="compound">TaskRunner</ref> &gt;</type>
+          <declname>task_runner</declname>
+        </param>
+        <param>
+          <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceCallback</ref>&lt; Return(Arguments...)&gt;</type>
+          <declname>callback</declname>
+        </param>
+        <param>
+          <type><ref refid="classbase_1_1SourceLocation" kindref="compound">SourceLocation</ref></type>
+          <declname>location</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/bind_post_task.h" line="41" column="14" bodyfile="base/bind_post_task.h" bodystart="41" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="bind__post__task_8h_1ac3f226b6b486702cb57c542d2e85c56f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Return</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>Arguments</declname>
+            <defname>Arguments</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classbase_1_1RepeatingCallback" kindref="compound">RepeatingCallback</ref>&lt; Return(Arguments...)&gt;</type>
+        <definition>RepeatingCallback&lt;Return(Arguments...)&gt; base::BindPostTask</definition>
+        <argsstring>(std::shared_ptr&lt; TaskRunner &gt; task_runner, RepeatingCallback&lt; Return(Arguments...)&gt; callback, SourceLocation location)</argsstring>
+        <name>BindPostTask</name>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classbase_1_1TaskRunner" kindref="compound">TaskRunner</ref> &gt;</type>
+          <declname>task_runner</declname>
+        </param>
+        <param>
+          <type><ref refid="classbase_1_1RepeatingCallback" kindref="compound">RepeatingCallback</ref>&lt; Return(Arguments...)&gt;</type>
+          <declname>callback</declname>
+        </param>
+        <param>
+          <type><ref refid="classbase_1_1SourceLocation" kindref="compound">SourceLocation</ref></type>
+          <declname>location</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/bind_post_task.h" line="56" column="19" bodyfile="base/bind_post_task.h" bodystart="56" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="callback__helpers_8h_1a042fb02207cf3b829b2cfb246a9eac40" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename ReturnType</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>ArgumentTypes</declname>
+            <defname>ArgumentTypes</defname>
+          </param>
+        </templateparamlist>
+        <type>std::pair&lt; <ref refid="classbase_1_1OnceCallback" kindref="compound">OnceCallback</ref>&lt; ReturnType(ArgumentTypes...)&gt;, <ref refid="classbase_1_1OnceCallback" kindref="compound">OnceCallback</ref>&lt; ReturnType(ArgumentTypes...)&gt; &gt;</type>
+        <definition>std::pair&lt;OnceCallback&lt;ReturnType(ArgumentTypes...)&gt;, OnceCallback&lt;ReturnType(ArgumentTypes...)&gt; &gt; base::SplitOnceCallback</definition>
+        <argsstring>(OnceCallback&lt; ReturnType(ArgumentTypes...)&gt; callback)</argsstring>
+        <name>SplitOnceCallback</name>
+        <param>
+          <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceCallback</ref>&lt; ReturnType(ArgumentTypes...)&gt;</type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback_helpers.h" line="73" column="1" bodyfile="base/callback_helpers.h" bodystart="73" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="init_8h_1a0cb247fb3874530bc6e8fbe788256dbd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::Initialize</definition>
+        <argsstring>(int argc, char *argv[])</argsstring>
+        <name>Initialize</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>argv</declname>
+          <array>[]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/init.h" line="5" column="6" declfile="base/init.h" declline="5" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="init_8h_1a73aeac72e46f9d795d43b5ed1f74a292" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::Deinitialize</definition>
+        <argsstring>()</argsstring>
+        <name>Deinitialize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/init.h" line="6" column="6" declfile="base/init.h" declline="6" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="weak__ptr_8h_1a49d18eb459faf71b5a8700424c938a50" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool base::operator==</definition>
+        <argsstring>(const WeakPtr&lt; T &gt; &amp;weak_ptr, std::nullptr_t)</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>const <ref refid="classbase_1_1WeakPtr" kindref="compound">WeakPtr</ref>&lt; T &gt; &amp;</type>
+          <declname>weak_ptr</declname>
+        </param>
+        <param>
+          <type>std::nullptr_t</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/memory/weak_ptr.h" line="126" column="6" bodyfile="base/memory/weak_ptr.h" bodystart="126" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="weak__ptr_8h_1a3a91cebf3759df9d2d0ea7e75e48d9cd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool base::operator==</definition>
+        <argsstring>(std::nullptr_t, const WeakPtr&lt; T &gt; &amp;weak_ptr)</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>std::nullptr_t</type>
+        </param>
+        <param>
+          <type>const <ref refid="classbase_1_1WeakPtr" kindref="compound">WeakPtr</ref>&lt; T &gt; &amp;</type>
+          <declname>weak_ptr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/memory/weak_ptr.h" line="131" column="6" bodyfile="base/memory/weak_ptr.h" bodystart="131" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="weak__ptr_8h_1a7fabe800bcebfdb72d533eebd41a466d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool base::operator!=</definition>
+        <argsstring>(const WeakPtr&lt; T &gt; &amp;weak_ptr, std::nullptr_t)</argsstring>
+        <name>operator!=</name>
+        <param>
+          <type>const <ref refid="classbase_1_1WeakPtr" kindref="compound">WeakPtr</ref>&lt; T &gt; &amp;</type>
+          <declname>weak_ptr</declname>
+        </param>
+        <param>
+          <type>std::nullptr_t</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/memory/weak_ptr.h" line="136" column="6" bodyfile="base/memory/weak_ptr.h" bodystart="136" bodyend="138"/>
+      </memberdef>
+      <memberdef kind="function" id="weak__ptr_8h_1a01deba814835fc3363db9f15290d8e77" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool base::operator!=</definition>
+        <argsstring>(std::nullptr_t, const WeakPtr&lt; T &gt; &amp;weak_ptr)</argsstring>
+        <name>operator!=</name>
+        <param>
+          <type>std::nullptr_t</type>
+        </param>
+        <param>
+          <type>const <ref refid="classbase_1_1WeakPtr" kindref="compound">WeakPtr</ref>&lt; T &gt; &amp;</type>
+          <declname>weak_ptr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/memory/weak_ptr.h" line="141" column="6" bodyfile="base/memory/weak_ptr.h" bodystart="141" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="time__delta_8h_1a9014824d944120c7546e22c2e9af63ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+        <definition>TimeDelta base::Days</definition>
+        <argsstring>(T n)</argsstring>
+        <name>Days</name>
+        <param>
+          <type>T</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="100" column="11" bodyfile="base/time/time_delta.h" bodystart="100" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="time__delta_8h_1afd9a85b6ee9d335db49969c604b7ca7f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+        <definition>TimeDelta base::Hours</definition>
+        <argsstring>(T n)</argsstring>
+        <name>Hours</name>
+        <param>
+          <type>T</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="105" column="11" bodyfile="base/time/time_delta.h" bodystart="105" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="time__delta_8h_1a1456698c7bcbf5249cf25bb72952fe02" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+        <definition>TimeDelta base::Minutes</definition>
+        <argsstring>(T n)</argsstring>
+        <name>Minutes</name>
+        <param>
+          <type>T</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="110" column="11" bodyfile="base/time/time_delta.h" bodystart="110" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="time__delta_8h_1a0c5abc2df90df6fcd0bf3c856e7c150a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+        <definition>TimeDelta base::Seconds</definition>
+        <argsstring>(T n)</argsstring>
+        <name>Seconds</name>
+        <param>
+          <type>T</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="115" column="11" bodyfile="base/time/time_delta.h" bodystart="115" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="time__delta_8h_1adc43a089f5d5ba5fcb30fc98cb6a231c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+        <definition>TimeDelta base::Milliseconds</definition>
+        <argsstring>(T n)</argsstring>
+        <name>Milliseconds</name>
+        <param>
+          <type>T</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="120" column="11" bodyfile="base/time/time_delta.h" bodystart="120" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="time__delta_8h_1a11e670d8718883d973e2fb31d25739ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+        <definition>TimeDelta base::Microseconds</definition>
+        <argsstring>(T n)</argsstring>
+        <name>Microseconds</name>
+        <param>
+          <type>T</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="126" column="11" bodyfile="base/time/time_delta.h" bodystart="126" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="time__delta_8h_1a1992a1bf37f7c54a97c77d82d3a8687e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+        <definition>TimeDelta base::Nanoseconds</definition>
+        <argsstring>(T n)</argsstring>
+        <name>Nanoseconds</name>
+        <param>
+          <type>T</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/time/time_delta.h" line="131" column="11" bodyfile="base/time/time_delta.h" bodystart="131" bodyend="134"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/auto_reset.h" line="5" column="14"/>
+  </compounddef>
+</doxygen>

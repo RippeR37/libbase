@@ -1,0 +1,246 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classbase_1_1SingleThreadTaskRunnerImpl" kind="class" language="C++" prot="public">
+    <compoundname>base::SingleThreadTaskRunnerImpl</compoundname>
+    <basecompoundref refid="classbase_1_1SingleThreadTaskRunner" prot="public" virt="non-virtual">base::SingleThreadTaskRunner</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">std::enable_shared_from_this&lt; SingleThreadTaskRunnerImpl &gt;</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbase_1_1SingleThreadTaskRunnerImpl_1a3109c232035265c37068bb4f1cb232f4" prot="private" static="no" mutable="no">
+        <type>std::weak_ptr&lt; <ref refid="classbase_1_1MessagePump" kindref="compound">MessagePump</ref> &gt;</type>
+        <definition>std::weak_ptr&lt;MessagePump&gt; base::SingleThreadTaskRunnerImpl::pump_</definition>
+        <argsstring></argsstring>
+        <name>pump_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/task_runner_impl.h" line="84" column="17" bodyfile="base/threading/task_runner_impl.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1SingleThreadTaskRunnerImpl_1a30ef1c83d92a33f8b392ff582f00ccb7" prot="private" static="no" mutable="no">
+        <type><ref refid="classbase_1_1SequenceId" kindref="compound">SequenceId</ref></type>
+        <definition>SequenceId base::SingleThreadTaskRunnerImpl::sequence_id_</definition>
+        <argsstring></argsstring>
+        <name>sequence_id_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/task_runner_impl.h" line="85" column="14" bodyfile="base/threading/task_runner_impl.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1SingleThreadTaskRunnerImpl_1af00fce98f29b9f9cd34b634c8b62b31a" prot="private" static="no" mutable="no">
+        <type>MessagePump::ExecutorId</type>
+        <definition>MessagePump::ExecutorId base::SingleThreadTaskRunnerImpl::executor_id_</definition>
+        <argsstring></argsstring>
+        <name>executor_id_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/task_runner_impl.h" line="86" column="27" bodyfile="base/threading/task_runner_impl.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1SingleThreadTaskRunnerImpl_1aaba7fc1ca0918e0a04ba9ee253c8c5a1" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classbase_1_1DelayedTaskManager" kindref="compound">DelayedTaskManager</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;DelayedTaskManager&gt; base::SingleThreadTaskRunnerImpl::delayed_task_manager_</definition>
+        <argsstring></argsstring>
+        <name>delayed_task_manager_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/task_runner_impl.h" line="87" column="19" bodyfile="base/threading/task_runner_impl.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classbase_1_1SingleThreadTaskRunnerImpl_1a0d1c0e009362020f53a3d7135a5a280e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classbase_1_1SingleThreadTaskRunnerImpl" kindref="compound">SingleThreadTaskRunnerImpl</ref> &gt;</type>
+        <definition>static std::shared_ptr&lt;SingleThreadTaskRunnerImpl&gt; base::SingleThreadTaskRunnerImpl::Create</definition>
+        <argsstring>(std::weak_ptr&lt; MessagePump &gt; pump, SequenceId sequence_id, MessagePump::ExecutorId executor_id, std::shared_ptr&lt; DelayedTaskManager &gt; delayed_task_manager)</argsstring>
+        <name>Create</name>
+        <param>
+          <type>std::weak_ptr&lt; <ref refid="classbase_1_1MessagePump" kindref="compound">MessagePump</ref> &gt;</type>
+          <declname>pump</declname>
+        </param>
+        <param>
+          <type><ref refid="classbase_1_1SequenceId" kindref="compound">SequenceId</ref></type>
+          <declname>sequence_id</declname>
+        </param>
+        <param>
+          <type>MessagePump::ExecutorId</type>
+          <declname>executor_id</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classbase_1_1DelayedTaskManager" kindref="compound">DelayedTaskManager</ref> &gt;</type>
+          <declname>delayed_task_manager</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/task_runner_impl.h" line="65" column="26"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1SingleThreadTaskRunnerImpl_1ae2b80e8a78fe95c1a81ae69f0bbd4065" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool base::SingleThreadTaskRunnerImpl::PostDelayedTask</definition>
+        <argsstring>(SourceLocation location, OnceClosure task, TimeDelta delay) override</argsstring>
+        <name>PostDelayedTask</name>
+        <reimplements refid="classbase_1_1TaskRunner_1a9718748b69467d9f2bfcdb31dd090792">PostDelayedTask</reimplements>
+        <param>
+          <type><ref refid="classbase_1_1SourceLocation" kindref="compound">SourceLocation</ref></type>
+          <declname>location</declname>
+        </param>
+        <param>
+          <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceClosure</ref></type>
+          <declname>task</declname>
+        </param>
+        <param>
+          <type><ref refid="classbase_1_1TimeDelta" kindref="compound">TimeDelta</ref></type>
+          <declname>delay</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/task_runner_impl.h" line="72" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1SingleThreadTaskRunnerImpl_1a4490fa95f9f592d657f1d7a87af26ae6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool base::SingleThreadTaskRunnerImpl::RunsTasksInCurrentSequence</definition>
+        <argsstring>() const override</argsstring>
+        <name>RunsTasksInCurrentSequence</name>
+        <reimplements refid="classbase_1_1SequencedTaskRunner_1ad8453ef90f4052b0bba4df86f7b65d36">RunsTasksInCurrentSequence</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/task_runner_impl.h" line="75" column="8"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classbase_1_1SingleThreadTaskRunnerImpl_1a450585138cec302883f05bf55b7c08ea" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::SingleThreadTaskRunnerImpl::SingleThreadTaskRunnerImpl</definition>
+        <argsstring>(std::weak_ptr&lt; MessagePump &gt; pump, SequenceId sequence_id, MessagePump::ExecutorId executor_id, std::shared_ptr&lt; DelayedTaskManager &gt; delayed_task_manager)</argsstring>
+        <name>SingleThreadTaskRunnerImpl</name>
+        <param>
+          <type>std::weak_ptr&lt; <ref refid="classbase_1_1MessagePump" kindref="compound">MessagePump</ref> &gt;</type>
+          <declname>pump</declname>
+        </param>
+        <param>
+          <type><ref refid="classbase_1_1SequenceId" kindref="compound">SequenceId</ref></type>
+          <declname>sequence_id</declname>
+        </param>
+        <param>
+          <type>MessagePump::ExecutorId</type>
+          <declname>executor_id</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classbase_1_1DelayedTaskManager" kindref="compound">DelayedTaskManager</ref> &gt;</type>
+          <declname>delayed_task_manager</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/threading/task_runner_impl.h" line="78" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>std::enable_shared_from_this&lt; SingleThreadTaskRunnerImpl &gt;</label>
+      </node>
+      <node id="1">
+        <label>base::SingleThreadTaskRunnerImpl</label>
+        <link refid="classbase_1_1SingleThreadTaskRunnerImpl"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>base::SequencedTaskRunner</label>
+        <link refid="classbase_1_1SequencedTaskRunner"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>base::SingleThreadTaskRunner</label>
+        <link refid="classbase_1_1SingleThreadTaskRunner"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>base::TaskRunner</label>
+        <link refid="classbase_1_1TaskRunner"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="5">
+        <label>std::enable_shared_from_this&lt; SingleThreadTaskRunnerImpl &gt;</label>
+      </node>
+      <node id="1">
+        <label>base::SingleThreadTaskRunnerImpl</label>
+        <link refid="classbase_1_1SingleThreadTaskRunnerImpl"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>base::SequencedTaskRunner</label>
+        <link refid="classbase_1_1SequencedTaskRunner"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>base::SingleThreadTaskRunner</label>
+        <link refid="classbase_1_1SingleThreadTaskRunner"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>base::TaskRunner</label>
+        <link refid="classbase_1_1TaskRunner"/>
+      </node>
+    </collaborationgraph>
+    <location file="base/threading/task_runner_impl.h" line="63" column="43" bodyfile="base/threading/task_runner_impl.h" bodystart="61" bodyend="88"/>
+    <listofallmembers>
+      <member refid="classbase_1_1SingleThreadTaskRunner_1a6b8f4a1819f5237cad57cd15c24e6572" prot="public" virt="non-virtual"><scope>base::SingleThreadTaskRunnerImpl</scope><name>BelongsToCurrentThread</name></member>
+      <member refid="classbase_1_1SingleThreadTaskRunnerImpl_1a0d1c0e009362020f53a3d7135a5a280e" prot="public" virt="non-virtual"><scope>base::SingleThreadTaskRunnerImpl</scope><name>Create</name></member>
+      <member refid="classbase_1_1SingleThreadTaskRunnerImpl_1aaba7fc1ca0918e0a04ba9ee253c8c5a1" prot="private" virt="non-virtual"><scope>base::SingleThreadTaskRunnerImpl</scope><name>delayed_task_manager_</name></member>
+      <member refid="classbase_1_1SequencedTaskRunner_1a51c585c600a5469711c6a15ea673f141" prot="public" virt="non-virtual"><scope>base::SingleThreadTaskRunnerImpl</scope><name>DeleteSoon</name></member>
+      <member refid="classbase_1_1SequencedTaskRunner_1aae581e5ac5ec7e992f76c9c221017410" prot="public" virt="non-virtual"><scope>base::SingleThreadTaskRunnerImpl</scope><name>DeleteSoon</name></member>
+      <member refid="classbase_1_1SingleThreadTaskRunnerImpl_1af00fce98f29b9f9cd34b634c8b62b31a" prot="private" virt="non-virtual"><scope>base::SingleThreadTaskRunnerImpl</scope><name>executor_id_</name></member>
+      <member refid="classbase_1_1SingleThreadTaskRunnerImpl_1ae2b80e8a78fe95c1a81ae69f0bbd4065" prot="public" virt="virtual"><scope>base::SingleThreadTaskRunnerImpl</scope><name>PostDelayedTask</name></member>
+      <member refid="classbase_1_1TaskRunner_1afa234d22c5865bc0f5deff0cac900797" prot="public" virt="non-virtual"><scope>base::SingleThreadTaskRunnerImpl</scope><name>PostTask</name></member>
+      <member refid="classbase_1_1TaskRunner_1aba59920cc89afd3f4044629f5a20f9ab" prot="public" virt="non-virtual"><scope>base::SingleThreadTaskRunnerImpl</scope><name>PostTaskAndReply</name></member>
+      <member refid="classbase_1_1TaskRunner_1a8ed5933dc9cedef9d5b3bc6daf417900" prot="public" virt="non-virtual"><scope>base::SingleThreadTaskRunnerImpl</scope><name>PostTaskAndReplyWithResult</name></member>
+      <member refid="classbase_1_1SingleThreadTaskRunnerImpl_1a3109c232035265c37068bb4f1cb232f4" prot="private" virt="non-virtual"><scope>base::SingleThreadTaskRunnerImpl</scope><name>pump_</name></member>
+      <member refid="classbase_1_1SingleThreadTaskRunnerImpl_1a4490fa95f9f592d657f1d7a87af26ae6" prot="public" virt="virtual"><scope>base::SingleThreadTaskRunnerImpl</scope><name>RunsTasksInCurrentSequence</name></member>
+      <member refid="classbase_1_1SingleThreadTaskRunnerImpl_1a30ef1c83d92a33f8b392ff582f00ccb7" prot="private" virt="non-virtual"><scope>base::SingleThreadTaskRunnerImpl</scope><name>sequence_id_</name></member>
+      <member refid="classbase_1_1SingleThreadTaskRunnerImpl_1a450585138cec302883f05bf55b7c08ea" prot="private" virt="non-virtual"><scope>base::SingleThreadTaskRunnerImpl</scope><name>SingleThreadTaskRunnerImpl</name></member>
+      <member refid="classbase_1_1TaskRunner_1ab9c6a11cf7be935ed913c21979d580bd" prot="public" virt="virtual"><scope>base::SingleThreadTaskRunnerImpl</scope><name>~TaskRunner</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
