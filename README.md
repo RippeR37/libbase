@@ -10,7 +10,7 @@
 
 The [`libbase`](https://github.com/RippeR37/libbase/) is a small library that provides its users with a reimplementation of many useful low-level utilities known from Chromium’s [`//base`](https://chromium.googlesource.com/chromium/src/base/) module without the need to depend on the whole (or parts of the) Chromium itself.
 
-For more details with examples see the [documentation](https://github.com/RippeR37/libbase/).
+For more details with examples see the [documentation](https://ripper37.github.io/libbase/).
 
 
 ### Building `libbase`
