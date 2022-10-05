@@ -2,6 +2,8 @@
 
 #include "base/synchronization/waitable_event.h"
 
+#include <utility>
+
 namespace base {
 
 AutoSignaller::AutoSignaller(WaitableEvent* event) : event_(event) {}
