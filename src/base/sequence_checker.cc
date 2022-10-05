@@ -1,5 +1,7 @@
 #include "base/sequence_checker.h"
 
+#include <utility>
+
 namespace base {
 
 SequenceChecker::SequenceChecker()
