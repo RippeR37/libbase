@@ -56,6 +56,7 @@ target_sources(libbase
     base/message_loop/message_pump.h
     base/message_loop/message_pump_impl.cc
     base/message_loop/message_pump_impl.h
+    $<$<PLATFORM_ID:Windows>:base/message_loop/win/message_pump_win_impl.h>
     base/sequence_checker.cc
     base/sequence_checker.h
     base/sequence_id.cc
@@ -85,6 +86,7 @@ target_sources(libbase
     base/threading/thread.h
     base/threading/thread_pool.cc
     base/threading/thread_pool.h
+    $<$<PLATFORM_ID:Windows>:base/threading/win/win_thread_attachment.h>
     base/time/time.cc
     base/time/time.h
     base/time/time_delta.cc
