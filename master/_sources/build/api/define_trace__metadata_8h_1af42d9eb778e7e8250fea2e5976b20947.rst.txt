@@ -1,0 +1,14 @@
+.. _exhale_define_trace__metadata_8h_1af42d9eb778e7e8250fea2e5976b20947:
+
+Define TRACE_NAME_PROCESS
+=========================
+
+- Defined in :ref:`file_base_trace_event_trace_metadata.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: TRACE_NAME_PROCESS
+   :project: libbase

@@ -1,0 +1,17 @@
+.. _exhale_class_classbase_1_1Thread:
+
+Class Thread
+============
+
+- Defined in :ref:`file_base_threading_thread.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::Thread
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

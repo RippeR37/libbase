@@ -1,0 +1,78 @@
+
+.. _file_base_time_time_delta.h:
+
+File time_delta.h
+=================
+
+|exhale_lsh| :ref:`Parent directory <dir_base_time>` (``base/time``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/time/time_delta.h``)
+---------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cstdint``
+
+- ``ctime``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_base_task_runner.h`
+
+- :ref:`file_base_time_time.h`
+
+- :ref:`file_base_time_time_ticks.h`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classbase_1_1TimeDelta`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_time__delta_8h_1a9014824d944120c7546e22c2e9af63ea`
+
+- :ref:`exhale_function_time__delta_8h_1afd9a85b6ee9d335db49969c604b7ca7f`
+
+- :ref:`exhale_function_time__delta_8h_1a11e670d8718883d973e2fb31d25739ea`
+
+- :ref:`exhale_function_time__delta_8h_1adc43a089f5d5ba5fcb30fc98cb6a231c`
+
+- :ref:`exhale_function_time__delta_8h_1a1456698c7bcbf5249cf25bb72952fe02`
+
+- :ref:`exhale_function_time__delta_8h_1a1992a1bf37f7c54a97c77d82d3a8687e`
+
+- :ref:`exhale_function_time__delta_8h_1a0c5abc2df90df6fcd0bf3c856e7c150a`
+

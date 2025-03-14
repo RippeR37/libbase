@@ -1,0 +1,17 @@
+.. _exhale_class_classbase_1_1AutoReset:
+
+Template Class AutoReset
+========================
+
+- Defined in :ref:`file_base_auto_reset.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::AutoReset
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:
