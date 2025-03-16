@@ -8,7 +8,8 @@ void Initialize(int /*argc*/,
                 char* argv[]) {  // NOLINT(modernize-avoid-c-arrays)
   FLAGS_logtostderr = true;
 
-  google::InitGoogleLogging(argv[0], &detail::LogFormatter);
+  google::InitGoogleLogging(argv[0]);
+  google::InstallPrefixFormatter(&detail::LogFormatter);
   google::InstallFailureSignalHandler();
 }
 

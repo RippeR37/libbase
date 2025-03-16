@@ -1,6 +1,21 @@
 cmake_minimum_required(VERSION 3.13)
 
 #
+# Dependency resolution
+#
+
+option(LIBBASE_DEPENDENCIES_USE_VCPKG "Fetch dependencies with VCPKG" ON)
+
+if (LIBBASE_DEPENDENCIES_USE_VCPKG)
+  if(DEFINED ENV{VCPKG_ROOT})
+    set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
+  else()
+    message(WARNING "Requested to use VCPKG for dependency resolution but VCPKG_ROOT environment variable is not set, ignoring")
+  endif()
+endif()
+
+
+#
 # Project setup
 #
 
@@ -8,6 +23,7 @@ project(libbase
         VERSION 1.0.0
         LANGUAGES CXX)
 
+include(GNUInstallDirs)
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/CMakeModules")
 
 #
@@ -57,10 +73,8 @@ message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 
 # Threads
 find_package(Threads REQUIRED)
-
 # GLOG
-include(AddGlogSubmodule)
-add_glog_submodule(third_party/glog)
+find_package(glog CONFIG REQUIRED)
 
 
 #
@@ -87,3 +101,39 @@ endif()
 if (LIBBASE_BUILD_DOCS)
   add_subdirectory(docs)
 endif()
+
+
+#
+# Installation
+#
+
+# Install the library
+install(TARGETS libbase
+        EXPORT libbase_targets
+        ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+        LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+        RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}")
+
+# Install headers
+install(DIRECTORY "${CMAKE_SOURCE_DIR}/src/base"
+        DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/libbase"
+        FILES_MATCHING PATTERN "*.h")
+
+# Generate and install *-targets.cmake
+install(EXPORT libbase_targets
+        FILE libbase-targets.cmake
+        NAMESPACE libbase::
+        DESTINATION share/libbase)
+
+# Generate the config file in the current binary dir (this ensures it's not placed directly in source)
+file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_PROJECT_NAME}-config.cmake"
+"include(CMakeFindDependencyMacro)\n"
+"find_dependency(glog CONFIG REQUIRED)\n"
+"find_dependency(GTest CONFIG QUIET)\n"
+"find_dependency(benchmark CONFIG QUIET)\n"
+"include(\"\${CMAKE_CURRENT_LIST_DIR}/${CMAKE_PROJECT_NAME}-targets.cmake\")\n"
+)
+
+# Install the generated config file
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_PROJECT_NAME}-config.cmake"
+        DESTINATION share/libbase)

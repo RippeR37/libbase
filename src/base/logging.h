@@ -17,7 +17,7 @@
 namespace base {
 namespace detail {
 
-void LogFormatter(std::ostream&, const google::LogMessageInfo&, void*);
+void LogFormatter(std::ostream&, const google::LogMessage&, void*);
 
 }  // namespace detail
 }  // namespace base

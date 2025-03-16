@@ -3,12 +3,7 @@ if(NOT LIBBASE_BUILD_TESTS)
 endif()
 
 
-#
-# Google Test setup
-#
-
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-add_subdirectory(${PROJECT_SOURCE_DIR}/third_party/googletest build_gtest)
+find_package(GTest CONFIG REQUIRED)
 
 
 #
@@ -24,8 +19,8 @@ target_include_directories(libbase_unittests PRIVATE
 
 target_link_libraries(libbase_unittests PRIVATE
   libbase
-  gtest
-  gmock)
+  GTest::gtest
+  GTest::gmock)
 
 target_sources(libbase_unittests
   PRIVATE

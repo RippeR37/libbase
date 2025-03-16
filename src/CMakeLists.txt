@@ -24,7 +24,11 @@ set_target_properties(libbase PROPERTIES
   CXX_EXTENSIONS ON
   ${LIBBASE_OPT_CLANG_TIDY_PROPERTIES})
 
-target_include_directories(libbase PUBLIC ${libbase_SOURCE_DIR}/src/)
+target_include_directories(libbase PUBLIC
+    $<BUILD_INTERFACE:${libbase_SOURCE_DIR}/src/>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/libbase>
+)
+
 target_link_libraries(libbase PUBLIC
   ${LIBBASE_LINK_FLAGS}
   Threads::Threads

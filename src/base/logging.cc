@@ -6,9 +6,7 @@
 namespace base {
 namespace detail {
 
-void LogFormatter(std::ostream& stream,
-                  const google::LogMessageInfo& log,
-                  void*) {
+void LogFormatter(std::ostream& stream, const google::LogMessage& log, void*) {
   // Chromium log format:
   //
   //   [PID:TID:MMDD/TIME:LEVEL:FILE_NAME(LINE_NUMBER)]
@@ -16,15 +14,15 @@ void LogFormatter(std::ostream& stream,
   // `PID` part is ignored for now since `libbase` doesn't include any IPC or
   // cross-process functionality.
 
-  stream << '[' << log.thread_id << ':';
-  stream << std::setw(2) << log.time.month() + 1;
-  stream << std::setw(2) << log.time.day() << '/';
-  stream << std::setw(2) << log.time.hour();
-  stream << std::setw(2) << log.time.min();
-  stream << std::setw(2) << log.time.sec() << '.';
-  stream << std::setw(6) << log.time.usec() << ':';
-  stream << log.severity << ':';
-  stream << log.filename << '(' << log.line_number << ")]";
+  stream << '[' << log.thread_id() << ':';
+  stream << std::setw(2) << log.time().month() + 1;
+  stream << std::setw(2) << log.time().day() << '/';
+  stream << std::setw(2) << log.time().hour();
+  stream << std::setw(2) << log.time().min();
+  stream << std::setw(2) << log.time().sec() << '.';
+  stream << std::setw(6) << log.time().usec() << ':';
+  stream << log.severity() << ':';
+  stream << log.basename() << '(' << log.line() << ")]";
 }
 
 }  // namespace detail
