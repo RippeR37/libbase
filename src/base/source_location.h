@@ -6,7 +6,7 @@ namespace base {
 
 class SourceLocation {
  public:
-  SourceLocation(const char* file, size_t line) : file(file), line(line) {}
+  SourceLocation(const char* file_, size_t line_) : file(file_), line(line_) {}
 
   const char* file;
   size_t line;

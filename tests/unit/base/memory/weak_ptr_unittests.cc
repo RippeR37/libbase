@@ -203,13 +203,10 @@ TEST_F(WeakPtrFactoryTest, NullptrComparison) {
 class Base {
  public:
   virtual ~Base() = default;
-
-  void Foo() {}
 };
 
 class Derived : public Base {
  public:
-  void Bar() {}
 };
 
 class WeakPtrFactoryUpcastingTest : public BaseWeakPtrFactoryTest {};
@@ -320,7 +317,6 @@ class MultiBase1 {
  public:
   virtual ~MultiBase1() = default;
 
-  void Foo1() {}
   int n1 = 0;
 };
 
@@ -328,14 +324,11 @@ class MultiBase2 {
  public:
   virtual ~MultiBase2() = default;
 
-  void Foo2() {}
   int n2 = 0;
 };
 
 class MultiDerived : public MultiBase1, public MultiBase2 {
  public:
-  void Bar() {}
-
   int n3 = 0;
 };
 

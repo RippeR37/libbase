@@ -99,7 +99,7 @@ class EventRegister {
 
   uint64_t GetTs() {
     static const auto origin = base::Time::Now();
-    return (base::Time::Now() - origin).InMicroseconds();
+    return static_cast<uint64_t>((base::Time::Now() - origin).InMicroseconds());
   }
 
   uint64_t GetPid() { return TracePlatform::GetPid(); }

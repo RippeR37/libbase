@@ -13,3 +13,5 @@
 .cache/*
 build/*
 docs/build/*
+
+.vscode/*

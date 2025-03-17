@@ -14,7 +14,7 @@ function(SETUP_COMPILE_FLAGS)
       set(WARNINGS "-Wall;-Wextra;-Werror;-Wunreachable-code")
 
       if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-        set(WARNINGS "${WARNINGS};-Wpedantic;-Wshadow;-Wno-gnu-zero-variadic-macro-arguments")
+        set(WARNINGS "${WARNINGS};-Wpedantic;-Wshadow;-Wno-gnu-zero-variadic-macro-arguments;-Wno-c++98-compat;-Wno-c++98-compat-pedantic;-Wno-exit-time-destructors;-Wno-global-constructors;-Wno-missing-prototypes;-Wno-ctad-maybe-unsupported;-Wno-switch-default")
       else()
         set(WARNINGS "${WARNINGS};-Wshadow=local")
 
@@ -43,8 +43,9 @@ function(SETUP_COMPILE_FLAGS)
     endif()
   endif()
 
-  if(LIBBASE_CLANG_TIDY AND "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-    set(CLANG_TIDY_PROPERTIES "CXX_CLANG_TIDY;clang-tidy-10")
+  find_program(CLANG_TIDY_EXE NAMES clang-tidy)
+  if(LIBBASE_CLANG_TIDY AND "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" AND CLANG_TIDY_EXE)
+    set(CLANG_TIDY_PROPERTIES "CXX_CLANG_TIDY;clang-tidy")
   endif()
 
   if(NOT CONFIGURED_ONCE)

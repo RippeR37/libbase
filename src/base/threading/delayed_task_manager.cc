@@ -71,12 +71,12 @@ void DelayedTaskManager::QueueDelayedTask(DelayedTask delayed_task) {
 }
 
 void DelayedTaskManager::ScheduleAllReadyTasksForTests() {
-  std::unique_lock lock(mutex_);
+  std::unique_lock<std::mutex> lock{mutex_};
   ScheduleAllReadyTasksLocked();
 }
 
 void DelayedTaskManager::ScheduleTasksUntilStop() {
-  std::unique_lock lock(mutex_);
+  std::unique_lock<std::mutex> lock{mutex_};
 
   while (!stopped_) {
     ScheduleAllReadyTasksLocked();

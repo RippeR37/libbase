@@ -8,6 +8,8 @@ namespace detail {
 template <typename ReturnType, typename... ArgumentTypes>
 class OnceCallbackInterface {
  public:
+  OnceCallbackInterface() = default;
+  OnceCallbackInterface(const OnceCallbackInterface&) = default;
   virtual ~OnceCallbackInterface() = default;
 
   virtual ReturnType Run(ArgumentTypes...) = 0;

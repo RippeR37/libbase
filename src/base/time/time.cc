@@ -10,7 +10,10 @@ namespace base {
 namespace {
 
 const int64_t kMicrosecondsInSeconds = 1000 * 1000;
+
+#if defined(LIBBASE_IS_LINUX)
 const int64_t kNanosecondsInMicroseconds = 1000;
+#endif  // defined(LIBBASE_IS_LINUX)
 
 #if defined(LIBBASE_IS_LINUX)
 Time TimeSpecNow() {

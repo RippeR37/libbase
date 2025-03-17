@@ -32,6 +32,11 @@ class WeakPtr {
   explicit WeakPtr(std::nullptr_t) : WeakPtr() {}
   ~WeakPtr() { DecreaseWeakCount(); }
 
+  WeakPtr(const WeakPtr& other)
+      : ptr_(other.ptr_), control_block_(other.control_block_) {
+    IncreaseWeakCount();
+  }
+
   template <typename U>
   WeakPtr(const WeakPtr<U>& other)
       : ptr_(other.ptr_), control_block_(other.control_block_) {

@@ -290,8 +290,15 @@ class BindWrappedHelper {
     EXPECT_TRUE(destroyed_flag_);
     EXPECT_FALSE(*destroyed_flag_);
   }
-
-  ~BindWrappedHelper() { *destroyed_flag_ = true; }
+  BindWrappedHelper(BindWrappedHelper&& other)
+      : call_count_(other.call_count_), destroyed_flag_(other.destroyed_flag_) {
+    other.destroyed_flag_ = nullptr;
+  }
+  ~BindWrappedHelper() {
+    if (destroyed_flag_) {
+      *destroyed_flag_ = true;
+    }
+  }
 
   int Call() { return ++(*call_count_); }
 
@@ -647,7 +654,6 @@ class WeakClass {
   size_t GetValue() { return value_; }
   void IncrementValue() { ++value_; }
   void IncrementBy(size_t increment_value) { value_ += increment_value; }
-  size_t IncrementAndGetValue() { return ++value_; }
 
   void VerifyExpectation(size_t expected_value) {
     EXPECT_EQ(GetValue(), expected_value);
@@ -787,11 +793,6 @@ class ThreadedWeakCallbackTest : public WeakCallbackTest {
 
   std::shared_ptr<base::SequencedTaskRunner> TaskRunner() {
     return thread_.TaskRunner();
-  }
-
-  void VerifyExpectation(size_t expected_value) {
-    EXPECT_TRUE(TaskRunner()->RunsTasksInCurrentSequence());
-    EXPECT_EQ(weak_object_.GetValue(), expected_value);
   }
 
  protected:

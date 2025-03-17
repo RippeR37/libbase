@@ -12,8 +12,8 @@ namespace base {
 namespace detail {
 template <typename ReturnType, typename... ArgumentTypes>
 struct SplitOnceCallbackHelper {
-  SplitOnceCallbackHelper(OnceCallback<ReturnType(ArgumentTypes...)> callback)
-      : callback(std::move(callback)) {}
+  SplitOnceCallbackHelper(OnceCallback<ReturnType(ArgumentTypes...)> callback_)
+      : callback(std::move(callback_)) {}
 
   ReturnType Run(ArgumentTypes... arguments) {
     CHECK(!flag.test_and_set()) << "Split OnceCallback invoked more than once";

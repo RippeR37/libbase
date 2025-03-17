@@ -2,21 +2,21 @@
 
 #include "base/trace_event/trace_platform.h"
 
-#if LIBBASE_IS_LINUX || LIBBASE_IS_MACOS
+#if defined(LIBBASE_IS_LINUX) || defined(LIBBASE_IS_MACOS)
 #include <sys/syscall.h>
 #include <unistd.h>
-#elif LIBBASE_IS_WINDOWS
+#elif defined(LIBBASE_IS_WINDOWS)
 #include <process.h>
-#include <windows.h>
+#include <Windows.h>
 #endif
 
 namespace base {
 namespace detail {
 
 uint64_t TracePlatform::GetPid() {
-#if LIBBASE_IS_LINUX || LIBBASE_IS_MACOS
+#if defined(LIBBASE_IS_LINUX) || defined(LIBBASE_IS_MACOS)
   return ::getpid();
-#elif LIBBASE_IS_WINDOWS
+#elif defined(LIBBASE_IS_WINDOWS)
   return ::GetCurrentProcessId();
 #else
   return static_cast<uint64_t>(-1);
@@ -24,9 +24,9 @@ uint64_t TracePlatform::GetPid() {
 }
 
 uint64_t TracePlatform::GetTid() {
-#if LIBBASE_IS_LINUX || LIBBASE_IS_MACOS
+#if defined(LIBBASE_IS_LINUX) || defined(LIBBASE_IS_MACOS)
   return ::syscall(SYS_gettid);
-#elif LIBBASE_IS_WINDOWS
+#elif defined(LIBBASE_IS_WINDOWS)
   return ::GetCurrentThreadId();
 #else
   return static_cast<uint64_t>(-1);

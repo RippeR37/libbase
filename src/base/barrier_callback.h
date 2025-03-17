@@ -21,7 +21,7 @@ class BarrierCallbackHelper {
   void Run(ElementType element) {
     bool is_last = false;
     {
-      std::unique_lock guard{mutex_};
+      std::unique_lock<std::mutex> guard{mutex_};
       arguments_.push_back(std::forward<ElementType>(element));
       DCHECK_GE(required_run_count_, 0u);
       is_last = (--required_run_count_ == 0);

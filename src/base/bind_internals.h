@@ -59,29 +59,29 @@ class BindAccessHelper {
 
 template <typename InstanceType>
 struct UnretainedType {
-  UnretainedType(InstanceType* instance_ptr) : instance_ptr(instance_ptr) {}
+  UnretainedType(InstanceType* instance_ptr_) : instance_ptr(instance_ptr_) {}
   InstanceType* instance_ptr;
 };
 
 template <typename InstanceType>
 struct RetainedRefType {
-  RetainedRefType(std::shared_ptr<InstanceType> instance_ptr)
-      : instance_ptr(std::move(instance_ptr)) {}
+  RetainedRefType(std::shared_ptr<InstanceType> instance_ptr_)
+      : instance_ptr(std::move(instance_ptr_)) {}
   std::shared_ptr<InstanceType> instance_ptr;
 };
 
 template <typename T>
 struct OwnedWrapper {
-  OwnedWrapper(std::shared_ptr<T> instance_ptr)
-      : instance_ptr(std::move(instance_ptr)) {}
+  OwnedWrapper(std::shared_ptr<T> instance_ptr_)
+      : instance_ptr(std::move(instance_ptr_)) {}
   operator T*() const { return instance_ptr.get(); }
   std::shared_ptr<T> instance_ptr;
 };
 
 template <typename T>
 struct OwnedRefWrapper {
-  OwnedRefWrapper(std::shared_ptr<T> instance_ptr)
-      : instance_ptr(std::move(instance_ptr)) {}
+  OwnedRefWrapper(std::shared_ptr<T> instance_ptr_)
+      : instance_ptr(std::move(instance_ptr_)) {}
   operator T&() const { return *instance_ptr; }
   std::shared_ptr<T> instance_ptr;
 };
