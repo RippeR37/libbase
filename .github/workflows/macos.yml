@@ -16,13 +16,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-11, macos-12]
+        os: [macos-13]
         build_type: [Release, Debug]
         compiler: [
-          {name: GCC 9, cc: gcc-9, cxx: g++-9, brew_ver: gcc@9},
-          {name: GCC 10, cc: gcc-10, cxx: g++-10, brew_ver: gcc@10},
-          {name: GCC 11, cc: gcc-11, cxx: g++-11, brew_ver: gcc@11},
-          {name: Clang 12, cc: clang, cxx: clang++}
+          {name: GCC 12, cc: gcc-12, cxx: g++-12, brew_ver: gcc@12},
+          {name: GCC 14, cc: gcc-14, cxx: g++-14, brew_ver: gcc@14},
+          {name: Clang 14, cc: clang, cxx: clang++}
         ]
 
     env:
@@ -31,18 +30,25 @@ jobs:
 
     steps:
       - name: (Optional) Compiler instalation
-        if: ${{ matrix.os == 'macos-12' && startsWith(matrix.compiler.cc, 'gcc') }}
+        if: ${{ matrix.os == 'macos-13' && startsWith(matrix.compiler.cc, 'gcc') }}
         run: |
           if ! command -v ${{ matrix.compiler.cc }} &> /dev/null
           then
             brew install ${{ matrix.compiler.brew_ver }}
           fi
-      - uses: actions/checkout@v2
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
         with:
-          submodules: true
+          vcpkgDirectory: ${{ runner.workspace }}/vcpkg
+          vcpkgGitCommitId: '782ccc18d8b819cdef6794a6c03eb3d9f7cd04aa'
+
       - name: CMake configuration
-        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DCMAKE_TOOLCHAIN_FILE=${{ runner.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
       - name: Building
-        run: cmake --build build
+        run: cmake --build build -j 8
       - name: Testing
         run: ctest --test-dir build --output-on-failure

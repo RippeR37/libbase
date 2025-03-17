@@ -17,22 +17,19 @@ The recommended way to obtain the source code is:
 
 .. code-block:: console
 
-   $ git clone --recurse-submodules https://github.com/RippeR37/libbase.git
+   $ git clone https://github.com/RippeR37/libbase.git
 
 You can pass an additional ``--depth <depth>`` argument to limit the repository
 history to be downloaded (e.g. ``--depth 1``).
 
-.. caution::
 
-   Note that manually downloaded sources from the
-   `GitHub repository <https://github.com/RippeR37/libbase>`_ do **not**
-   include the source code of any third-party libraries added as a submodule
-   which will prevent you from successfully building or using the library!
+Resolving libbase dependencies
+------------------------------
 
-.. tip::
-
-   If you're having problems with building the library, verify that all
-   submodules are correctly initialized.
+Before configuring and building ``libbase`` you either have to build and install
+them yourself or configure ``vcpkg`` and set ``VCPKG_ROOT`` environment variable
+so that ``libbase`` CMake script can find and use it to resolve dependencies
+automatically.
 
 
 Building with CMake

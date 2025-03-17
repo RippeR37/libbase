@@ -5,8 +5,10 @@ function(SETUP_COVERAGE_TARGET_GCC)
     "EXCLUDE_PATHS"
     ${ARGN})
 
+  string(REGEX MATCH "[0-9]+" LLVM_VERSION ${CMAKE_CXX_COMPILER_VERSION})
+
   message(STATUS "Looking for lcov")
-  find_program(LCOV_PATH NAMES lcov)
+  find_program(LCOV_PATH NAMES lcov lcov-${LLVM_VERSION} lcov-${LLVM_VERSION}.0)
   if(LCOV_PATH)
     message(STATUS "Looking for lcov - found")
   else()
@@ -14,7 +16,7 @@ function(SETUP_COVERAGE_TARGET_GCC)
   endif()
 
   message(STATUS "Looking for gcov")
-  find_program(GCOV_PATH NAMES gcov)
+  find_program(GCOV_PATH NAMES gcov gcov-${LLVM_VERSION} gcov-${LLVM_VERSION}.0)
   if(GCOV_PATH)
     message(STATUS "Looking for gcov - found")
   else()
@@ -35,18 +37,27 @@ function(SETUP_COVERAGE_TARGET_GCC)
 
   add_custom_target(${COVERAGE_ARG_NAME} ALL
     # Step 0 - cleanup
+    COMMAND echo "Step 0"
     COMMAND ${LCOV_PATH} --gcov-tool ${GCOV_PATH} -directory . --zerocounters
-    COMMAND ${LCOV_PATH} --gcov-tool ${GCOV_PATH} -c -i -d . -o ${COVERAGE_ARG_NAME}.base
+    COMMAND echo "Step 1"
+    COMMAND ${LCOV_PATH} --gcov-tool ${GCOV_PATH} --ignore-errors mismatch -c -i -d . -o ${COVERAGE_ARG_NAME}.base
+    COMMAND echo "Step 2"
 
     # Step 1 - Run tests
     COMMAND $<TARGET_FILE:${COVERAGE_ARG_TEST_TARGET}> > /dev/null
 
     # Step 2 - Creating coverage report
-    COMMAND ${LCOV_PATH} --gcov-tool ${GCOV_PATH} --directory . --capture --output-file ${COVERAGE_ARG_NAME}.info
-    COMMAND ${LCOV_PATH} --gcov-tool ${GCOV_PATH} -a ${COVERAGE_ARG_NAME}.base -a ${COVERAGE_ARG_NAME}.info --output-file ${COVERAGE_ARG_NAME}.total
-    COMMAND ${LCOV_PATH} --gcov-tool ${GCOV_PATH} --remove ${COVERAGE_ARG_NAME}.total ${COVERAGE_ARG_EXCLUDE_PATHS} --output-file ${PROJECT_BINARY_DIR}/${COVERAGE_ARG_NAME}.info.cleaned
+    COMMAND echo "Step 3"
+    COMMAND ${LCOV_PATH} --gcov-tool ${GCOV_PATH} --ignore-errors mismatch --directory . --capture --output-file ${COVERAGE_ARG_NAME}.info
+    COMMAND echo "Step 4"
+    COMMAND ${LCOV_PATH} --gcov-tool ${GCOV_PATH} --ignore-errors mismatch -a ${COVERAGE_ARG_NAME}.base -a ${COVERAGE_ARG_NAME}.info --output-file ${COVERAGE_ARG_NAME}.total
+    COMMAND echo "Step 5"
+    COMMAND ${LCOV_PATH} --gcov-tool ${GCOV_PATH} --ignore-errors unused --remove ${COVERAGE_ARG_NAME}.total ${COVERAGE_ARG_EXCLUDE_PATHS} --output-file ${PROJECT_BINARY_DIR}/${COVERAGE_ARG_NAME}.info.cleaned
+    COMMAND echo "Step 6"
     COMMAND ${GENHTML_PATH} -o ${COVERAGE_ARG_NAME} ${PROJECT_BINARY_DIR}/${COVERAGE_ARG_NAME}.info.cleaned
+    COMMAND echo "Step 7"
     COMMAND ${CMAKE_COMMAND} -E remove ${COVERAGE_ARG_NAME}.base ${COVERAGE_ARG_NAME}.total ${PROJECT_BINARY_DIR}/${COVERAGE_ARG_NAME}.info.cleaned
+    COMMAND echo "Step 7"
 
     WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
     DEPENDS ${COVERAGE_ARG_TEST_TARGET}
@@ -62,8 +73,10 @@ function(SETUP_COVERAGE_TARGET_CLANG)
     "EXCLUDE_PATHS"
     ${ARGN})
 
+  string(REGEX MATCH "[0-9]+" LLVM_VERSION ${CMAKE_CXX_COMPILER_VERSION})
+
   message(STATUS "Looking for llvm-profdata")
-  find_program(LLVM_PROFDATA_PATH NAMES llvm-profdata llvm-profdata-12 llvm-profdata-11 llvm-profdata-10)
+  find_program(LLVM_PROFDATA_PATH NAMES llvm-profdata-${LLVM_VERSION} llvm-profdata-${LLVM_VERSION}.0)
   if(LLVM_PROFDATA_PATH)
     message(STATUS "Looking for llvm-profdata - found")
   else()
@@ -71,7 +84,7 @@ function(SETUP_COVERAGE_TARGET_CLANG)
   endif()
 
   message(STATUS "Looking for llvm-cov")
-  find_program(LLVM_COV_PATH NAMES llvm-cov llvm-cov-12 llvm-cov-11 llvm-cov-10)
+  find_program(LLVM_COV_PATH NAMES llvm-cov-${LLVM_VERSION} llvm-cov-${LLVM_VERSION}.0)
   if(LLVM_COV_PATH)
     message(STATUS "Looking for llvm-cov - found")
   else()

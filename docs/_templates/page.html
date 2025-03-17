@@ -3,7 +3,8 @@
 {% block footer %}
 <script type="text/javascript">
   $(document).ready(function () {
-    $(".admonition-example-code > *:not(div .admonition-title)").hide();
+    // $(".admonition-example-code > *:not(div .admonition-title)").hide();
+
     $(".admonition-example-code > .admonition-title").click(function () {
       $(this).parent().children().not(".admonition-title").slideToggle();
       $(this).parent().children(".admonition-title").toggleClass("open");

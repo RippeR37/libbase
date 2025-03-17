@@ -13,87 +13,93 @@ jobs:
   clang-format-check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: DoozyX/clang-format-lint-action@v0.12
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - uses: DoozyX/clang-format-lint-action@v0.18
       with:
         source: '.'
         exclude: './third_party'
-        clangFormatVersion: 12
+        clangFormatVersion: 18
 
   build:
-    name: ${{ matrix.compiler.name }} ${{ matrix.build_type }} (${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.os_compiler.name }} ${{ matrix.build_type }} (${{ matrix.os_compiler.os }})
+    runs-on: ${{ matrix.os_compiler.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-18.04, ubuntu-20.04]
         build_type: [Release, Debug]
-        compiler: [
-          {name: GCC 7, cc: gcc-7, cxx: g++-7},
-          {name: GCC 8, cc: gcc-8, cxx: g++-8},
-          {name: GCC 9, cc: gcc-9, cxx: g++-9},
-          {name: GCC 10, cc: gcc-10, cxx: g++-10},
-          {name: Clang 10, cc: clang-10, cxx: clang++-10},
-          {name: Clang 11, cc: clang-11, cxx: clang++-11},
-          {name: Clang 12, cc: clang-12, cxx: clang++-12}
+        os_compiler: [
+          # ubuntu 22
+          {os: ubuntu-22.04, name: GCC 10, cc: gcc-10, cxx: g++-10},
+          {os: ubuntu-22.04, name: GCC 11, cc: gcc-11, cxx: g++-11},
+          {os: ubuntu-22.04, name: GCC 12, cc: gcc-12, cxx: g++-12},
+          {os: ubuntu-22.04, name: Clang 13, cc: clang-13, cxx: clang++-13, tidy: clang-tidy-13},
+          {os: ubuntu-22.04, name: Clang 14, cc: clang-14, cxx: clang++-14, tidy: clang-tidy-14},
+          {os: ubuntu-22.04, name: Clang 15, cc: clang-15, cxx: clang++-15, tidy: clang-tidy-15},
+
+          # ubuntu 24
+          {os: ubuntu-24.04, name: GCC 12, cc: gcc-12, cxx: g++-12},
+          {os: ubuntu-24.04, name: GCC 13, cc: gcc-13, cxx: g++-13},
+          {os: ubuntu-24.04, name: GCC 14, cc: gcc-14, cxx: g++-14},
+          {os: ubuntu-24.04, name: Clang 16, cc: clang-16, cxx: clang++-16, tidy: clang-tidy-16},
+          {os: ubuntu-24.04, name: Clang 17, cc: clang-17, cxx: clang++-17, tidy: clang-tidy-17},
+          {os: ubuntu-24.04, name: Clang 18, cc: clang-18, cxx: clang++-18, tidy: clang-tidy-18},
         ]
         cmake_args: [""]
         code_coverage: [false]
         include:
-          - os: ubuntu-20.04
-            compiler: {name: CodeCoverage (gcov), cc: gcc-10, cxx: g++-10}
+          - os_compiler: {os: ubuntu-24.04, name: CodeCoverage (gcov), cc: gcc-13, cxx: g++-13}
             build_type: Debug
             cmake_args: "-DLIBBASE_CODE_COVERAGE=ON"
             code_coverage: true
-          - os: ubuntu-20.04
-            compiler: {name: CodeCoverage (llvm-cov), cc: clang-12, cxx: clang++-12}
+          - os_compiler: {os: ubuntu-24.04, name: CodeCoverage (llvm-cov), cc: clang-18, cxx: clang++-18, tidy: clang-tidy-18, llvm-cov: llvm-cov-18, llvm-profdata: llvm-profdata-18 }
             build_type: Debug
             cmake_args: "-DLIBBASE_CODE_COVERAGE=ON"
             code_coverage: true
 
     env:
-      CC: ${{ matrix.compiler.cc }}
-      CXX: ${{ matrix.compiler.cxx }}
+      CC: ${{ matrix.os_compiler.cc }}
+      CXX: ${{ matrix.os_compiler.cxx }}
 
     steps:
       # Checkout repository
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Setup vcpkg
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
         with:
-          submodules: true
+          vcpkgDirectory: ${{ runner.workspace }}/vcpkg
+          vcpkgGitCommitId: '782ccc18d8b819cdef6794a6c03eb3d9f7cd04aa'
 
       # (Optional) Ensure required software is installed
-      - name: (Optional) Add clang apt repository
-        if: ${{ matrix.os == 'ubuntu-18.04' && startsWith(matrix.compiler.cc, 'clang') }}
-        run: |
-          sudo wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
-          sudo add-apt-repository "deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-11 main"
-          sudo add-apt-repository "deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-12 main"
-          sudo apt update
       - name: (Optional) Compiler instalation
         run: |
-          if ! command -v ${{ matrix.compiler.cc }} &> /dev/null
+          if ! command -v ${{ matrix.os_compiler.cc }} &> /dev/null
           then
-            sudo apt install ${{ matrix.compiler.cc }} ${{ matrix.compiler.cxx }}
+            sudo apt install ${{ matrix.os_compiler.cc }} ${{ matrix.os_compiler.cxx }}
           fi
       - name: (Optional) Clang-tidy installation
-        if: ${{ startsWith(matrix.compiler.cc, 'clang') }}
-        run: if ! command -v clang-tidy-10 &> /dev/null; then sudo apt install clang-tidy-10; fi
+        if: ${{ startsWith(matrix.os_compiler.cc, 'clang') }}
+        run: if ! command -v ${{ matrix.os_compiler.tidy }} &> /dev/null; then sudo apt install ${{ matrix.os_compiler.tidy }}; fi
       - name: (Optional) Lcov installation
-        if: ${{ matrix.code_coverage && startsWith(matrix.compiler.cc, 'gcc') }}
+        if: ${{ matrix.code_coverage && startsWith(matrix.os_compiler.cc, 'gcc') }}
         run: if ! command -v lcov &> /dev/null; then sudo apt install lcov; fi
       - name: (Optional) llvm-cov & llvm-profdata installation
-        if: ${{ matrix.code_coverage && startsWith(matrix.compiler.cc, 'clang') }}
+        if: ${{ matrix.code_coverage && startsWith(matrix.os_compiler.cc, 'clang') }}
         run: |
-          if ! command -v llvm-cov-12 &> /dev/null; then sudo apt install llvm-cov-12; fi
-          if ! command -v llvm-profdata-12 &> /dev/null; then sudo apt install llvm-profdata-12; fi
+          if ! command -v ${{ matrix.os_compiler.llvm-cov }} &> /dev/null; then sudo apt install ${{ matrix.os_compiler.llvm-cov }}; fi
+          if ! command -v ${{ matrix.os_compiler.llvm-profdata }} &> /dev/null; then sudo apt install ${{ matrix.os_compiler.llvm-profdata }}; fi
 
       # Build and test
       - name: CMake configuration
-        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${{ matrix.cmake_args }}
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${{ matrix.cmake_args }} -DCMAKE_TOOLCHAIN_FILE=${{ runner.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
       - name: Building
-        run: cmake --build build
+        run: cmake --build build -j 8
       - name: Testing
-        run: ctest --test-dir build --output-on-failure
+        run: ctest --test-dir build --output-on-failure --timeout 15
 
       # (Optional) Generate code coverage report and upload it
       # - 'gcov'-based is used with CI
@@ -102,14 +108,15 @@ jobs:
         if: ${{ matrix.code_coverage }}
         run: cmake --build build --target coverage
       - name: (Optional) Upload code coverage to CI
-        if: ${{ matrix.code_coverage && startsWith(matrix.compiler.cc, 'gcc') }}
-        uses: codecov/codecov-action@v2
+        if: ${{ matrix.code_coverage && startsWith(matrix.os_compiler.cc, 'gcc') }}
+        uses: codecov/codecov-action@v5
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
           verbose: true
       - name: (Optional) Upload code coverage as artifact
-        if: ${{ matrix.code_coverage && startsWith(matrix.compiler.cc, 'clang') }}
-        uses: actions/upload-artifact@v2
+        if: ${{ matrix.code_coverage && startsWith(matrix.os_compiler.cc, 'clang') }}
+        uses: actions/upload-artifact@v4
         with:
           name: llvm-cov-code-coverage-report
           path: build/coverage/

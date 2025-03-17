@@ -16,7 +16,10 @@ struct SplitOnceCallbackHelper {
       : callback(std::move(callback_)) {}
 
   ReturnType Run(ArgumentTypes... arguments) {
-    CHECK(!flag.test_and_set()) << "Split OnceCallback invoked more than once";
+    if (flag.test_and_set()) {
+      CHECK(false) << "Split OnceCallback invoked more than once";
+      exit(1);
+    }
     return std::move(callback).Run(std::forward<ArgumentTypes>(arguments)...);
   }
 

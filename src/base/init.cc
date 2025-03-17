@@ -4,13 +4,21 @@
 
 namespace base {
 
-void Initialize(int /*argc*/,
-                char* argv[]) {  // NOLINT(modernize-avoid-c-arrays)
+// NOLINTNEXTLINE(modernize-avoid-c-arrays)
+void Initialize(int /*argc*/, char* argv[]) {
   FLAGS_logtostderr = true;
 
   google::InitGoogleLogging(argv[0]);
   google::InstallPrefixFormatter(&detail::LogFormatter);
   google::InstallFailureSignalHandler();
+}
+
+// NOLINTNEXTLINE(modernize-avoid-c-arrays)
+void InitializeForTests(int /*argc*/, char* argv[]) {
+  FLAGS_logtostderr = true;
+
+  google::InitGoogleLogging(argv[0]);
+  google::InstallPrefixFormatter(&detail::LogFormatter);
 }
 
 void Deinitialize() {

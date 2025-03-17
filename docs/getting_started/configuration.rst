@@ -15,6 +15,14 @@ CMake options affect what targets are build and how. They have two defaults:
 
 .. _configuration-libbase-build-examples:
 
+.. option:: LIBBASE_DEPENDENCIES_USE_VCPKG=<ON|OFF>
+
+   Controls whether CMake should resolve dependencies through installed
+   ``vcpkg`` package manager or expect them to be already installed in the
+   system. If enabled, ensure ``VCPKG_ROOT`` environment variable is set.
+
+   :Default: ON
+
 .. option:: LIBBASE_BUILD_EXAMPLES=<ON|OFF>
 
    Build provided examples.

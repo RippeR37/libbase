@@ -14,5 +14,7 @@ class SourceLocation {
 
 }  // namespace base
 
-#define FROM_HERE \
-  ::base::SourceLocation { __FILE__, __LINE__ }
+#define FROM_HERE          \
+  ::base::SourceLocation { \
+    __FILE__, __LINE__     \
+  }

@@ -15,9 +15,9 @@ hard requirements are:
    Project's continuous integration workflows test library on all major
    compilers:
 
-   * GCC (>= 7)
-   * Clang (>= 9)
-   * MSVC (>= 2019.29)
+   * GCC (>= 10)
+   * Clang (>= 13)
+   * MSVC (>= 2022 19.43)
 
    on all major OSes:
 
@@ -35,8 +35,8 @@ hard requirements are:
 Internal dependencies
 ---------------------
 
-``libbase`` depends on some third-party libraries which are already integrated
-into the project and thus require **no** additional work to use them:
+``libbase`` depends on some third-party libraries which must already be
+installed in the system or ``vcpkg`` must be used to resolve them:
 
 * `GLOG <https://github.com/google/glog>`_
      Provides convinient logging framework (see :doc:`../features/logging`).
@@ -45,9 +45,8 @@ into the project and thus require **no** additional work to use them:
 Optional dependencies
 ---------------------
 
-``libbase`` can optionally use other third-party libraries (also already
-preconfigured and integrated into the project) or applications for optional
-tasks. These are:
+``libbase`` can optionally use other third-party libraries (also either already
+installed or used with ``vcpkg``) or applications for optional tasks. These are:
 
 * `GTest and GMock <https://github.com/google/googletest>`_
      For building and running unit tests.

@@ -8,9 +8,14 @@
 
 ### Project description
 
-The [`libbase`](https://github.com/RippeR37/libbase/) is a small library that provides its users with a reimplementation of many useful low-level utilities known from Chromium’s [`//base`](https://chromium.googlesource.com/chromium/src/base/) module without the need to depend on the whole (or parts of the) Chromium itself.
+The [`libbase`](https://github.com/RippeR37/libbase/) is a small library that
+provides its users with a reimplementation of many useful low-level utilities
+known from Chromium’s
+[`//base`](https://chromium.googlesource.com/chromium/src/base/) module without
+the need to depend on the whole (or parts of the) Chromium itself.
 
-For more details with examples see the [documentation](https://ripper37.github.io/libbase/).
+For more details with examples see the
+[documentation](https://ripper37.github.io/libbase/).
 
 
 ### Building `libbase`
@@ -18,7 +23,7 @@ For more details with examples see the [documentation](https://ripper37.github.i
 #### Building with CMake
 
 ```bash
-git clone --recurse-submodules https://github.com/RippeR37/libbase.git
+git clone https://github.com/RippeR37/libbase.git
 cd libbase
 cmake -S . -B build
 cmake --build build
@@ -29,6 +34,12 @@ cmake --build build
 ```bash
 ctest --test-dir build
 ```
+
+#### Using `libbase` in your project
+
+For an example of how to use `libbase` in your project refer to the
+documentation or check out the
+[CMake-based example project](https://github.com/RippeR37/libbase-example-cmake).
 
 #### Requirements
 
@@ -43,17 +54,21 @@ ctest --test-dir build
 
 #### Compilers tested
 
-* GCC (7 through 10)
-* Clang (9 through 12)
-* MSVC (2019 19.29)
+* GCC (10 through 14)
+* Clang (13 through 18)
+* MSVC (2022 19.43)
 
 #### Dependencies
-
-All dependencies are managed as submodules within `third_party/` directory.
 
 - [GLOG](https://github.com/google/glog)
 - (Optional) [GTest and GMock](https://github.com/google/googletest)
 - (Optional) [Google Benchmark](https://github.com/google/benchmark)
+
+Dependencies either have to be already installed and CMake has to be able to
+find them with `find_package()` or they can be resolved with VCPKG.
+
+If you wish for CMake to use VCPKG to resolve dependencies you have to set
+`VCPKG_ROOT` environment variable before configuring the project.
 
 #### License
 
