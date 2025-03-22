@@ -1,0 +1,14 @@
+.. _exhale_function_init_8h_1a23f6844aae962de888d9e1ee52ec0531:
+
+Function base::InitializeForTests
+=================================
+
+- Defined in :ref:`file_base_init.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: base::InitializeForTests(int, char *)
+   :project: libbase

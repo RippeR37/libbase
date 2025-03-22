@@ -1,0 +1,50 @@
+
+.. _file_base_sequenced_task_runner_helpers.h:
+
+File sequenced_task_runner_helpers.h
+====================================
+
+|exhale_lsh| :ref:`Parent directory <dir_base>` (``base``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/sequenced_task_runner_helpers.h``)
+-----------------------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``atomic``
+
+- ``base/sequence_id.h`` (:ref:`file_base_sequence_id.h`)
+
+- ``optional``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_base_sequence_checker.h`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+

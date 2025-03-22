@@ -1,0 +1,17 @@
+.. _exhale_class_classbase_1_1ElapsedTimer:
+
+Class ElapsedTimer
+==================
+
+- Defined in :ref:`file_base_timer_elapsed_timer.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::ElapsedTimer
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

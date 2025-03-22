@@ -1,0 +1,24 @@
+.. _dir_base_message_loop:
+
+
+Directory message_loop
+======================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_base>` (``base``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``base/message_loop``
+
+
+Files
+-----
+
+- :ref:`file_base_message_loop_message_loop.h`
+- :ref:`file_base_message_loop_message_loop_impl.h`
+- :ref:`file_base_message_loop_message_pump.h`
+- :ref:`file_base_message_loop_message_pump_impl.h`
+
+

@@ -1,0 +1,17 @@
+.. _exhale_class_classbase_1_1AutoSignaller:
+
+Class AutoSignaller
+===================
+
+- Defined in :ref:`file_base_synchronization_auto_signaller.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::AutoSignaller
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

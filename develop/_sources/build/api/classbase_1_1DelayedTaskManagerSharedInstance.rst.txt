@@ -1,0 +1,17 @@
+.. _exhale_class_classbase_1_1DelayedTaskManagerSharedInstance:
+
+Class DelayedTaskManagerSharedInstance
+======================================
+
+- Defined in :ref:`file_base_threading_delayed_task_manager_shared_instance.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::DelayedTaskManagerSharedInstance
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

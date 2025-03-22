@@ -1,0 +1,17 @@
+.. _exhale_class_classbase_1_1SequencedTaskRunnerHandle:
+
+Class SequencedTaskRunnerHandle
+===============================
+
+- Defined in :ref:`file_base_threading_sequenced_task_runner_handle.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::SequencedTaskRunnerHandle
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

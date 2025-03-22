@@ -1,0 +1,14 @@
+.. _exhale_function_bind__post__task_8h_1a20e62f693034981ddd7a8178d180c0cb:
+
+Template Function base::BindPostTask(std::shared_ptr<TaskRunner>, RepeatingCallback<Return(Arguments...)>, SourceLocation)
+==========================================================================================================================
+
+- Defined in :ref:`file_base_bind_post_task.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: base::BindPostTask(std::shared_ptr<TaskRunner>, RepeatingCallback<Return(Arguments...)>, SourceLocation)
+   :project: libbase

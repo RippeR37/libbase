@@ -1,0 +1,17 @@
+.. _exhale_class_classbase_1_1SourceLocation:
+
+Class SourceLocation
+====================
+
+- Defined in :ref:`file_base_source_location.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::SourceLocation
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

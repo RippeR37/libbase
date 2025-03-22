@@ -1,0 +1,99 @@
+
+.. _file_base_type_traits.h:
+
+File type_traits.h
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_base>` (``base``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/type_traits.h``)
+-----------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``tuple``
+
+- ``utility``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_base_barrier_callback.h`
+
+- :ref:`file_base_bind_internals.h`
+
+- :ref:`file_base_callback_internals.h`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+- :ref:`namespace_base__traits`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structbase_1_1traits_1_1IdentityType`
+
+- :ref:`exhale_struct_structbase_1_1traits_1_1IsCapturelessLambda`
+
+- :ref:`exhale_struct_structbase_1_1traits_1_1IsCapturelessLambda_3_01Lambda_00_01std_1_1enable__if__t_3_01traits_1_1If8dd78fe42ca6c93819d1e3d1f57c337`
+
+- :ref:`exhale_struct_structbase_1_1traits_1_1IsFunctionPointer`
+
+- :ref:`exhale_struct_structbase_1_1traits_1_1IsFunctionPointer_3_01T_07_5_08_07Args_8_8_8_08_4`
+
+- :ref:`exhale_struct_structbase_1_1traits_1_1RemoveCVRef`
+
+- :ref:`exhale_struct_structbase_1_1traits_1_1TypesRange`
+
+- :ref:`exhale_struct_structbase_1_1traits_1_1TypesRange_3_01Offset_00_01TupleType_00_01std_1_1index__sequence_3_01Indexes_8_8_8_01_4_01_4`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_type__traits_8h_1ab7acc86ecbfa1c9d19f5e3bbddc3aaed`
+
+- :ref:`exhale_typedef_type__traits_8h_1a4bba8383fa06060652b703dcee1e01c1`
+
+- :ref:`exhale_typedef_type__traits_8h_1abe8425c54607044479761476ec3ce239`
+
+- :ref:`exhale_typedef_type__traits_8h_1aa86db756ce6265af44a292ec66cbe3a8`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_type__traits_8h_1a0c6de81cab3853d2f0f0c8bd6234bcce`
+
+- :ref:`exhale_variable_type__traits_8h_1a126f4cf1dd4ff094880392783a63472a`
+
+- :ref:`exhale_variable_type__traits_8h_1ab7cc3c8e03545cc299eed463e370e728`
+
