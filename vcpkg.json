@@ -1,7 +1,9 @@
 {
   "name": "libbase",
-  "version": "1.0",
+  "version": "1.0.0",
+  "description": "Standalone reimplementation of //base module from Chromium",
   "homepage": "https://github.com/RippeR37/libbase",
+  "documentation": "https://ripper37.github.io/libbase",
   "license": "MIT",
   "dependencies": [
     {
@@ -20,6 +22,9 @@
     }
   ],
   "features": {
+    "examples": {
+      "description": "Build examples"
+    },
     "unittests": {
       "description": "Build unit tests",
       "dependencies": [
@@ -34,6 +39,7 @@
     }
   },
   "default-features": [
+    "examples",
     "unittests",
     "perftests"
   ]
