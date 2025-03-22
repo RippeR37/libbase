@@ -3,6 +3,8 @@ name: Docs
 on:
   push:
     branches: [ master, develop ]
+    tags:
+      - '*'
   release:
     types:
       - created

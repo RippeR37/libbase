@@ -119,6 +119,11 @@ install(DIRECTORY "${CMAKE_SOURCE_DIR}/src/base"
         DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/libbase"
         FILES_MATCHING PATTERN "*.h")
 
+# Install license file
+install(FILES "${CMAKE_SOURCE_DIR}/LICENSE"
+        DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/libbase"
+        RENAME "copyright")
+
 # Generate and install *-targets.cmake
 install(EXPORT libbase_targets
         FILE libbase-targets.cmake

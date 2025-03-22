@@ -6,6 +6,8 @@ on:
       - develop
       - master
       - release/*
+    tags:
+      - '*'
   pull_request:
   workflow_dispatch:
 
@@ -32,6 +34,21 @@ jobs:
       - name: CMake configuration
         run: cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DCMAKE_TOOLCHAIN_FILE=${{ runner.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
       - name: Building
-        run: cmake --build build -j 8
+        run: cmake --build build --config ${{ matrix.build_type }} -j 8
       - name: Testing
-        run: ctest --test-dir build --output-on-failure
+        run: ctest --test-dir build --output-on-failure --timeout 15
+
+
+      # Prepare & upload binaries
+      - name: Prepare binaries
+        if: matrix.os == 'windows-2022' && github.event_name != 'pull_request'
+        run: cmake --install build --prefix install --config ${{ matrix.build_type }}
+        continue-on-error: true
+      - name: Upload binaries as artifact
+        if: matrix.os == 'windows-2022' && github.event_name != 'pull_request' && success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: libbase-${{ github.ref_name }}-msvc-2022-${{ matrix.build_type }}-x64.zip
+          path: install
+          retention-days: 7
+        continue-on-error: true
