@@ -38,7 +38,8 @@ ctest --test-dir build
 #### Using `libbase` in your project
 
 For an example of how to use `libbase` in your project refer to the
-documentation or check out the
+[documentation](https://ripper37.github.io/libbase/master/getting_started/using.html)
+or check out the
 [CMake-based example project](https://github.com/RippeR37/libbase-example-cmake).
 
 #### Requirements

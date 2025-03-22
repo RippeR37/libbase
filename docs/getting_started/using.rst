@@ -6,12 +6,12 @@ decide which one you prefer. Below you will find a recommended (and probably the
 easiest) way to do so.
 
 
-Recommended way (CMake)
------------------------
+Recommended way (CMake + vcpkg)
+-------------------------------
 
 This will be a step-by-step guide to create a new project that uses ``libbase``
-library using a Git and CMake. If you wish to add ``libbase`` to your existing
-project, please skip :ref:`here <skip_existing_project>`.
+library using Git, CMake and vcpkg. If you wish to add ``libbase`` to your
+existing project, please skip :ref:`here <skip_existing_project>`.
 
 #. Create a new Git repository and add initial files.
 
@@ -48,33 +48,52 @@ project, please skip :ref:`here <skip_existing_project>`.
 
    .. _skip_existing_project:
 
-#. Add ``libbase`` library as a Git submodule and initialize it
+
+#. Initialize vcpkg and add ``libbase`` library as a dependency
 
    .. code-block:: console
 
-      $ git submodule add https://github.com/RippeR37/libbase third_party/libbase
-      $ git submodule update --init --recursive
+      $ vcpkg new --application
+      $ vcpkg add port libbase
 
    .. note::
 
-      It is not required to fetch/store ``libbase`` as a submodule. It is,
-      however, a recommended way.
+      You can customize which parts of ``libbase`` you want to use by specifying
+      which features you want to enable. It is also recommended to disable not
+      needed default features (examples and tests) by modifying the dependency
+      in the ``vcpkg.json`` file to look like:
 
-#. Add ``libbase`` subdirectory to your CMake script.
+      .. code-block:: json
+         :caption: vcpkg.json
+
+         {
+           "dependencies": [
+             // ...
+             {
+               "name": "libbase",
+               "default-features": false,
+               "dependencies": [
+                 // list features that you need
+               ]
+             },
+             // ...
+           ]
+         }
+
+
+#. Add ``libbase`` dependency and link with it in your CMake script.
 
    .. code-block:: cmake
       :caption: CMakeLists.txt
-      :emphasize-lines: 4,8,9
+      :emphasize-lines: 4,7
 
       cmake_minimum_required(VERSION 3.13)
       project(project-name VERSION 1.0 LANGUAGES CXX)
 
-      add_subdirectory(third_party/libbase)
+      find_package(libbase CONFIG REQUIRED)
 
       add_executable(project-name "")
-
-      target_compile_options(project-name PRIVATE ${LIBBASE_COMPILE_FLAGS})
-      target_link_libraries(project-name PRIVATE libbase)
+      target_link_libraries(project-name PRIVATE libbase::libbase)
       target_sources(project-name
         PRIVATE
           src/main.cc
@@ -99,6 +118,7 @@ project, please skip :ref:`here <skip_existing_project>`.
 
    .. code-block:: console
 
+      $ export VCPKG_ROOT=/path/to/vcpkg
       $ cmake -S . -b build
       $ cmake --build build
       $ ./build/project-name
@@ -108,18 +128,3 @@ project, please skip :ref:`here <skip_existing_project>`.
 
    Repository with the above project can also be viewed here:
    `RippeR37/libbase-example-cmake <https://github.com/RippeR37/libbase-example-cmake>`_.
-
-
-Other build systems
--------------------
-
-.. todo::
-
-   Unfortunately, ``libbase`` library at this time comes only with a
-   preconfigured way of integrating it within another CMake project. Other build
-   systems are not yet supported out-of-the-box.
-
-.. note::
-
-   If you manage to integrate ``libbase`` with a different build system, feel
-   free to make a pull request with any necessary changes.
