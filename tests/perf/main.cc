@@ -5,7 +5,7 @@
 // `BENCHMARK_MAIN()` macro with `base` module initialized at the beginning
 // and deinitialized at the end.
 int main(int argc, char** argv) {
-  base::Initialize(argc, argv);
+  base::Initialize(argc, argv, {});
 
   ::benchmark::Initialize(&argc, argv);
   if (::benchmark::ReportUnrecognizedArguments(argc, argv)) {
