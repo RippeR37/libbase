@@ -133,9 +133,9 @@ install(EXPORT libbase_targets
 # Generate the config file in the current binary dir (this ensures it's not placed directly in source)
 file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_PROJECT_NAME}-config.cmake"
 "include(CMakeFindDependencyMacro)\n"
-"find_dependency(glog CONFIG REQUIRED)\n"
-"find_dependency(GTest CONFIG QUIET)\n"
-"find_dependency(benchmark CONFIG QUIET)\n"
+"find_dependency(glog)\n"
+"find_package(GTest)\n"
+"find_package(benchmark)\n"
 "include(\"\${CMAKE_CURRENT_LIST_DIR}/${CMAKE_PROJECT_NAME}-targets.cmake\")\n"
 )
 
