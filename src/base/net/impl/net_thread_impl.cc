@@ -136,6 +136,7 @@ void NetThread::NetThreadImpl::ProcessPendingActions_NetThread() {
         DownloadFinished_NetThread(cancelled_handle, Result::kAborted);
       }
     }
+    pending_cancel_downloads_.clear();
   }
 }
 
