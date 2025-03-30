@@ -33,7 +33,7 @@ struct NetThread::NetThreadImpl::DownloadInfo {
 //
 
 NetThread::NetThreadImpl::NetThreadImpl()
-    : not_quit_(true), not_modified_(true), multi_handle_(nullptr) {
+    : not_quit_(), not_modified_(), multi_handle_(nullptr) {
   curl_global_init(CURL_GLOBAL_DEFAULT);
 }
 
