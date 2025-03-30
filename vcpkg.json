@@ -19,6 +19,12 @@
       "features": [
         "customprefix"
       ]
+    },
+    {
+      "name": "curl",
+      "features": [
+        "ssl"
+      ]
     }
   ],
   "features": {

@@ -75,6 +75,8 @@ message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 find_package(Threads REQUIRED)
 # GLOG
 find_package(glog CONFIG REQUIRED)
+# curl
+find_package(CURL CONFIG REQUIRED)
 
 
 #
