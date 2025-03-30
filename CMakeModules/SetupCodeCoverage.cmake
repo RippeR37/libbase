@@ -5,10 +5,10 @@ function(SETUP_COVERAGE_TARGET_GCC)
     "EXCLUDE_PATHS"
     ${ARGN})
 
-  string(REGEX MATCH "[0-9]+" LLVM_VERSION ${CMAKE_CXX_COMPILER_VERSION})
+  string(REGEX MATCH "[0-9]+" GCC_VERSION ${CMAKE_CXX_COMPILER_VERSION})
 
   message(STATUS "Looking for lcov")
-  find_program(LCOV_PATH NAMES lcov lcov-${LLVM_VERSION} lcov-${LLVM_VERSION}.0)
+  find_program(LCOV_PATH NAMES lcov lcov-${GCC_VERSION} lcov-${GCC_VERSION}.0)
   if(LCOV_PATH)
     message(STATUS "Looking for lcov - found")
   else()
@@ -16,7 +16,7 @@ function(SETUP_COVERAGE_TARGET_GCC)
   endif()
 
   message(STATUS "Looking for gcov")
-  find_program(GCOV_PATH NAMES gcov gcov-${LLVM_VERSION} gcov-${LLVM_VERSION}.0)
+  find_program(GCOV_PATH NAMES gcov gcov-${GCC_VERSION} gcov-${GCC_VERSION}.0)
   if(GCOV_PATH)
     message(STATUS "Looking for gcov - found")
   else()

@@ -1,6 +1,8 @@
 function(SETUP_COMPILE_FLAGS)
   set(DEFINES "")
 
+  string(REGEX MATCH "[0-9]+" COMPILER_VERSION ${CMAKE_CXX_COMPILER_VERSION})
+
   if("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux")
     string(APPEND DEFINES "LIBBASE_IS_LINUX")
   elseif("${CMAKE_SYSTEM_NAME}" STREQUAL "Windows")
@@ -43,9 +45,9 @@ function(SETUP_COMPILE_FLAGS)
     endif()
   endif()
 
-  find_program(CLANG_TIDY_EXE NAMES clang-tidy)
+  find_program(CLANG_TIDY_EXE NAMES clang-tidy clang-tidy-${COMPILER_VERSION})
   if(LIBBASE_CLANG_TIDY AND "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" AND CLANG_TIDY_EXE)
-    set(CLANG_TIDY_PROPERTIES "CXX_CLANG_TIDY;clang-tidy")
+    set(CLANG_TIDY_PROPERTIES "CXX_CLANG_TIDY;${CLANG_TIDY_EXE}")
   endif()
 
   if(NOT CONFIGURED_ONCE)
