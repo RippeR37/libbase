@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-13, macos-14, macos-15]
+        os: [macos-13, macos-14, macos-latest]
         build_type: [Release, Debug]
         compiler: [
           {name: Clang, cc: clang, cxx: clang++, package: true}
