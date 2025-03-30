@@ -12,8 +12,8 @@ namespace base {
 namespace net {
 
 struct ResourceResponse {
-  Result result;
-  int code;
+  Result result = Result::kOk;
+  int code = -1;
   std::string final_url;
   std::map<std::string, std::string> headers;
   std::vector<uint8_t> data;

@@ -184,10 +184,10 @@ void NetThread::NetThreadImpl::EnqueueDownload_NetThread(
 
   // Save download request/response data
   active_downloads_.insert({easy_handle, std::move(download_info)});
-  const auto& info = active_downloads_[easy_handle];
+  const auto& inserted_info = active_downloads_[easy_handle];
 
   // WARNING: Lambda has to be converted to function pointer or it will crash!
-  curl_easy_setopt(easy_handle, CURLOPT_WRITEDATA, (void*)(&info));
+  curl_easy_setopt(easy_handle, CURLOPT_WRITEDATA, (void*)(&inserted_info));
   curl_easy_setopt(
       easy_handle, CURLOPT_WRITEFUNCTION,
       +[](char* data, size_t n, size_t l, void* userp) -> size_t {
