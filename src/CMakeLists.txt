@@ -65,6 +65,8 @@ target_sources(libbase
     base/net/impl/net_thread_impl.h
     base/net/impl/net_thread.cc
     base/net/impl/net_thread.h
+    base/net/request_cancellation_token.cc
+    base/net/request_cancellation_token.h
     base/net/resource_request.h
     base/net/resource_response.h
     base/net/result.h

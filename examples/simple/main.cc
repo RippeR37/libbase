@@ -157,8 +157,9 @@ void NetExample() {
         for (const auto& [h, v] : response.headers) {
           LOG(INFO) << "  " << h << ": " << v;
         }
-        LOG(INFO) << "Content:\n"
-                  << std::string{response.data.begin(), response.data.end()};
+        LOG_IF(INFO, !response.data.empty())
+            << "Content:\n"
+            << std::string{response.data.begin(), response.data.end()};
         event->Signal();
       },
       &finished_event);
