@@ -4,6 +4,7 @@
 
 #include "base/callback.h"
 #include "base/task_runner.h"
+#include "base/threading/sequenced_task_runner_handle.h"
 
 namespace base {
 
@@ -67,6 +68,30 @@ RepeatingCallback<Return(Arguments...)> BindPostTask(
       &Helper::Run,
       base::Owned(std::make_unique<Helper>(
           std::move(task_runner), std::move(callback), std::move(location))));
+}
+
+template <typename Return, typename... Arguments>
+OnceCallback<Return(Arguments...)> BindToCurrentSequence(
+    OnceCallback<Return(Arguments...)> callback,
+    SourceLocation location) {
+  static_assert(
+      std::is_same_v<Return, void>,
+      "Cannot BinToCurrentSequence callback with non-void return type");
+
+  return BindPostTask(SequencedTaskRunnerHandle::Get(), std::move(callback),
+                      std::move(location));
+}
+
+template <typename Return, typename... Arguments>
+RepeatingCallback<Return(Arguments...)> BindToCurrentSequence(
+    RepeatingCallback<Return(Arguments...)> callback,
+    SourceLocation location) {
+  static_assert(
+      std::is_same_v<Return, void>,
+      "Cannot BinToCurrentSequence callback with non-void return type");
+
+  return BindPostTask(SequencedTaskRunnerHandle::Get(), std::move(callback),
+                      std::move(location));
 }
 
 }  // namespace base
