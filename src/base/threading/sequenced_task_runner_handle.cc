@@ -11,7 +11,8 @@ thread_local SequencedTaskRunnerHandle* g_handle = nullptr;
 
 // static
 const std::shared_ptr<SequencedTaskRunner>& SequencedTaskRunnerHandle::Get() {
-  CHECK(g_handle);
+  CHECK(g_handle) << "Attempted to access SequencedTaskRunner handle on a "
+                     "thread without task runner";
   return g_handle->task_runner_;
 }
 

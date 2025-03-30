@@ -455,6 +455,10 @@ This will result in creating a new callback that - when executed - will
 post-task the original callback to the target task runner. This is possible with
 :func:`base::BindPostTask`.
 
+If you want to bind callback to current sequence (the task runner your code is
+being executed right now) you can also use :func:`base::BindToCurrentSequence`
+function.
+
 .. admonition:: Example - :func:`base::BindPostTask`
    :class: admonition-example-code
 
@@ -471,8 +475,15 @@ post-task the original callback to the target task runner. This is possible with
       // Our code
       void WorkManager::StartSomeWork() {
         auto on_done_callback = base::BindOnce(&WorkManager::WorkDone, weak_this_);
+
+        // Bind callback specifically to `current_task_runner_` regardless of on which
+        // task runner this function is executed
         DoSomeWorkAsync(
             base::BindPostTask(current_task_runner_, std::move(on_done_callback)));
+
+        // ... or assuming you're running on `current_task_runner_` right now, this is
+        // equivalent to calling:
+        DoSomeWorkAsync(base::BindToCurrentSequence(std::move(on_done_callback)));
       }
 
       void WorkManager::WorkDone() {
