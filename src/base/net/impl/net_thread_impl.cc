@@ -21,6 +21,7 @@ Result CurlCodeToNetResult(CURLcode code) {
 struct NetThread::NetThreadImpl::DownloadInfo {
   ResourceRequest request;
   std::optional<size_t> max_response_size_bytes;
+  RequestCancellationToken cancellation_token;
 
   struct curl_slist* headers = nullptr;
 
@@ -70,6 +71,7 @@ void NetThread::NetThreadImpl::Stop() {
 void NetThread::NetThreadImpl::EnqueueDownload(
     ResourceRequest request,
     std::optional<size_t> max_response_size_bytes,
+    RequestCancellationToken cancellation_token,
     OnceCallback<void(ResourceResponse)> on_done_callback) {
   DCHECK(thread_);
   DCHECK(on_done_callback);
@@ -79,10 +81,24 @@ void NetThread::NetThreadImpl::EnqueueDownload(
     pending_add_downloads_.push_back(DownloadInfo{
         std::move(request),
         std::move(max_response_size_bytes),
+        std::move(cancellation_token),
         nullptr,
         {},
         std::move(on_done_callback),
     });
+  }
+
+  not_modified_.clear();
+  curl_multi_wakeup(multi_handle_);
+}
+
+void NetThread::NetThreadImpl::CancelRequest(
+    RequestCancellationToken cancellation_token) {
+  DCHECK(thread_);
+
+  {
+    std::unique_lock<std::mutex> lock(mutex_);
+    pending_cancel_downloads_.push_back(std::move(cancellation_token));
   }
 
   not_modified_.clear();
@@ -107,11 +123,20 @@ void NetThread::NetThreadImpl::RunLoop_NetThread() {
 void NetThread::NetThreadImpl::ProcessPendingActions_NetThread() {
   if (!not_modified_.test_and_set()) {
     std::unique_lock<std::mutex> lock(mutex_);
+
     for (DownloadInfo& download : pending_add_downloads_) {
       EnqueueDownload_NetThread(download);
     }
     pending_add_downloads_.clear();
-    // TODO: handle pending_cancel_downloads_
+
+    for (RequestCancellationToken cancellation_token :
+         pending_cancel_downloads_) {
+      if (CURL* cancelled_handle =
+              FindHandleByCancellationToken_NetThread(cancellation_token)) {
+        DownloadFinished_NetThread(cancelled_handle, Result::kAborted);
+      }
+    }
+    pending_cancel_downloads_.clear();
   }
 }
 
@@ -183,8 +208,10 @@ void NetThread::NetThreadImpl::EnqueueDownload_NetThread(
   }
 
   // Save download request/response data
-  active_downloads_.insert({easy_handle, std::move(download_info)});
-  const auto& inserted_info = active_downloads_[easy_handle];
+  auto [iter, inserted] =
+      active_downloads_.emplace(easy_handle, std::move(download_info));
+  DCHECK(inserted);
+  const auto& inserted_info = *iter;
 
   // WARNING: Lambda has to be converted to function pointer or it will crash!
   curl_easy_setopt(easy_handle, CURLOPT_WRITEDATA, (void*)(&inserted_info));
@@ -209,15 +236,17 @@ void NetThread::NetThreadImpl::EnqueueDownload_NetThread(
 
 void NetThread::NetThreadImpl::DownloadFinished_NetThread(CURL* finished_curl,
                                                           Result result) {
-  CHECK_GT(active_downloads_.count(finished_curl), 0);
+  auto download_iter = active_downloads_.find(finished_curl);
+  CHECK(download_iter != active_downloads_.end());
 
-  auto& download = active_downloads_[finished_curl];
+  auto& download = download_iter->second;
 
   // Result
   download.response.result = result;
 
   // Response code
-  if (download.response.result == Result::kOk) {
+  if (download.response.result == Result::kOk ||
+      download.response.result == Result::kAborted) {
     long http_code = 0;
     curl_easy_getinfo(finished_curl, CURLINFO_RESPONSE_CODE, &http_code);
     download.response.code = static_cast<int>(http_code);
@@ -272,11 +301,15 @@ void NetThread::NetThreadImpl::DownloadFinished_NetThread(CURL* finished_curl,
 void NetThread::NetThreadImpl::RemoveDownload_NetThread(CURL* finished_curl) {
   // Remove the completed request from multi-handle
   curl_multi_remove_handle(multi_handle_, finished_curl);
-  if (active_downloads_.count(finished_curl) > 0) {
-    if (active_downloads_[finished_curl].headers) {
-      curl_slist_free_all(active_downloads_[finished_curl].headers);
+
+  auto download_iter = active_downloads_.find(finished_curl);
+  if (download_iter != active_downloads_.end()) {
+    auto& download = download_iter->second;
+    if (download.headers) {
+      curl_slist_free_all(download.headers);
     }
   }
+
   curl_easy_cleanup(finished_curl);
 
   // Remove the handle from our list
@@ -296,6 +329,16 @@ void NetThread::NetThreadImpl::AbortAllDownloads_NetThread() {
   }
 
   active_downloads_.clear();
+}
+
+CURL* NetThread::NetThreadImpl::FindHandleByCancellationToken_NetThread(
+    RequestCancellationToken cancellation_token) const {
+  for (const auto& [easy_handle, info] : active_downloads_) {
+    if (info.cancellation_token == cancellation_token) {
+      return easy_handle;
+    }
+  }
+  return nullptr;
 }
 
 }  // namespace net

@@ -26,7 +26,10 @@ class NetThread::NetThreadImpl {
 
   void EnqueueDownload(ResourceRequest request,
                        std::optional<size_t> max_response_size_bytes,
+                       RequestCancellationToken cancellation_token,
                        OnceCallback<void(ResourceResponse)> on_done_callback);
+
+  void CancelRequest(RequestCancellationToken cancellation_token);
 
  private:
   struct DownloadInfo;
@@ -40,9 +43,13 @@ class NetThread::NetThreadImpl {
   void Wait_NetThread();
 
   void EnqueueDownload_NetThread(DownloadInfo& download_info);
+  void CancelRequest_NetThread(RequestCancellationToken cancellation_token);
   void DownloadFinished_NetThread(CURL* finished_curl, Result result);
   void RemoveDownload_NetThread(CURL* finished_curl);
   void AbortAllDownloads_NetThread();
+
+  CURL* FindHandleByCancellationToken_NetThread(
+      RequestCancellationToken cancellation_token) const;
 
   // Accessible anywhere
   std::atomic_flag not_quit_;
@@ -51,7 +58,7 @@ class NetThread::NetThreadImpl {
   // Accessible with mutex
   std::mutex mutex_;
   std::vector<DownloadInfo> pending_add_downloads_;
-  // TODO: add pending_cancel_downloads_;
+  std::vector<RequestCancellationToken> pending_cancel_downloads_;
 
   // Accessible on `thread_`
   CURLM* multi_handle_;
