@@ -140,7 +140,7 @@ void ThreadPoolSingleThreadExample() {
   pool.Stop();
 }
 
-void NetExample() {
+void NetExampleGet() {
   base::Thread thread{};
   thread.Start();
 
@@ -169,9 +169,57 @@ void NetExample() {
       base::net::ResourceRequest{
           "https://www.google.com/robots.txt",
           base::net::kDefaultHeaders,
-          base::net::kNoTimeout,
-          base::net::kNoTimeout,
+          base::net::kNoPost,
           true,
+      },
+      base::BindPostTask(thread.TaskRunner(), std::move(response_callback),
+                         FROM_HERE));
+
+  // Timeout = 5s
+  thread.TaskRunner()->PostDelayedTask(
+      FROM_HERE,
+      base::BindOnce(
+          [](base::WaitableEvent* event) {
+            LOG(WARNING) << "Failed to download in 5 seconds";
+            event->Signal();
+          },
+          &finished_event),
+      base::Seconds(5));
+
+  finished_event.Wait();
+}
+
+void NetExamplePost() {
+  base::Thread thread{};
+  thread.Start();
+
+  base::WaitableEvent finished_event{};
+  auto response_callback = base::BindOnce(
+      [](base::WaitableEvent* event, base::net::ResourceResponse response) {
+        LOG(INFO) << "Result: " << static_cast<int>(response.result);
+        LOG(INFO) << "HTTP code: " << response.code;
+        LOG(INFO) << "Final URL: " << response.final_url;
+        LOG(INFO) << "Downloaded " << response.data.size() << " bytes";
+        LOG(INFO) << "Latency: " << response.timing_connect.InMilliseconds()
+                  << "ms";
+        LOG(INFO) << "Headers";
+        for (const auto& [h, v] : response.headers) {
+          LOG(INFO) << "  " << h << ": " << v;
+        }
+        LOG_IF(INFO, !response.data.empty())
+            << "Content:\n"
+            << std::string{response.data.begin(), response.data.end()};
+        event->Signal();
+      },
+      &finished_event);
+
+  // Try to download and signal on finish
+  const std::string data_str = "{\"key\": \"value\"}";
+  base::net::SimpleUrlLoader::DownloadUnbounded(
+      base::net::ResourceRequest{
+          "https://httpbin.org/post",
+          {"Content-Type: application/json"},
+          std::vector<uint8_t>{data_str.begin(), data_str.end()},
           true,
       },
       base::BindPostTask(thread.TaskRunner(), std::move(response_callback),
@@ -205,7 +253,10 @@ int main(int argc, char* argv[]) {
   ThreadPoolSequencedExample();
   ThreadPoolSingleThreadExample();
 
-  NetExample();
+  LOG(INFO) << "Finished threading examples\n\n\nBeginning networking examples";
+
+  NetExampleGet();
+  NetExamplePost();
 
   LOG(INFO) << "Example finished in " << timer.Elapsed().InMillisecondsF()
             << "ms";

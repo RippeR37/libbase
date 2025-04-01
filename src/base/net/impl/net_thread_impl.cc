@@ -188,9 +188,19 @@ void NetThread::NetThreadImpl::EnqueueDownload_NetThread(
   if (download_info.request.follow_redirects) {
     curl_easy_setopt(easy_handle, CURLOPT_FOLLOWLOCATION, 1L);
   }
-  if (download_info.request.headers_only) {
+
+  // POST or HEAD or GET
+  if (download_info.request.post_data) {
+    curl_easy_setopt(easy_handle, CURLOPT_POST, 1L);
+    curl_easy_setopt(easy_handle, CURLOPT_POSTFIELDS,
+                     download_info.request.post_data->data());
+    curl_easy_setopt(easy_handle, CURLOPT_POSTFIELDSIZE_LARGE,
+                     download_info.request.post_data->size());
+  } else if (download_info.request.headers_only) {
     curl_easy_setopt(easy_handle, CURLOPT_NOBODY, 1L);
   }
+
+  // Headers
   for (const auto& header : download_info.request.headers) {
     download_info.headers =
         curl_slist_append(download_info.headers, header.c_str());
@@ -198,6 +208,8 @@ void NetThread::NetThreadImpl::EnqueueDownload_NetThread(
   if (download_info.headers) {
     curl_easy_setopt(easy_handle, CURLOPT_HTTPHEADER, download_info.headers);
   }
+
+  // Timeouts
   if (!download_info.request.connect_timeout.IsZero()) {
     curl_easy_setopt(easy_handle, CURLOPT_CONNECTTIMEOUT_MS,
                      download_info.request.connect_timeout.InMilliseconds());
@@ -211,7 +223,7 @@ void NetThread::NetThreadImpl::EnqueueDownload_NetThread(
   auto [iter, inserted] =
       active_downloads_.emplace(easy_handle, std::move(download_info));
   DCHECK(inserted);
-  const auto& inserted_info = *iter;
+  const auto& inserted_info = iter->second;
 
   // WARNING: Lambda has to be converted to function pointer or it will crash!
   curl_easy_setopt(easy_handle, CURLOPT_WRITEDATA, (void*)(&inserted_info));
@@ -227,7 +239,7 @@ void NetThread::NetThreadImpl::EnqueueDownload_NetThread(
         }
         info->response.data.insert(info->response.data.end(),
                                    reinterpret_cast<uint8_t*>(data),
-                                   reinterpret_cast<uint8_t*>(data) + n * l);
+                                   reinterpret_cast<uint8_t*>(data) + (n * l));
         return n * l;
       });
 
@@ -292,10 +304,15 @@ void NetThread::NetThreadImpl::DownloadFinished_NetThread(CURL* finished_curl,
     }
   }
 
+  // Save on-done callback for later, but first remove and clean up all CURL
+  // resources to ensure it doesn't use anything provided anymore.
   DCHECK(download.on_done_callback);
-  std::move(download.on_done_callback).Run(std::move(download.response));
+  auto on_done_callback = std::move(download.on_done_callback);
+  auto response = std::move(download.response);
 
   RemoveDownload_NetThread(finished_curl);
+
+  std::move(on_done_callback).Run(std::move(response));
 }
 
 void NetThread::NetThreadImpl::RemoveDownload_NetThread(CURL* finished_curl) {
