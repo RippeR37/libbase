@@ -50,15 +50,19 @@ function(SETUP_COMPILE_FLAGS)
     set(CLANG_TIDY_PROPERTIES "CXX_CLANG_TIDY;${CLANG_TIDY_EXE}")
   endif()
 
+  if(LIBBASE_BUILD_ASAN)
+    set(SANITIZE_FLAGS ";-fsanitize=address")
+  endif()
+
   if(NOT CONFIGURED_ONCE)
     set(
       LIBBASE_COMPILE_FLAGS
-      "${WARNINGS}${COVERAGE_COMPILE_FLAGS}"
+      "${WARNINGS}${COVERAGE_COMPILE_FLAGS}${SANITIZE_FLAGS}"
       CACHE STRING "Flags used by the compiler to build targets"
       FORCE)
     set(
       LIBBASE_LINK_FLAGS
-      "${COVERAGE_LINK_FLAGS}"
+      "${COVERAGE_LINK_FLAGS}${SANITIZE_FLAGS}"
       CACHE STRING "Flags used by the linker to link targets"
       FORCE)
     set(

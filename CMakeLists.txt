@@ -46,6 +46,8 @@ else()
   option(LIBBASE_CLANG_TIDY "Build with clang-tidy" OFF)
 endif()
 
+option(LIBBASE_BUILD_ASAN "Build with Address Sanitizer enabled" OFF)
+
 
 #
 # Compiler setup
