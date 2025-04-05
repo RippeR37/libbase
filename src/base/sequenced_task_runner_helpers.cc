@@ -1,5 +1,7 @@
 #include "base/sequenced_task_runner_helpers.h"
 
+#include "base/logging.h"
+
 namespace base {
 namespace detail {
 
@@ -15,12 +17,12 @@ bool CurrentSequenceIdHelper::IsCurrentSequence(const SequenceId& sequence_id) {
 }
 
 ScopedSequenceIdSetter::ScopedSequenceIdSetter(SequenceId current_sequence_id) {
-  // DCHECK(!CurrentSequenceIdHelper::current_sequence_id_);
+  CHECK(!CurrentSequenceIdHelper::current_sequence_id_);
   CurrentSequenceIdHelper::current_sequence_id_ = current_sequence_id;
 }
 
 ScopedSequenceIdSetter::~ScopedSequenceIdSetter() {
-  // DCHECK(CurrentSequenceIdHelper::current_sequence_id_);
+  CHECK(CurrentSequenceIdHelper::current_sequence_id_);
   CurrentSequenceIdHelper::current_sequence_id_.reset();
 }
 

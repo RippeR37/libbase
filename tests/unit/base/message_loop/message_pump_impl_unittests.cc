@@ -74,26 +74,30 @@ class MessagePumpImplTest : public ::testing::Test {
 
 TEST_F(MessagePumpImplTest, NoTasksAfterStopEmptyQueue) {
   pump.Stop(CreateEmptyTask());
-  EXPECT_FALSE(pump.GetNextPendingTask(kExecutorId));
+  EXPECT_FALSE(pump.GetNextPendingTask(kExecutorId, true));
+}
+
+TEST_F(MessagePumpImplTest, NonBlockingGetEmptyQueue) {
+  EXPECT_FALSE(pump.GetNextPendingTask(kExecutorId, false));
 }
 
 TEST_F(MessagePumpImplTest, LastTaskAfterStopWithTaskEmptyQueue) {
   pump.Stop(CreateTask(base::DoNothing{}));
-  EXPECT_TRUE(pump.GetNextPendingTask(kExecutorId));
-  EXPECT_FALSE(pump.GetNextPendingTask(kExecutorId));
+  EXPECT_TRUE(pump.GetNextPendingTask(kExecutorId, true));
+  EXPECT_FALSE(pump.GetNextPendingTask(kExecutorId, true));
 }
 
 TEST_F(MessagePumpImplTest, RemainingTasksAfterStopNonEmptyQueue) {
   EXPECT_TRUE(pump.QueuePendingTask(CreateTask(base::DoNothing{})));
   pump.Stop(CreateEmptyTask());
-  EXPECT_TRUE(pump.GetNextPendingTask(kExecutorId));
-  EXPECT_FALSE(pump.GetNextPendingTask(kExecutorId));
+  EXPECT_TRUE(pump.GetNextPendingTask(kExecutorId, true));
+  EXPECT_FALSE(pump.GetNextPendingTask(kExecutorId, true));
 }
 
 TEST_F(MessagePumpImplTest, NoTasksAfterStopAndTaskQueued) {
   pump.Stop(CreateEmptyTask());
   EXPECT_FALSE(pump.QueuePendingTask(CreateTask(base::DoNothing{})));
-  EXPECT_FALSE(pump.GetNextPendingTask(kExecutorId));
+  EXPECT_FALSE(pump.GetNextPendingTask(kExecutorId, true));
 }
 
 TEST_F(MessagePumpImplTest, DequeueInCorrectOrder) {
@@ -104,7 +108,7 @@ TEST_F(MessagePumpImplTest, DequeueInCorrectOrder) {
   EXPECT_TRUE(pump.QueuePendingTask(CreateSetterTask(task1_flag)));
   EXPECT_TRUE(pump.QueuePendingTask(CreateSetterTask(task2_flag)));
 
-  auto task1 = pump.GetNextPendingTask(kExecutorId);
+  auto task1 = pump.GetNextPendingTask(kExecutorId, true);
   EXPECT_FALSE(task1_flag);
   EXPECT_FALSE(task2_flag);
   EXPECT_FALSE(task3_flag);
@@ -116,8 +120,8 @@ TEST_F(MessagePumpImplTest, DequeueInCorrectOrder) {
 
   EXPECT_TRUE(pump.QueuePendingTask(CreateSetterTask(task3_flag)));
 
-  auto task2 = pump.GetNextPendingTask(kExecutorId);
-  auto task3 = pump.GetNextPendingTask(kExecutorId);
+  auto task2 = pump.GetNextPendingTask(kExecutorId, true);
+  auto task3 = pump.GetNextPendingTask(kExecutorId, true);
   EXPECT_FALSE(task2_flag);
   EXPECT_FALSE(task3_flag);
 
@@ -140,7 +144,7 @@ TEST_F(MessagePumpImplTest, DequeueOnlyForAllowedExecutor) {
   EXPECT_TRUE(pump.QueuePendingTask(
       CreateSetterExecutorTask({}, any_executor_task_executed)));
 
-  auto task1 = pump.GetNextPendingTask(kExecutorId);
+  auto task1 = pump.GetNextPendingTask(kExecutorId, true);
   ASSERT_TRUE(task1.allowed_executor_id);
   EXPECT_EQ(*task1.allowed_executor_id, kExecutorId);
   ASSERT_TRUE(task1.task);
@@ -148,7 +152,7 @@ TEST_F(MessagePumpImplTest, DequeueOnlyForAllowedExecutor) {
   EXPECT_TRUE(allowed_executor_task_executed);
   EXPECT_FALSE(any_executor_task_executed);
 
-  auto task2 = pump.GetNextPendingTask(kExecutorId);
+  auto task2 = pump.GetNextPendingTask(kExecutorId, true);
   EXPECT_FALSE(task2.allowed_executor_id);
   ASSERT_TRUE(task2.task);
   std::move(task2.task).Run();
@@ -173,7 +177,7 @@ TEST_F(MessagePumpImplTest, DequeueSkipsTasksFromActiveSequences) {
   EXPECT_TRUE(pump.QueuePendingTask(
       CreateSetterSequenceTask(sequence_2, task3_sequence2)));
 
-  auto task1 = pump.GetNextPendingTask(kExecutorId);
+  auto task1 = pump.GetNextPendingTask(kExecutorId, true);
   EXPECT_FALSE(task1.allowed_executor_id);
   ASSERT_TRUE(task1.task);
   std::move(task1.task).Run();
@@ -182,7 +186,7 @@ TEST_F(MessagePumpImplTest, DequeueSkipsTasksFromActiveSequences) {
   EXPECT_FALSE(task3_sequence2);
 
   // This simulates another executor thread asking for available work.
-  auto task2 = pump.GetNextPendingTask(kOtherExecutorId);
+  auto task2 = pump.GetNextPendingTask(kOtherExecutorId, true);
   EXPECT_FALSE(task2.allowed_executor_id);
   ASSERT_TRUE(task2.task);
   std::move(task2.task).Run();
@@ -200,7 +204,7 @@ TEST_F(MessagePumpImplTest, DequeueOnEmptyPumpWaitsForStop) {
     EXPECT_FALSE(dequeue_finished);
     pump.Stop(CreateEmptyTask());
   });
-  const auto result = pump.GetNextPendingTask(kExecutorId);
+  const auto result = pump.GetNextPendingTask(kExecutorId, true);
   dequeue_finished = true;
   EXPECT_FALSE(result);
 }
@@ -216,7 +220,7 @@ TEST_F(MessagePumpImplTest, DequeueOnEmptyPumpWaitsForEnqueue) {
     EXPECT_FALSE(dequeue_finished);
     EXPECT_TRUE(pump.QueuePendingTask(CreateSetterTask(task_executed)));
   });
-  auto result = pump.GetNextPendingTask(kExecutorId);
+  auto result = pump.GetNextPendingTask(kExecutorId, true);
   dequeue_finished = true;
   EXPECT_TRUE(result);
   ASSERT_TRUE(result.task);
@@ -236,14 +240,14 @@ TEST_F(MessagePumpImplTest, DequeueOnBlockedSequencedWaitsForStop) {
   EXPECT_TRUE(pump.QueuePendingTask(
       CreateSequenceTask(base::DoNothing{}, sequence_id)));
 
-  auto task1 = pump.GetNextPendingTask(kExecutorId);
+  auto task1 = pump.GetNextPendingTask(kExecutorId, true);
   std::atomic_bool dequeue_finished = false;
   const auto async_result = std::async(std::launch::async, [&]() {
     std::this_thread::sleep_for(20ms);
     EXPECT_FALSE(dequeue_finished);
     pump.Stop(CreateEmptyTask());
   });
-  const auto result = pump.GetNextPendingTask(kOtherExecutorId);
+  const auto result = pump.GetNextPendingTask(kOtherExecutorId, true);
   dequeue_finished = true;
   EXPECT_FALSE(result);
 }

@@ -11,7 +11,8 @@ namespace base {
 class MessageLoopImpl : public MessageLoop {
  public:
   MessageLoopImpl(MessagePump::ExecutorId executor_id,
-                  std::shared_ptr<MessagePump> message_pump);
+                  std::shared_ptr<MessagePump> message_pump,
+                  bool set_scoped_handles = true);
   ~MessageLoopImpl() override;
 
   // MessageLoop
@@ -21,8 +22,10 @@ class MessageLoopImpl : public MessageLoop {
   void Stop(MessagePump::PendingTask last_task) override;
 
  private:
+  bool DoRunOnce(bool wait_for_task);
   void RunUntilIdleOrStop();
 
+  const bool set_scoped_handles_;
   const MessagePump::ExecutorId executor_id_;
   std::shared_ptr<MessagePump> message_pump_;
   std::atomic_bool is_stopped_;

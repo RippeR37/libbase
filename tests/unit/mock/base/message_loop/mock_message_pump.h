@@ -9,7 +9,7 @@
 class MockMessagePump : public base::MessagePump {
  public:
   // MessagePump
-  MOCK_METHOD(PendingTask, GetNextPendingTask, (ExecutorId), (override));
+  MOCK_METHOD(PendingTask, GetNextPendingTask, (ExecutorId, bool), (override));
   MOCK_METHOD(bool, QueuePendingTask, (PendingTask), (override));
   MOCK_METHOD(void, Stop, (PendingTask), (override));
 };

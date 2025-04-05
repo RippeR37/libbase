@@ -61,6 +61,8 @@ target_sources(libbase
     base/message_loop/message_pump_impl.cc
     base/message_loop/message_pump_impl.h
     base/message_loop/message_pump.h
+    base/message_loop/run_loop.cc
+    base/message_loop/run_loop.h
     base/net/impl/net_thread_impl.cc
     base/net/impl/net_thread_impl.h
     base/net/impl/net_thread.cc

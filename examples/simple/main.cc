@@ -5,6 +5,7 @@
 #include "base/callback.h"
 #include "base/init.h"
 #include "base/logging.h"
+#include "base/message_loop/run_loop.h"
 #include "base/net/simple_url_loader.h"
 #include "base/synchronization/auto_signaller.h"
 #include "base/synchronization/waitable_event.h"
@@ -42,6 +43,21 @@ void Task1(std::shared_ptr<base::TaskRunner> current,
                    base::BindOnce(&Task1, next, current, five_left_event,
                                   std::move(finished_event), n - 1));
   }
+}
+
+void LogNetResponse(const base::net::ResourceResponse& response) {
+  LOG(INFO) << "Result: " << static_cast<int>(response.result);
+  LOG(INFO) << "HTTP code: " << response.code;
+  LOG(INFO) << "Final URL: " << response.final_url;
+  LOG(INFO) << "Downloaded " << response.data.size() << " bytes";
+  LOG(INFO) << "Latency: " << response.timing_connect.InMilliseconds() << "ms";
+  LOG(INFO) << "Headers";
+  for (const auto& [h, v] : response.headers) {
+    LOG(INFO) << "  " << h << ": " << v;
+  }
+  LOG_IF(INFO, !response.data.empty())
+      << "Content:\n"
+      << std::string{response.data.begin(), response.data.end()};
 }
 
 void ThreadExample() {
@@ -141,28 +157,14 @@ void ThreadPoolSingleThreadExample() {
 }
 
 void NetExampleGet() {
-  base::Thread thread{};
-  thread.Start();
+  base::RunLoop run_loop{};
 
-  base::WaitableEvent finished_event{};
   auto response_callback = base::BindOnce(
-      [](base::WaitableEvent* event, base::net::ResourceResponse response) {
-        LOG(INFO) << "Result: " << static_cast<int>(response.result);
-        LOG(INFO) << "HTTP code: " << response.code;
-        LOG(INFO) << "Final URL: " << response.final_url;
-        LOG(INFO) << "Downloaded " << response.data.size() << " bytes";
-        LOG(INFO) << "Latency: " << response.timing_connect.InMilliseconds()
-                  << "ms";
-        LOG(INFO) << "Headers";
-        for (const auto& [h, v] : response.headers) {
-          LOG(INFO) << "  " << h << ": " << v;
-        }
-        LOG_IF(INFO, !response.data.empty())
-            << "Content:\n"
-            << std::string{response.data.begin(), response.data.end()};
-        event->Signal();
+      [](base::OnceClosure quit_cb, base::net::ResourceResponse response) {
+        LogNetResponse(response);
+        std::move(quit_cb).Run();
       },
-      &finished_event);
+      run_loop.QuitClosure());
 
   // Try to download and signal on finish
   base::net::SimpleUrlLoader::DownloadUnbounded(
@@ -172,46 +174,33 @@ void NetExampleGet() {
           base::net::kNoPost,
           true,
       },
-      base::BindPostTask(thread.TaskRunner(), std::move(response_callback),
+      base::BindPostTask(run_loop.TaskRunner(), std::move(response_callback),
                          FROM_HERE));
 
   // Timeout = 5s
-  thread.TaskRunner()->PostDelayedTask(
+  run_loop.TaskRunner()->PostDelayedTask(
       FROM_HERE,
       base::BindOnce(
-          [](base::WaitableEvent* event) {
+          [](base::OnceClosure quit_cb) {
             LOG(WARNING) << "Failed to download in 5 seconds";
-            event->Signal();
+            std::move(quit_cb).Run();
           },
-          &finished_event),
+          run_loop.QuitClosure()),
       base::Seconds(5));
 
-  finished_event.Wait();
+  // Runs all tasks until the quit callback is called
+  run_loop.Run();
 }
 
 void NetExamplePost() {
-  base::Thread thread{};
-  thread.Start();
+  base::RunLoop run_loop{};
 
-  base::WaitableEvent finished_event{};
   auto response_callback = base::BindOnce(
-      [](base::WaitableEvent* event, base::net::ResourceResponse response) {
-        LOG(INFO) << "Result: " << static_cast<int>(response.result);
-        LOG(INFO) << "HTTP code: " << response.code;
-        LOG(INFO) << "Final URL: " << response.final_url;
-        LOG(INFO) << "Downloaded " << response.data.size() << " bytes";
-        LOG(INFO) << "Latency: " << response.timing_connect.InMilliseconds()
-                  << "ms";
-        LOG(INFO) << "Headers";
-        for (const auto& [h, v] : response.headers) {
-          LOG(INFO) << "  " << h << ": " << v;
-        }
-        LOG_IF(INFO, !response.data.empty())
-            << "Content:\n"
-            << std::string{response.data.begin(), response.data.end()};
-        event->Signal();
+      [](base::OnceClosure quit_cb, base::net::ResourceResponse response) {
+        LogNetResponse(response);
+        std::move(quit_cb).Run();
       },
-      &finished_event);
+      run_loop.QuitClosure());
 
   // Try to download and signal on finish
   const std::string data_str = "{\"key\": \"value\"}";
@@ -222,21 +211,21 @@ void NetExamplePost() {
           std::vector<uint8_t>{data_str.begin(), data_str.end()},
           true,
       },
-      base::BindPostTask(thread.TaskRunner(), std::move(response_callback),
+      base::BindPostTask(run_loop.TaskRunner(), std::move(response_callback),
                          FROM_HERE));
 
   // Timeout = 5s
-  thread.TaskRunner()->PostDelayedTask(
+  run_loop.TaskRunner()->PostDelayedTask(
       FROM_HERE,
       base::BindOnce(
-          [](base::WaitableEvent* event) {
+          [](base::OnceClosure quit_cb) {
             LOG(WARNING) << "Failed to download in 5 seconds";
-            event->Signal();
+            std::move(quit_cb).Run();
           },
-          &finished_event),
+          run_loop.QuitClosure()),
       base::Seconds(5));
 
-  finished_event.Wait();
+  run_loop.Run();
 }
 
 int main(int argc, char* argv[]) {

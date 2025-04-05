@@ -25,7 +25,8 @@ class MessagePump {
 
   virtual ~MessagePump() = default;
 
-  virtual PendingTask GetNextPendingTask(ExecutorId executor_id) = 0;
+  virtual PendingTask GetNextPendingTask(ExecutorId executor_id,
+                                         bool wait_for_task) = 0;
   virtual bool QueuePendingTask(PendingTask pending_task) = 0;
 
   virtual void Stop(PendingTask last_task) = 0;
