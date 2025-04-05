@@ -9,8 +9,8 @@ namespace base {
 
 namespace {
 
-void RunTask(MessagePump::PendingTask&& pending_task) {
-  if (pending_task.sequence_id) {
+void RunTask(MessagePump::PendingTask&& pending_task, bool set_scoped_handles) {
+  if (pending_task.sequence_id && set_scoped_handles) {
     const auto scoped_sequence_id =
         detail::ScopedSequenceIdSetter{*pending_task.sequence_id};
     const auto scoped_task_runner_handle =
@@ -25,8 +25,10 @@ void RunTask(MessagePump::PendingTask&& pending_task) {
 }  // namespace
 
 MessageLoopImpl::MessageLoopImpl(MessagePump::ExecutorId executor_id,
-                                 std::shared_ptr<MessagePump> message_pump)
-    : executor_id_(executor_id),
+                                 std::shared_ptr<MessagePump> message_pump,
+                                 bool set_scoped_handles)
+    : set_scoped_handles_(set_scoped_handles),
+      executor_id_(executor_id),
       message_pump_(std::move(message_pump)),
       is_stopped_(false) {}
 
@@ -34,15 +36,11 @@ MessageLoopImpl::MessageLoopImpl(MessagePump::ExecutorId executor_id,
 MessageLoopImpl::~MessageLoopImpl() = default;
 
 bool MessageLoopImpl::RunOnce() {
-  if (auto pending_task = message_pump_->GetNextPendingTask(executor_id_)) {
-    RunTask(std::move(pending_task));
-    return true;
-  }
-  return false;
+  return DoRunOnce(true);
 }
 
 void MessageLoopImpl::RunUntilIdle() {
-  while (RunOnce()) {
+  while (DoRunOnce(false)) {
   }
 }
 
@@ -58,8 +56,17 @@ void MessageLoopImpl::Stop(MessagePump::PendingTask last_task) {
   message_pump_->Stop(std::move(last_task));
 }
 
+bool MessageLoopImpl::DoRunOnce(bool wait_for_task) {
+  if (auto pending_task =
+          message_pump_->GetNextPendingTask(executor_id_, wait_for_task)) {
+    RunTask(std::move(pending_task), set_scoped_handles_);
+    return true;
+  }
+  return false;
+}
+
 void MessageLoopImpl::RunUntilIdleOrStop() {
-  while (!is_stopped_ && RunOnce()) {
+  while (!is_stopped_ && DoRunOnce(false)) {
   }
 }
 

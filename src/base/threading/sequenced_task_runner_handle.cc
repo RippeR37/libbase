@@ -26,14 +26,14 @@ SequencedTaskRunnerHandle::SequencedTaskRunnerHandle(
     : task_runner_(std::move(task_runner)) {
   DCHECK(task_runner_);
   DCHECK(task_runner_->RunsTasksInCurrentSequence());
-  DCHECK(!IsSet());
+  CHECK(!IsSet());
 
   g_handle = this;
 }
 
 SequencedTaskRunnerHandle::~SequencedTaskRunnerHandle() {
   DCHECK(task_runner_->RunsTasksInCurrentSequence());
-  DCHECK_EQ(g_handle, this);
+  CHECK_EQ(g_handle, this);
 
   g_handle = nullptr;
 }

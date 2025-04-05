@@ -33,6 +33,7 @@ target_sources(libbase_unittests
     base/memory/weak_ptr_unittests.cc
     base/message_loop/message_loop_impl_unittests.cc
     base/message_loop/message_pump_impl_unittests.cc
+    base/message_loop/run_loop_unittests.cc
     base/sequenced_task_runner_helpers_unittest.cc
     base/sequenced_task_runner_unittests.cc
     base/synchronization/auto_signaller_unittests.cc

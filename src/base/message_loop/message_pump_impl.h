@@ -15,7 +15,8 @@ class MessagePumpImpl : public MessagePump {
   explicit MessagePumpImpl(size_t executors_count);
 
   // MessagePump
-  PendingTask GetNextPendingTask(ExecutorId executor_id) override;
+  PendingTask GetNextPendingTask(ExecutorId executor_id,
+                                 bool wait_for_task) override;
   bool QueuePendingTask(PendingTask pending_task) override;
   void Stop(PendingTask last_task) override;
 

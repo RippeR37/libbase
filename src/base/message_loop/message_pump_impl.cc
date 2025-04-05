@@ -11,7 +11,8 @@ MessagePumpImpl::MessagePumpImpl(size_t executors_count) : stopped_(false) {
 }
 
 MessagePumpImpl::PendingTask MessagePumpImpl::GetNextPendingTask(
-    ExecutorId executor_id) {
+    ExecutorId executor_id,
+    bool wait_for_task) {
   std::unique_lock<std::mutex> lock(mutex_);
 
   // Executor asks for a next pending task only if it finished processing last
@@ -22,6 +23,10 @@ MessagePumpImpl::PendingTask MessagePumpImpl::GetNextPendingTask(
 
   if (auto pending_task = GetNextPendingTask_Locked(executor_id)) {
     return pending_task;
+  }
+
+  if (!wait_for_task) {
+    return {};
   }
 
   cond_var_.wait(lock, [&]() {
