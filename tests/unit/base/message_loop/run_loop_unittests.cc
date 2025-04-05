@@ -96,7 +96,24 @@ TEST_F(RunLoopTest, RunUntilIdle_MultipleTasks) {
   EXPECT_FALSE(after_quit_task_executed);
 }
 
-TEST_F(RunLoopTest, Run) {
+TEST_F(RunLoopTest, Run_Simple) {
+  bool first_task_executed = false;
+  bool second_task_executed = false;
+
+  run_loop_->TaskRunner()->PostTask(
+      FROM_HERE, base::BindOnce(&SetFlag, &first_task_executed));
+  run_loop_->TaskRunner()->PostTask(FROM_HERE, run_loop_->QuitClosure());
+  run_loop_->TaskRunner()->PostTask(
+      FROM_HERE, base::BindOnce(&SetFlag, &second_task_executed));
+
+  EXPECT_FALSE(first_task_executed);
+  EXPECT_FALSE(second_task_executed);
+  run_loop_->Run();
+  EXPECT_TRUE(first_task_executed);
+  EXPECT_TRUE(second_task_executed);
+}
+
+TEST_F(RunLoopTest, Run_Advanced) {
   struct Flags {
     bool first_executed = false;
     bool quit_called = false;
