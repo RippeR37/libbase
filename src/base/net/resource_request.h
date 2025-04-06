@@ -20,8 +20,8 @@ struct ResourceRequest {
   std::optional<std::vector<uint8_t>> post_data;
   bool headers_only = false;
 
-  base::TimeDelta connect_timeout = kNoTimeout;
   base::TimeDelta timeout = kNoTimeout;
+  base::TimeDelta connect_timeout = kNoTimeout;
   bool follow_redirects = true;
 };
 
