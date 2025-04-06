@@ -49,19 +49,24 @@ existing project, please skip :ref:`here <skip_existing_project>`.
    .. _skip_existing_project:
 
 
-#. Initialize vcpkg and add ``libbase`` library as a dependency
+#. Initialize ``vcpkg`` and add ``libbase`` library as a dependency
+
+   .. important::
+
+      To avoid name clashes with other libraries, the ``vcpkg`` port for this
+      library is called ``ripper37-libbase``. This is the name you should use
+      when adding it to your project.
 
    .. code-block:: console
 
       $ vcpkg new --application
-      $ vcpkg add port libbase
+      $ vcpkg add port ripper37-libbase
 
    .. note::
 
       You can customize which parts of ``libbase`` you want to use by specifying
-      which features you want to enable. It is also recommended to disable not
-      needed default features (examples and tests) by modifying the dependency
-      in the ``vcpkg.json`` file to look like:
+      which features you want to enable. To do that, you need to modify the
+      dependency entry in the ``vcpkg.json`` file to look like:
 
       .. code-block:: json
          :caption: vcpkg.json
@@ -70,10 +75,10 @@ existing project, please skip :ref:`here <skip_existing_project>`.
            "dependencies": [
              // ...
              {
-               "name": "libbase",
+               "name": "ripper37-libbase",
                "default-features": false,
                "dependencies": [
-                 // list features that you need
+                 // list features that you need here
                ]
              },
              // ...

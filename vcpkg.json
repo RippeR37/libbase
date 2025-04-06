@@ -19,12 +19,6 @@
       "features": [
         "customprefix"
       ]
-    },
-    {
-      "name": "curl",
-      "features": [
-        "ssl"
-      ]
     }
   ],
   "features": {
@@ -42,11 +36,23 @@
       "dependencies": [
         "benchmark"
       ]
+    },
+    "net": {
+      "description": "Build net module",
+      "dependencies": [
+        {
+          "name": "curl",
+          "features": [
+            "ssl"
+          ]
+        }
+      ]
     }
   },
   "default-features": [
     "examples",
     "unittests",
-    "perftests"
+    "perftests",
+    "net"
   ]
 }

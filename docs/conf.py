@@ -1,7 +1,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'libbase'
-copyright = '2022, Damian Dyńdo'
+copyright = '2025, Damian Dyńdo'
 author = 'Damian Dyńdo'
 
 # Breathe extension
