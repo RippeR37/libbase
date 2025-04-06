@@ -67,8 +67,8 @@ You can install `libbase` in _classic mode_ with:
 vcpkg install ripper37-libbase
 ```
 
-or (recommended) in _manifest mode_ by adding to your project's `vcpkg.json`
-file this library as a dependency:
+or in _manifest mode_ (recommended way) by adding this library as a dependency
+in your project's `vcpkg.json` file:
 
 ```jsonc
 {
@@ -94,8 +94,8 @@ cmake --install build [--prefix <install_path_prefix>]
 
 #### Add to your CMake project
 
-Once `libbase` is installed in your system, simply add it and link it to be able
-to use it:
+Once `libbase` is installed in your system, simply make CMake find it and link
+all targets (that should be able to use `libbase`) with it:
 
 ```cmake
 find_package(libbase CONFIG REQUIRED)
