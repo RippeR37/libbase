@@ -53,8 +53,9 @@ class OnceCallback<ReturnType(ArgumentTypes...)> {
   template <typename ThenReturn, typename... ThenArguments>
   OnceCallback<ThenReturn(ArgumentTypes...)> Then(
       RepeatingCallback<ThenReturn(ThenArguments...)> then) && {
-    return Then(static_cast<OnceCallback<ThenReturn(ThenArguments...)>>(
-        std::move(then)));
+    return std::move(*this).Then(
+        static_cast<OnceCallback<ThenReturn(ThenArguments...)>>(
+            std::move(then)));
   }
 
  private:
@@ -120,6 +121,20 @@ class RepeatingCallback<ReturnType(ArgumentTypes...)> {
                             RepeatingCallback<ThenReturn(ThenArguments...)>,
                             ArgumentTypes...>::Invoke,
         std::move(*this), std::move(then));
+  }
+
+  template <typename ThenReturn, typename... ThenArguments>
+  OnceCallback<ThenReturn(ArgumentTypes...)> Then(
+      OnceCallback<ThenReturn(ThenArguments...)> then) const& {
+    OnceCallback<ThenReturn(ArgumentTypes...)> copy = *this;
+    return std::move(copy).Then(std::move(then));
+  }
+
+  template <typename ThenReturn, typename... ThenArguments>
+  OnceCallback<ThenReturn(ArgumentTypes...)> Then(
+      OnceCallback<ThenReturn(ThenArguments...)> then) && {
+    OnceCallback<ThenReturn(ArgumentTypes...)> this_once = std::move(*this);
+    return std::move(this_once).Then(std::move(then));
   }
 
  private:

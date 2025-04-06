@@ -975,6 +975,32 @@ TEST(CallbackThenTest, OnceCallbackThenOnceCallbackNoResult) {
   EXPECT_TRUE(correct_order);
 }
 
+TEST(CallbackThenTest, OnceCallbackThenRepeatingCallbackNoResult) {
+  bool first = false;
+  bool second = false;
+  bool correct_order = false;
+
+  base::OnceCallback<void(bool*)> callback_1 = base::BindOnce(
+      [](bool* first_flag, bool* second_flag, bool* correct_order_flag) {
+        *first_flag = true;
+        if (!*second_flag) {
+          *correct_order_flag = true;
+        }
+      },
+      &first, &second);
+
+  base::OnceCallback<void(bool*)> callback_2 =
+      std::move(callback_1)
+          .Then(base::BindRepeating(
+              [](bool* second_flag) { *second_flag = true; }, &second));
+
+  std::move(callback_2).Run(&correct_order);
+
+  EXPECT_TRUE(first);
+  EXPECT_TRUE(second);
+  EXPECT_TRUE(correct_order);
+}
+
 TEST(CallbackThenTest, OnceCallbackThenOnceCallbackMoveOnlyResultAndArgument) {
   using CounterType = std::unique_ptr<int>;
 
@@ -1027,6 +1053,33 @@ TEST(CallbackThenTest, RepeatingCallbackThenRepeatingCallbackNoResult) {
   EXPECT_EQ(first, 2);
   EXPECT_EQ(second, 2);
   EXPECT_EQ(correct_order, 2);
+  EXPECT_FALSE(callback_2);
+}
+
+TEST(CallbackThenTest, RepeatingCallbackThenOnceCallbackNoResult) {
+  int first = 0;
+  int second = 0;
+  int correct_order = 0;
+
+  base::RepeatingCallback<void(int*)> callback_1 = base::BindRepeating(
+      [](int* first_counter, int* second_counter, int* correct_order_counter) {
+        *first_counter += 1;
+        if (*first_counter > *second_counter) {
+          *correct_order_counter += 1;
+        }
+      },
+      &first, &second);
+  base::OnceCallback<void(int*)> callback_2 = callback_1.Then(base::BindOnce(
+      [](int* second_counter) { *second_counter += 1; }, &second));
+
+  EXPECT_TRUE(callback_1);
+  EXPECT_TRUE(callback_2);
+
+  std::move(callback_2).Run(&correct_order);
+  EXPECT_EQ(first, 1);
+  EXPECT_EQ(second, 1);
+  EXPECT_EQ(correct_order, 1);
+  EXPECT_TRUE(callback_1);
   EXPECT_FALSE(callback_2);
 }
 
