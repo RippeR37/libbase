@@ -38,7 +38,7 @@
       ]
     },
     "net": {
-      "description": "Build net module",
+      "description": "Build networking module",
       "dependencies": [
         {
           "name": "curl",
