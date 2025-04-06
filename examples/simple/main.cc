@@ -167,12 +167,9 @@ void NetExampleGet() {
           true,
           base::Seconds(5),
       },
-      base::BindOnce(
-          [](base::OnceClosure quit_cb, base::net::ResourceResponse response) {
-            LogNetResponse(response);
-            std::move(quit_cb).Run();
-          },
-          run_loop.QuitClosure()));
+      base::BindOnce([](base::net::ResourceResponse response) {
+        LogNetResponse(response);
+      }).Then(run_loop.QuitClosure()));
 
   // Runs all tasks until the quit callback is called
   run_loop.Run();
@@ -191,12 +188,9 @@ void NetExamplePost() {
           false,
           base::Seconds(5),
       },
-      base::BindOnce(
-          [](base::OnceClosure quit_cb, base::net::ResourceResponse response) {
-            LogNetResponse(response);
-            std::move(quit_cb).Run();
-          },
-          run_loop.QuitClosure()));
+      base::BindOnce([](base::net::ResourceResponse response) {
+        LogNetResponse(response);
+      }).Then(run_loop.QuitClosure()));
 
   run_loop.Run();
 }
