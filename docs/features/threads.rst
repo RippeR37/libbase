@@ -636,6 +636,43 @@ waitable event will be signalled from a different thread.
    documentation page.
 
 
+Run Loop
+-------------------
+
+In certain cases, you may find yourself running code on a thread that is not
+associated with a task runner/message loop. One such case might be the main
+application thread. In such cases, you can still enable using all functionality
+of task runners/sequences on that thread with :class:`base::RunLoop` object.
+Once created, it creates a message loop and task runner and configures global
+state for that thread to associate it with them. As long as this object will be
+alive, you will be able to use task runner associated with it and post tasks
+between that thread and other threads/sequences.
+
+.. admonition:: Example - :class:`base::RunLoop`
+   :class: admonition-example-code
+
+   .. code-block:: cpp
+
+      int main(int argc, char* argv[]) {
+        base::RunLoop run_loop;
+
+        run_loop.TaskRunner()->PostDelayedTask(FROM_HERE, run_loop.QuitClosure(),
+                                              base::Seconds(1));
+
+        // This will block current thread until the quit closure is executed
+        run_loop.Run();
+      }
+
+.. warning::
+
+   Current implementation does NOT allow nesting of message loops, so you can't
+   create :class:`base::RunLoop` within a task executed on ``libbase`` thread
+   that already is associated with message loop.
+
+   Furthermore, once quit, you cannot queue or run any more tasks with that
+   :class:`base::RunLoop` instance.
+
+
 .. Aliases
 
 .. |OnceCB| replace:: :cpp:class:`base::OnceCallback\<...> \
