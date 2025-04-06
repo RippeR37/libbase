@@ -9,6 +9,9 @@ Result CurlCodeToNetResult(CURLcode code) {
     case CURLE_OK:
       return Result::kOk;
 
+    case CURLE_OPERATION_TIMEDOUT:
+      return Result::kTimeout;
+
     case CURLE_ABORTED_BY_CALLBACK:
       return Result::kAborted;
 
@@ -196,7 +199,8 @@ void NetThread::NetThreadImpl::EnqueueDownload_NetThread(
                      download_info.request.post_data->data());
     curl_easy_setopt(easy_handle, CURLOPT_POSTFIELDSIZE_LARGE,
                      download_info.request.post_data->size());
-  } else if (download_info.request.headers_only) {
+  }
+  if (download_info.request.headers_only) {
     curl_easy_setopt(easy_handle, CURLOPT_NOBODY, 1L);
   }
 

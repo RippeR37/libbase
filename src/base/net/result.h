@@ -11,6 +11,9 @@ enum class Result {
   kError,
 
   //
+  kTimeout,
+
+  //
   kAborted,
 };
 

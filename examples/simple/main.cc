@@ -1,7 +1,6 @@
 #include <thread>
 
 #include "base/bind.h"
-#include "base/bind_post_task.h"
 #include "base/callback.h"
 #include "base/init.h"
 #include "base/logging.h"
@@ -159,13 +158,6 @@ void ThreadPoolSingleThreadExample() {
 void NetExampleGet() {
   base::RunLoop run_loop{};
 
-  auto response_callback = base::BindOnce(
-      [](base::OnceClosure quit_cb, base::net::ResourceResponse response) {
-        LogNetResponse(response);
-        std::move(quit_cb).Run();
-      },
-      run_loop.QuitClosure());
-
   // Try to download and signal on finish
   base::net::SimpleUrlLoader::DownloadUnbounded(
       base::net::ResourceRequest{
@@ -173,20 +165,14 @@ void NetExampleGet() {
           base::net::kDefaultHeaders,
           base::net::kNoPost,
           true,
+          base::Seconds(5),
       },
-      base::BindPostTask(run_loop.TaskRunner(), std::move(response_callback),
-                         FROM_HERE));
-
-  // Timeout = 5s
-  run_loop.TaskRunner()->PostDelayedTask(
-      FROM_HERE,
       base::BindOnce(
-          [](base::OnceClosure quit_cb) {
-            LOG(WARNING) << "Failed to download in 5 seconds";
+          [](base::OnceClosure quit_cb, base::net::ResourceResponse response) {
+            LogNetResponse(response);
             std::move(quit_cb).Run();
           },
-          run_loop.QuitClosure()),
-      base::Seconds(5));
+          run_loop.QuitClosure()));
 
   // Runs all tasks until the quit callback is called
   run_loop.Run();
@@ -195,13 +181,6 @@ void NetExampleGet() {
 void NetExamplePost() {
   base::RunLoop run_loop{};
 
-  auto response_callback = base::BindOnce(
-      [](base::OnceClosure quit_cb, base::net::ResourceResponse response) {
-        LogNetResponse(response);
-        std::move(quit_cb).Run();
-      },
-      run_loop.QuitClosure());
-
   // Try to download and signal on finish
   const std::string data_str = "{\"key\": \"value\"}";
   base::net::SimpleUrlLoader::DownloadUnbounded(
@@ -209,21 +188,15 @@ void NetExamplePost() {
           "https://httpbin.org/post",
           {"Content-Type: application/json"},
           std::vector<uint8_t>{data_str.begin(), data_str.end()},
-          true,
+          false,
+          base::Seconds(5),
       },
-      base::BindPostTask(run_loop.TaskRunner(), std::move(response_callback),
-                         FROM_HERE));
-
-  // Timeout = 5s
-  run_loop.TaskRunner()->PostDelayedTask(
-      FROM_HERE,
       base::BindOnce(
-          [](base::OnceClosure quit_cb) {
-            LOG(WARNING) << "Failed to download in 5 seconds";
+          [](base::OnceClosure quit_cb, base::net::ResourceResponse response) {
+            LogNetResponse(response);
             std::move(quit_cb).Run();
           },
-          run_loop.QuitClosure()),
-      base::Seconds(5));
+          run_loop.QuitClosure()));
 
   run_loop.Run();
 }

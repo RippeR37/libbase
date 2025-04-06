@@ -2,9 +2,9 @@
 
 #include <memory>
 
-namespace base {
+#include "base/sequenced_task_runner.h"
 
-class SequencedTaskRunner;
+namespace base {
 
 class SequencedTaskRunnerHandle {
  public:
