@@ -16,7 +16,7 @@ namespace {
 
 const base::TimeDelta kZero = base::TimeDelta{};
 
-base::TimeTicks g_now_mocked;
+std::atomic<base::TimeTicks> g_now_mocked;
 
 base::TimeTicks GetMockedTimeTicks() {
   return g_now_mocked;

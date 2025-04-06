@@ -33,34 +33,41 @@ jobs:
         build_type: [Release, Debug]
         os_compiler: [
           # ubuntu 22
-          {os: ubuntu-22.04, name: GCC 10, cc: gcc-10, cxx: g++-10, package: false},
-          {os: ubuntu-22.04, name: GCC 11, cc: gcc-11, cxx: g++-11, package: false},
-          {os: ubuntu-22.04, name: GCC 12, cc: gcc-12, cxx: g++-12, package: false},
-          {os: ubuntu-22.04, name: Clang 13, cc: clang-13, cxx: clang++-13, tidy: clang-tidy-13, package: false},
-          {os: ubuntu-22.04, name: Clang 14, cc: clang-14, cxx: clang++-14, tidy: clang-tidy-14, package: false},
-          {os: ubuntu-22.04, name: Clang 15, cc: clang-15, cxx: clang++-15, tidy: clang-tidy-15, package: false},
+          {os: ubuntu-22.04, name: GCC 10, cc: gcc-10, cxx: g++-10},
+          {os: ubuntu-22.04, name: GCC 11, cc: gcc-11, cxx: g++-11},
+          {os: ubuntu-22.04, name: GCC 12, cc: gcc-12, cxx: g++-12},
+          {os: ubuntu-22.04, name: Clang 13, cc: clang-13, cxx: clang++-13, tidy: clang-tidy-13},
+          {os: ubuntu-22.04, name: Clang 14, cc: clang-14, cxx: clang++-14, tidy: clang-tidy-14},
+          {os: ubuntu-22.04, name: Clang 15, cc: clang-15, cxx: clang++-15, tidy: clang-tidy-15},
 
           # ubuntu 24
-          {os: ubuntu-24.04, name: GCC 12, cc: gcc-12, cxx: g++-12, package: false},
-          {os: ubuntu-24.04, name: GCC 13, cc: gcc-13, cxx: g++-13, package: false},
+          {os: ubuntu-24.04, name: GCC 12, cc: gcc-12, cxx: g++-12},
+          {os: ubuntu-24.04, name: GCC 13, cc: gcc-13, cxx: g++-13},
           {os: ubuntu-24.04, name: GCC 14, cc: gcc-14, cxx: g++-14, package: true},
-          {os: ubuntu-24.04, name: Clang 16, cc: clang-16, cxx: clang++-16, tidy: clang-tidy-16, package: false},
-          {os: ubuntu-24.04, name: Clang 17, cc: clang-17, cxx: clang++-17, tidy: clang-tidy-17, package: false},
+          {os: ubuntu-24.04, name: Clang 16, cc: clang-16, cxx: clang++-16, tidy: clang-tidy-16},
+          {os: ubuntu-24.04, name: Clang 17, cc: clang-17, cxx: clang++-17, tidy: clang-tidy-17},
           {os: ubuntu-24.04, name: Clang 18, cc: clang-18, cxx: clang++-18, tidy: clang-tidy-18, package: true},
         ]
-        cmake_args: [""]
-        code_coverage: [false]
         include:
+          # ASAN/TSAN builds
+          - os_compiler: {os: ubuntu-24.04, name: Clang 18 (ASAN), cc: clang-18, cxx: clang++-18, tidy: clang-tidy-18 }
+            build_type: Debug
+            cmake_args: "-DLIBBASE_BUILD_ASAN=ON"
+            run_all: true
+          - os_compiler: {os: ubuntu-24.04, name: Clang 18 (TSAN), cc: clang-18, cxx: clang++-18, tidy: clang-tidy-18 }
+            build_type: Debug
+            cmake_args: "-DLIBBASE_BUILD_TSAN=ON"
+            run_all: true
+
+          # Code coverage builds
           - os_compiler: {os: ubuntu-24.04, name: CodeCoverage (gcov), cc: gcc-13, cxx: g++-13}
             build_type: Debug
             cmake_args: "-DLIBBASE_CODE_COVERAGE=ON"
             code_coverage: true
-            package: false
           - os_compiler: {os: ubuntu-24.04, name: CodeCoverage (llvm-cov), cc: clang-18, cxx: clang++-18, tidy: clang-tidy-18, llvm-cov: llvm-cov-18, llvm-profdata: llvm-profdata-18 }
             build_type: Debug
             cmake_args: "-DLIBBASE_CODE_COVERAGE=ON"
             code_coverage: true
-            package: false
 
     env:
       CC: ${{ matrix.os_compiler.cc }}
@@ -110,6 +117,14 @@ jobs:
         run: cmake --build build --config ${{ matrix.build_type }} -j 8
       - name: Testing
         run: ctest --test-dir build --output-on-failure --timeout 15
+
+      # (Optional) Run other tests and examples
+      - name: (Optional) Run performance tests
+        if: ${{ matrix.run_all }}
+        run: ./build/tests/perf/libbase_perf_tests
+      - name: (Optional) Run examples
+        if: ${{ matrix.run_all }}
+        run: ./build/examples/simple/simple
 
       # (Optional) Generate code coverage report and upload it
       # - 'gcov'-based is used with CI

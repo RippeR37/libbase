@@ -50,8 +50,14 @@ function(SETUP_COMPILE_FLAGS)
     set(CLANG_TIDY_PROPERTIES "CXX_CLANG_TIDY;${CLANG_TIDY_EXE}")
   endif()
 
+  if(LIBBASE_BUILD_ASAN AND LIBBASE_BUILD_TSAN)
+    message(FATAL_ERROR "Cann't use ASAN and TSAN within same build")
+  endif()
+
   if(LIBBASE_BUILD_ASAN)
-    set(SANITIZE_FLAGS ";-fsanitize=address")
+    set(SANITIZE_FLAGS ";-fsanitize=address,undefined")
+  elseif(LIBBASE_BUILD_TSAN)
+    set(SANITIZE_FLAGS ";-fsanitize=thread")
   endif()
 
   if(NOT CONFIGURED_ONCE)

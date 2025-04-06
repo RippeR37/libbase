@@ -30,9 +30,9 @@ void TestDoubleThreaded(base::SequencedTaskRunner* tr1,
 }
 
 void BM_TestSingleThreaded(benchmark::State& state) {
+  base::WaitableEvent event{base::WaitableEvent::ResetPolicy::kAutomatic};
   base::Thread t1;
   t1.Start();
-  base::WaitableEvent event{base::WaitableEvent::ResetPolicy::kAutomatic};
 
   for (auto _ : state) {
     TestSingleThreaded(t1.TaskRunner().get(), 1000, &event);
@@ -41,11 +41,11 @@ void BM_TestSingleThreaded(benchmark::State& state) {
 }
 
 void BM_TestDoubleThreaded(benchmark::State& state) {
+  base::WaitableEvent event{base::WaitableEvent::ResetPolicy::kAutomatic};
   base::Thread t1;
   base::Thread t2;
   t1.Start();
   t2.Start();
-  base::WaitableEvent event{base::WaitableEvent::ResetPolicy::kAutomatic};
 
   for (auto _ : state) {
     TestDoubleThreaded(t2.TaskRunner().get(), t1.TaskRunner().get(), 1000,

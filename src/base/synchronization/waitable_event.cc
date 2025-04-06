@@ -18,8 +18,8 @@ void WaitableEvent::Signal() {
   {
     std::lock_guard<std::mutex> guard{mutex_};
     is_signaled_ = true;
+    cond_var_.notify_one();
   }
-  cond_var_.notify_one();
 }
 
 bool WaitableEvent::IsSignaled() {
