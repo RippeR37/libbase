@@ -31,6 +31,8 @@ list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/CMakeModules")
 #
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+  option(LIBBASE_BUILD_MODULE_NET "Build networking module." ON)
+
   option(LIBBASE_BUILD_EXAMPLES "Build examples." ON)
   option(LIBBASE_BUILD_TESTS "Build unit tests." ON)
   option(LIBBASE_CODE_COVERAGE "Compute code coverage." OFF)
@@ -38,6 +40,8 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
   option(LIBBASE_BUILD_DOCS "Build documentation." OFF)
   option(LIBBASE_CLANG_TIDY "Build with clang-tidy" ON)
 else()
+  option(LIBBASE_BUILD_MODULE_NET "Build networking module." ON)
+
   option(LIBBASE_BUILD_EXAMPLES "Build examples." OFF)
   option(LIBBASE_BUILD_TESTS "Build unit tests." OFF)
   option(LIBBASE_CODE_COVERAGE "Compute code coverage." OFF)
@@ -78,8 +82,6 @@ message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 find_package(Threads REQUIRED)
 # GLOG
 find_package(glog CONFIG REQUIRED)
-# curl
-find_package(CURL CONFIG REQUIRED)
 
 
 #
@@ -112,8 +114,13 @@ endif()
 # Installation
 #
 
+set(LIBBASE_INSTALL_TARGETS libbase)
+if(LIBBASE_BUILD_MODULE_NET)
+  list(APPEND LIBBASE_INSTALL_TARGETS libbase_net)
+endif()
+
 # Install the library
-install(TARGETS libbase
+install(TARGETS ${LIBBASE_INSTALL_TARGETS}
         EXPORT libbase_targets
         ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"
         LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
@@ -139,6 +146,7 @@ install(EXPORT libbase_targets
 file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_PROJECT_NAME}-config.cmake"
 "include(CMakeFindDependencyMacro)\n"
 "find_dependency(glog)\n"
+"find_package(curl)\n"
 "find_package(GTest)\n"
 "find_package(benchmark)\n"
 "include(\"\${CMAKE_CURRENT_LIST_DIR}/${CMAKE_PROJECT_NAME}-targets.cmake\")\n"

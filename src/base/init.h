@@ -5,9 +5,6 @@ namespace base {
 struct InitOptions {
   // Logging
   bool LogToStderr = true;
-
-  // Networking
-  bool InitializeNetworking = false;
 };
 
 // NOLINTNEXTLINE(modernize-avoid-c-arrays)
