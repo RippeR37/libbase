@@ -51,6 +51,18 @@ jobs:
         cmake_args: [""]
         code_coverage: [false]
         include:
+          - os_compiler: {os: ubuntu-24.04, name: Clang 18 (ASAN), cc: clang-18, cxx: clang++-18, tidy: clang-tidy-18 }
+            build_type: Debug
+            cmake_args: "-DLIBBASE_BUILD_ASAN=ON"
+            code_coverage: false
+            package: false
+            run_all: true
+          - os_compiler: {os: ubuntu-24.04, name: Clang 18 (TSAN), cc: clang-18, cxx: clang++-18, tidy: clang-tidy-18 }
+            build_type: Debug
+            cmake_args: "-DLIBBASE_BUILD_TSAN=ON"
+            code_coverage: false
+            package: false
+            run_all: true
           - os_compiler: {os: ubuntu-24.04, name: CodeCoverage (gcov), cc: gcc-13, cxx: g++-13}
             build_type: Debug
             cmake_args: "-DLIBBASE_CODE_COVERAGE=ON"
@@ -110,6 +122,14 @@ jobs:
         run: cmake --build build --config ${{ matrix.build_type }} -j 8
       - name: Testing
         run: ctest --test-dir build --output-on-failure --timeout 15
+
+      # (Optional) Run other tests and examples
+      - name: (Optional) Run performance tests
+        if: ${{ matrix.run_all }}
+        run: ./build/tests/perf/libbase_perf_tests
+      - name: (Optional) Run examples
+        if: ${{ matrix.run_all }}
+        run: ./build/examples/simple/simple
 
       # (Optional) Generate code coverage report and upload it
       # - 'gcov'-based is used with CI

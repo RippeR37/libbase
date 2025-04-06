@@ -47,6 +47,7 @@ else()
 endif()
 
 option(LIBBASE_BUILD_ASAN "Build with Address Sanitizer enabled" OFF)
+option(LIBBASE_BUILD_TSAN "Build with Thread Sanitizer enabled" ON)
 
 
 #
