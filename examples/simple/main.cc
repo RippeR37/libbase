@@ -5,6 +5,7 @@
 #include "base/init.h"
 #include "base/logging.h"
 #include "base/message_loop/run_loop.h"
+#include "base/net/init.h"
 #include "base/net/simple_url_loader.h"
 #include "base/synchronization/auto_signaller.h"
 #include "base/synchronization/waitable_event.h"
@@ -42,21 +43,6 @@ void Task1(std::shared_ptr<base::TaskRunner> current,
                    base::BindOnce(&Task1, next, current, five_left_event,
                                   std::move(finished_event), n - 1));
   }
-}
-
-void LogNetResponse(const base::net::ResourceResponse& response) {
-  LOG(INFO) << "Result: " << static_cast<int>(response.result);
-  LOG(INFO) << "HTTP code: " << response.code;
-  LOG(INFO) << "Final URL: " << response.final_url;
-  LOG(INFO) << "Downloaded " << response.data.size() << " bytes";
-  LOG(INFO) << "Latency: " << response.timing_connect.InMilliseconds() << "ms";
-  LOG(INFO) << "Headers";
-  for (const auto& [h, v] : response.headers) {
-    LOG(INFO) << "  " << h << ": " << v;
-  }
-  LOG_IF(INFO, !response.data.empty())
-      << "Content:\n"
-      << std::string{response.data.begin(), response.data.end()};
 }
 
 void ThreadExample() {
@@ -155,6 +141,22 @@ void ThreadPoolSingleThreadExample() {
   pool.Stop();
 }
 
+#ifdef LIBBASE_MODULE_NET
+void LogNetResponse(const base::net::ResourceResponse& response) {
+  LOG(INFO) << "Result: " << static_cast<int>(response.result);
+  LOG(INFO) << "HTTP code: " << response.code;
+  LOG(INFO) << "Final URL: " << response.final_url;
+  LOG(INFO) << "Downloaded " << response.data.size() << " bytes";
+  LOG(INFO) << "Latency: " << response.timing_connect.InMilliseconds() << "ms";
+  LOG(INFO) << "Headers";
+  for (const auto& [h, v] : response.headers) {
+    LOG(INFO) << "  " << h << ": " << v;
+  }
+  LOG_IF(INFO, !response.data.empty())
+      << "Content:\n"
+      << std::string{response.data.begin(), response.data.end()};
+}
+
 void NetExampleGet() {
   base::RunLoop run_loop{};
 
@@ -194,12 +196,13 @@ void NetExamplePost() {
 
   run_loop.Run();
 }
+#endif  // LIBBASE_MODULE_NET
 
 int main(int argc, char* argv[]) {
-  base::InitOptions init_options;
-  init_options.InitializeNetworking = true;
-
-  base::Initialize(argc, argv, std::move(init_options));
+  base::Initialize(argc, argv, base::InitOptions{});
+#ifdef LIBBASE_MODULE_NET
+  base::net::Initialize(base::net::InitOptions{});
+#endif  // LIBBASE_MODULE_NET
 
   const auto timer = base::ElapsedTimer{};
 
@@ -208,16 +211,21 @@ int main(int argc, char* argv[]) {
   ThreadPoolNonSequencedExample();
   ThreadPoolSequencedExample();
   ThreadPoolSingleThreadExample();
+  LOG(INFO) << "Finished threading examples";
 
-  LOG(INFO) << "Finished threading examples\n\n\nBeginning networking examples";
-
+#ifdef LIBBASE_MODULE_NET
+  LOG(INFO) << "Beginning networking examples";
   NetExampleGet();
   NetExamplePost();
+#endif  // LIBBASE_MODULE_NET
 
   LOG(INFO) << "Example finished in " << timer.Elapsed().InMillisecondsF()
             << "ms";
-
   TRACE_EVENT_FLUSH_TO_STREAM(LOG(INFO) << "Trace:\n");
+
+#ifdef LIBBASE_MODULE_NET
+  base::net::Deinitialize();
+#endif  // LIBBASE_MODULE_NET
   base::Deinitialize();
   return 0;
 }

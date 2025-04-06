@@ -32,8 +32,7 @@ target_include_directories(libbase PUBLIC
 target_link_libraries(libbase PUBLIC
   ${LIBBASE_LINK_FLAGS}
   Threads::Threads
-  glog::glog
-  CURL::libcurl)
+  glog::glog)
 
 target_sources(libbase
   PRIVATE
@@ -63,17 +62,6 @@ target_sources(libbase
     base/message_loop/message_pump.h
     base/message_loop/run_loop.cc
     base/message_loop/run_loop.h
-    base/net/impl/net_thread_impl.cc
-    base/net/impl/net_thread_impl.h
-    base/net/impl/net_thread.cc
-    base/net/impl/net_thread.h
-    base/net/request_cancellation_token.cc
-    base/net/request_cancellation_token.h
-    base/net/resource_request.h
-    base/net/resource_response.h
-    base/net/result.h
-    base/net/simple_url_loader.cc
-    base/net/simple_url_loader.h
     base/sequence_checker.cc
     base/sequence_checker.h
     base/sequence_id.cc
@@ -129,3 +117,54 @@ target_sources(libbase
     base/type_traits.h
     base/vlog_is_on.h
 )
+
+#
+# Library module - net
+#
+
+if(LIBBASE_BUILD_MODULE_NET)
+  find_package(CURL CONFIG REQUIRED)
+
+  add_library(libbase_net STATIC "")
+
+  target_compile_features(libbase_net PUBLIC cxx_std_17)
+  target_compile_options(libbase_net PRIVATE ${LIBBASE_COMPILE_FLAGS})
+  target_compile_definitions(libbase_net PUBLIC
+    ${LIBBASE_DEFINES}
+    ${LIBBASE_FEATURE_DEFINES})
+  target_compile_definitions(libbase_net
+      INTERFACE LIBBASE_MODULE_NET
+  )
+  set_target_properties(libbase_net PROPERTIES
+    CXX_EXTENSIONS ON
+    ${LIBBASE_OPT_CLANG_TIDY_PROPERTIES})
+
+  target_include_directories(libbase_net PUBLIC
+      $<BUILD_INTERFACE:${libbase_SOURCE_DIR}/src/>
+      $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/libbase>
+  )
+
+  target_link_libraries(libbase_net PUBLIC
+    ${LIBBASE_LINK_FLAGS}
+    libbase
+    Threads::Threads
+    glog::glog
+    CURL::libcurl)
+
+  target_sources(libbase_net
+    PRIVATE
+      base/net/impl/net_thread_impl.cc
+      base/net/impl/net_thread_impl.h
+      base/net/impl/net_thread.cc
+      base/net/impl/net_thread.h
+      base/net/init.cc
+      base/net/init.h
+      base/net/request_cancellation_token.cc
+      base/net/request_cancellation_token.h
+      base/net/resource_request.h
+      base/net/resource_response.h
+      base/net/result.h
+      base/net/simple_url_loader.cc
+      base/net/simple_url_loader.h
+  )
+endif()
