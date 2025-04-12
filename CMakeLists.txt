@@ -62,10 +62,12 @@ option(LIBBASE_BUILD_DOCS "Build documentation." OFF)
 option(LIBBASE_BUILD_ASAN "Build with Address Sanitizer enabled" OFF)
 option(LIBBASE_BUILD_TSAN "Build with Thread Sanitizer enabled" OFF)
 
-
 if(LIBBASE_BUILD_MODULE_WIN AND NOT CMAKE_SYSTEM_NAME STREQUAL "Windows")
   set(LIBBASE_BUILD_MODULE_WIN OFF CACHE BOOL "" FORCE)
 endif()
+
+set(LIBBASE_OUTPUT_NAME "libbase" CACHE STRING
+  "The library's output basename. Modify to resolve name clashes.")
 
 
 #

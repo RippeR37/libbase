@@ -13,6 +13,15 @@ CMake options affect what targets are build and how. They have two defaults:
 * Internal - used when the ``libbase`` is built as the main project,
 * External - used when the ``libbase`` is built as part of another project.
 
+.. option:: LIBBASE_OUTPUT_NAME=<str>
+
+   Specifies the base name for target files (e.g. ``.lib`` files). This option
+   allows you to override default output name in case of clashes with different
+   libraries.
+
+   :Default (internal): ``libbase``
+   :Default (external): ``libbase``
+
 .. _configuration-libbase-modules:
 
 .. option:: LIBBASE_BUILD_MODULE_NET=<ON|OFF>
