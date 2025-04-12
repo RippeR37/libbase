@@ -1,7 +1,9 @@
 #pragma once
 
+#include <map>
 #include <memory>
 #include <optional>
+#include <string>
 
 #include "base/callback.h"
 #include "base/net/request_cancellation_token.h"
@@ -22,6 +24,13 @@ class NetThread {
       ResourceRequest request,
       std::optional<size_t> max_response_size_bytes,
       OnceCallback<void(ResourceResponse)> on_done_callback);
+  RequestCancellationToken EnqueueDownload(
+      ResourceRequest request,
+      std::optional<size_t> max_response_size_bytes,
+      OnceCallback<void(int, std::string, std::map<std::string, std::string>)>
+          on_response_started,
+      RepeatingCallback<void(std::vector<uint8_t>)> on_write_data,
+      OnceCallback<void(Result)> on_finished);
 
   void CancelRequest(RequestCancellationToken cancellation_token);
 

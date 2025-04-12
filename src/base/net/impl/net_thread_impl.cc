@@ -19,17 +19,54 @@ Result CurlCodeToNetResult(CURLcode code) {
       return Result::kError;
   }
 }
+
+std::tuple<int, std::string, std::map<std::string, std::string>>
+GetResponseInfo(CURL* handle, Result result = Result::kOk) {
+  int code = -1;
+  std::string final_url;
+  std::map<std::string, std::string> headers;
+
+  // Response code
+  if (result == Result::kOk || result == Result::kAborted) {
+    curl_easy_getinfo(handle, CURLINFO_RESPONSE_CODE, &code);
+  }
+
+  // Get the URL of the completed transfer
+  {
+    char* final_url_cstr = nullptr;
+    curl_easy_getinfo(handle, CURLINFO_EFFECTIVE_URL, &final_url_cstr);
+    final_url = final_url_cstr ? final_url_cstr : "";
+  }
+
+  // Get final headers of the completed transfer
+  {
+    struct curl_header* header = nullptr;
+    while ((header = curl_easy_nextheader(handle, CURLH_HEADER, 0, header))) {
+      headers.insert({header->name, header->value});
+    }
+  }
+
+  return {code, final_url, headers};
+}
 }  // namespace
 
 struct NetThread::NetThreadImpl::DownloadInfo {
+  CURL* handle;
   ResourceRequest request;
   std::optional<size_t> max_response_size_bytes;
   RequestCancellationToken cancellation_token;
 
   struct curl_slist* headers = nullptr;
 
+  // Simple download
   ResourceResponse response;
   OnceCallback<void(ResourceResponse)> on_done_callback;
+
+  // Advanced download
+  OnceCallback<void(int, std::string, std::map<std::string, std::string>)>
+      on_response_started;
+  RepeatingCallback<void(std::vector<uint8_t>)> on_write_data;
+  OnceCallback<void(Result)> on_finished;
 };
 
 //
@@ -82,12 +119,49 @@ void NetThread::NetThreadImpl::EnqueueDownload(
   {
     std::unique_lock<std::mutex> lock(mutex_);
     pending_add_downloads_.push_back(DownloadInfo{
+        nullptr,
         std::move(request),
         std::move(max_response_size_bytes),
         std::move(cancellation_token),
         nullptr,
         {},
         std::move(on_done_callback),
+        {},
+        {},
+        {},
+    });
+  }
+
+  not_modified_.clear();
+  curl_multi_wakeup(multi_handle_);
+}
+
+void NetThread::NetThreadImpl::EnqueueDownload(
+    ResourceRequest request,
+    std::optional<size_t> max_response_size_bytes,
+    RequestCancellationToken cancellation_token,
+    OnceCallback<void(int, std::string, std::map<std::string, std::string>)>
+        on_response_started,
+    RepeatingCallback<void(std::vector<uint8_t>)> on_write_data,
+    OnceCallback<void(Result)> on_finished) {
+  DCHECK(thread_);
+  DCHECK(on_response_started);
+  DCHECK(on_write_data);
+  DCHECK(on_finished);
+
+  {
+    std::unique_lock<std::mutex> lock(mutex_);
+    pending_add_downloads_.push_back(DownloadInfo{
+        nullptr,
+        std::move(request),
+        std::move(max_response_size_bytes),
+        std::move(cancellation_token),
+        nullptr,
+        {},
+        {},
+        std::move(on_response_started),
+        std::move(on_write_data),
+        std::move(on_finished),
     });
   }
 
@@ -185,6 +259,8 @@ void NetThread::NetThreadImpl::EnqueueDownload_NetThread(
     DownloadInfo& download_info) {
   CURL* easy_handle = curl_easy_init();
 
+  download_info.handle = easy_handle;
+
   // Set easy handle's options
   curl_easy_setopt(easy_handle, CURLOPT_PRIVATE, this);
   curl_easy_setopt(easy_handle, CURLOPT_URL, download_info.request.url.c_str());
@@ -241,9 +317,27 @@ void NetThread::NetThreadImpl::EnqueueDownload_NetThread(
           // Force error
           return 0;
         }
-        info->response.data.insert(info->response.data.end(),
-                                   reinterpret_cast<uint8_t*>(data),
-                                   reinterpret_cast<uint8_t*>(data) + (n * l));
+
+        if (info->on_response_started) {
+          auto response_info = GetResponseInfo(info->handle);
+          std::move(info->on_response_started)
+              .Run(std::get<0>(response_info),
+                   std::move(std::get<1>(response_info)),
+                   std::move(std::get<2>(response_info)));
+        }
+
+        if (info->on_write_data) {
+          // Send chunk right away
+          std::vector<uint8_t> chunk(
+              reinterpret_cast<uint8_t*>(data),
+              reinterpret_cast<uint8_t*>(data) + (n * l));
+          info->on_write_data.Run(std::move(chunk));
+        } else {
+          // Store data which will be sent on finish/error
+          info->response.data.insert(
+              info->response.data.end(), reinterpret_cast<uint8_t*>(data),
+              reinterpret_cast<uint8_t*>(data) + (n * l));
+        }
         return n * l;
       });
 
@@ -257,35 +351,29 @@ void NetThread::NetThreadImpl::DownloadFinished_NetThread(CURL* finished_curl,
 
   auto& download = download_iter->second;
 
+  // Handle advanced path and just send status & do cleanup
+  if (download.on_response_started) {
+    auto response_info = GetResponseInfo(finished_curl);
+    std::move(download.on_response_started)
+        .Run(std::get<0>(response_info), std::move(std::get<1>(response_info)),
+             std::move(std::get<2>(response_info)));
+  }
+  if (download.on_finished) {
+    std::move(download.on_finished).Run(result);
+    RemoveDownload_NetThread(finished_curl);
+    return;
+  }
+
+  LOG(ERROR) << __FUNCTION__ << "(###) on_done path";
+
+  // Handle simple path and send everything
+
   // Result
   download.response.result = result;
 
-  // Response code
-  if (download.response.result == Result::kOk ||
-      download.response.result == Result::kAborted) {
-    long http_code = 0;
-    curl_easy_getinfo(finished_curl, CURLINFO_RESPONSE_CODE, &http_code);
-    download.response.code = static_cast<int>(http_code);
-  } else {
-    download.response.code = -1;
-  }
-
-  // Get the URL of the completed transfer
-  {
-    char* final_url = nullptr;
-    curl_easy_getinfo(finished_curl, CURLINFO_EFFECTIVE_URL, &final_url);
-
-    download.response.final_url = final_url ? final_url : "";
-  }
-
-  // Get final headers of the completed transfer
-  {
-    struct curl_header* header = nullptr;
-    while ((header =
-                curl_easy_nextheader(finished_curl, CURLH_HEADER, 0, header))) {
-      download.response.headers.insert({header->name, header->value});
-    }
-  }
+  // Response info
+  std::tie(download.response.code, download.response.final_url,
+           download.response.headers) = GetResponseInfo(finished_curl, result);
 
   // Get timing data
   {
