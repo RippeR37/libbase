@@ -13,15 +13,24 @@ CMake options affect what targets are build and how. They have two defaults:
 * Internal - used when the ``libbase`` is built as the main project,
 * External - used when the ``libbase`` is built as part of another project.
 
+.. _configuration-libbase-modules:
+
+.. option:: LIBBASE_BUILD_MODULE_NET=<ON|OFF>
+
+   Build networking module (``libbase_net`` target, requires ``libcurl``).
+
+   :Default (internal): ON
+   :Default (external): ON
+
+.. option:: LIBBASE_BUILD_MODULE_WX=<ON|OFF>
+
+   Build wxWidgets integration module (``libbase_wx`` target, requires
+   ``wxWidgets``).
+
+   :Default (internal): OFF
+   :Default (external): OFF
+
 .. _configuration-libbase-build-examples:
-
-.. option:: LIBBASE_DEPENDENCIES_USE_VCPKG=<ON|OFF>
-
-   Controls whether CMake should resolve dependencies through installed
-   ``vcpkg`` package manager or expect them to be already installed in the
-   system. If enabled, ensure ``VCPKG_ROOT`` environment variable is set.
-
-   :Default: ON
 
 .. option:: LIBBASE_BUILD_EXAMPLES=<ON|OFF>
 
@@ -69,6 +78,22 @@ CMake options affect what targets are build and how. They have two defaults:
 .. option:: LIBBASE_CLANG_TIDY=<ON|OFF>
 
    Build library with clang-tidy.
+
+   :Default (internal): ON
+   :Default (external): OFF
+
+.. option:: LIBBASE_BUILD_ASAN=<ON|OFF>
+
+   Build project with Address Sanitizer enabled. Must not be used together with
+   Thread Sanitizer.
+
+   :Default (internal): OFF
+   :Default (external): OFF
+
+.. option:: LIBBASE_BUILD_TSAN=<ON|OFF>
+
+   Build project with Thread Sanitizer enabled. Must not be used together with
+   Address Sanitizer.
 
    :Default (internal): ON
    :Default (external): OFF

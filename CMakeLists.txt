@@ -1,27 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
 #
-# Build options
-#
-
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-  option(LIBBASE_BUILD_EXAMPLES "Build examples." ON)
-  option(LIBBASE_BUILD_TESTS "Build unit tests." ON)
-  option(LIBBASE_BUILD_PERFORMANCE_TESTS "Build performance tests." ON)
-  option(LIBBASE_CLANG_TIDY "Build with clang-tidy" ON)
-else()
-  option(LIBBASE_BUILD_EXAMPLES "Build examples." OFF)
-  option(LIBBASE_BUILD_TESTS "Build unit tests." OFF)
-  option(LIBBASE_BUILDPERFORMANCE_TESTS "Build performance tests." OFF)
-  option(LIBBASE_CLANG_TIDY "Build with clang-tidy" OFF)
-endif()
-
-option(LIBBASE_CODE_COVERAGE "Compute code coverage." OFF)
-option(LIBBASE_BUILD_DOCS "Build documentation." OFF)
-option(LIBBASE_BUILD_ASAN "Build with Address Sanitizer enabled" OFF)
-option(LIBBASE_BUILD_TSAN "Build with Thread Sanitizer enabled" OFF)
-
-#
 # Modules
 #
 
@@ -59,6 +38,28 @@ project(libbase
 
 include(GNUInstallDirs)
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/CMakeModules")
+
+
+#
+# Build options
+#
+
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+  option(LIBBASE_BUILD_EXAMPLES "Build examples." ON)
+  option(LIBBASE_BUILD_TESTS "Build unit tests." ON)
+  option(LIBBASE_BUILD_PERFORMANCE_TESTS "Build performance tests." ON)
+  option(LIBBASE_CLANG_TIDY "Build with clang-tidy" ON)
+else()
+  option(LIBBASE_BUILD_EXAMPLES "Build examples." OFF)
+  option(LIBBASE_BUILD_TESTS "Build unit tests." OFF)
+  option(LIBBASE_BUILDPERFORMANCE_TESTS "Build performance tests." OFF)
+  option(LIBBASE_CLANG_TIDY "Build with clang-tidy" OFF)
+endif()
+
+option(LIBBASE_CODE_COVERAGE "Compute code coverage." OFF)
+option(LIBBASE_BUILD_DOCS "Build documentation." OFF)
+option(LIBBASE_BUILD_ASAN "Build with Address Sanitizer enabled" OFF)
+option(LIBBASE_BUILD_TSAN "Build with Thread Sanitizer enabled" OFF)
 
 
 #

@@ -13,7 +13,7 @@ on:
 
 jobs:
   build:
-    name: MSVC ${{ matrix.build_type }} (${{ matrix.os }})
+    name: MSVC ${{ matrix.build_type }} (${{ matrix.os }}) ${{ matrix.name_suffix }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -24,6 +24,7 @@ jobs:
           # Optional module builds
           - os: windows-latest
             build_type: Release
+            name_suffix: "(wxWidget integration)"
             cmake_args: "-DLIBBASE_BUILD_MODULE_WX=ON"
 
     steps:

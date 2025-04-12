@@ -13,7 +13,7 @@ on:
 
 jobs:
   build:
-    name: ${{ matrix.compiler.name }} ${{ matrix.build_type }} (${{ matrix.os }})
+    name: ${{ matrix.compiler.name }} ${{ matrix.build_type }} (${{ matrix.os }}) ${{ matrix.name_suffix }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -27,6 +27,7 @@ jobs:
           # Optional module builds
           - os: macos-latest
             build_type: Release
+            name_suffix: "(wxWidget integration)"
             compiler: {name: Clang, cc: clang, cxx: clang++}
             cmake_args: "-DLIBBASE_BUILD_MODULE_WX=ON"
 
