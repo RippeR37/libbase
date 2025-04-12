@@ -168,3 +168,45 @@ if(LIBBASE_BUILD_MODULE_NET)
       base/net/simple_url_loader.h
   )
 endif()
+
+
+#
+# Library integration module - wx (wxWidgets)
+#
+
+if(LIBBASE_BUILD_MODULE_WX)
+  find_package(wxWidgets CONFIG REQUIRED)
+
+  add_library(libbase_wx STATIC "")
+
+  target_compile_features(libbase_wx PUBLIC cxx_std_17)
+  target_compile_options(libbase_wx PRIVATE ${LIBBASE_COMPILE_FLAGS})
+  target_compile_definitions(libbase_wx PUBLIC
+    ${LIBBASE_DEFINES}
+    ${LIBBASE_FEATURE_DEFINES})
+  target_compile_definitions(libbase_wx
+      INTERFACE LIBBASE_MODULE_WX
+  )
+  set_target_properties(libbase_wx PROPERTIES
+    CXX_EXTENSIONS ON
+    ${LIBBASE_OPT_CLANG_TIDY_PROPERTIES})
+
+  target_include_directories(libbase_wx PUBLIC
+      $<BUILD_INTERFACE:${libbase_SOURCE_DIR}/src/>
+      $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/libbase>
+  )
+
+  target_link_libraries(libbase_wx PUBLIC
+    ${LIBBASE_LINK_FLAGS}
+    libbase
+    Threads::Threads
+    glog::glog
+    wx::core
+    wx::base)
+
+  target_sources(libbase_wx
+    PRIVATE
+      base/message_loop/wx/wx_message_loop_attachment.cc
+      base/message_loop/wx/wx_message_loop_attachment.h
+  )
+endif()

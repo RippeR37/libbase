@@ -47,6 +47,12 @@
           ]
         }
       ]
+    },
+    "wx": {
+      "description": "Build wxWidgets integration module",
+      "dependencies": [
+        "wxwidgets"
+      ]
     }
   },
   "default-features": [

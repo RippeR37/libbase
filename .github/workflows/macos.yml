@@ -13,7 +13,7 @@ on:
 
 jobs:
   build:
-    name: ${{ matrix.compiler.name }} ${{ matrix.build_type }} (${{ matrix.os }})
+    name: ${{ matrix.compiler.name }} ${{ matrix.build_type }} (${{ matrix.os }}) ${{ matrix.name_suffix }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -23,6 +23,15 @@ jobs:
         compiler: [
           {name: Clang, cc: clang, cxx: clang++, package: true}
         ]
+        name_suffix: [""]
+        cmake_args: [""]
+        include:
+          # Optional module builds
+          - os: macos-latest
+            build_type: Release
+            name_suffix: "(wxWidget integration)"
+            compiler: {name: Clang, cc: clang, cxx: clang++}
+            cmake_args: "-DLIBBASE_BUILD_MODULE_WX=ON"
 
     env:
       CC: ${{ matrix.compiler.cc }}
@@ -45,7 +54,7 @@ jobs:
           vcpkgGitCommitId: '782ccc18d8b819cdef6794a6c03eb3d9f7cd04aa'
 
       - name: CMake configuration
-        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -DCMAKE_TOOLCHAIN_FILE=${{ runner.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} ${{ matrix.cmake_args }} -DCMAKE_TOOLCHAIN_FILE=${{ runner.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
       - name: Building
         run: cmake --build build --config ${{ matrix.build_type }} -j 8
       - name: Testing
