@@ -73,7 +73,7 @@ class UrlRequestExampleUser : public base::net::UrlRequest::Client {
 
   void Download(base::net::ResourceRequest request) {
     DCHECK_CALLED_ON_VALID_SEQUENCE(sequence_checker_);
-    request_.Download(std::move(request));
+    request_.Start(std::move(request));
   }
 
   void OnResponseStarted(const base::net::UrlRequest* request,

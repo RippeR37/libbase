@@ -783,6 +783,34 @@ TEST_F(WeakCallbackTest, ValidThenInvalidatedWeakRepeatingCallbackWithArg) {
   EXPECT_EQ(weak_object_.GetValue(), 3u * kIncrementByValue);
 }
 
+TEST_F(WeakCallbackTest, WeakThenLambdaInvalidateBeforeThen) {
+  auto callback =
+      base::BindOnce(&WeakClass::IncrementBy, weak_object_.GetWeakPtr(), 1u);
+
+  weak_object_.InvalidateWeakPtrs();
+
+  auto chained_callbacks = std::move(callback).Then(base::BindOnce(
+      [](WeakClass* weak_obj) { weak_obj->IncrementBy(3); }, &weak_object_));
+
+  EXPECT_EQ(weak_object_.GetValue(), 0);
+  std::move(chained_callbacks).Run();
+  EXPECT_EQ(weak_object_.GetValue(), 3);
+}
+
+TEST_F(WeakCallbackTest, WeakThenLambdaInvalidateAfterThen) {
+  auto callback =
+      base::BindOnce(&WeakClass::IncrementBy, weak_object_.GetWeakPtr(), 1u);
+
+  auto chained_callbacks = std::move(callback).Then(base::BindOnce(
+      [](WeakClass* weak_obj) { weak_obj->IncrementBy(3); }, &weak_object_));
+
+  weak_object_.InvalidateWeakPtrs();
+
+  EXPECT_EQ(weak_object_.GetValue(), 0);
+  std::move(chained_callbacks).Run();
+  EXPECT_EQ(weak_object_.GetValue(), 3);
+}
+
 class ThreadedWeakCallbackTest : public WeakCallbackTest {
  public:
   void SetUp() override { thread_.Start(); }

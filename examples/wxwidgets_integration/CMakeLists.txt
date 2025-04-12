@@ -1,10 +1,15 @@
 add_executable(wxwidgets_integration_example WIN32 "")
 
-target_compile_options(wxwidgets_integration_example PRIVATE ${LIBBASE_COMPILE_FLAGS})
+target_compile_options(wxwidgets_integration_example
+  PRIVATE
+    ${LIBBASE_COMPILE_FLAGS}
+)
 
-target_link_libraries(wxwidgets_integration_example PRIVATE
+target_link_libraries(wxwidgets_integration_example
+  PRIVATE
     libbase
-    libbase_wx)
+    libbase_wx
+)
 
 target_sources(wxwidgets_integration_example
   PRIVATE
