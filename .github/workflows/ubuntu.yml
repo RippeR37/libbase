@@ -131,9 +131,12 @@ jobs:
       - name: (Optional) Run performance tests
         if: ${{ matrix.run_all }}
         run: ./build/tests/perf/libbase_perf_tests
-      - name: (Optional) Run examples
+      - name: (Optional) Run examples (simple)
         if: ${{ matrix.run_all }}
         run: ./build/examples/simple/simple
+      - name: (Optional) Run examples (networking)
+        if: ${{ matrix.run_all }}
+        run: ./build/examples/networking/networking
 
       # (Optional) Generate code coverage report and upload it
       # - 'gcov'-based is used with CI
