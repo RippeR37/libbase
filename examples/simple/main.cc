@@ -1,12 +1,8 @@
 #include <thread>
 
 #include "base/bind.h"
-#include "base/callback.h"
 #include "base/init.h"
 #include "base/logging.h"
-#include "base/message_loop/run_loop.h"
-#include "base/net/init.h"
-#include "base/net/simple_url_loader.h"
 #include "base/synchronization/auto_signaller.h"
 #include "base/synchronization/waitable_event.h"
 #include "base/threading/thread.h"
@@ -141,68 +137,8 @@ void ThreadPoolSingleThreadExample() {
   pool.Stop();
 }
 
-#ifdef LIBBASE_MODULE_NET
-void LogNetResponse(const base::net::ResourceResponse& response) {
-  LOG(INFO) << "Result: " << static_cast<int>(response.result);
-  LOG(INFO) << "HTTP code: " << response.code;
-  LOG(INFO) << "Final URL: " << response.final_url;
-  LOG(INFO) << "Downloaded " << response.data.size() << " bytes";
-  LOG(INFO) << "Latency: " << response.timing_connect.InMilliseconds() << "ms";
-  LOG(INFO) << "Headers";
-  for (const auto& [h, v] : response.headers) {
-    LOG(INFO) << "  " << h << ": " << v;
-  }
-  LOG_IF(INFO, !response.data.empty())
-      << "Content:\n"
-      << std::string{response.data.begin(), response.data.end()};
-}
-
-void NetExampleGet() {
-  base::RunLoop run_loop{};
-
-  // Try to download and signal on finish
-  base::net::SimpleUrlLoader::DownloadUnbounded(
-      base::net::ResourceRequest{
-          "https://www.google.com/robots.txt",
-          base::net::kDefaultHeaders,
-          base::net::kNoPost,
-          true,
-          base::Seconds(5),
-      },
-      base::BindOnce([](base::net::ResourceResponse response) {
-        LogNetResponse(response);
-      }).Then(run_loop.QuitClosure()));
-
-  // Runs all tasks until the quit callback is called
-  run_loop.Run();
-}
-
-void NetExamplePost() {
-  base::RunLoop run_loop{};
-
-  // Try to download and signal on finish
-  const std::string data_str = "{\"key\": \"value\"}";
-  base::net::SimpleUrlLoader::DownloadUnbounded(
-      base::net::ResourceRequest{
-          "https://httpbin.org/post",
-          {"Content-Type: application/json"},
-          std::vector<uint8_t>{data_str.begin(), data_str.end()},
-          false,
-          base::Seconds(5),
-      },
-      base::BindOnce([](base::net::ResourceResponse response) {
-        LogNetResponse(response);
-      }).Then(run_loop.QuitClosure()));
-
-  run_loop.Run();
-}
-#endif  // LIBBASE_MODULE_NET
-
 int main(int argc, char* argv[]) {
   base::Initialize(argc, argv, base::InitOptions{});
-#ifdef LIBBASE_MODULE_NET
-  base::net::Initialize(base::net::InitOptions{});
-#endif  // LIBBASE_MODULE_NET
 
   const auto timer = base::ElapsedTimer{};
 
@@ -211,21 +147,11 @@ int main(int argc, char* argv[]) {
   ThreadPoolNonSequencedExample();
   ThreadPoolSequencedExample();
   ThreadPoolSingleThreadExample();
-  LOG(INFO) << "Finished threading examples";
-
-#ifdef LIBBASE_MODULE_NET
-  LOG(INFO) << "Beginning networking examples";
-  NetExampleGet();
-  NetExamplePost();
-#endif  // LIBBASE_MODULE_NET
 
   LOG(INFO) << "Example finished in " << timer.Elapsed().InMillisecondsF()
             << "ms";
   TRACE_EVENT_FLUSH_TO_STREAM(LOG(INFO) << "Trace:\n");
 
-#ifdef LIBBASE_MODULE_NET
-  base::net::Deinitialize();
-#endif  // LIBBASE_MODULE_NET
   base::Deinitialize();
   return 0;
 }

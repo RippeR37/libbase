@@ -169,6 +169,8 @@ if(LIBBASE_BUILD_MODULE_NET)
       base/net/result.h
       base/net/simple_url_loader.cc
       base/net/simple_url_loader.h
+      base/net/url_request.cc
+      base/net/url_request.h
   )
 endif()
 
