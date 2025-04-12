@@ -31,27 +31,31 @@ list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/CMakeModules")
 #
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-  option(LIBBASE_BUILD_MODULE_NET "Build networking module." ON)
-
   option(LIBBASE_BUILD_EXAMPLES "Build examples." ON)
   option(LIBBASE_BUILD_TESTS "Build unit tests." ON)
-  option(LIBBASE_CODE_COVERAGE "Compute code coverage." OFF)
   option(LIBBASE_BUILD_PERFORMANCE_TESTS "Build performance tests." ON)
-  option(LIBBASE_BUILD_DOCS "Build documentation." OFF)
   option(LIBBASE_CLANG_TIDY "Build with clang-tidy" ON)
 else()
-  option(LIBBASE_BUILD_MODULE_NET "Build networking module." ON)
-
   option(LIBBASE_BUILD_EXAMPLES "Build examples." OFF)
   option(LIBBASE_BUILD_TESTS "Build unit tests." OFF)
-  option(LIBBASE_CODE_COVERAGE "Compute code coverage." OFF)
   option(LIBBASE_BUILDPERFORMANCE_TESTS "Build performance tests." OFF)
-  option(LIBBASE_BUILD_DOCS "Build documentation." OFF)
   option(LIBBASE_CLANG_TIDY "Build with clang-tidy" OFF)
 endif()
 
+option(LIBBASE_CODE_COVERAGE "Compute code coverage." OFF)
+option(LIBBASE_BUILD_DOCS "Build documentation." OFF)
 option(LIBBASE_BUILD_ASAN "Build with Address Sanitizer enabled" OFF)
 option(LIBBASE_BUILD_TSAN "Build with Thread Sanitizer enabled" OFF)
+
+#
+# Modules
+#
+
+# Core modules
+option(LIBBASE_BUILD_MODULE_NET "Build networking module." ON)
+
+# Optional modules
+option(LIBBASE_BUILD_MODULE_WX "Build wxWidgets integration module." OFF)
 
 
 #
@@ -118,6 +122,9 @@ set(LIBBASE_INSTALL_TARGETS libbase)
 if(LIBBASE_BUILD_MODULE_NET)
   list(APPEND LIBBASE_INSTALL_TARGETS libbase_net)
 endif()
+if(LIBBASE_BUILD_MODULE_WX)
+  list(APPEND LIBBASE_INSTALL_TARGETS libbase_wx)
+endif()
 
 # Install the library
 install(TARGETS ${LIBBASE_INSTALL_TARGETS}
@@ -147,6 +154,7 @@ file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_PROJECT_NAME}-config.cmake"
 "include(CMakeFindDependencyMacro)\n"
 "find_dependency(glog)\n"
 "find_package(curl)\n"
+"find_package(wxWidgets)\n"
 "find_package(GTest)\n"
 "find_package(benchmark)\n"
 "include(\"\${CMAKE_CURRENT_LIST_DIR}/${CMAKE_PROJECT_NAME}-targets.cmake\")\n"
