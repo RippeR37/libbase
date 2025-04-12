@@ -1,32 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
 #
-# Dependency resolution
-#
-
-option(LIBBASE_DEPENDENCIES_USE_VCPKG "Fetch dependencies with VCPKG" ON)
-
-if (LIBBASE_DEPENDENCIES_USE_VCPKG)
-  if(DEFINED ENV{VCPKG_ROOT})
-    set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
-  else()
-    message(WARNING "Requested to use VCPKG for dependency resolution but VCPKG_ROOT environment variable is not set, ignoring")
-  endif()
-endif()
-
-
-#
-# Project setup
-#
-
-project(libbase
-        VERSION 1.0.1
-        LANGUAGES CXX)
-
-include(GNUInstallDirs)
-list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/CMakeModules")
-
-#
 # Build options
 #
 
@@ -53,9 +27,38 @@ option(LIBBASE_BUILD_TSAN "Build with Thread Sanitizer enabled" OFF)
 
 # Core modules
 option(LIBBASE_BUILD_MODULE_NET "Build networking module." ON)
-
 # Optional modules
 option(LIBBASE_BUILD_MODULE_WX "Build wxWidgets integration module." OFF)
+
+
+#
+# Dependency resolution & features
+#
+
+if(DEFINED ENV{VCPKG_ROOT})
+  set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
+endif()
+
+if(CMAKE_TOOLCHAIN_FILE)
+  string(REGEX MATCH "vcpkg\\.cmake$" IS_VCPKG "${CMAKE_TOOLCHAIN_FILE}")
+  if(IS_VCPKG)
+    if(LIBBASE_BUILD_MODULE_WX)
+      list(APPEND VCPKG_MANIFEST_FEATURES "wx")
+    endif()
+  endif()
+endif()
+
+
+#
+# Project setup
+#
+
+project(libbase
+        VERSION 1.0.1
+        LANGUAGES CXX)
+
+include(GNUInstallDirs)
+list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/CMakeModules")
 
 
 #

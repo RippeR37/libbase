@@ -49,6 +49,11 @@ jobs:
           {os: ubuntu-24.04, name: Clang 18, cc: clang-18, cxx: clang++-18, tidy: clang-tidy-18, package: true},
         ]
         include:
+          # Optional module builds
+          - os_compiler: {os: ubuntu-24.04, name: Clang 18 (wxWidget integration), cc: clang-18, cxx: clang++-18, tidy: clang-tidy-18 }
+            build_type: Release
+            cmake_args: "-DLIBBASE_BUILD_MODULE_WX=ON"
+
           # ASAN/TSAN builds
           - os_compiler: {os: ubuntu-24.04, name: Clang 18 (ASAN), cc: clang-18, cxx: clang++-18, tidy: clang-tidy-18 }
             build_type: Debug
