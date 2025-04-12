@@ -20,6 +20,8 @@ jobs:
       matrix:
         os: [windows-2022, windows-latest]
         build_type: [Release, Debug]
+        name_suffix: [""]
+        cmake_args: [""]
         include:
           # Optional module builds
           - os: windows-latest

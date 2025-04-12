@@ -23,6 +23,8 @@ jobs:
         compiler: [
           {name: Clang, cc: clang, cxx: clang++, package: true}
         ]
+        name_suffix: [""]
+        cmake_args: [""]
         include:
           # Optional module builds
           - os: macos-latest
