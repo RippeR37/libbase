@@ -9,6 +9,7 @@ if (LIBBASE_FEATURE_TRACING)
   string(APPEND LIBBASE_FEATURE_DEFINES "LIBBASE_ENABLE_TRACING")
 endif()
 
+
 #
 # Library
 #
@@ -166,6 +167,44 @@ if(LIBBASE_BUILD_MODULE_NET)
       base/net/result.h
       base/net/simple_url_loader.cc
       base/net/simple_url_loader.h
+  )
+endif()
+
+
+#
+# Library integration module - win (WinApi)
+#
+
+if(LIBBASE_BUILD_MODULE_WIN)
+  add_library(libbase_win STATIC "")
+
+  target_compile_features(libbase_win PUBLIC cxx_std_17)
+  target_compile_options(libbase_win PRIVATE ${LIBBASE_COMPILE_FLAGS})
+  target_compile_definitions(libbase_win PUBLIC
+    ${LIBBASE_DEFINES}
+    ${LIBBASE_FEATURE_DEFINES})
+  target_compile_definitions(libbase_win
+      INTERFACE LIBBASE_MODULE_WIN
+  )
+  set_target_properties(libbase_win PROPERTIES
+    CXX_EXTENSIONS ON
+    ${LIBBASE_OPT_CLANG_TIDY_PROPERTIES})
+
+  target_include_directories(libbase_win PUBLIC
+      $<BUILD_INTERFACE:${libbase_SOURCE_DIR}/src/>
+      $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/libbase>
+  )
+
+  target_link_libraries(libbase_win PUBLIC
+    ${LIBBASE_LINK_FLAGS}
+    libbase
+    Threads::Threads
+    glog::glog)
+
+  target_sources(libbase_win
+    PRIVATE
+      base/message_loop/win/win_message_loop_attachment.cc
+      base/message_loop/win/win_message_loop_attachment.h
   )
 endif()
 

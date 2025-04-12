@@ -10,8 +10,8 @@
 #include <pthread.h>
 #endif
 #elif defined(LIBBASE_IS_WINDOWS)
-#include <Windows.h>
 #include <process.h>
+#include "base/platform/windows.h"
 #endif
 
 namespace base {

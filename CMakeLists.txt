@@ -6,6 +6,7 @@ cmake_minimum_required(VERSION 3.13)
 
 # Core modules
 option(LIBBASE_BUILD_MODULE_NET "Build networking module." ON)
+option(LIBBASE_BUILD_MODULE_WIN "Build WinApi integration module." ON)
 # Optional modules
 option(LIBBASE_BUILD_MODULE_WX "Build wxWidgets integration module." OFF)
 
@@ -62,6 +63,11 @@ option(LIBBASE_BUILD_ASAN "Build with Address Sanitizer enabled" OFF)
 option(LIBBASE_BUILD_TSAN "Build with Thread Sanitizer enabled" OFF)
 
 
+if(LIBBASE_BUILD_MODULE_WIN AND NOT CMAKE_SYSTEM_NAME STREQUAL "Windows")
+  set(LIBBASE_BUILD_MODULE_WIN OFF CACHE BOOL "" FORCE)
+endif()
+
+
 #
 # Compiler setup
 #
@@ -74,6 +80,7 @@ include(SetupCompileFlags)
 # - LIBBASE_OPT_CLANG_TIDY_PROPERTIES - optional C++ property for clang-tidy use
 setup_compile_flags()
 
+message(STATUS "System: ${CMAKE_SYSTEM_NAME}")
 message(STATUS "Compiler: ${CMAKE_CXX_COMPILER}")
 message(STATUS "Compiler flags: '${LIBBASE_COMPILE_FLAGS}'")
 message(STATUS "Linker flags: '${LIBBASE_LINK_FLAGS}'")
