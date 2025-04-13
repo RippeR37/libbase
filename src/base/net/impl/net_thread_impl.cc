@@ -364,8 +364,6 @@ void NetThread::NetThreadImpl::DownloadFinished_NetThread(CURL* finished_curl,
     return;
   }
 
-  LOG(ERROR) << __FUNCTION__ << "(###) on_done path";
-
   // Handle simple path and send everything
 
   // Result
