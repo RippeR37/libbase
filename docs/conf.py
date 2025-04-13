@@ -82,5 +82,23 @@ todo_include_todos = True
 
 # -- Setup -------------------------------------------------------------------
 
+import os
+import requests
+
+def download_external_rst(app):
+    url = 'https://raw.githubusercontent.com/google/glog/refs/tags/v0.7.1/README.rst'
+    local_dir = os.path.join(app.srcdir, 'build', 'third_party/glog')
+    local_path = os.path.join(local_dir, 'README.rst')
+
+    os.makedirs(local_dir, exist_ok=True)
+
+    if not os.path.exists(local_path):
+        print(f"Downloading {url} to {local_path}")
+        response = requests.get(url)
+        response.raise_for_status()
+        with open(local_path, 'w', encoding='utf-8') as f:
+            f.write(response.text)
+
 def setup(app):
     app.add_css_file('custom.css')
+    app.connect('builder-inited', download_external_rst)

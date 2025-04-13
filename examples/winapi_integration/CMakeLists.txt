@@ -1,7 +1,4 @@
-add_executable(winapi_integration_example
-  WIN32
-  ""
-)
+add_executable(winapi_integration_example WIN32 "")
 
 target_compile_options(winapi_integration_example
   PRIVATE

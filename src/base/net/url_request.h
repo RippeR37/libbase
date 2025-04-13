@@ -30,7 +30,13 @@ class UrlRequest {
   UrlRequest(Client* client);
   ~UrlRequest();
 
-  void Download(ResourceRequest request);
+  UrlRequest(const UrlRequest&) = delete;
+  UrlRequest(UrlRequest&&) = delete;
+
+  UrlRequest& operator=(const UrlRequest&) = delete;
+  UrlRequest& operator=(UrlRequest&&) = delete;
+
+  void Start(ResourceRequest request);
   void Cancel();
 
  private:

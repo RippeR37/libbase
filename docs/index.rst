@@ -28,12 +28,17 @@ Welcome to ``libbase`` library documentation!
    features/weak_ptrs.rst
    features/logging.rst
    features/tracing.rst
+   features/networking.rst
+   features/integrations.rst
 
 .. toctree::
    :hidden:
    :caption: Examples
 
    examples/simple.rst
+   examples/networking.rst
+   examples/winapi_integration.rst
+   examples/wxwidgets_integration.rst
 
 .. toctree::
    :maxdepth: 2
@@ -54,8 +59,9 @@ Welcome to ``libbase`` library documentation!
 
 The ``libbase`` [#libbase]_ is a small library that provides its users with a
 reimplementation of many useful low-level utilities known from Chromium's
-``//base`` module [#chr_base]_ without the need to depend on the whole (or parts
-of the) Chromium itself.
+``//base`` module [#chr_base]_ as well as other useful utilities (e.g.
+simplified networking stack based on ``//net``) without the need to depend on
+the whole (or parts of the) Chromium itself.
 
 .. list-table::
    :align: center

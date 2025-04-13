@@ -7,5 +7,12 @@ directory in the repository and - if
 :ref:`enabled <configuration-libbase-build-examples>` - will be built along the
 ``libbase`` library itself.
 
+.. literalinclude:: ../../examples/simple/CMakeLists.txt
+   :language: cmake
+   :caption: CMakeLists.txt
+   :linenos:
+
 .. literalinclude:: ../../examples/simple/main.cc
    :language: cpp
+   :caption: main.cc
+   :linenos:
