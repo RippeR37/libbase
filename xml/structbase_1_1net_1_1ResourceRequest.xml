@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structbase_1_1net_1_1ResourceRequest" kind="struct" language="C++" prot="public">
+    <compoundname>base::net::ResourceRequest</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structbase_1_1net_1_1ResourceRequest_1ad7a9a7cfa89ba981479221fe2fe96ad8" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string base::net::ResourceRequest::url</definition>
+        <argsstring></argsstring>
+        <name>url</name>
+        <qualifiedname>base::net::ResourceRequest::url</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/resource_request.h" line="18" column="15" bodyfile="base/net/resource_request.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbase_1_1net_1_1ResourceRequest_1aada9684554d7703caa8fe021c10d18e4" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt;std::string&gt; base::net::ResourceRequest::headers</definition>
+        <argsstring></argsstring>
+        <name>headers</name>
+        <qualifiedname>base::net::ResourceRequest::headers</qualifiedname>
+        <initializer>= kDefaultHeaders</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/resource_request.h" line="19" column="15" bodyfile="base/net/resource_request.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbase_1_1net_1_1ResourceRequest_1a4781d2cfe8b4a452ba93ffc0a37e8b60" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; std::vector&lt; uint8_t &gt; &gt;</type>
+        <definition>std::optional&lt;std::vector&lt;uint8_t&gt; &gt; base::net::ResourceRequest::post_data</definition>
+        <argsstring></argsstring>
+        <name>post_data</name>
+        <qualifiedname>base::net::ResourceRequest::post_data</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/resource_request.h" line="20" column="17" bodyfile="base/net/resource_request.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbase_1_1net_1_1ResourceRequest_1a1c333c85306c24f101c53465e8c9688d" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool base::net::ResourceRequest::headers_only</definition>
+        <argsstring></argsstring>
+        <name>headers_only</name>
+        <qualifiedname>base::net::ResourceRequest::headers_only</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/resource_request.h" line="21" column="8" bodyfile="base/net/resource_request.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbase_1_1net_1_1ResourceRequest_1ab0fbadd9bbdf9e184e13cb1becdc9c8f" prot="public" static="no" mutable="no">
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">base::TimeDelta</ref></type>
+        <definition>base::TimeDelta base::net::ResourceRequest::timeout</definition>
+        <argsstring></argsstring>
+        <name>timeout</name>
+        <qualifiedname>base::net::ResourceRequest::timeout</qualifiedname>
+        <initializer>= kNoTimeout</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/resource_request.h" line="23" column="19" bodyfile="base/net/resource_request.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbase_1_1net_1_1ResourceRequest_1a30cc4945066ad42f0bf2211d90053266" prot="public" static="no" mutable="no">
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">base::TimeDelta</ref></type>
+        <definition>base::TimeDelta base::net::ResourceRequest::connect_timeout</definition>
+        <argsstring></argsstring>
+        <name>connect_timeout</name>
+        <qualifiedname>base::net::ResourceRequest::connect_timeout</qualifiedname>
+        <initializer>= kNoTimeout</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/resource_request.h" line="24" column="19" bodyfile="base/net/resource_request.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbase_1_1net_1_1ResourceRequest_1ae4685b9eaa6143f1aacc743bb9342298" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool base::net::ResourceRequest::follow_redirects</definition>
+        <argsstring></argsstring>
+        <name>follow_redirects</name>
+        <qualifiedname>base::net::ResourceRequest::follow_redirects</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/resource_request.h" line="25" column="8" bodyfile="base/net/resource_request.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>base::TimeDelta</label>
+        <link refid="classbase_1_1TimeDelta"/>
+      </node>
+      <node id="1">
+        <label>base::net::ResourceRequest</label>
+        <link refid="structbase_1_1net_1_1ResourceRequest"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>connect_timeout</edgelabel>
+          <edgelabel>timeout</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="base/net/resource_request.h" line="17" column="1" bodyfile="base/net/resource_request.h" bodystart="17" bodyend="26"/>
+    <listofallmembers>
+      <member refid="structbase_1_1net_1_1ResourceRequest_1a30cc4945066ad42f0bf2211d90053266" prot="public" virt="non-virtual"><scope>base::net::ResourceRequest</scope><name>connect_timeout</name></member>
+      <member refid="structbase_1_1net_1_1ResourceRequest_1ae4685b9eaa6143f1aacc743bb9342298" prot="public" virt="non-virtual"><scope>base::net::ResourceRequest</scope><name>follow_redirects</name></member>
+      <member refid="structbase_1_1net_1_1ResourceRequest_1aada9684554d7703caa8fe021c10d18e4" prot="public" virt="non-virtual"><scope>base::net::ResourceRequest</scope><name>headers</name></member>
+      <member refid="structbase_1_1net_1_1ResourceRequest_1a1c333c85306c24f101c53465e8c9688d" prot="public" virt="non-virtual"><scope>base::net::ResourceRequest</scope><name>headers_only</name></member>
+      <member refid="structbase_1_1net_1_1ResourceRequest_1a4781d2cfe8b4a452ba93ffc0a37e8b60" prot="public" virt="non-virtual"><scope>base::net::ResourceRequest</scope><name>post_data</name></member>
+      <member refid="structbase_1_1net_1_1ResourceRequest_1ab0fbadd9bbdf9e184e13cb1becdc9c8f" prot="public" virt="non-virtual"><scope>base::net::ResourceRequest</scope><name>timeout</name></member>
+      <member refid="structbase_1_1net_1_1ResourceRequest_1ad7a9a7cfa89ba981479221fe2fe96ad8" prot="public" virt="non-virtual"><scope>base::net::ResourceRequest</scope><name>url</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

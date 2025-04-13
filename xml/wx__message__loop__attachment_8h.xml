@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="wx__message__loop__attachment_8h" kind="file" language="C++">
+    <compoundname>wx_message_loop_attachment.h</compoundname>
+    <includes local="no">memory</includes>
+    <includes refid="message__pump_8h" local="yes">base/message_loop/message_pump.h</includes>
+    <includes refid="sequence__id_8h" local="yes">base/sequence_id.h</includes>
+    <includes refid="single__thread__task__runner_8h" local="yes">base/single_thread_task_runner.h</includes>
+    <includes refid="sequenced__task__runner__handle_8h" local="yes">base/threading/sequenced_task_runner_handle.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>base/message_loop/wx/wx_message_loop_attachment.h</label>
+        <link refid="wx__message__loop__attachment_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classbase_1_1wx_1_1WxMessageLoopAttachment" prot="public">base::wx::WxMessageLoopAttachment</innerclass>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <innernamespace refid="namespacebase_1_1wx">base::wx</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/message_loop/wx/wx_message_loop_attachment.h"/>
+  </compounddef>
+</doxygen>

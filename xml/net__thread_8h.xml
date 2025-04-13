@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="net__thread_8h" kind="file" language="C++">
+    <compoundname>net_thread.h</compoundname>
+    <includes local="no">map</includes>
+    <includes local="no">memory</includes>
+    <includes local="no">optional</includes>
+    <includes local="no">string</includes>
+    <includes refid="callback_8h" local="yes">base/callback.h</includes>
+    <includes refid="request__cancellation__token_8h" local="yes">base/net/request_cancellation_token.h</includes>
+    <includes refid="resource__request_8h" local="yes">base/net/resource_request.h</includes>
+    <includes refid="resource__response_8h" local="yes">base/net/resource_response.h</includes>
+    <includedby refid="net__thread__impl_8h" local="yes">base/net/impl/net_thread_impl.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>base/net/impl/net_thread.h</label>
+        <link refid="net__thread_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>map</label>
+      </node>
+      <node id="3">
+        <label>memory</label>
+      </node>
+      <node id="4">
+        <label>optional</label>
+      </node>
+      <node id="5">
+        <label>string</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classbase_1_1net_1_1NetThread" prot="public">base::net::NetThread</innerclass>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <innernamespace refid="namespacebase_1_1net">base::net</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/net/impl/net_thread.h"/>
+  </compounddef>
+</doxygen>

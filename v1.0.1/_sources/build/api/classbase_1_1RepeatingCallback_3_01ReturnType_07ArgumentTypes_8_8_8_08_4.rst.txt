@@ -1,0 +1,17 @@
+.. _exhale_class_classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4:
+
+Template Class RepeatingCallback< ReturnType(ArgumentTypes...) >
+================================================================
+
+- Defined in :ref:`file_base_callback.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::RepeatingCallback< ReturnType(ArgumentTypes...)>
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

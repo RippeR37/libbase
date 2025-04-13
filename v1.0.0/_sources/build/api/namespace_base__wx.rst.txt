@@ -1,0 +1,20 @@
+
+.. _namespace_base__wx:
+
+Namespace base::wx
+==================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classbase_1_1wx_1_1WxMessageLoopAttachment`

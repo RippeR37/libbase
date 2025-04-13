@@ -1,0 +1,57 @@
+
+.. _file_base_message_loop_wx_wx_message_loop_attachment.h:
+
+File wx_message_loop_attachment.h
+=================================
+
+|exhale_lsh| :ref:`Parent directory <dir_base_message_loop_wx>` (``base/message_loop/wx``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/message_loop/wx/wx_message_loop_attachment.h``)
+------------------------------------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``base/message_loop/message_pump.h`` (:ref:`file_base_message_loop_message_pump.h`)
+
+- ``base/sequence_id.h`` (:ref:`file_base_sequence_id.h`)
+
+- ``base/single_thread_task_runner.h`` (:ref:`file_base_single_thread_task_runner.h`)
+
+- ``base/threading/sequenced_task_runner_handle.h`` (:ref:`file_base_threading_sequenced_task_runner_handle.h`)
+
+- ``memory`` (:ref:`file_base_memory_weak_ptr.h`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+- :ref:`namespace_base__wx`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classbase_1_1wx_1_1WxMessageLoopAttachment`
+

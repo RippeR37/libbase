@@ -1,0 +1,63 @@
+
+.. _file_base_net_url_request.h:
+
+File url_request.h
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_base_net>` (``base/net``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/net/url_request.h``)
+---------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``base/memory/weak_ptr.h`` (:ref:`file_base_memory_weak_ptr.h`)
+
+- ``base/net/request_cancellation_token.h`` (:ref:`file_base_net_request_cancellation_token.h`)
+
+- ``base/net/resource_request.h`` (:ref:`file_base_net_resource_request.h`)
+
+- ``base/net/result.h`` (:ref:`file_base_net_result.h`)
+
+- ``map``
+
+- ``optional``
+
+- ``string``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+- :ref:`namespace_base__net`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classbase_1_1net_1_1UrlRequest`
+
+- :ref:`exhale_class_classbase_1_1net_1_1UrlRequest_1_1Client`
+

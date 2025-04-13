@@ -1,0 +1,14 @@
+.. _exhale_function_bind_8h_1a5452c26d25fe20be80ec370581653525:
+
+Template Function base::Owned(InstanceType \*)
+==============================================
+
+- Defined in :ref:`file_base_bind.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: base::Owned(InstanceType *)
+   :project: libbase

@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="result_8h" kind="file" language="C++">
+    <compoundname>result.h</compoundname>
+    <includedby refid="net__thread__impl_8h" local="yes">base/net/impl/net_thread_impl.h</includedby>
+    <includedby refid="resource__response_8h" local="yes">base/net/resource_response.h</includedby>
+    <includedby refid="url__request_8h" local="yes">base/net/url_request.h</includedby>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <innernamespace refid="namespacebase_1_1net">base::net</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/net/result.h"/>
+  </compounddef>
+</doxygen>

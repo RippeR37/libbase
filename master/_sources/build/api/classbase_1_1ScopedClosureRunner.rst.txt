@@ -1,0 +1,17 @@
+.. _exhale_class_classbase_1_1ScopedClosureRunner:
+
+Class ScopedClosureRunner
+=========================
+
+- Defined in :ref:`file_base_callback_helpers.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::ScopedClosureRunner
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,17 @@
+.. _exhale_class_classbase_1_1RepeatingCallback:
+
+Template Class RepeatingCallback
+================================
+
+- Defined in :ref:`file_base_callback.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::RepeatingCallback
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

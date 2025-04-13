@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classbase_1_1net_1_1UrlRequest" kind="class" language="C++" prot="public">
+    <compoundname>base::net::UrlRequest</compoundname>
+    <innerclass refid="classbase_1_1net_1_1UrlRequest_1_1Client" prot="public">base::net::UrlRequest::Client</innerclass>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbase_1_1net_1_1UrlRequest_1a7c8029240c8e5fcfb3c2bb0f7eb5e620" prot="private" static="no" mutable="no">
+        <type>std::optional&lt; <ref refid="structbase_1_1net_1_1RequestCancellationToken" kindref="compound">RequestCancellationToken</ref> &gt;</type>
+        <definition>std::optional&lt;RequestCancellationToken&gt; base::net::UrlRequest::cancellation_token_</definition>
+        <argsstring></argsstring>
+        <name>cancellation_token_</name>
+        <qualifiedname>base::net::UrlRequest::cancellation_token_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/url_request.h" line="43" column="17" bodyfile="base/net/url_request.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1net_1_1UrlRequest_1a49fa3ec2ec342277446bf839fa3c8c1f" prot="private" static="no" mutable="no">
+        <type><ref refid="classbase_1_1WeakPtr" kindref="compound">base::WeakPtr</ref>&lt; <ref refid="classbase_1_1net_1_1UrlRequest_1_1Client" kindref="compound">Client</ref> &gt;</type>
+        <definition>base::WeakPtr&lt;Client&gt; base::net::UrlRequest::weak_client_</definition>
+        <argsstring></argsstring>
+        <name>weak_client_</name>
+        <qualifiedname>base::net::UrlRequest::weak_client_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/url_request.h" line="45" column="17" bodyfile="base/net/url_request.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1net_1_1UrlRequest_1acc1e40e18a0a467bdf99c2b8cdf29eb6" prot="private" static="no" mutable="no">
+        <type><ref refid="classbase_1_1WeakPtrFactory" kindref="compound">base::WeakPtrFactory</ref>&lt; <ref refid="classbase_1_1net_1_1UrlRequest_1_1Client" kindref="compound">Client</ref> &gt;</type>
+        <definition>base::WeakPtrFactory&lt;Client&gt; base::net::UrlRequest::weak_factory_</definition>
+        <argsstring></argsstring>
+        <name>weak_factory_</name>
+        <qualifiedname>base::net::UrlRequest::weak_factory_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/url_request.h" line="46" column="24" bodyfile="base/net/url_request.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1net_1_1UrlRequest_1adaf60d5c2389fb99747076749e6179c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::net::UrlRequest::UrlRequest</definition>
+        <argsstring>(Client *client)</argsstring>
+        <name>UrlRequest</name>
+        <qualifiedname>base::net::UrlRequest::UrlRequest</qualifiedname>
+        <param>
+          <type><ref refid="classbase_1_1net_1_1UrlRequest_1_1Client" kindref="compound">Client</ref> *</type>
+          <declname>client</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/url_request.h" line="30" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1net_1_1UrlRequest_1ac4f81892010d37595052b68e4b0556ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::net::UrlRequest::~UrlRequest</definition>
+        <argsstring>()</argsstring>
+        <name>~UrlRequest</name>
+        <qualifiedname>base::net::UrlRequest::~UrlRequest</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/url_request.h" line="31" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1net_1_1UrlRequest_1a566768fdba79fe077ca7f72a82a6a471" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::net::UrlRequest::UrlRequest</definition>
+        <argsstring>(const UrlRequest &amp;)=delete</argsstring>
+        <name>UrlRequest</name>
+        <qualifiedname>base::net::UrlRequest::UrlRequest</qualifiedname>
+        <param>
+          <type>const <ref refid="classbase_1_1net_1_1UrlRequest" kindref="compound">UrlRequest</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/url_request.h" line="33" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1net_1_1UrlRequest_1afe0d5f18a1840e261fbb31dec2d9fd91" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::net::UrlRequest::UrlRequest</definition>
+        <argsstring>(UrlRequest &amp;&amp;)=delete</argsstring>
+        <name>UrlRequest</name>
+        <qualifiedname>base::net::UrlRequest::UrlRequest</qualifiedname>
+        <param>
+          <type><ref refid="classbase_1_1net_1_1UrlRequest" kindref="compound">UrlRequest</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/url_request.h" line="34" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1net_1_1UrlRequest_1a1a4725a68503c273f39b14cad441881d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1net_1_1UrlRequest" kindref="compound">UrlRequest</ref> &amp;</type>
+        <definition>UrlRequest &amp; base::net::UrlRequest::operator=</definition>
+        <argsstring>(const UrlRequest &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>base::net::UrlRequest::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classbase_1_1net_1_1UrlRequest" kindref="compound">UrlRequest</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/url_request.h" line="36" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1net_1_1UrlRequest_1aaeed0f61fd7ecb32466253facfa53227" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1net_1_1UrlRequest" kindref="compound">UrlRequest</ref> &amp;</type>
+        <definition>UrlRequest &amp; base::net::UrlRequest::operator=</definition>
+        <argsstring>(UrlRequest &amp;&amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>base::net::UrlRequest::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classbase_1_1net_1_1UrlRequest" kindref="compound">UrlRequest</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/url_request.h" line="37" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1net_1_1UrlRequest_1a40b900d5caa5a8455942d9a2eaa951d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::net::UrlRequest::Start</definition>
+        <argsstring>(ResourceRequest request)</argsstring>
+        <name>Start</name>
+        <qualifiedname>base::net::UrlRequest::Start</qualifiedname>
+        <param>
+          <type><ref refid="structbase_1_1net_1_1ResourceRequest" kindref="compound">ResourceRequest</ref></type>
+          <declname>request</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/url_request.h" line="39" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1net_1_1UrlRequest_1ae0d470d0478f3965d87a79d1ff0ffd98" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::net::UrlRequest::Cancel</definition>
+        <argsstring>()</argsstring>
+        <name>Cancel</name>
+        <qualifiedname>base::net::UrlRequest::Cancel</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/url_request.h" line="40" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/net/url_request.h" line="15" column="1" bodyfile="base/net/url_request.h" bodystart="15" bodyend="47"/>
+    <listofallmembers>
+      <member refid="classbase_1_1net_1_1UrlRequest_1ae0d470d0478f3965d87a79d1ff0ffd98" prot="public" virt="non-virtual"><scope>base::net::UrlRequest</scope><name>Cancel</name></member>
+      <member refid="classbase_1_1net_1_1UrlRequest_1a7c8029240c8e5fcfb3c2bb0f7eb5e620" prot="private" virt="non-virtual"><scope>base::net::UrlRequest</scope><name>cancellation_token_</name></member>
+      <member refid="classbase_1_1net_1_1UrlRequest_1a1a4725a68503c273f39b14cad441881d" prot="public" virt="non-virtual"><scope>base::net::UrlRequest</scope><name>operator=</name></member>
+      <member refid="classbase_1_1net_1_1UrlRequest_1aaeed0f61fd7ecb32466253facfa53227" prot="public" virt="non-virtual"><scope>base::net::UrlRequest</scope><name>operator=</name></member>
+      <member refid="classbase_1_1net_1_1UrlRequest_1a40b900d5caa5a8455942d9a2eaa951d4" prot="public" virt="non-virtual"><scope>base::net::UrlRequest</scope><name>Start</name></member>
+      <member refid="classbase_1_1net_1_1UrlRequest_1adaf60d5c2389fb99747076749e6179c7" prot="public" virt="non-virtual"><scope>base::net::UrlRequest</scope><name>UrlRequest</name></member>
+      <member refid="classbase_1_1net_1_1UrlRequest_1a566768fdba79fe077ca7f72a82a6a471" prot="public" virt="non-virtual"><scope>base::net::UrlRequest</scope><name>UrlRequest</name></member>
+      <member refid="classbase_1_1net_1_1UrlRequest_1afe0d5f18a1840e261fbb31dec2d9fd91" prot="public" virt="non-virtual"><scope>base::net::UrlRequest</scope><name>UrlRequest</name></member>
+      <member refid="classbase_1_1net_1_1UrlRequest_1a49fa3ec2ec342277446bf839fa3c8c1f" prot="private" virt="non-virtual"><scope>base::net::UrlRequest</scope><name>weak_client_</name></member>
+      <member refid="classbase_1_1net_1_1UrlRequest_1acc1e40e18a0a467bdf99c2b8cdf29eb6" prot="private" virt="non-virtual"><scope>base::net::UrlRequest</scope><name>weak_factory_</name></member>
+      <member refid="classbase_1_1net_1_1UrlRequest_1ac4f81892010d37595052b68e4b0556ce" prot="public" virt="non-virtual"><scope>base::net::UrlRequest</scope><name>~UrlRequest</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

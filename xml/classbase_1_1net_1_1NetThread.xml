@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classbase_1_1net_1_1NetThread" kind="class" language="C++" prot="public">
+    <compoundname>base::net::NetThread</compoundname>
+    <innerclass refid="classbase_1_1net_1_1NetThread_1_1NetThreadImpl" prot="public">base::net::NetThread::NetThreadImpl</innerclass>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbase_1_1net_1_1NetThread_1a9381ad90cf9bc90cf8c614aef31d7088" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="classbase_1_1net_1_1NetThread_1_1NetThreadImpl" kindref="compound">NetThreadImpl</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;NetThreadImpl&gt; base::net::NetThread::impl_</definition>
+        <argsstring></argsstring>
+        <name>impl_</name>
+        <qualifiedname>base::net::NetThread::impl_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/impl/net_thread.h" line="40" column="19" bodyfile="base/net/impl/net_thread.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classbase_1_1net_1_1NetThread_1a85880e7405d7c08e69e780ea3826c10d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1net_1_1NetThread" kindref="compound">NetThread</ref> &amp;</type>
+        <definition>static NetThread &amp; base::net::NetThread::GetInstance</definition>
+        <argsstring>()</argsstring>
+        <name>GetInstance</name>
+        <qualifiedname>base::net::NetThread::GetInstance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/impl/net_thread.h" line="18" column="20"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1net_1_1NetThread_1adef765820ae9fc3997715923734fd906" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::net::NetThread::Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>base::net::NetThread::Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/impl/net_thread.h" line="20" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1net_1_1NetThread_1a673ac895dec22edfb2f97b01e83ffe43" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::net::NetThread::Stop</definition>
+        <argsstring>()</argsstring>
+        <name>Stop</name>
+        <qualifiedname>base::net::NetThread::Stop</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/impl/net_thread.h" line="21" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1net_1_1NetThread_1abbe29a0abe81dd7dab338e2712682e10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbase_1_1net_1_1RequestCancellationToken" kindref="compound">RequestCancellationToken</ref></type>
+        <definition>RequestCancellationToken base::net::NetThread::EnqueueDownload</definition>
+        <argsstring>(ResourceRequest request, std::optional&lt; size_t &gt; max_response_size_bytes, OnceCallback&lt; void(ResourceResponse)&gt; on_done_callback)</argsstring>
+        <name>EnqueueDownload</name>
+        <qualifiedname>base::net::NetThread::EnqueueDownload</qualifiedname>
+        <param>
+          <type><ref refid="structbase_1_1net_1_1ResourceRequest" kindref="compound">ResourceRequest</ref></type>
+          <declname>request</declname>
+        </param>
+        <param>
+          <type>std::optional&lt; size_t &gt;</type>
+          <declname>max_response_size_bytes</declname>
+        </param>
+        <param>
+          <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceCallback</ref>&lt; void(<ref refid="structbase_1_1net_1_1ResourceResponse" kindref="compound">ResourceResponse</ref>)&gt;</type>
+          <declname>on_done_callback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/impl/net_thread.h" line="23" column="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1net_1_1NetThread_1a156ce922a9bf17828def8650a3751c70" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbase_1_1net_1_1RequestCancellationToken" kindref="compound">RequestCancellationToken</ref></type>
+        <definition>RequestCancellationToken base::net::NetThread::EnqueueDownload</definition>
+        <argsstring>(ResourceRequest request, std::optional&lt; size_t &gt; max_response_size_bytes, OnceCallback&lt; void(int, std::string, std::map&lt; std::string, std::string &gt;)&gt; on_response_started, RepeatingCallback&lt; void(std::vector&lt; uint8_t &gt;)&gt; on_write_data, OnceCallback&lt; void(Result)&gt; on_finished)</argsstring>
+        <name>EnqueueDownload</name>
+        <qualifiedname>base::net::NetThread::EnqueueDownload</qualifiedname>
+        <param>
+          <type><ref refid="structbase_1_1net_1_1ResourceRequest" kindref="compound">ResourceRequest</ref></type>
+          <declname>request</declname>
+        </param>
+        <param>
+          <type>std::optional&lt; size_t &gt;</type>
+          <declname>max_response_size_bytes</declname>
+        </param>
+        <param>
+          <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceCallback</ref>&lt; void(int, std::string, std::map&lt; std::string, std::string &gt;)&gt;</type>
+          <declname>on_response_started</declname>
+        </param>
+        <param>
+          <type><ref refid="classbase_1_1RepeatingCallback" kindref="compound">RepeatingCallback</ref>&lt; void(std::vector&lt; uint8_t &gt;)&gt;</type>
+          <declname>on_write_data</declname>
+        </param>
+        <param>
+          <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceCallback</ref>&lt; void(Result)&gt;</type>
+          <declname>on_finished</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/impl/net_thread.h" line="27" column="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1net_1_1NetThread_1a77779cb59cf3b1e26d221a2cdb6b5c0a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::net::NetThread::CancelRequest</definition>
+        <argsstring>(RequestCancellationToken cancellation_token)</argsstring>
+        <name>CancelRequest</name>
+        <qualifiedname>base::net::NetThread::CancelRequest</qualifiedname>
+        <param>
+          <type><ref refid="structbase_1_1net_1_1RequestCancellationToken" kindref="compound">RequestCancellationToken</ref></type>
+          <declname>cancellation_token</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/impl/net_thread.h" line="35" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/net/impl/net_thread.h" line="16" column="1" bodyfile="base/net/impl/net_thread.h" bodystart="16" bodyend="41"/>
+    <listofallmembers>
+      <member refid="classbase_1_1net_1_1NetThread_1a77779cb59cf3b1e26d221a2cdb6b5c0a" prot="public" virt="non-virtual"><scope>base::net::NetThread</scope><name>CancelRequest</name></member>
+      <member refid="classbase_1_1net_1_1NetThread_1abbe29a0abe81dd7dab338e2712682e10" prot="public" virt="non-virtual"><scope>base::net::NetThread</scope><name>EnqueueDownload</name></member>
+      <member refid="classbase_1_1net_1_1NetThread_1a156ce922a9bf17828def8650a3751c70" prot="public" virt="non-virtual"><scope>base::net::NetThread</scope><name>EnqueueDownload</name></member>
+      <member refid="classbase_1_1net_1_1NetThread_1a85880e7405d7c08e69e780ea3826c10d" prot="public" virt="non-virtual"><scope>base::net::NetThread</scope><name>GetInstance</name></member>
+      <member refid="classbase_1_1net_1_1NetThread_1a9381ad90cf9bc90cf8c614aef31d7088" prot="private" virt="non-virtual"><scope>base::net::NetThread</scope><name>impl_</name></member>
+      <member refid="classbase_1_1net_1_1NetThread_1adef765820ae9fc3997715923734fd906" prot="public" virt="non-virtual"><scope>base::net::NetThread</scope><name>Start</name></member>
+      <member refid="classbase_1_1net_1_1NetThread_1a673ac895dec22edfb2f97b01e83ffe43" prot="public" virt="non-virtual"><scope>base::net::NetThread</scope><name>Stop</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

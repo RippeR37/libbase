@@ -1,0 +1,69 @@
+
+.. _file_base_net_impl_net_thread.h:
+
+File net_thread.h
+=================
+
+|exhale_lsh| :ref:`Parent directory <dir_base_net_impl>` (``base/net/impl``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/net/impl/net_thread.h``)
+-------------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``base/callback.h`` (:ref:`file_base_callback.h`)
+
+- ``base/net/request_cancellation_token.h`` (:ref:`file_base_net_request_cancellation_token.h`)
+
+- ``base/net/resource_request.h`` (:ref:`file_base_net_resource_request.h`)
+
+- ``base/net/resource_response.h`` (:ref:`file_base_net_resource_response.h`)
+
+- ``map``
+
+- ``memory`` (:ref:`file_base_memory_weak_ptr.h`)
+
+- ``optional``
+
+- ``string``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_base_net_impl_net_thread_impl.h`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+- :ref:`namespace_base__net`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classbase_1_1net_1_1NetThread`
+

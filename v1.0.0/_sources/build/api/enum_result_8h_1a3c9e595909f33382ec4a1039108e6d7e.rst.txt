@@ -1,0 +1,14 @@
+.. _exhale_enum_result_8h_1a3c9e595909f33382ec4a1039108e6d7e:
+
+Enum Result
+===========
+
+- Defined in :ref:`file_base_net_result.h`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: base::net::Result
+   :project: libbase

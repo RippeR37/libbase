@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classbase_1_1net_1_1SimpleUrlLoader" kind="class" language="C++" prot="public">
+    <compoundname>base::net::SimpleUrlLoader</compoundname>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classbase_1_1net_1_1SimpleUrlLoader_1a1ba53751327d722ffacd8b22040ccfeb" prot="public" static="no">
+        <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceCallback</ref>&lt; void(<ref refid="structbase_1_1net_1_1ResourceResponse" kindref="compound">ResourceResponse</ref>)&gt;</type>
+        <definition>using base::net::SimpleUrlLoader::ResultCallback =  OnceCallback&lt;void(ResourceResponse)&gt;</definition>
+        <argsstring></argsstring>
+        <name>ResultCallback</name>
+        <qualifiedname>base::net::SimpleUrlLoader::ResultCallback</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/simple_url_loader.h" line="14" column="3" bodyfile="base/net/simple_url_loader.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classbase_1_1net_1_1SimpleUrlLoader_1ad42fd71aa00dda0111c05c3ee1628783" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbase_1_1net_1_1RequestCancellationToken" kindref="compound">RequestCancellationToken</ref></type>
+        <definition>static RequestCancellationToken base::net::SimpleUrlLoader::DownloadUnbounded</definition>
+        <argsstring>(ResourceRequest request, ResultCallback on_done_callback, std::shared_ptr&lt; TaskRunner &gt; reply_task_runner=nullptr)</argsstring>
+        <name>DownloadUnbounded</name>
+        <qualifiedname>base::net::SimpleUrlLoader::DownloadUnbounded</qualifiedname>
+        <param>
+          <type><ref refid="structbase_1_1net_1_1ResourceRequest" kindref="compound">ResourceRequest</ref></type>
+          <declname>request</declname>
+        </param>
+        <param>
+          <type><ref refid="classbase_1_1OnceCallback" kindref="compound">ResultCallback</ref></type>
+          <declname>on_done_callback</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classbase_1_1TaskRunner" kindref="compound">TaskRunner</ref> &gt;</type>
+          <declname>reply_task_runner</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/simple_url_loader.h" line="16" column="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1net_1_1SimpleUrlLoader_1a5beaea6138fad2ba9c112fb69bbc15c8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structbase_1_1net_1_1RequestCancellationToken" kindref="compound">RequestCancellationToken</ref></type>
+        <definition>static RequestCancellationToken base::net::SimpleUrlLoader::DownloadLimited</definition>
+        <argsstring>(ResourceRequest request, size_t max_response_size_bytes, ResultCallback on_done_callback, std::shared_ptr&lt; TaskRunner &gt; reply_task_runner=nullptr)</argsstring>
+        <name>DownloadLimited</name>
+        <qualifiedname>base::net::SimpleUrlLoader::DownloadLimited</qualifiedname>
+        <param>
+          <type><ref refid="structbase_1_1net_1_1ResourceRequest" kindref="compound">ResourceRequest</ref></type>
+          <declname>request</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>max_response_size_bytes</declname>
+        </param>
+        <param>
+          <type><ref refid="classbase_1_1OnceCallback" kindref="compound">ResultCallback</ref></type>
+          <declname>on_done_callback</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; <ref refid="classbase_1_1TaskRunner" kindref="compound">TaskRunner</ref> &gt;</type>
+          <declname>reply_task_runner</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/simple_url_loader.h" line="20" column="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1net_1_1SimpleUrlLoader_1a4652a692beb2e351ae72d526d1818ca0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void base::net::SimpleUrlLoader::CancelRequest</definition>
+        <argsstring>(RequestCancellationToken cancellation_token)</argsstring>
+        <name>CancelRequest</name>
+        <qualifiedname>base::net::SimpleUrlLoader::CancelRequest</qualifiedname>
+        <param>
+          <type><ref refid="structbase_1_1net_1_1RequestCancellationToken" kindref="compound">RequestCancellationToken</ref></type>
+          <declname>cancellation_token</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/simple_url_loader.h" line="26" column="15"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/net/simple_url_loader.h" line="12" column="1" bodyfile="base/net/simple_url_loader.h" bodystart="12" bodyend="27"/>
+    <listofallmembers>
+      <member refid="classbase_1_1net_1_1SimpleUrlLoader_1a4652a692beb2e351ae72d526d1818ca0" prot="public" virt="non-virtual"><scope>base::net::SimpleUrlLoader</scope><name>CancelRequest</name></member>
+      <member refid="classbase_1_1net_1_1SimpleUrlLoader_1a5beaea6138fad2ba9c112fb69bbc15c8" prot="public" virt="non-virtual"><scope>base::net::SimpleUrlLoader</scope><name>DownloadLimited</name></member>
+      <member refid="classbase_1_1net_1_1SimpleUrlLoader_1ad42fd71aa00dda0111c05c3ee1628783" prot="public" virt="non-virtual"><scope>base::net::SimpleUrlLoader</scope><name>DownloadUnbounded</name></member>
+      <member refid="classbase_1_1net_1_1SimpleUrlLoader_1a1ba53751327d722ffacd8b22040ccfeb" prot="public" virt="non-virtual"><scope>base::net::SimpleUrlLoader</scope><name>ResultCallback</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

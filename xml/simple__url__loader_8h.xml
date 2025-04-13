@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="simple__url__loader_8h" kind="file" language="C++">
+    <compoundname>simple_url_loader.h</compoundname>
+    <includes refid="callback_8h" local="yes">base/callback.h</includes>
+    <includes refid="request__cancellation__token_8h" local="yes">base/net/request_cancellation_token.h</includes>
+    <includes refid="resource__request_8h" local="yes">base/net/resource_request.h</includes>
+    <includes refid="resource__response_8h" local="yes">base/net/resource_response.h</includes>
+    <includes refid="task__runner_8h" local="yes">base/task_runner.h</includes>
+    <innerclass refid="classbase_1_1net_1_1SimpleUrlLoader" prot="public">base::net::SimpleUrlLoader</innerclass>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <innernamespace refid="namespacebase_1_1net">base::net</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/net/simple_url_loader.h"/>
+  </compounddef>
+</doxygen>

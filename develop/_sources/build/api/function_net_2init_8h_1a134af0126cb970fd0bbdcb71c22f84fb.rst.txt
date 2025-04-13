@@ -1,0 +1,14 @@
+.. _exhale_function_net_2init_8h_1a134af0126cb970fd0bbdcb71c22f84fb:
+
+Function base::net::Initialize
+==============================
+
+- Defined in :ref:`file_base_net_init.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: base::net::Initialize(InitOptions)
+   :project: libbase

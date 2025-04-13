@@ -1,0 +1,17 @@
+.. _exhale_struct_structbase_1_1net_1_1InitOptions:
+
+Struct InitOptions
+==================
+
+- Defined in :ref:`file_base_net_init.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: base::net::InitOptions
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

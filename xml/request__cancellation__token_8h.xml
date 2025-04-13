@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="request__cancellation__token_8h" kind="file" language="C++">
+    <compoundname>request_cancellation_token.h</compoundname>
+    <includes local="no">cstddef</includes>
+    <includedby refid="net__thread_8h" local="yes">base/net/impl/net_thread.h</includedby>
+    <includedby refid="simple__url__loader_8h" local="yes">base/net/simple_url_loader.h</includedby>
+    <includedby refid="url__request_8h" local="yes">base/net/url_request.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>base/net/request_cancellation_token.h</label>
+        <link refid="request__cancellation__token_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>cstddef</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structbase_1_1net_1_1RequestCancellationToken" prot="public">base::net::RequestCancellationToken</innerclass>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <innernamespace refid="namespacebase_1_1net">base::net</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/net/request_cancellation_token.h"/>
+  </compounddef>
+</doxygen>

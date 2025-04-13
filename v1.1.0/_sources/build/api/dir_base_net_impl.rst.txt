@@ -1,0 +1,22 @@
+.. _dir_base_net_impl:
+
+
+Directory impl
+==============
+
+
+|exhale_lsh| :ref:`Parent directory <dir_base_net>` (``base/net``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``base/net/impl``
+
+
+Files
+-----
+
+- :ref:`file_base_net_impl_net_thread.h`
+- :ref:`file_base_net_impl_net_thread_impl.h`
+
+

@@ -1,0 +1,17 @@
+.. _exhale_struct_structbase_1_1net_1_1RequestCancellationToken:
+
+Struct RequestCancellationToken
+===============================
+
+- Defined in :ref:`file_base_net_request_cancellation_token.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: base::net::RequestCancellationToken
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

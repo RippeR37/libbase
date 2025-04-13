@@ -1,0 +1,23 @@
+.. _exhale_struct_structbase_1_1DelayedTaskManager_1_1DelayedTask:
+
+Struct DelayedTaskManager::DelayedTask
+======================================
+
+- Defined in :ref:`file_base_threading_delayed_task_manager.h`
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classbase_1_1DelayedTaskManager`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: base::DelayedTaskManager::DelayedTask
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,17 @@
+.. _exhale_class_classbase_1_1WaitableEvent:
+
+Class WaitableEvent
+===================
+
+- Defined in :ref:`file_base_synchronization_waitable_event.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::WaitableEvent
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

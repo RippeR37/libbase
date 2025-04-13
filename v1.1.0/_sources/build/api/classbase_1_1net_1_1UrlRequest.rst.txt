@@ -1,0 +1,27 @@
+.. _exhale_class_classbase_1_1net_1_1UrlRequest:
+
+Class UrlRequest
+================
+
+- Defined in :ref:`file_base_net_url_request.h`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_class_classbase_1_1net_1_1UrlRequest_1_1Client`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::net::UrlRequest
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

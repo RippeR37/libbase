@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classbase_1_1net_1_1UrlRequest_1_1Client" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>base::net::UrlRequest::Client</compoundname>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1net_1_1UrlRequest_1_1Client_1a28508cb1ea8320e1731566af46aa076f" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void base::net::UrlRequest::Client::OnResponseStarted</definition>
+        <argsstring>(const UrlRequest *request, int code, std::string final_url, std::map&lt; std::string, std::string &gt; headers)=0</argsstring>
+        <name>OnResponseStarted</name>
+        <qualifiedname>base::net::UrlRequest::Client::OnResponseStarted</qualifiedname>
+        <param>
+          <type>const <ref refid="classbase_1_1net_1_1UrlRequest" kindref="compound">UrlRequest</ref> *</type>
+          <declname>request</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>code</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>final_url</declname>
+        </param>
+        <param>
+          <type>std::map&lt; std::string, std::string &gt;</type>
+          <declname>headers</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/url_request.h" line="19" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1net_1_1UrlRequest_1_1Client_1a61716789cf135169be52f46601bb809b" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void base::net::UrlRequest::Client::OnWriteData</definition>
+        <argsstring>(const UrlRequest *request, std::vector&lt; uint8_t &gt; chunk)=0</argsstring>
+        <name>OnWriteData</name>
+        <qualifiedname>base::net::UrlRequest::Client::OnWriteData</qualifiedname>
+        <param>
+          <type>const <ref refid="classbase_1_1net_1_1UrlRequest" kindref="compound">UrlRequest</ref> *</type>
+          <declname>request</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; uint8_t &gt;</type>
+          <declname>chunk</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/url_request.h" line="24" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1net_1_1UrlRequest_1_1Client_1a37bc1e57f522d47d5a8b58ec5f4d25ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void base::net::UrlRequest::Client::OnRequestFinished</definition>
+        <argsstring>(const UrlRequest *request, Result result)=0</argsstring>
+        <name>OnRequestFinished</name>
+        <qualifiedname>base::net::UrlRequest::Client::OnRequestFinished</qualifiedname>
+        <param>
+          <type>const <ref refid="classbase_1_1net_1_1UrlRequest" kindref="compound">UrlRequest</ref> *</type>
+          <declname>request</declname>
+        </param>
+        <param>
+          <type>Result</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/url_request.h" line="26" column="18"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/net/url_request.h" line="17" column="3" bodyfile="base/net/url_request.h" bodystart="17" bodyend="28"/>
+    <listofallmembers>
+      <member refid="classbase_1_1net_1_1UrlRequest_1_1Client_1a37bc1e57f522d47d5a8b58ec5f4d25ae" prot="public" virt="pure-virtual"><scope>base::net::UrlRequest::Client</scope><name>OnRequestFinished</name></member>
+      <member refid="classbase_1_1net_1_1UrlRequest_1_1Client_1a28508cb1ea8320e1731566af46aa076f" prot="public" virt="pure-virtual"><scope>base::net::UrlRequest::Client</scope><name>OnResponseStarted</name></member>
+      <member refid="classbase_1_1net_1_1UrlRequest_1_1Client_1a61716789cf135169be52f46601bb809b" prot="public" virt="pure-virtual"><scope>base::net::UrlRequest::Client</scope><name>OnWriteData</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

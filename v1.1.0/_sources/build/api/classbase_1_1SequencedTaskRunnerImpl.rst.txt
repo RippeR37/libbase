@@ -1,0 +1,27 @@
+.. _exhale_class_classbase_1_1SequencedTaskRunnerImpl:
+
+Class SequencedTaskRunnerImpl
+=============================
+
+- Defined in :ref:`file_base_threading_task_runner_impl.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Types
+**********
+
+- ``public base::SequencedTaskRunner`` (:ref:`exhale_class_classbase_1_1SequencedTaskRunner`)
+- ``public std::enable_shared_from_this< SequencedTaskRunnerImpl >``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::SequencedTaskRunnerImpl
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

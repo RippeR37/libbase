@@ -1,0 +1,14 @@
+.. _exhale_variable_callback_8h_1aa05fd00751e9212347ae5e2bc132d21b:
+
+Variable base::traits::IsRepeatingCallbackV
+===========================================
+
+- Defined in :ref:`file_base_callback.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: base::traits::IsRepeatingCallbackV
+   :project: libbase

@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structbase_1_1net_1_1ResourceResponse" kind="struct" language="C++" prot="public">
+    <compoundname>base::net::ResourceResponse</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structbase_1_1net_1_1ResourceResponse_1a79935a3fdde777f6974ef7570955e8a5" prot="public" static="no" mutable="no">
+        <type>Result</type>
+        <definition>Result base::net::ResourceResponse::result</definition>
+        <argsstring></argsstring>
+        <name>result</name>
+        <qualifiedname>base::net::ResourceResponse::result</qualifiedname>
+        <initializer>= Result::kOk</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/resource_response.h" line="15" column="10" bodyfile="base/net/resource_response.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbase_1_1net_1_1ResourceResponse_1a6cac7c793d8b04e7689d8959091a01f8" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int base::net::ResourceResponse::code</definition>
+        <argsstring></argsstring>
+        <name>code</name>
+        <qualifiedname>base::net::ResourceResponse::code</qualifiedname>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/resource_response.h" line="16" column="7" bodyfile="base/net/resource_response.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbase_1_1net_1_1ResourceResponse_1ae1855e0f05135f124ab179208395b534" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string base::net::ResourceResponse::final_url</definition>
+        <argsstring></argsstring>
+        <name>final_url</name>
+        <qualifiedname>base::net::ResourceResponse::final_url</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/resource_response.h" line="17" column="15" bodyfile="base/net/resource_response.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbase_1_1net_1_1ResourceResponse_1a3d0926a697a972689172a7038295b8e3" prot="public" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::string &gt;</type>
+        <definition>std::map&lt;std::string, std::string&gt; base::net::ResourceResponse::headers</definition>
+        <argsstring></argsstring>
+        <name>headers</name>
+        <qualifiedname>base::net::ResourceResponse::headers</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/resource_response.h" line="18" column="12" bodyfile="base/net/resource_response.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbase_1_1net_1_1ResourceResponse_1aa8f7a95f7f8f9e00a8fd3849e00197a1" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; uint8_t &gt;</type>
+        <definition>std::vector&lt;uint8_t&gt; base::net::ResourceResponse::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <qualifiedname>base::net::ResourceResponse::data</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/resource_response.h" line="19" column="15" bodyfile="base/net/resource_response.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbase_1_1net_1_1ResourceResponse_1a7a970f27c1d4464ce1fe256ad17f869c" prot="public" static="no" mutable="no">
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">base::TimeDelta</ref></type>
+        <definition>base::TimeDelta base::net::ResourceResponse::timing_queue</definition>
+        <argsstring></argsstring>
+        <name>timing_queue</name>
+        <qualifiedname>base::net::ResourceResponse::timing_queue</qualifiedname>
+        <initializer>= base::Seconds(-1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/resource_response.h" line="21" column="19" bodyfile="base/net/resource_response.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbase_1_1net_1_1ResourceResponse_1ab9e60525aa4c5bd2285bda66d3e4a04d" prot="public" static="no" mutable="no">
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">base::TimeDelta</ref></type>
+        <definition>base::TimeDelta base::net::ResourceResponse::timing_connect</definition>
+        <argsstring></argsstring>
+        <name>timing_connect</name>
+        <qualifiedname>base::net::ResourceResponse::timing_connect</qualifiedname>
+        <initializer>= base::Seconds(-1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/resource_response.h" line="22" column="19" bodyfile="base/net/resource_response.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbase_1_1net_1_1ResourceResponse_1aa5dfc5ffede1bb99bf529e0f636d0b2a" prot="public" static="no" mutable="no">
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">base::TimeDelta</ref></type>
+        <definition>base::TimeDelta base::net::ResourceResponse::timing_start_transfer</definition>
+        <argsstring></argsstring>
+        <name>timing_start_transfer</name>
+        <qualifiedname>base::net::ResourceResponse::timing_start_transfer</qualifiedname>
+        <initializer>= base::Seconds(-1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/resource_response.h" line="23" column="19" bodyfile="base/net/resource_response.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbase_1_1net_1_1ResourceResponse_1a1ccb39f9b9edaf89521191d45a906d8d" prot="public" static="no" mutable="no">
+        <type><ref refid="classbase_1_1TimeDelta" kindref="compound">base::TimeDelta</ref></type>
+        <definition>base::TimeDelta base::net::ResourceResponse::timing_total</definition>
+        <argsstring></argsstring>
+        <name>timing_total</name>
+        <qualifiedname>base::net::ResourceResponse::timing_total</qualifiedname>
+        <initializer>= base::Seconds(-1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/resource_response.h" line="24" column="19" bodyfile="base/net/resource_response.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>base::TimeDelta</label>
+        <link refid="classbase_1_1TimeDelta"/>
+      </node>
+      <node id="1">
+        <label>base::net::ResourceResponse</label>
+        <link refid="structbase_1_1net_1_1ResourceResponse"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>timing_connect</edgelabel>
+          <edgelabel>timing_queue</edgelabel>
+          <edgelabel>timing_start_transfer</edgelabel>
+          <edgelabel>timing_total</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="base/net/resource_response.h" line="14" column="1" bodyfile="base/net/resource_response.h" bodystart="14" bodyend="25"/>
+    <listofallmembers>
+      <member refid="structbase_1_1net_1_1ResourceResponse_1a6cac7c793d8b04e7689d8959091a01f8" prot="public" virt="non-virtual"><scope>base::net::ResourceResponse</scope><name>code</name></member>
+      <member refid="structbase_1_1net_1_1ResourceResponse_1aa8f7a95f7f8f9e00a8fd3849e00197a1" prot="public" virt="non-virtual"><scope>base::net::ResourceResponse</scope><name>data</name></member>
+      <member refid="structbase_1_1net_1_1ResourceResponse_1ae1855e0f05135f124ab179208395b534" prot="public" virt="non-virtual"><scope>base::net::ResourceResponse</scope><name>final_url</name></member>
+      <member refid="structbase_1_1net_1_1ResourceResponse_1a3d0926a697a972689172a7038295b8e3" prot="public" virt="non-virtual"><scope>base::net::ResourceResponse</scope><name>headers</name></member>
+      <member refid="structbase_1_1net_1_1ResourceResponse_1a79935a3fdde777f6974ef7570955e8a5" prot="public" virt="non-virtual"><scope>base::net::ResourceResponse</scope><name>result</name></member>
+      <member refid="structbase_1_1net_1_1ResourceResponse_1ab9e60525aa4c5bd2285bda66d3e4a04d" prot="public" virt="non-virtual"><scope>base::net::ResourceResponse</scope><name>timing_connect</name></member>
+      <member refid="structbase_1_1net_1_1ResourceResponse_1a7a970f27c1d4464ce1fe256ad17f869c" prot="public" virt="non-virtual"><scope>base::net::ResourceResponse</scope><name>timing_queue</name></member>
+      <member refid="structbase_1_1net_1_1ResourceResponse_1aa5dfc5ffede1bb99bf529e0f636d0b2a" prot="public" virt="non-virtual"><scope>base::net::ResourceResponse</scope><name>timing_start_transfer</name></member>
+      <member refid="structbase_1_1net_1_1ResourceResponse_1a1ccb39f9b9edaf89521191d45a906d8d" prot="public" virt="non-virtual"><scope>base::net::ResourceResponse</scope><name>timing_total</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

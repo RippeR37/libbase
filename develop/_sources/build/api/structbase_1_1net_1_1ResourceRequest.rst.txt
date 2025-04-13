@@ -1,0 +1,17 @@
+.. _exhale_struct_structbase_1_1net_1_1ResourceRequest:
+
+Struct ResourceRequest
+======================
+
+- Defined in :ref:`file_base_net_resource_request.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: base::net::ResourceRequest
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

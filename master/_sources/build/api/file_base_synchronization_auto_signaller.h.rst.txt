@@ -1,0 +1,47 @@
+
+.. _file_base_synchronization_auto_signaller.h:
+
+File auto_signaller.h
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_base_synchronization>` (``base/synchronization``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/synchronization/auto_signaller.h``)
+------------------------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cstddef``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classbase_1_1AutoSignaller`
+

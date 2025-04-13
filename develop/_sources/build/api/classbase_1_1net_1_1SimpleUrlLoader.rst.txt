@@ -1,0 +1,17 @@
+.. _exhale_class_classbase_1_1net_1_1SimpleUrlLoader:
+
+Class SimpleUrlLoader
+=====================
+
+- Defined in :ref:`file_base_net_simple_url_loader.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::net::SimpleUrlLoader
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

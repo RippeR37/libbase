@@ -1,0 +1,53 @@
+
+.. _file_base_net_result.h:
+
+File result.h
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_base_net>` (``base/net``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/net/result.h``)
+----------------------------------
+
+
+
+
+
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_base_net_impl_net_thread_impl.h`
+
+- :ref:`file_base_net_resource_response.h`
+
+- :ref:`file_base_net_url_request.h`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+- :ref:`namespace_base__net`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum_result_8h_1a3c9e595909f33382ec4a1039108e6d7e`
+

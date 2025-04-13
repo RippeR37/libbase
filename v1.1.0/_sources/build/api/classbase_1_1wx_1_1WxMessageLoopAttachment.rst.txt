@@ -1,0 +1,17 @@
+.. _exhale_class_classbase_1_1wx_1_1WxMessageLoopAttachment:
+
+Class WxMessageLoopAttachment
+=============================
+
+- Defined in :ref:`file_base_message_loop_wx_wx_message_loop_attachment.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::wx::WxMessageLoopAttachment
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

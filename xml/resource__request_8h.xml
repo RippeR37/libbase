@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="resource__request_8h" kind="file" language="C++">
+    <compoundname>resource_request.h</compoundname>
+    <includes local="no">cstdint</includes>
+    <includes local="no">optional</includes>
+    <includes local="no">string</includes>
+    <includes local="no">vector</includes>
+    <includes refid="time__delta_8h" local="yes">base/time/time_delta.h</includes>
+    <includedby refid="net__thread_8h" local="yes">base/net/impl/net_thread.h</includedby>
+    <includedby refid="net__thread__impl_8h" local="yes">base/net/impl/net_thread_impl.h</includedby>
+    <includedby refid="simple__url__loader_8h" local="yes">base/net/simple_url_loader.h</includedby>
+    <includedby refid="url__request_8h" local="yes">base/net/url_request.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>base/net/resource_request.h</label>
+        <link refid="resource__request_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>cstdint</label>
+      </node>
+      <node id="3">
+        <label>optional</label>
+      </node>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="5">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structbase_1_1net_1_1ResourceRequest" prot="public">base::net::ResourceRequest</innerclass>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <innernamespace refid="namespacebase_1_1net">base::net</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/net/resource_request.h"/>
+  </compounddef>
+</doxygen>

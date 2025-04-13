@@ -1,0 +1,14 @@
+.. _exhale_define_trace__async_8h_1a11beb9695695f4b2795d91f3a70088d1:
+
+Define TRACE_EVENT_ASYNC_END
+============================
+
+- Defined in :ref:`file_base_trace_event_trace_async.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: TRACE_EVENT_ASYNC_END
+   :project: libbase

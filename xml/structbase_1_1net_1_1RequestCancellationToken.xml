@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structbase_1_1net_1_1RequestCancellationToken" kind="struct" language="C++" prot="public">
+    <compoundname>base::net::RequestCancellationToken</compoundname>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="structbase_1_1net_1_1RequestCancellationToken_1ad814f149e194b268645ad8ac96569987" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t base::net::RequestCancellationToken::request_id_</definition>
+        <argsstring></argsstring>
+        <name>request_id_</name>
+        <qualifiedname>base::net::RequestCancellationToken::request_id_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/request_cancellation_token.h" line="14" column="10" bodyfile="base/net/request_cancellation_token.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structbase_1_1net_1_1RequestCancellationToken_1abebdfb745122487caf7dc9a57b978fd7" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::net::RequestCancellationToken::RequestCancellationToken</definition>
+        <argsstring>(size_t request_id)</argsstring>
+        <name>RequestCancellationToken</name>
+        <qualifiedname>base::net::RequestCancellationToken::RequestCancellationToken</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>request_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/request_cancellation_token.h" line="9" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="structbase_1_1net_1_1RequestCancellationToken_1a4fcb3b528490759473d2376bfade1e3a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::net::RequestCancellationToken::operator==</definition>
+        <argsstring>(const RequestCancellationToken &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>base::net::RequestCancellationToken::operator==</qualifiedname>
+        <param>
+          <type>const <ref refid="structbase_1_1net_1_1RequestCancellationToken" kindref="compound">RequestCancellationToken</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/request_cancellation_token.h" line="11" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/net/request_cancellation_token.h" line="8" column="1" bodyfile="base/net/request_cancellation_token.h" bodystart="8" bodyend="15"/>
+    <listofallmembers>
+      <member refid="structbase_1_1net_1_1RequestCancellationToken_1a4fcb3b528490759473d2376bfade1e3a" prot="public" virt="non-virtual"><scope>base::net::RequestCancellationToken</scope><name>operator==</name></member>
+      <member refid="structbase_1_1net_1_1RequestCancellationToken_1ad814f149e194b268645ad8ac96569987" prot="private" virt="non-virtual"><scope>base::net::RequestCancellationToken</scope><name>request_id_</name></member>
+      <member refid="structbase_1_1net_1_1RequestCancellationToken_1abebdfb745122487caf7dc9a57b978fd7" prot="public" virt="non-virtual"><scope>base::net::RequestCancellationToken</scope><name>RequestCancellationToken</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

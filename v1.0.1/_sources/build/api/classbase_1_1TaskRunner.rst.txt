@@ -1,0 +1,27 @@
+.. _exhale_class_classbase_1_1TaskRunner:
+
+Class TaskRunner
+================
+
+- Defined in :ref:`file_base_task_runner.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Types
+*************
+
+- ``public base::SequencedTaskRunner`` (:ref:`exhale_class_classbase_1_1SequencedTaskRunner`)
+- ``public base::TaskRunnerImpl`` (:ref:`exhale_class_classbase_1_1TaskRunnerImpl`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::TaskRunner
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

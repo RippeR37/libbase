@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structbase_1_1traits_1_1IsOnceCallbackType_3_01OnceCallback_3_01CallbackSignatureType_01_4_01_4" kind="struct" language="C++" prot="private">
+    <compoundname>base::traits::IsOnceCallbackType&lt; OnceCallback&lt; CallbackSignatureType &gt; &gt;</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename CallbackSignatureType</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structbase_1_1traits_1_1IsOnceCallbackType_3_01OnceCallback_3_01CallbackSignatureType_01_4_01_4_1aa69065245dae45eb86cb45cf05b76913" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr bool</type>
+        <definition>constexpr bool base::traits::IsOnceCallbackType&lt; OnceCallback&lt; CallbackSignatureType &gt; &gt;::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <qualifiedname>base::traits::IsOnceCallbackType&lt; OnceCallback&lt; CallbackSignatureType &gt; &gt;::value</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback.h" line="182" column="25" bodyfile="base/callback.h" bodystart="182" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/callback.h" line="181" column="1" bodyfile="base/callback.h" bodystart="181" bodyend="183"/>
+    <listofallmembers>
+      <member refid="structbase_1_1traits_1_1IsOnceCallbackType_3_01OnceCallback_3_01CallbackSignatureType_01_4_01_4_1aa69065245dae45eb86cb45cf05b76913" prot="public" virt="non-virtual"><scope>base::traits::IsOnceCallbackType&lt; OnceCallback&lt; CallbackSignatureType &gt; &gt;</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

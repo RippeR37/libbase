@@ -1,0 +1,59 @@
+
+.. _file_base_net_request_cancellation_token.h:
+
+File request_cancellation_token.h
+=================================
+
+|exhale_lsh| :ref:`Parent directory <dir_base_net>` (``base/net``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/net/request_cancellation_token.h``)
+------------------------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cstddef``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_base_net_impl_net_thread.h`
+
+- :ref:`file_base_net_simple_url_loader.h`
+
+- :ref:`file_base_net_url_request.h`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+- :ref:`namespace_base__net`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structbase_1_1net_1_1RequestCancellationToken`
+

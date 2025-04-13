@@ -1,0 +1,14 @@
+.. _exhale_variable_resource__request_8h_1aa477b4f5cd19c14fc6a472fba4a7d615:
+
+Variable base::net::kNoTimeout
+==============================
+
+- Defined in :ref:`file_base_net_resource_request.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: base::net::kNoTimeout
+   :project: libbase

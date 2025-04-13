@@ -1,0 +1,80 @@
+
+.. _file_base_net_resource_request.h:
+
+File resource_request.h
+=======================
+
+|exhale_lsh| :ref:`Parent directory <dir_base_net>` (``base/net``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/net/resource_request.h``)
+--------------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``base/time/time_delta.h`` (:ref:`file_base_time_time_delta.h`)
+
+- ``cstdint``
+
+- ``optional``
+
+- ``string``
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_base_net_impl_net_thread.h`
+
+- :ref:`file_base_net_impl_net_thread_impl.h`
+
+- :ref:`file_base_net_simple_url_loader.h`
+
+- :ref:`file_base_net_url_request.h`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+- :ref:`namespace_base__net`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structbase_1_1net_1_1ResourceRequest`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_resource__request_8h_1a74d08860f1befe7286234d2816925ed3`
+
+- :ref:`exhale_variable_resource__request_8h_1afd6abf964fe0800f1df081651d11306c`
+
+- :ref:`exhale_variable_resource__request_8h_1aa477b4f5cd19c14fc6a472fba4a7d615`
+

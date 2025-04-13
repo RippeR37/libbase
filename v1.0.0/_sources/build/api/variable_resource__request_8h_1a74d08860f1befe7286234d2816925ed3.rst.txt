@@ -1,0 +1,14 @@
+.. _exhale_variable_resource__request_8h_1a74d08860f1befe7286234d2816925ed3:
+
+Variable base::net::kDefaultHeaders
+===================================
+
+- Defined in :ref:`file_base_net_resource_request.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: base::net::kDefaultHeaders
+   :project: libbase

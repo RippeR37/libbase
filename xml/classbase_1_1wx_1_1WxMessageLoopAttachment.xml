@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classbase_1_1wx_1_1WxMessageLoopAttachment" kind="class" language="C++" prot="public">
+    <compoundname>base::wx::WxMessageLoopAttachment</compoundname>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classbase_1_1wx_1_1WxMessageLoopAttachment_1a816e7843e7495d060c2af07d89bc3172" prot="private" static="no" mutable="no">
+        <type>wxEvtHandler *</type>
+        <definition>wxEvtHandler* base::wx::WxMessageLoopAttachment::event_handler_</definition>
+        <argsstring></argsstring>
+        <name>event_handler_</name>
+        <qualifiedname>base::wx::WxMessageLoopAttachment::event_handler_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/wx/wx_message_loop_attachment.h" line="32" column="16" bodyfile="base/message_loop/wx/wx_message_loop_attachment.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1wx_1_1WxMessageLoopAttachment_1a64e3413d928320db16475fb46875298e" prot="private" static="no" mutable="no">
+        <type><ref refid="classbase_1_1SequenceId" kindref="compound">SequenceId</ref></type>
+        <definition>SequenceId base::wx::WxMessageLoopAttachment::sequence_id_</definition>
+        <argsstring></argsstring>
+        <name>sequence_id_</name>
+        <qualifiedname>base::wx::WxMessageLoopAttachment::sequence_id_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/wx/wx_message_loop_attachment.h" line="33" column="14" bodyfile="base/message_loop/wx/wx_message_loop_attachment.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1wx_1_1WxMessageLoopAttachment_1adadf8e9231154f948a88efc3ec2d969c" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classbase_1_1MessagePump" kindref="compound">MessagePump</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;MessagePump&gt; base::wx::WxMessageLoopAttachment::message_pump_</definition>
+        <argsstring></argsstring>
+        <name>message_pump_</name>
+        <qualifiedname>base::wx::WxMessageLoopAttachment::message_pump_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/wx/wx_message_loop_attachment.h" line="34" column="19" bodyfile="base/message_loop/wx/wx_message_loop_attachment.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1wx_1_1WxMessageLoopAttachment_1a38657b3b8c29cdebb7ff7c1c5f3dbf50" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classbase_1_1SingleThreadTaskRunner" kindref="compound">SingleThreadTaskRunner</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;SingleThreadTaskRunner&gt; base::wx::WxMessageLoopAttachment::task_runner_</definition>
+        <argsstring></argsstring>
+        <name>task_runner_</name>
+        <qualifiedname>base::wx::WxMessageLoopAttachment::task_runner_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/wx/wx_message_loop_attachment.h" line="35" column="19" bodyfile="base/message_loop/wx/wx_message_loop_attachment.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1wx_1_1WxMessageLoopAttachment_1aa4f1c10a6cd9213e3221b56bb24378ba" prot="private" static="no" mutable="no">
+        <type>base::detail::ScopedSequenceIdSetter</type>
+        <definition>base::detail::ScopedSequenceIdSetter base::wx::WxMessageLoopAttachment::scoped_sequence_id_</definition>
+        <argsstring></argsstring>
+        <name>scoped_sequence_id_</name>
+        <qualifiedname>base::wx::WxMessageLoopAttachment::scoped_sequence_id_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/wx/wx_message_loop_attachment.h" line="36" column="40" bodyfile="base/message_loop/wx/wx_message_loop_attachment.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1wx_1_1WxMessageLoopAttachment_1afa9a0dda0a1ceb2f3b8612a216351e59" prot="private" static="no" mutable="no">
+        <type><ref refid="classbase_1_1SequencedTaskRunnerHandle" kindref="compound">SequencedTaskRunnerHandle</ref></type>
+        <definition>SequencedTaskRunnerHandle base::wx::WxMessageLoopAttachment::scoped_task_runner_handle_</definition>
+        <argsstring></argsstring>
+        <name>scoped_task_runner_handle_</name>
+        <qualifiedname>base::wx::WxMessageLoopAttachment::scoped_task_runner_handle_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/wx/wx_message_loop_attachment.h" line="37" column="29" bodyfile="base/message_loop/wx/wx_message_loop_attachment.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1wx_1_1WxMessageLoopAttachment_1a2ae4cdda1b26bc78fa93c6264fa6ff8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::wx::WxMessageLoopAttachment::WxMessageLoopAttachment</definition>
+        <argsstring>(wxEvtHandler *event_handler)</argsstring>
+        <name>WxMessageLoopAttachment</name>
+        <qualifiedname>base::wx::WxMessageLoopAttachment::WxMessageLoopAttachment</qualifiedname>
+        <param>
+          <type>wxEvtHandler *</type>
+          <declname>event_handler</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/wx/wx_message_loop_attachment.h" line="21" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1wx_1_1WxMessageLoopAttachment_1a3f79ba064c824b29145d90ad09f33c9e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::wx::WxMessageLoopAttachment::~WxMessageLoopAttachment</definition>
+        <argsstring>()</argsstring>
+        <name>~WxMessageLoopAttachment</name>
+        <qualifiedname>base::wx::WxMessageLoopAttachment::~WxMessageLoopAttachment</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/wx/wx_message_loop_attachment.h" line="22" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1wx_1_1WxMessageLoopAttachment_1a058711b6889fbec286cf90c521a78c21" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classbase_1_1SingleThreadTaskRunner" kindref="compound">SingleThreadTaskRunner</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; SingleThreadTaskRunner &gt; base::wx::WxMessageLoopAttachment::TaskRunner</definition>
+        <argsstring>() const</argsstring>
+        <name>TaskRunner</name>
+        <qualifiedname>base::wx::WxMessageLoopAttachment::TaskRunner</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/wx/wx_message_loop_attachment.h" line="24" column="19"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classbase_1_1wx_1_1WxMessageLoopAttachment_1a820e1707dc1ed42dfd77926bef7eb42e" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void base::wx::WxMessageLoopAttachment::HandleExecuteTaskEvent</definition>
+        <argsstring>(detail::WxExecuteTaskEvent &amp;event)</argsstring>
+        <name>HandleExecuteTaskEvent</name>
+        <qualifiedname>base::wx::WxMessageLoopAttachment::HandleExecuteTaskEvent</qualifiedname>
+        <param>
+          <type>detail::WxExecuteTaskEvent &amp;</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/wx/wx_message_loop_attachment.h" line="27" column="15"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classbase_1_1wx_1_1WxMessageLoopAttachment_1ab957b7f3c5df86bd4c6dee393327ab9e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::wx::WxMessageLoopAttachment::BindEventHandling</definition>
+        <argsstring>()</argsstring>
+        <name>BindEventHandling</name>
+        <qualifiedname>base::wx::WxMessageLoopAttachment::BindEventHandling</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/wx/wx_message_loop_attachment.h" line="29" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1wx_1_1WxMessageLoopAttachment_1a7a21e6817ce0b6548eecd734296ce024" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::wx::WxMessageLoopAttachment::UnbindEventHandling</definition>
+        <argsstring>()</argsstring>
+        <name>UnbindEventHandling</name>
+        <qualifiedname>base::wx::WxMessageLoopAttachment::UnbindEventHandling</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/wx/wx_message_loop_attachment.h" line="30" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/message_loop/wx/wx_message_loop_attachment.h" line="19" column="1" bodyfile="base/message_loop/wx/wx_message_loop_attachment.h" bodystart="19" bodyend="38"/>
+    <listofallmembers>
+      <member refid="classbase_1_1wx_1_1WxMessageLoopAttachment_1ab957b7f3c5df86bd4c6dee393327ab9e" prot="private" virt="non-virtual"><scope>base::wx::WxMessageLoopAttachment</scope><name>BindEventHandling</name></member>
+      <member refid="classbase_1_1wx_1_1WxMessageLoopAttachment_1a816e7843e7495d060c2af07d89bc3172" prot="private" virt="non-virtual"><scope>base::wx::WxMessageLoopAttachment</scope><name>event_handler_</name></member>
+      <member refid="classbase_1_1wx_1_1WxMessageLoopAttachment_1a820e1707dc1ed42dfd77926bef7eb42e" prot="private" virt="non-virtual"><scope>base::wx::WxMessageLoopAttachment</scope><name>HandleExecuteTaskEvent</name></member>
+      <member refid="classbase_1_1wx_1_1WxMessageLoopAttachment_1adadf8e9231154f948a88efc3ec2d969c" prot="private" virt="non-virtual"><scope>base::wx::WxMessageLoopAttachment</scope><name>message_pump_</name></member>
+      <member refid="classbase_1_1wx_1_1WxMessageLoopAttachment_1aa4f1c10a6cd9213e3221b56bb24378ba" prot="private" virt="non-virtual"><scope>base::wx::WxMessageLoopAttachment</scope><name>scoped_sequence_id_</name></member>
+      <member refid="classbase_1_1wx_1_1WxMessageLoopAttachment_1afa9a0dda0a1ceb2f3b8612a216351e59" prot="private" virt="non-virtual"><scope>base::wx::WxMessageLoopAttachment</scope><name>scoped_task_runner_handle_</name></member>
+      <member refid="classbase_1_1wx_1_1WxMessageLoopAttachment_1a64e3413d928320db16475fb46875298e" prot="private" virt="non-virtual"><scope>base::wx::WxMessageLoopAttachment</scope><name>sequence_id_</name></member>
+      <member refid="classbase_1_1wx_1_1WxMessageLoopAttachment_1a38657b3b8c29cdebb7ff7c1c5f3dbf50" prot="private" virt="non-virtual"><scope>base::wx::WxMessageLoopAttachment</scope><name>task_runner_</name></member>
+      <member refid="classbase_1_1wx_1_1WxMessageLoopAttachment_1a058711b6889fbec286cf90c521a78c21" prot="public" virt="non-virtual"><scope>base::wx::WxMessageLoopAttachment</scope><name>TaskRunner</name></member>
+      <member refid="classbase_1_1wx_1_1WxMessageLoopAttachment_1a7a21e6817ce0b6548eecd734296ce024" prot="private" virt="non-virtual"><scope>base::wx::WxMessageLoopAttachment</scope><name>UnbindEventHandling</name></member>
+      <member refid="classbase_1_1wx_1_1WxMessageLoopAttachment_1a2ae4cdda1b26bc78fa93c6264fa6ff8b" prot="public" virt="non-virtual"><scope>base::wx::WxMessageLoopAttachment</scope><name>WxMessageLoopAttachment</name></member>
+      <member refid="classbase_1_1wx_1_1WxMessageLoopAttachment_1a3f79ba064c824b29145d90ad09f33c9e" prot="public" virt="non-virtual"><scope>base::wx::WxMessageLoopAttachment</scope><name>~WxMessageLoopAttachment</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="namespacebase_1_1net" kind="namespace" language="C++">
+    <compoundname>base::net</compoundname>
+    <innerclass refid="structbase_1_1net_1_1InitOptions" prot="public">base::net::InitOptions</innerclass>
+    <innerclass refid="classbase_1_1net_1_1NetThread" prot="public">base::net::NetThread</innerclass>
+    <innerclass refid="structbase_1_1net_1_1RequestCancellationToken" prot="public">base::net::RequestCancellationToken</innerclass>
+    <innerclass refid="structbase_1_1net_1_1ResourceRequest" prot="public">base::net::ResourceRequest</innerclass>
+    <innerclass refid="structbase_1_1net_1_1ResourceResponse" prot="public">base::net::ResourceResponse</innerclass>
+    <innerclass refid="classbase_1_1net_1_1SimpleUrlLoader" prot="public">base::net::SimpleUrlLoader</innerclass>
+    <innerclass refid="classbase_1_1net_1_1UrlRequest" prot="public">base::net::UrlRequest</innerclass>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="result_8h_1a3c9e595909f33382ec4a1039108e6d7e" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>Result</name>
+        <qualifiedname>base::net::Result</qualifiedname>
+        <enumvalue id="result_8h_1a3c9e595909f33382ec4a1039108e6d7eae69fa9a656f76dd8a4d89f21992b2d3a" prot="public">
+          <name>kOk</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="result_8h_1a3c9e595909f33382ec4a1039108e6d7eae3587c730cc1aa530fa4ddc9c4204e97" prot="public">
+          <name>kError</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="result_8h_1a3c9e595909f33382ec4a1039108e6d7ea7f27861ff1d3f550c6aa77150d7edabd" prot="public">
+          <name>kTimeout</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="result_8h_1a3c9e595909f33382ec4a1039108e6d7eac20d0424ae4484fda4424713f021d736" prot="public">
+          <name>kAborted</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/result.h" line="6" column="1" bodyfile="base/net/result.h" bodystart="6" bodyend="18"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="resource__request_8h_1a74d08860f1befe7286234d2816925ed3" prot="public" static="no" mutable="no">
+        <type>const auto</type>
+        <definition>const auto base::net::kDefaultHeaders</definition>
+        <argsstring></argsstring>
+        <name>kDefaultHeaders</name>
+        <qualifiedname>base::net::kDefaultHeaders</qualifiedname>
+        <initializer>= std::vector&lt;std::string&gt;{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/resource_request.h" line="13" column="12" bodyfile="base/net/resource_request.h" bodystart="13" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="resource__request_8h_1afd6abf964fe0800f1df081651d11306c" prot="public" static="no" mutable="no">
+        <type>const auto</type>
+        <definition>const auto base::net::kNoPost</definition>
+        <argsstring></argsstring>
+        <name>kNoPost</name>
+        <qualifiedname>base::net::kNoPost</qualifiedname>
+        <initializer>= std::nullopt</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/resource_request.h" line="14" column="12" bodyfile="base/net/resource_request.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="resource__request_8h_1aa477b4f5cd19c14fc6a472fba4a7d615" prot="public" static="no" mutable="no">
+        <type>const auto</type>
+        <definition>const auto base::net::kNoTimeout</definition>
+        <argsstring></argsstring>
+        <name>kNoTimeout</name>
+        <qualifiedname>base::net::kNoTimeout</qualifiedname>
+        <initializer>= <ref refid="classbase_1_1TimeDelta" kindref="compound">base::TimeDelta</ref>{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/resource_request.h" line="15" column="12" bodyfile="base/net/resource_request.h" bodystart="15" bodyend="15"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="net_2init_8h_1a134af0126cb970fd0bbdcb71c22f84fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::net::Initialize</definition>
+        <argsstring>(InitOptions options)</argsstring>
+        <name>Initialize</name>
+        <qualifiedname>base::net::Initialize</qualifiedname>
+        <param>
+          <type><ref refid="structbase_1_1net_1_1InitOptions" kindref="compound">InitOptions</ref></type>
+          <declname>options</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/init.h" line="8" column="6" declfile="base/net/init.h" declline="8" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="net_2init_8h_1a1919720e1443ed78fc988815fc5235ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::net::Deinitialize</definition>
+        <argsstring>()</argsstring>
+        <name>Deinitialize</name>
+        <qualifiedname>base::net::Deinitialize</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/net/init.h" line="9" column="6" declfile="base/net/init.h" declline="9" declcolumn="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/net/impl/net_thread.h" line="14" column="1"/>
+  </compounddef>
+</doxygen>
