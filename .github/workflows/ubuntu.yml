@@ -89,7 +89,7 @@ jobs:
         uses: lukka/run-vcpkg@v11
         with:
           vcpkgDirectory: ${{ runner.workspace }}/vcpkg
-          vcpkgGitCommitId: '782ccc18d8b819cdef6794a6c03eb3d9f7cd04aa'
+          vcpkgGitCommitId: 'ce613c41372b23b1f51333815feb3edd87ef8a8b'
 
       # (Optional) Ensure required software is installed
       - name: (Optional) Compiler instalation
