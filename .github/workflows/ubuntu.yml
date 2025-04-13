@@ -50,7 +50,7 @@ jobs:
         ]
         include:
           # Optional module builds
-          - os_compiler: {os: ubuntu-24.04, name: Clang 18 (wxWidget integration), cc: clang-18, cxx: clang++-18, tidy: clang-tidy-18 }
+          - os_compiler: {os: ubuntu-24.04, name: Clang 18 (wxWidgets integration), cc: clang-18, cxx: clang++-18, tidy: clang-tidy-18 }
             build_type: Release
             cmake_args: "-DLIBBASE_BUILD_MODULE_WX=ON"
             package_deps: "autoconf automake libtool pkg-config libx11-dev libxft-dev libxext-dev libxi-dev libxtst-dev libltdl-dev bison gperf libxinerama-dev libxdamage-dev libxcursor-dev libxi-dev libxrandr-dev libgles2-mesa-dev"

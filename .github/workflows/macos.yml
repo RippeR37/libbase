@@ -29,7 +29,7 @@ jobs:
           # Optional module builds
           - os: macos-latest
             build_type: Release
-            name_suffix: "(wxWidget integration)"
+            name_suffix: "(wxWidgets integration)"
             compiler: {name: Clang, cc: clang, cxx: clang++}
             cmake_args: "-DLIBBASE_BUILD_MODULE_WX=ON"
 
