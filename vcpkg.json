@@ -21,6 +21,16 @@
       ]
     }
   ],
+  "default-features": [
+    "examples",
+    "unittests",
+    "perftests",
+    "net",
+    {
+      "name": "win",
+      "platform": "windows"
+    }
+  ],
   "features": {
     "examples": {
       "description": "Build examples"
@@ -40,13 +50,12 @@
     "net": {
       "description": "Build networking module",
       "dependencies": [
-        {
-          "name": "curl",
-          "features": [
-            "ssl"
-          ]
-        }
+        "curl"
       ]
+    },
+    "win": {
+      "description": "Build WinAPI integration module",
+      "supports": "windows"
     },
     "wx": {
       "description": "Build wxWidgets integration module",
@@ -54,11 +63,5 @@
         "wxwidgets"
       ]
     }
-  },
-  "default-features": [
-    "examples",
-    "unittests",
-    "perftests",
-    "net"
-  ]
+  }
 }
