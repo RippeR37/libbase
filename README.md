@@ -24,88 +24,150 @@ For more details with examples see the
 #### Dependencies
 
 - [GLOG](https://github.com/google/glog)
-- (Optional) [GTest and GMock](https://github.com/google/googletest)
-- (Optional) [Google Benchmark](https://github.com/google/benchmark)
+- (Optional) [libcurl](https://curl.se/libcurl/) - for networking module
+- (Optional) [wxWidgets](https://www.wxwidgets.org/) - for `wxWidgets` integration
+- (Optional) [GTest and GMock](https://github.com/google/googletest) - for unit tests
+- (Optional) [Google Benchmark](https://github.com/google/benchmark) - for performance tests
 
 Dependencies either have to be already installed and CMake has to be able to
-find them with `find_package()` or they can be resolved with `vcpkg`.
+find them with `find_package()` or they can be resolved with `vcpkg`
+(recommended).
 
-It's recommended to use `vcpkg` to resolve all dependencies. To do so, make sure
-to export `VCPKG_ROOT` environment variable before configuring the CMake
-project:
+#### Build with pre-existing `vcpkg` installation
 
 ```bash
-export VCPKG_ROOT=/path/to/vcpkg/root/
+export VCPKG_ROOT=/path/to/vcpkg/
+cmake -S . -B build
+cmake --build build [-j <parallel_jobs>] [--config <Release|Debug>]
 ```
 
-#### Building with CMake
+or
 
 ```bash
-git clone https://github.com/RippeR37/libbase.git
-cd libbase
+cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=/path/to/vcpkg/scripts/buildsystems/vcpkg.cmake
+cmake --build build [-j <parallel_jobs>] [--config <Release|Debug>]
+```
+
+#### Build with internal `vcpkg` installation
+
+If you don't have (or don't want to use) pre-existing `vcpkg` installation you
+can ask `libbase` to set up its own internal `vcpkg` installation and use it
+with:
+
+```bash
+cmake -S . -B build -DLIBBASE_AUTO_VCPKG=1
+cmake --build build [-j <parallel_jobs>] [--config <Release|Debug>]
+```
+
+#### Build manually
+
+You can also manually build and install all required dependencies and then
+simply build `libbase` with:
+
+```bash
 cmake -S . -B build
 cmake --build build [-j <parallel_jobs>] [--config <Release|Debug>]
 ```
 
 #### Running unit tests
 
+Once you've built `libbase` you can run tests with:
+
 ```bash
 ctest --test-dir build
 ```
 
+For more details please refer to the
+[building documentation](https://ripper37.github.io/libbase/master/getting_started/building.html).
+
+
 ### Using `libbase` in your project
 
-You can add `libbase` to your project by either building and installing all
-required dependencies and the library itself, or using `vcpkg` to do that for
-you. It's recommended to use `vcpkg`.
+You can install `libbase` in multiple ways - either by manually building it or
+using a package manager like `vcpkg` (recommended) to do it for you. Once you've
+installed it, you will need to find and link with it.
 
-#### With `vcpkg`
+#### Install with `vcpkg`
 
-You can install `libbase` in _classic mode_ with:
-
-```bash
-vcpkg install ripper37-libbase
-```
-
-or in _manifest mode_ (recommended way) by adding this library as a dependency
-in your project's `vcpkg.json` file:
+To install `libbase` with `vcpkg` in the
+[_manifest mode_](https://learn.microsoft.com/en-us/vcpkg/concepts/manifest-mode#manifest-files-in-projects)
+(recommended) simply add `ripper37-libbase` dependency in your `vcpkg.json`
+file:
 
 ```jsonc
 {
   "name": "your-project",
-  // ...
   "dependencies": [
-    // ...
     "ripper37-libbase"
   ]
 }
 ```
 
-#### Manual
-
-Refer to the
-[building section above](https://github.com/RippeR37/libbase?tab=readme-ov-file#building-libbase)
-on how to build the library and dependencies. Once built, make sure to install
-them with
+Alternatively you can install `libbase` system-wide in the
+[_classic mode_](https://learn.microsoft.com/sv-se/vcpkg/concepts/classic-mode)
+by executing
+[`vcpkg install` command](https://learn.microsoft.com/en-us/vcpkg/commands/install#synopsis)
+in your terminal:
 
 ```bash
-cmake --install build [--prefix <install_path_prefix>]
+vcpkg install ripper37-libbase
+```
+
+#### Import into your CMake project with FetchContent
+
+If you prefer to manually import your dependencies with CMake's `FetchContent`
+you can import `libbase` in your project by adding this to your `CMakeFiles.txt`
+script:
+
+```cmake
+include(FetchContent)
+FetchContent_Declare(
+    libbase
+    GIT_REPOSITORY https://github.com/ripper37/libbase.git
+    GIT_TAG        <commit_or_tag_to_fetch>
+)
+FetchContent_MakeAvailable(libbase)
+```
+
+> [!CAUTION]
+> This doesn't auto-resolve `libbase` dependencies by itself so you will either
+> have to pre-install them manually (so that `find_package()` will find them) or
+> declare and make them available earlier in your CMake script with
+> `FetchContent` as well.
+
+
+#### Manual
+
+Lastly you can simply build and install `libbase` manually. Please refer to the
+[building section above](https://github.com/RippeR37/libbase?tab=readme-ov-file#building-libbase)
+on how to build the library and dependencies. Once built, make sure to install
+them all with:
+
+```bash
+cmake --install build_directory [--prefix <install_path_prefix>]
 ```
 
 #### Add to your CMake project
 
-Once `libbase` is installed in your system, simply make CMake find it and link
-all targets (that should be able to use `libbase`) with it:
+Once you've installed `libbase` in your system, simply ask CMake to find it and
+link all with:
 
 ```cmake
-find_package(libbase CONFIG REQUIRED)
-target_link_libraries(your_target PRIVATE libbase::libbase)
+find_package(libbase CONFIG REQUIRED [optional_components])
+target_link_libraries(your_target PRIVATE libbase::libbase [optional_targets])
 ```
 
+Available optional components:
+
+* `net` (target: `libbase::libbase_net`) - networking module (enabled by default)
+* `win` (target: `libbase::libbase_win`) - integration with WinAPI
+* `wx` (target: `libbase::libbase_wx`) - integration with wxWidgets
+
 For more details please refer to the
-[documentation](https://ripper37.github.io/libbase/master/getting_started/using.html)
+[using documentation](https://ripper37.github.io/libbase/master/getting_started/using.html)
 or check out the
 [CMake-based example project](https://github.com/RippeR37/libbase-example-cmake).
+
 
 ### Support
 

@@ -1,10 +1,12 @@
 {
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
   "name": "ripper37-libbase",
   "version": "1.1.0",
   "description": "Standalone reimplementation of //base module from Chromium",
   "homepage": "https://github.com/RippeR37/libbase",
   "documentation": "https://ripper37.github.io/libbase",
   "license": "MIT",
+  "builtin-baseline": "ce613c41372b23b1f51333815feb3edd87ef8a8b",
   "dependencies": [
     {
       "name": "vcpkg-cmake",

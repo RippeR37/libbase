@@ -1,4 +1,4 @@
-.admonition-example-code > .admonition-title {
+.admonition-example-code>.admonition-title {
   cursor: pointer;
   user-select: none;
   -ms-user-select: none;
@@ -8,14 +8,34 @@
   -webkit-touch-callout: none;
 }
 
-.admonition-example-code > .admonition-title:after {
+.admonition-example-code>.admonition-title:after {
   font-family: "FontAwesome";
   content: "";
   float: right;
 }
 
-.admonition-example-code > .admonition-title.open:after {
+.admonition-example-code>.admonition-title.open:after {
   font-family: "FontAwesome";
   content: "";
   float: right;
+}
+
+.genindextable {
+  display: block;
+  width: 100%;
+}
+
+table.genindextable tbody {
+  display: block;
+  width: 100%;
+}
+
+table.genindextable tbody tr {
+  display: block;
+  width: 100%;
+}
+
+table.genindextable tbody tr td {
+  display: block;
+  width: 100% !important;
 }

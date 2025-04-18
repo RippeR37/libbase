@@ -84,3 +84,42 @@ function(SETUP_COMPILE_FLAGS)
       FORCE)
   endif()
 endfunction()
+
+
+setup_compile_flags()
+
+
+function(libbase_configure_library_target target_name)
+  target_compile_features(${target_name}
+    PUBLIC
+      cxx_std_17
+  )
+
+  target_compile_options(${target_name}
+    PRIVATE
+      ${LIBBASE_COMPILE_FLAGS}
+  )
+
+  target_compile_definitions(${target_name}
+    PUBLIC
+      ${LIBBASE_DEFINES}
+  )
+
+  set_target_properties(${target_name}
+    PROPERTIES
+      CXX_EXTENSIONS ON
+      ${LIBBASE_OPT_CLANG_TIDY_PROPERTIES}
+  )
+
+  target_include_directories(${target_name} PUBLIC
+      $<BUILD_INTERFACE:${libbase_SOURCE_DIR}/src/>
+      $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/libbase>
+  )
+
+  target_link_libraries(${target_name}
+    PUBLIC
+      ${LIBBASE_LINK_FLAGS}
+      Threads::Threads
+      glog::glog
+  )
+endfunction()

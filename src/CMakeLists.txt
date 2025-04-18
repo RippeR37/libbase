@@ -14,27 +14,25 @@ endif()
 # Library
 #
 
+find_package(Threads REQUIRED)
+if(NOT TARGET glog::glog)
+  find_package(glog CONFIG REQUIRED)
+endif()
+
 add_library(libbase STATIC "")
+add_library(libbase::libbase ALIAS libbase)
 
-target_compile_features(libbase PUBLIC cxx_std_17)
-target_compile_options(libbase PRIVATE ${LIBBASE_COMPILE_FLAGS})
-target_compile_definitions(libbase PUBLIC
-  ${LIBBASE_DEFINES}
-  ${LIBBASE_FEATURE_DEFINES})
-set_target_properties(libbase PROPERTIES
-  OUTPUT_NAME "${LIBBASE_OUTPUT_NAME}"
-  CXX_EXTENSIONS ON
-  ${LIBBASE_OPT_CLANG_TIDY_PROPERTIES})
+libbase_install_target(libbase)
+libbase_configure_library_target(libbase)
 
-target_include_directories(libbase PUBLIC
-    $<BUILD_INTERFACE:${libbase_SOURCE_DIR}/src/>
-    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/libbase>
+target_compile_definitions(libbase
+  PUBLIC
+    ${LIBBASE_FEATURE_DEFINES}
 )
 
-target_link_libraries(libbase PUBLIC
-  ${LIBBASE_LINK_FLAGS}
-  Threads::Threads
-  glog::glog)
+set_target_properties(libbase PROPERTIES
+  OUTPUT_NAME "${LIBBASE_OUTPUT_NAME}"
+)
 
 target_sources(libbase
   PRIVATE
@@ -120,39 +118,40 @@ target_sources(libbase
     base/vlog_is_on.h
 )
 
+
 #
 # Library module - net
 #
 
 if(LIBBASE_BUILD_MODULE_NET)
-  find_package(CURL CONFIG REQUIRED)
+  if(NOT TARGET CURL::libcurl)
+    find_package(CURL CONFIG REQUIRED)
+  endif()
 
   add_library(libbase_net STATIC "")
+  add_library(libbase::libbase_net ALIAS libbase_net)
 
-  target_compile_features(libbase_net PUBLIC cxx_std_17)
-  target_compile_options(libbase_net PRIVATE ${LIBBASE_COMPILE_FLAGS})
-  target_compile_definitions(libbase_net PUBLIC
-    ${LIBBASE_DEFINES}
-    ${LIBBASE_FEATURE_DEFINES})
+  libbase_install_target(libbase_net)
+  libbase_configure_library_target(libbase_net)
+
   target_compile_definitions(libbase_net
-      INTERFACE LIBBASE_MODULE_NET
-  )
-  set_target_properties(libbase_net PROPERTIES
-    OUTPUT_NAME "${LIBBASE_OUTPUT_NAME}_net"
-    CXX_EXTENSIONS ON
-    ${LIBBASE_OPT_CLANG_TIDY_PROPERTIES})
-
-  target_include_directories(libbase_net PUBLIC
-      $<BUILD_INTERFACE:${libbase_SOURCE_DIR}/src/>
-      $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/libbase>
+    PUBLIC
+      ${LIBBASE_FEATURE_DEFINES}
+    INTERFACE
+      LIBBASE_MODULE_NET
   )
 
-  target_link_libraries(libbase_net PUBLIC
-    ${LIBBASE_LINK_FLAGS}
-    libbase
-    Threads::Threads
-    glog::glog
-    CURL::libcurl)
+  set_target_properties(libbase_net
+    PROPERTIES
+      OUTPUT_NAME "${LIBBASE_OUTPUT_NAME}_net"
+  )
+
+  target_link_libraries(libbase_net
+    PUBLIC
+      libbase
+    PRIVATE
+      CURL::libcurl
+  )
 
   target_sources(libbase_net
     PRIVATE
@@ -181,30 +180,27 @@ endif()
 
 if(LIBBASE_BUILD_MODULE_WIN)
   add_library(libbase_win STATIC "")
+  add_library(libbase::libbase_win ALIAS libbase_win)
 
-  target_compile_features(libbase_win PUBLIC cxx_std_17)
-  target_compile_options(libbase_win PRIVATE ${LIBBASE_COMPILE_FLAGS})
-  target_compile_definitions(libbase_win PUBLIC
-    ${LIBBASE_DEFINES}
-    ${LIBBASE_FEATURE_DEFINES})
+  libbase_install_target(libbase_win)
+  libbase_configure_library_target(libbase_win)
+
   target_compile_definitions(libbase_win
-      INTERFACE LIBBASE_MODULE_WIN
-  )
-  set_target_properties(libbase_win PROPERTIES
-    OUTPUT_NAME "${LIBBASE_OUTPUT_NAME}_win"
-    CXX_EXTENSIONS ON
-    ${LIBBASE_OPT_CLANG_TIDY_PROPERTIES})
-
-  target_include_directories(libbase_win PUBLIC
-      $<BUILD_INTERFACE:${libbase_SOURCE_DIR}/src/>
-      $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/libbase>
+    PUBLIC
+      ${LIBBASE_FEATURE_DEFINES}
+    INTERFACE
+      LIBBASE_MODULE_WIN
   )
 
-  target_link_libraries(libbase_win PUBLIC
-    ${LIBBASE_LINK_FLAGS}
-    libbase
-    Threads::Threads
-    glog::glog)
+  set_target_properties(libbase_win
+    PROPERTIES
+      OUTPUT_NAME "${LIBBASE_OUTPUT_NAME}_win"
+  )
+
+  target_link_libraries(libbase_win
+    PUBLIC
+      libbase
+  )
 
   target_sources(libbase_win
     PRIVATE
@@ -219,35 +215,34 @@ endif()
 #
 
 if(LIBBASE_BUILD_MODULE_WX)
-  find_package(wxWidgets CONFIG REQUIRED)
+  if(NOT TARGET wx::core)
+    find_package(wxWidgets CONFIG REQUIRED)
+  endif()
 
   add_library(libbase_wx STATIC "")
+  add_library(libbase::libbase_wx ALIAS libbase_wx)
 
-  target_compile_features(libbase_wx PUBLIC cxx_std_17)
-  target_compile_options(libbase_wx PRIVATE ${LIBBASE_COMPILE_FLAGS})
-  target_compile_definitions(libbase_wx PUBLIC
-    ${LIBBASE_DEFINES}
-    ${LIBBASE_FEATURE_DEFINES})
+  libbase_install_target(libbase_wx)
+  libbase_configure_library_target(libbase_wx)
+
   target_compile_definitions(libbase_wx
-      INTERFACE LIBBASE_MODULE_WX
-  )
-  set_target_properties(libbase_wx PROPERTIES
-    OUTPUT_NAME "${LIBBASE_OUTPUT_NAME}_wx"
-    CXX_EXTENSIONS ON
-    ${LIBBASE_OPT_CLANG_TIDY_PROPERTIES})
-
-  target_include_directories(libbase_wx PUBLIC
-      $<BUILD_INTERFACE:${libbase_SOURCE_DIR}/src/>
-      $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/libbase>
+    PUBLIC
+      ${LIBBASE_FEATURE_DEFINES}
+    INTERFACE
+      LIBBASE_MODULE_WX
   )
 
-  target_link_libraries(libbase_wx PUBLIC
-    ${LIBBASE_LINK_FLAGS}
-    libbase
-    Threads::Threads
-    glog::glog
-    wx::core
-    wx::base)
+  set_target_properties(libbase_wx
+    PROPERTIES
+      OUTPUT_NAME "${LIBBASE_OUTPUT_NAME}_wx"
+  )
+
+  target_link_libraries(libbase_wx
+    PUBLIC
+      libbase
+      wx::core
+      wx::base
+  )
 
   target_sources(libbase_wx
     PRIVATE

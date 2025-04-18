@@ -48,6 +48,12 @@ Optional dependencies
 ``libbase`` can optionally use other third-party libraries (also either already
 installed or used with ``vcpkg``) or applications for optional tasks. These are:
 
+* `libcurl <https://curl.se/libcurl/>`_
+     For networking module.
+
+* `wxWidgets <https://www.wxwidgets.org/>`_
+     For wxWidgets integration module.
+
 * `GTest and GMock <https://github.com/google/googletest>`_
      For building and running unit tests.
 
