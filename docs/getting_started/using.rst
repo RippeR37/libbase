@@ -137,7 +137,9 @@ existing project, please skip :ref:`here <skip_existing_project>`.
    .. code-block:: cpp
       :caption: src/main.cc
       :linenos:
-      :emphasize-lines: 1,4
+      :emphasize-lines: 3,6
+
+      #include <iostream>
 
       #include "base/callback.h"
 
