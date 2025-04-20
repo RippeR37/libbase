@@ -153,8 +153,8 @@ Once you've installed `libbase` in your system, simply ask CMake to find it and
 link all with:
 
 ```cmake
-find_package(libbase CONFIG REQUIRED [optional_components])
-target_link_libraries(your_target PRIVATE libbase::libbase [optional_targets])
+find_package(libbase CONFIG REQUIRED [COMPONENTS <optional_component>...])
+target_link_libraries(your_target PRIVATE libbase::libbase [<optional_target>...])
 ```
 
 Available optional components:

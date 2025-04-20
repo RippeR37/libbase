@@ -215,7 +215,7 @@ endif()
 #
 
 if(LIBBASE_BUILD_MODULE_WX)
-  if(NOT TARGET wx::core)
+  if(NOT TARGET wx::core OR NOT TARGET wx::base)
     find_package(wxWidgets CONFIG REQUIRED)
   endif()
 

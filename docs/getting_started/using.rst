@@ -113,7 +113,7 @@ existing project, please skip :ref:`here <skip_existing_project>`.
 
    If you want to use optional modules, you need to add corresponding component
    names to the ``find_package()`` function call and link with their targets in
-   ``target_link_libraries()``. :
+   ``target_link_libraries()``.
 
    .. list-table:: Available components and their target names
       :widths: 50 25 25
