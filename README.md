@@ -165,8 +165,11 @@ Available optional components:
 
 For more details please refer to the
 [using documentation](https://ripper37.github.io/libbase/master/getting_started/using.html)
-or check out the
-[CMake-based example project](https://github.com/RippeR37/libbase-example-cmake).
+or check out the example projects:
+
+* [Example project using `vcpkg`](https://github.com/RippeR37/libbase-example-vcpkg)
+* [Example project using CMake's `FetchContent`](https://github.com/RippeR37/libbase-example-fetchcontent)
+* [Example project using Git submodules and CMake's `add_subdirectory()`](https://github.com/RippeR37/libbase-example-submodules)
 
 
 ### Support

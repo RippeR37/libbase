@@ -160,8 +160,8 @@ existing project, please skip :ref:`here <skip_existing_project>`.
 
 .. tip::
 
-   Repository with the above project can also be viewed here:
-   `RippeR37/libbase-example-cmake <https://github.com/RippeR37/libbase-example-cmake>`_.
+   More advanced example project using this method can be viewed here:
+   `RippeR37/libbase-example-vcpkg <https://github.com/RippeR37/libbase-example-vcpkg>`_.
 
 
 Alternative ways
@@ -196,6 +196,11 @@ methods instead:
      to declare and make them available in your CMake project before including
      the ``libbase`` library.
 
+   .. tip::
+
+      Simple example project using this method can be viewed here:
+      `RippeR37/libbase-example-fetchcontent <https://github.com/RippeR37/libbase-example-fetchcontent>`_.
+
 - Use CMake's ``add_subdirectory()`` to add ``libbase`` to your project whil
   will work similarly to the above ``FetchContent`` method. To get ``libbase``
   source files you can download them or add ``libbase`` as a Git submodule.
@@ -217,3 +222,8 @@ methods instead:
      ``libbase`` dependencies by itself. Furthermore, this type of dependency
      management is not recommended by many - please consider alternatives before
      choosing it.
+
+   .. tip::
+
+      Simple example project using this method can be viewed here:
+      `RippeR37/libbase-example-submodules <https://github.com/RippeR37/libbase-example-submodules>`_.
