@@ -13,6 +13,15 @@ CMake options affect what targets are build and how. They have two defaults:
 * Internal - used when the ``libbase`` is built as the main project,
 * External - used when the ``libbase`` is built as part of another project.
 
+
+.. option:: LIBBASE_AUTO_VCPKG=<ON|OFF>
+
+   Automatically set up internal ``vcpkg`` installation to resolve dependencies.
+   This option is used only if the ``CMAKE_TOOLCHAIN_FILE`` variable is not set.
+
+   :Default (internal): OFF
+   :Default (external): OFF
+
 .. option:: LIBBASE_OUTPUT_NAME=<str>
 
    Specifies the base name for target files (e.g. ``.lib`` files). This option
@@ -31,6 +40,14 @@ CMake options affect what targets are build and how. They have two defaults:
    :Default (internal): ON
    :Default (external): ON
 
+.. option:: LIBBASE_BUILD_MODULE_WIN=<ON|OFF>
+
+   Build WinAPI integration module (``libbase_win`` target). Available only on
+   Windows platform.
+
+   :Default (internal): ON
+   :Default (external): ON
+
 .. option:: LIBBASE_BUILD_MODULE_WX=<ON|OFF>
 
    Build wxWidgets integration module (``libbase_wx`` target, requires
@@ -40,13 +57,6 @@ CMake options affect what targets are build and how. They have two defaults:
    :Default (external): OFF
 
 .. _configuration-libbase-build-examples:
-
-.. option:: LIBBASE_BUILD_EXAMPLES=<ON|OFF>
-
-   Build provided examples.
-
-   :Default (internal): ON
-   :Default (external): OFF
 
 .. option:: LIBBASE_BUILD_EXAMPLES=<ON|OFF>
 

@@ -1,0 +1,56 @@
+@PACKAGE_INIT@
+
+#
+# Process core targets
+#
+
+# Include core targets
+include("${CMAKE_CURRENT_LIST_DIR}/libbase-targets.cmake")
+
+# Find core dependencies
+find_dependency(Threads)
+find_dependency(glog)
+
+
+#
+# Process optional components and their targets
+#
+
+set(_libbase_components net win wx)
+# dependencies
+set(_libbase_component_deps_net CURL)
+set(_libbase_component_deps_win "")
+set(_libbase_component_deps_wx wxWidgets)
+
+# Find installed components
+set(_installed_components)
+foreach(_component IN LISTS _libbase_components)
+  if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/libbase-${_component}-targets.cmake")
+    list(APPEND _installed_components ${_component})
+  endif()
+endforeach()
+
+# Check requested components
+foreach(_comp IN LISTS libbase_FIND_COMPONENTS)
+  list(FIND _installed_components ${_component} _index)
+  if(_index EQUAL -1)
+    set(_msg "libbase component '${_component}' was requested, but is not installed.\n")
+    string(APPEND _msg "Available components: ${_installed_components}")
+    if(libbase_FIND_REQUIRED_${_component})
+      message(ERROR "${_msg}")
+    elseif(NOT libbase_FIND_QUIETLY)
+      message(WARNING "${_msg}")
+    endif()
+
+    set(libbase_${_component}_FOUND FALSE)
+  else()
+    foreach(_dependency IN LISTS _libbase_component_deps_${_component})
+      find_dependency(${_dependency})
+    endforeach()
+
+    include("${CMAKE_CURRENT_LIST_DIR}/libbase-${_component}-targets.cmake")
+    set(libbase_${_component}_FOUND TRUE)
+  endif()
+endforeach()
+
+check_required_components(libbase)
