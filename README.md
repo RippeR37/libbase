@@ -19,9 +19,9 @@ For more details with examples see the
 [documentation](https://ripper37.github.io/libbase/).
 
 
-### Building `libbase`
+## Building `libbase`
 
-#### Dependencies
+### Dependencies
 
 - [GLOG](https://github.com/google/glog)
 - (Optional) [libcurl](https://curl.se/libcurl/) - for networking module
@@ -33,7 +33,7 @@ Dependencies either have to be already installed and CMake has to be able to
 find them with `find_package()` or they can be resolved with `vcpkg`
 (recommended).
 
-#### Build with pre-existing `vcpkg` installation
+### Build with pre-existing `vcpkg` installation
 
 ```bash
 export VCPKG_ROOT=/path/to/vcpkg/
@@ -48,7 +48,7 @@ cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=/path/to/vcpkg/scripts/buildsystems/v
 cmake --build build [-j <parallel_jobs>] [--config <Release|Debug>]
 ```
 
-#### Build with internal `vcpkg` installation
+### Build with internal `vcpkg` installation
 
 If you don't have (or don't want to use) pre-existing `vcpkg` installation you
 can ask `libbase` to set up its own internal `vcpkg` installation and use it
@@ -59,7 +59,7 @@ cmake -S . -B build -DLIBBASE_AUTO_VCPKG=1
 cmake --build build [-j <parallel_jobs>] [--config <Release|Debug>]
 ```
 
-#### Build with Conan
+### Build with Conan
 
 ```bash
 conan install . --build=missing -s build_type=Release [-o '&:option=value']
@@ -70,7 +70,7 @@ cmake --build --preset conan-release [-j <parallel_jobs>]
 See `options` and `default_options` attributes in `conanfile.py` for available
 build options.
 
-#### Build manually
+### Build manually
 
 You can also manually build and install all required dependencies and then
 simply build `libbase` with:
@@ -80,7 +80,7 @@ cmake -S . -B build
 cmake --build build [-j <parallel_jobs>] [--config <Release|Debug>]
 ```
 
-#### Running unit tests
+### Running unit tests
 
 Once you've built `libbase` you can run tests with:
 
@@ -92,13 +92,13 @@ For more details please refer to the
 [building documentation](https://ripper37.github.io/libbase/master/getting_started/building.html).
 
 
-### Using `libbase` in your project
+## Using `libbase` in your project
 
 You can install `libbase` in multiple ways - either by manually building it or
 using a package manager like `vcpkg` (recommended) to do it for you. Once you've
 installed it, you will need to find and link with it.
 
-#### Install with `vcpkg`
+### Install with `vcpkg`
 
 To install `libbase` with `vcpkg` in the
 [_manifest mode_](https://learn.microsoft.com/en-us/vcpkg/concepts/manifest-mode#manifest-files-in-projects)
@@ -124,7 +124,7 @@ in your terminal:
 vcpkg install ripper37-libbase
 ```
 
-#### Import into your CMake project with FetchContent
+### Import into your CMake project with FetchContent
 
 If you prefer to manually import your dependencies with CMake's `FetchContent`
 you can import `libbase` in your project by adding this to your `CMakeFiles.txt`
@@ -147,7 +147,7 @@ FetchContent_MakeAvailable(libbase)
 > `FetchContent` as well.
 
 
-#### Manual
+### Manual
 
 Lastly you can simply build and install `libbase` manually. Please refer to the
 [building section above](https://github.com/RippeR37/libbase?tab=readme-ov-file#building-libbase)
@@ -158,7 +158,7 @@ them all with:
 cmake --install build_directory [--prefix <install_path_prefix>]
 ```
 
-#### Add to your CMake project
+### Add to your CMake project
 
 Once you've installed `libbase` in your system, simply ask CMake to find it and
 link all with:
@@ -202,6 +202,6 @@ or check out the example projects:
 * Clang (13 through 18)
 * MSVC (2022 19.43)
 
-### License
+## License
 
 This project is licensed under the [MIT License](LICENSE).

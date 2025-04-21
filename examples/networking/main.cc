@@ -31,13 +31,9 @@ void NetExampleGet() {
 
   // Try to download and signal on finish
   base::net::SimpleUrlLoader::DownloadUnbounded(
-      base::net::ResourceRequest{
-          "https://www.google.com/robots.txt",
-          base::net::kDefaultHeaders,
-          base::net::kNoPost,
-          true,
-          base::Seconds(5),
-      },
+      base::net::ResourceRequest{"https://www.google.com/robots.txt"}
+          .WithHeadersOnly()
+          .WithTimeout(base::Seconds(5)),
       base::BindOnce([](base::net::ResourceResponse response) {
         LogNetResponse(response);
       }).Then(run_loop.QuitClosure()));
@@ -50,15 +46,11 @@ void NetExamplePost() {
   base::RunLoop run_loop{};
 
   // Try to download and signal on finish
-  const std::string data_str = "{\"key\": \"value\"}";
   base::net::SimpleUrlLoader::DownloadUnbounded(
-      base::net::ResourceRequest{
-          "https://httpbin.org/post",
-          {"Content-Type: application/json"},
-          std::vector<uint8_t>{data_str.begin(), data_str.end()},
-          false,
-          base::Seconds(5),
-      },
+      base::net::ResourceRequest{"https://httpbin.org/post"}
+          .WithHeaders({"Content-Type: application/json"})
+          .WithPostData("{\"key\": \"value\"}")
+          .WithTimeout(base::Seconds(5)),
       base::BindOnce([](base::net::ResourceResponse response) {
         LogNetResponse(response);
       }).Then(run_loop.QuitClosure()));
@@ -117,13 +109,9 @@ void NetExampleUrlRequest() {
   base::RunLoop run_loop;
 
   UrlRequestExampleUser url_request_user{run_loop.QuitClosure()};
-  url_request_user.Download(base::net::ResourceRequest{
-      "https://www.google.com/robots.txt",
-      base::net::kDefaultHeaders,
-      base::net::kNoPost,
-      false,
-      base::Seconds(5),
-  });
+  url_request_user.Download(
+      base::net::ResourceRequest{"https://www.google.com/robots.txt"}
+          .WithTimeout(base::Seconds(5)));
 
   run_loop.Run();
 }

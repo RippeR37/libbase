@@ -1,5 +1,7 @@
 #pragma once
 
+#if defined(LIBBASE_MODULE_NET)
+
 #include <cstdint>
 #include <map>
 #include <string>
@@ -26,3 +28,5 @@ struct ResourceResponse {
 
 }  // namespace net
 }  // namespace base
+
+#endif  // defined(LIBBASE_MODULE_NET)

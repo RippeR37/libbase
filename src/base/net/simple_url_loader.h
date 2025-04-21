@@ -1,5 +1,7 @@
 #pragma once
 
+#if defined(LIBBASE_MODULE_NET)
+
 #include "base/callback.h"
 #include "base/net/request_cancellation_token.h"
 #include "base/net/resource_request.h"
@@ -28,3 +30,5 @@ class SimpleUrlLoader {
 
 }  // namespace net
 }  // namespace base
+
+#endif  // defined(LIBBASE_MODULE_NET)

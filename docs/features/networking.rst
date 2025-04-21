@@ -84,9 +84,10 @@ function to **asynchronously** cancel related request.
 
       void PerformRequest(std::string resource_url) {
         base::net::SimpleUrlLoader::DownloadUnbounded(
-            base::net::ResourceRequest{resource_url},
+            base::net::ResourceRequest{resource_url}.WithTimeout(base::Seconds(5)),
             base::BindOnce(&OnResponse));
       }
+
       void OnResponse(base::net::ResourceResponse response) {
         // Check response status and other metadata
       }
