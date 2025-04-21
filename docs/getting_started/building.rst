@@ -80,6 +80,23 @@ installation just for task of building itself with:
    $ cmake --build build [-j <parallel_jobs>] [--config <Release|Debug>]
 
 
+Building with CMake and Conan
+-----------------------------
+
+Alternatively, you can also use ``Conan`` package manager to build ``libbase``
+library. To do this, you need to have ``Conan`` installed on your system, then
+simply execute:
+
+.. code-block:: console
+
+   $ conan install . --build=missing -s build_type=Release [-o '&:option=value']
+   $ cmake --preset conan-release
+   $ cmake --build --preset conan-release [-j <parallel_jobs>]
+
+See ``options`` and ``default_options`` attributes in ``conanfile.py`` for
+available build options.
+
+
 Configuration
 -------------
 

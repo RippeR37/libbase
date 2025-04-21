@@ -10,8 +10,18 @@
 *.exp
 *.user
 
+CMakeFiles/
+CMakeCache.txt
+CMakeUserPresets.json
+
 .cache/*
 build/*
 docs/build/*
 
+.DS_Store
+.AppleDouble
+.LSOverride
+
+.idea/*
 .vscode/*
+.vs/*

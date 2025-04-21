@@ -59,6 +59,17 @@ cmake -S . -B build -DLIBBASE_AUTO_VCPKG=1
 cmake --build build [-j <parallel_jobs>] [--config <Release|Debug>]
 ```
 
+#### Build with Conan
+
+```bash
+conan install . --build=missing -s build_type=Release [-o '&:option=value']
+cmake --preset conan-release
+cmake --build --preset conan-release [-j <parallel_jobs>]
+```
+
+See `options` and `default_options` attributes in `conanfile.py` for available
+build options.
+
 #### Build manually
 
 You can also manually build and install all required dependencies and then
