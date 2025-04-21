@@ -37,7 +37,7 @@ class LibbaseRecipe(ConanFile):
 
     def config_options(self):
         if self.settings.os != "Windows":
-           del self.options.module_win
+            del self.options.module_win
 
     def validate(self):
         if self.settings.os not in ["Windows", "Linux", "Macos"]:
@@ -47,14 +47,15 @@ class LibbaseRecipe(ConanFile):
         check_min_cppstd(self, "17")
 
     def requirements(self):
-        self.requires("glog/[~0.7]", transitive_headers=True)
+        self.requires("glog/[~0.7]", transitive_headers=True, transitive_libs=True)
+        if self.options.module_net:
+            self.requires("libcurl/[>=8.12 <9.0]")
+        if self.options.module_wx:
+            self.requires("wxwidgets/[>=3.2 <4.0]")
+
         if self.options.tests:
             self.requires("gtest/[~1.16]")
             self.requires("benchmark/[~1.9]")
-        if self.options.module_net:
-            self.requires("libcurl/[>=8.12]")
-        if self.options.module_wx:
-            self.requires("wxwidgets/[~3.2]")
 
     def layout(self):
         cmake_layout(self)
