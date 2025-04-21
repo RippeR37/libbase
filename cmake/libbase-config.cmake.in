@@ -1,5 +1,7 @@
 @PACKAGE_INIT@
 
+include(CMakeFindDependencyMacro)
+
 #
 # Process core targets
 #
@@ -31,7 +33,7 @@ foreach(_component IN LISTS _libbase_components)
 endforeach()
 
 # Check requested components
-foreach(_comp IN LISTS libbase_FIND_COMPONENTS)
+foreach(_component IN LISTS libbase_FIND_COMPONENTS)
   list(FIND _installed_components ${_component} _index)
   if(_index EQUAL -1)
     set(_msg "libbase component '${_component}' was requested, but is not installed.\n")

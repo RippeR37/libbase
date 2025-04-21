@@ -215,7 +215,7 @@ endif()
 #
 
 if(LIBBASE_BUILD_MODULE_WX)
-  if(NOT TARGET wx::core OR NOT TARGET wx::base)
+  if(NOT TARGET wxWidgets::wxWidgets)
     find_package(wxWidgets CONFIG REQUIRED)
   endif()
 
@@ -240,8 +240,8 @@ if(LIBBASE_BUILD_MODULE_WX)
   target_link_libraries(libbase_wx
     PUBLIC
       libbase
-      wx::core
-      wx::base
+    PRIVATE
+      wxWidgets::wxWidgets
   )
 
   target_sources(libbase_wx

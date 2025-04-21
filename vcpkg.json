@@ -6,7 +6,7 @@
   "homepage": "https://github.com/RippeR37/libbase",
   "documentation": "https://ripper37.github.io/libbase",
   "license": "MIT",
-  "builtin-baseline": "ce613c41372b23b1f51333815feb3edd87ef8a8b",
+  "builtin-baseline": "e0b65b8ccab766d7570a6734b9b2e6388a27bf41",
   "dependencies": [
     {
       "name": "vcpkg-cmake",
