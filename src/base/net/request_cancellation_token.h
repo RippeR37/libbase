@@ -1,5 +1,7 @@
 #pragma once
 
+#if defined(LIBBASE_MODULE_NET)
+
 #include <cstddef>
 
 namespace base {
@@ -16,3 +18,5 @@ struct RequestCancellationToken {
 
 }  // namespace net
 }  // namespace base
+
+#endif  // defined(LIBBASE_MODULE_NET)

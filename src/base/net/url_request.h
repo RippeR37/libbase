@@ -1,5 +1,7 @@
 #pragma once
 
+#if defined(LIBBASE_MODULE_NET)
+
 #include <map>
 #include <optional>
 #include <string>
@@ -48,3 +50,5 @@ class UrlRequest {
 
 }  // namespace net
 }  // namespace base
+
+#endif  // defined(LIBBASE_MODULE_NET)

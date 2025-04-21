@@ -1,6 +1,7 @@
 #pragma once
 
 #if defined(LIBBASE_IS_WINDOWS)
+#if defined(LIBBASE_MODULE_WIN)
 
 #include <memory>
 
@@ -42,4 +43,5 @@ class WinMessageLoopAttachment {
 }  // namespace win
 }  // namespace base
 
+#endif  // defined(LIBBASE_MODULE_WIN)
 #endif  // defined(LIBBASE_IS_WINDOWS)

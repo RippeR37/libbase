@@ -137,7 +137,6 @@ if(LIBBASE_BUILD_MODULE_NET)
   target_compile_definitions(libbase_net
     PUBLIC
       ${LIBBASE_FEATURE_DEFINES}
-    INTERFACE
       LIBBASE_MODULE_NET
   )
 
@@ -163,6 +162,7 @@ if(LIBBASE_BUILD_MODULE_NET)
       base/net/init.h
       base/net/request_cancellation_token.cc
       base/net/request_cancellation_token.h
+      base/net/resource_request.cc
       base/net/resource_request.h
       base/net/resource_response.h
       base/net/result.h
@@ -188,7 +188,6 @@ if(LIBBASE_BUILD_MODULE_WIN)
   target_compile_definitions(libbase_win
     PUBLIC
       ${LIBBASE_FEATURE_DEFINES}
-    INTERFACE
       LIBBASE_MODULE_WIN
   )
 
@@ -228,7 +227,6 @@ if(LIBBASE_BUILD_MODULE_WX)
   target_compile_definitions(libbase_wx
     PUBLIC
       ${LIBBASE_FEATURE_DEFINES}
-    INTERFACE
       LIBBASE_MODULE_WX
   )
 

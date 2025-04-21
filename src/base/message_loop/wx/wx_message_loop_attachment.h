@@ -1,5 +1,7 @@
 #pragma once
 
+#if defined(LIBBASE_MODULE_WX)
+
 #include <memory>
 
 #include "base/message_loop/message_pump.h"
@@ -39,3 +41,5 @@ class WxMessageLoopAttachment {
 
 }  // namespace wx
 }  // namespace base
+
+#endif  // defined(LIBBASE_MODULE_WX)

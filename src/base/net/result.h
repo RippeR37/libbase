@@ -1,5 +1,7 @@
 #pragma once
 
+#if defined(LIBBASE_MODULE_NET)
+
 namespace base {
 namespace net {
 
@@ -19,3 +21,5 @@ enum class Result {
 
 }  // namespace net
 }  // namespace base
+
+#endif  // defined(LIBBASE_MODULE_NET)

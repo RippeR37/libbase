@@ -1,5 +1,7 @@
 #pragma once
 
+#if defined(LIBBASE_MODULE_NET)
+
 #include <atomic>
 #include <map>
 #include <mutex>
@@ -78,3 +80,5 @@ class NetThread::NetThreadImpl {
 
 }  // namespace net
 }  // namespace base
+
+#endif  // defined(LIBBASE_MODULE_NET)

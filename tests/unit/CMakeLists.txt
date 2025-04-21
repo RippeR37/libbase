@@ -17,10 +17,21 @@ target_compile_options(libbase_unittests PRIVATE "${LIBBASE_COMPILE_FLAGS}")
 target_include_directories(libbase_unittests PRIVATE
   ${PROJECT_SOURCE_DIR}/tests/unit/mock/)
 
-target_link_libraries(libbase_unittests PRIVATE
-  libbase
-  GTest::gtest
-  GTest::gmock)
+target_link_libraries(libbase_unittests
+  PRIVATE
+    libbase
+    GTest::gtest
+    GTest::gmock
+)
+
+# optionally link with libbase_net for networking module tests
+# these tests will be enabled if LIBBASE_MODULE_NET is defined
+if(TARGET libbase::libbase_net)
+  target_link_libraries(libbase_unittests
+    PRIVATE
+      libbase::libbase_net
+  )
+endif()
 
 target_sources(libbase_unittests
   PRIVATE
@@ -34,6 +45,7 @@ target_sources(libbase_unittests
     base/message_loop/message_loop_impl_unittests.cc
     base/message_loop/message_pump_impl_unittests.cc
     base/message_loop/run_loop_unittests.cc
+    base/net/resource_request_unittests.cc
     base/sequenced_task_runner_helpers_unittest.cc
     base/sequenced_task_runner_unittests.cc
     base/synchronization/auto_signaller_unittests.cc
