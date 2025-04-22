@@ -30,7 +30,7 @@ function(SETUP_COMPILE_FLAGS)
         endif()
       endif()
   elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
-      set(WARNINGS "/W4;/WX;/EHsc;/permissive-")
+      set(WARNINGS "/W4;/WX;/EHsc;/permissive-;/W34996;/W4244")
   endif()
 
   if(LIBBASE_BUILD_TESTS AND LIBBASE_CODE_COVERAGE)
