@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-2022, windows-latest]
+        os: [windows-2019, windows-2022, windows-latest]
         build_type: [Release, Debug]
         name_suffix: [""]
         cmake_args: [""]
