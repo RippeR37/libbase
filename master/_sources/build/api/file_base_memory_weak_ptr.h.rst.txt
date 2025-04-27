@@ -1,0 +1,76 @@
+
+.. _file_base_memory_weak_ptr.h:
+
+File weak_ptr.h
+===============
+
+|exhale_lsh| :ref:`Parent directory <dir_base_memory>` (``base/memory``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/memory/weak_ptr.h``)
+---------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``atomic``
+
+- ``base/sequence_checker.h`` (:ref:`file_base_sequence_checker.h`)
+
+- ``cstddef``
+
+- ``memory`` (:ref:`file_base_memory_weak_ptr.h`)
+
+- ``utility``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_base_bind_internals.h`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classbase_1_1WeakPtr`
+
+- :ref:`exhale_class_classbase_1_1WeakPtrFactory`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_weak__ptr_8h_1a01deba814835fc3363db9f15290d8e77`
+
+- :ref:`exhale_function_weak__ptr_8h_1a7fabe800bcebfdb72d533eebd41a466d`
+
+- :ref:`exhale_function_weak__ptr_8h_1a3a91cebf3759df9d2d0ea7e75e48d9cd`
+
+- :ref:`exhale_function_weak__ptr_8h_1a49d18eb459faf71b5a8700424c938a50`
+

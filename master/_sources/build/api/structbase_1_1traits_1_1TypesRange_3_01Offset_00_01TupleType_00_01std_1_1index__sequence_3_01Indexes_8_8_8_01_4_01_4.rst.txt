@@ -1,0 +1,17 @@
+.. _exhale_struct_structbase_1_1traits_1_1TypesRange_3_01Offset_00_01TupleType_00_01std_1_1index__sequence_3_01Indexes_8_8_8_01_4_01_4:
+
+Template Struct TypesRange< Offset, TupleType, std::index_sequence< Indexes... > >
+==================================================================================
+
+- Defined in :ref:`file_base_type_traits.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: base::traits::TypesRange< Offset, TupleType, std::index_sequence< Indexes... > >
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

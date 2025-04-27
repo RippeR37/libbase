@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_db2833c2b6ba26abc2794e33092fe04c" kind="dir">
+    <compoundname>base/net</compoundname>
+    <innerdir refid="dir_a461ef2d1b72c2c6a3bd2af555330c36">base/net/impl</innerdir>
+    <innerfile refid="net_2init_8h">init.h</innerfile>
+    <innerfile refid="request__cancellation__token_8h">request_cancellation_token.h</innerfile>
+    <innerfile refid="resource__request_8h">resource_request.h</innerfile>
+    <innerfile refid="resource__response_8h">resource_response.h</innerfile>
+    <innerfile refid="result_8h">result.h</innerfile>
+    <innerfile refid="simple__url__loader_8h">simple_url_loader.h</innerfile>
+    <innerfile refid="url__request_8h">url_request.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/net/"/>
+  </compounddef>
+</doxygen>

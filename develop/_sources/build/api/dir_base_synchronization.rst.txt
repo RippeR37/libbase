@@ -1,0 +1,22 @@
+.. _dir_base_synchronization:
+
+
+Directory synchronization
+=========================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_base>` (``base``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``base/synchronization``
+
+
+Files
+-----
+
+- :ref:`file_base_synchronization_auto_signaller.h`
+- :ref:`file_base_synchronization_waitable_event.h`
+
+

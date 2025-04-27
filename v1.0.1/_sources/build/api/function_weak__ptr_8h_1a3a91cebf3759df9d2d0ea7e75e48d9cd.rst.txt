@@ -1,0 +1,14 @@
+.. _exhale_function_weak__ptr_8h_1a3a91cebf3759df9d2d0ea7e75e48d9cd:
+
+Template Function base::operator==(std::nullptr_t, const WeakPtr<T>&)
+=====================================================================
+
+- Defined in :ref:`file_base_memory_weak_ptr.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: base::operator==(std::nullptr_t, const WeakPtr<T>&)
+   :project: libbase

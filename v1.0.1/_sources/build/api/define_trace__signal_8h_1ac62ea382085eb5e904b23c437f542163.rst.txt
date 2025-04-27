@@ -1,0 +1,14 @@
+.. _exhale_define_trace__signal_8h_1ac62ea382085eb5e904b23c437f542163:
+
+Define TRACE_SIGNAL_THREAD
+==========================
+
+- Defined in :ref:`file_base_trace_event_trace_signal.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: TRACE_SIGNAL_THREAD
+   :project: libbase

@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="sequenced__task__runner__handle_8h" kind="file" language="C++">
+    <compoundname>sequenced_task_runner_handle.h</compoundname>
+    <includes local="no">memory</includes>
+    <includes refid="sequenced__task__runner_8h" local="yes">base/sequenced_task_runner.h</includes>
+    <includedby refid="bind__post__task_8h" local="yes">base/bind_post_task.h</includedby>
+    <includedby refid="run__loop_8h" local="yes">base/message_loop/run_loop.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>base/threading/sequenced_task_runner_handle.h</label>
+        <link refid="sequenced__task__runner__handle_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classbase_1_1SequencedTaskRunnerHandle" prot="public">base::SequencedTaskRunnerHandle</innerclass>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/threading/sequenced_task_runner_handle.h"/>
+  </compounddef>
+</doxygen>

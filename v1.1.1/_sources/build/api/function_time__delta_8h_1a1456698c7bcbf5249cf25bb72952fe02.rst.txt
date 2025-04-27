@@ -1,0 +1,14 @@
+.. _exhale_function_time__delta_8h_1a1456698c7bcbf5249cf25bb72952fe02:
+
+Template Function base::Minutes
+===============================
+
+- Defined in :ref:`file_base_time_time_delta.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: base::Minutes(T)
+   :project: libbase

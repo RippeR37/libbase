@@ -1,0 +1,17 @@
+.. _exhale_class_classbase_1_1OnceCallback:
+
+Template Class OnceCallback
+===========================
+
+- Defined in :ref:`file_base_callback.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::OnceCallback
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

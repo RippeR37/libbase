@@ -1,0 +1,14 @@
+.. _exhale_function_time__delta_8h_1afd9a85b6ee9d335db49969c604b7ca7f:
+
+Template Function base::Hours
+=============================
+
+- Defined in :ref:`file_base_time_time_delta.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: base::Hours(T)
+   :project: libbase

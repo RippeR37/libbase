@@ -1,0 +1,68 @@
+
+.. _file_base_sequence_checker.h:
+
+File sequence_checker.h
+=======================
+
+|exhale_lsh| :ref:`Parent directory <dir_base>` (``base``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/sequence_checker.h``)
+----------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``base/logging.h`` (:ref:`file_base_logging.h`)
+
+- ``base/sequenced_task_runner_helpers.h`` (:ref:`file_base_sequenced_task_runner_helpers.h`)
+
+- ``optional``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_base_memory_weak_ptr.h`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classbase_1_1SequenceChecker`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_sequence__checker_8h_1a4d9e87e3566670d3068ebfaef0970676`
+
+- :ref:`exhale_define_sequence__checker_8h_1ae91683dfb0f104276ed8956474f261da`
+
+- :ref:`exhale_define_sequence__checker_8h_1a6e1de0e8bf469bc7898cbaf88725254f`
+

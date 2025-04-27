@@ -1,0 +1,38 @@
+
+.. _file_base_trace_event_trace_signal.h:
+
+File trace_signal.h
+===================
+
+|exhale_lsh| :ref:`Parent directory <dir_base_trace_event>` (``base/trace_event``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/trace_event/trace_signal.h``)
+------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_trace__signal_8h_1a7455b881f5f684142a1a9c3999a0243e`
+
+- :ref:`exhale_define_trace__signal_8h_1a52e34069027795f458a6463139a8aeac`
+
+- :ref:`exhale_define_trace__signal_8h_1ac62ea382085eb5e904b23c437f542163`
+

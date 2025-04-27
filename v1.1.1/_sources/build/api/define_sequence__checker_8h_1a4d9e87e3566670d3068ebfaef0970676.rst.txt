@@ -1,0 +1,14 @@
+.. _exhale_define_sequence__checker_8h_1a4d9e87e3566670d3068ebfaef0970676:
+
+Define DCHECK_CALLED_ON_VALID_SEQUENCE
+======================================
+
+- Defined in :ref:`file_base_sequence_checker.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: DCHECK_CALLED_ON_VALID_SEQUENCE
+   :project: libbase

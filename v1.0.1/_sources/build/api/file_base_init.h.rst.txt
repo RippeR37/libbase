@@ -1,0 +1,52 @@
+
+.. _file_base_init.h:
+
+File init.h
+===========
+
+|exhale_lsh| :ref:`Parent directory <dir_base>` (``base``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/init.h``)
+----------------------------
+
+
+
+
+
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structbase_1_1InitOptions`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_init_8h_1a73aeac72e46f9d795d43b5ed1f74a292`
+
+- :ref:`exhale_function_init_8h_1a3bbef369d24aa1cc8eedb3b6b33a2d29`
+
+- :ref:`exhale_function_init_8h_1afecfc13c50e2984c5dc873fba47c8841`
+

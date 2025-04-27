@@ -1,0 +1,47 @@
+
+.. _file_base_timer_elapsed_timer.h:
+
+File elapsed_timer.h
+====================
+
+|exhale_lsh| :ref:`Parent directory <dir_base_timer>` (``base/timer``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/timer/elapsed_timer.h``)
+-------------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``base/time/time_ticks.h`` (:ref:`file_base_time_time_ticks.h`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classbase_1_1ElapsedTimer`
+

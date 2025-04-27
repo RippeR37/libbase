@@ -1,0 +1,14 @@
+.. _exhale_define_sequence__checker_8h_1a6e1de0e8bf469bc7898cbaf88725254f:
+
+Define SEQUENCE_CHECKER
+=======================
+
+- Defined in :ref:`file_base_sequence_checker.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: SEQUENCE_CHECKER
+   :project: libbase

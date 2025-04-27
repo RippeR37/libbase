@@ -1,0 +1,33 @@
+
+.. _file_base_vlog_is_on.h:
+
+File vlog_is_on.h
+=================
+
+|exhale_lsh| :ref:`Parent directory <dir_base>` (``base``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/vlog_is_on.h``)
+----------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``glog/vlog_is_on.h``
+
+
+
+
+
