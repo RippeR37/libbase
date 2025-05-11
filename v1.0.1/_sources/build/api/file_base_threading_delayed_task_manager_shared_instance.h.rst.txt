@@ -1,0 +1,49 @@
+
+.. _file_base_threading_delayed_task_manager_shared_instance.h:
+
+File delayed_task_manager_shared_instance.h
+===========================================
+
+|exhale_lsh| :ref:`Parent directory <dir_base_threading>` (``base/threading``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/threading/delayed_task_manager_shared_instance.h``)
+----------------------------------------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``memory`` (:ref:`file_base_memory_weak_ptr.h`)
+
+- ``mutex``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classbase_1_1DelayedTaskManagerSharedInstance`
+

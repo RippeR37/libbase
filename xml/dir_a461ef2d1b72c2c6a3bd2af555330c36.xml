@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_a461ef2d1b72c2c6a3bd2af555330c36" kind="dir">
+    <compoundname>base/net/impl</compoundname>
+    <innerfile refid="net__thread_8h">net_thread.h</innerfile>
+    <innerfile refid="net__thread__impl_8h">net_thread_impl.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/net/impl/"/>
+  </compounddef>
+</doxygen>

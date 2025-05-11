@@ -1,0 +1,48 @@
+
+.. _file_base_task_runner_internals.h:
+
+File task_runner_internals.h
+============================
+
+|exhale_lsh| :ref:`Parent directory <dir_base>` (``base``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/task_runner_internals.h``)
+---------------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``memory`` (:ref:`file_base_memory_weak_ptr.h`)
+
+- ``optional``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_base_task_runner.h`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+

@@ -1,0 +1,14 @@
+.. _exhale_variable_type__traits_8h_1a126f4cf1dd4ff094880392783a63472a:
+
+Variable base::traits::IsCapturelessLambdaV
+===========================================
+
+- Defined in :ref:`file_base_type_traits.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: base::traits::IsCapturelessLambdaV
+   :project: libbase

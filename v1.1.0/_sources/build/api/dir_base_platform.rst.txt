@@ -1,0 +1,21 @@
+.. _dir_base_platform:
+
+
+Directory platform
+==================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_base>` (``base``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``base/platform``
+
+
+Files
+-----
+
+- :ref:`file_base_platform_windows.h`
+
+

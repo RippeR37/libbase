@@ -1,0 +1,259 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classbase_1_1RunLoop" kind="class" language="C++" prot="public">
+    <compoundname>base::RunLoop</compoundname>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classbase_1_1RunLoop_1adc5c696f63ecca86e7222f597ea98b54" prot="protected" static="no" mutable="no">
+        <type>std::unique_ptr&lt; detail::ScopedSequenceIdSetter &gt;</type>
+        <definition>std::unique_ptr&lt;detail::ScopedSequenceIdSetter&gt; base::RunLoop::scoped_sequence_id_</definition>
+        <argsstring></argsstring>
+        <name>scoped_sequence_id_</name>
+        <qualifiedname>base::RunLoop::scoped_sequence_id_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/run_loop.h" line="27" column="19" bodyfile="base/message_loop/run_loop.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1RunLoop_1a789d9b2dd6ca46ded7a88a07208f54a5" prot="protected" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="classbase_1_1SequencedTaskRunnerHandle" kindref="compound">SequencedTaskRunnerHandle</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;SequencedTaskRunnerHandle&gt; base::RunLoop::scoped_task_runner_handle_</definition>
+        <argsstring></argsstring>
+        <name>scoped_task_runner_handle_</name>
+        <qualifiedname>base::RunLoop::scoped_task_runner_handle_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/run_loop.h" line="28" column="19" bodyfile="base/message_loop/run_loop.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1RunLoop_1a340018e6e30d8a2c0b7500f2bba8763f" prot="protected" static="no" mutable="no">
+        <type><ref refid="classbase_1_1SequenceId" kindref="compound">SequenceId</ref></type>
+        <definition>SequenceId base::RunLoop::sequence_id_</definition>
+        <argsstring></argsstring>
+        <name>sequence_id_</name>
+        <qualifiedname>base::RunLoop::sequence_id_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/run_loop.h" line="30" column="14" bodyfile="base/message_loop/run_loop.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1RunLoop_1a2e58d25c8d2d082165fa09b809a87723" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classbase_1_1SingleThreadTaskRunner" kindref="compound">SingleThreadTaskRunner</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;SingleThreadTaskRunner&gt; base::RunLoop::task_runner_</definition>
+        <argsstring></argsstring>
+        <name>task_runner_</name>
+        <qualifiedname>base::RunLoop::task_runner_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/run_loop.h" line="31" column="19" bodyfile="base/message_loop/run_loop.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1RunLoop_1a17076c6b7704fc7b812601e652bfe9bb" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; <ref refid="classbase_1_1MessageLoop" kindref="compound">MessageLoop</ref> &gt;</type>
+        <definition>std::shared_ptr&lt;MessageLoop&gt; base::RunLoop::message_loop_</definition>
+        <argsstring></argsstring>
+        <name>message_loop_</name>
+        <qualifiedname>base::RunLoop::message_loop_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/run_loop.h" line="33" column="19" bodyfile="base/message_loop/run_loop.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1RunLoop_1aac7a9aa5ad6d06a7821900520463ee8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::RunLoop::RunLoop</definition>
+        <argsstring>()</argsstring>
+        <name>RunLoop</name>
+        <qualifiedname>base::RunLoop::RunLoop</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/run_loop.h" line="12" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1RunLoop_1af827fc335dd535c24f6542cd40849830" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::RunLoop::~RunLoop</definition>
+        <argsstring>()</argsstring>
+        <name>~RunLoop</name>
+        <qualifiedname>base::RunLoop::~RunLoop</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/run_loop.h" line="13" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1RunLoop_1aee47b4fe35713fd53e9efe4a9e506b0c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::shared_ptr&lt; <ref refid="classbase_1_1SingleThreadTaskRunner" kindref="compound">SingleThreadTaskRunner</ref> &gt;</type>
+        <definition>std::shared_ptr&lt; SingleThreadTaskRunner &gt; base::RunLoop::TaskRunner</definition>
+        <argsstring>()</argsstring>
+        <name>TaskRunner</name>
+        <qualifiedname>base::RunLoop::TaskRunner</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/run_loop.h" line="15" column="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1RunLoop_1a60cf81fcc08c4a703682302716770e51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::RunLoop::RunOnce</definition>
+        <argsstring>()</argsstring>
+        <name>RunOnce</name>
+        <qualifiedname>base::RunLoop::RunOnce</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/run_loop.h" line="17" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1RunLoop_1a74e7cbe4abe02750ae43656b572b6b0b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::RunLoop::RunUntilIdle</definition>
+        <argsstring>()</argsstring>
+        <name>RunUntilIdle</name>
+        <qualifiedname>base::RunLoop::RunUntilIdle</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/run_loop.h" line="18" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1RunLoop_1a22a473869aeff684451c584905cc180e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::RunLoop::Run</definition>
+        <argsstring>()</argsstring>
+        <name>Run</name>
+        <qualifiedname>base::RunLoop::Run</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/run_loop.h" line="20" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1RunLoop_1ac10b2c2f375f2c0aca8e4992ff89874d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::RunLoop::Quit</definition>
+        <argsstring>()</argsstring>
+        <name>Quit</name>
+        <qualifiedname>base::RunLoop::Quit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/run_loop.h" line="21" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1RunLoop_1a51c18dc7141831822585711939d8d67b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::RunLoop::Quit</definition>
+        <argsstring>(OnceClosure last_task)</argsstring>
+        <name>Quit</name>
+        <qualifiedname>base::RunLoop::Quit</qualifiedname>
+        <param>
+          <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceClosure</ref></type>
+          <declname>last_task</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/run_loop.h" line="22" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1RunLoop_1a1ab0fa7bb513855d9da267b17eea9ebf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1RepeatingCallback" kindref="compound">RepeatingClosure</ref></type>
+        <definition>RepeatingClosure base::RunLoop::QuitClosure</definition>
+        <argsstring>()</argsstring>
+        <name>QuitClosure</name>
+        <qualifiedname>base::RunLoop::QuitClosure</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/run_loop.h" line="23" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1RunLoop_1a67c4d21cf75fd2afd6663fd1f9893938" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1RepeatingCallback" kindref="compound">RepeatingCallback</ref>&lt; void(<ref refid="classbase_1_1OnceCallback" kindref="compound">OnceClosure</ref>)&gt;</type>
+        <definition>RepeatingCallback&lt; void(OnceClosure)&gt; base::RunLoop::QuitCallback</definition>
+        <argsstring>()</argsstring>
+        <name>QuitCallback</name>
+        <qualifiedname>base::RunLoop::QuitCallback</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/message_loop/run_loop.h" line="24" column="21"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>base::RunLoop</label>
+        <link refid="classbase_1_1RunLoop"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>sequence_id_</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>base::SequenceId</label>
+        <link refid="classbase_1_1SequenceId"/>
+      </node>
+    </collaborationgraph>
+    <location file="base/message_loop/run_loop.h" line="10" column="1" bodyfile="base/message_loop/run_loop.h" bodystart="10" bodyend="34"/>
+    <listofallmembers>
+      <member refid="classbase_1_1RunLoop_1a17076c6b7704fc7b812601e652bfe9bb" prot="protected" virt="non-virtual"><scope>base::RunLoop</scope><name>message_loop_</name></member>
+      <member refid="classbase_1_1RunLoop_1ac10b2c2f375f2c0aca8e4992ff89874d" prot="public" virt="non-virtual"><scope>base::RunLoop</scope><name>Quit</name></member>
+      <member refid="classbase_1_1RunLoop_1a51c18dc7141831822585711939d8d67b" prot="public" virt="non-virtual"><scope>base::RunLoop</scope><name>Quit</name></member>
+      <member refid="classbase_1_1RunLoop_1a67c4d21cf75fd2afd6663fd1f9893938" prot="public" virt="non-virtual"><scope>base::RunLoop</scope><name>QuitCallback</name></member>
+      <member refid="classbase_1_1RunLoop_1a1ab0fa7bb513855d9da267b17eea9ebf" prot="public" virt="non-virtual"><scope>base::RunLoop</scope><name>QuitClosure</name></member>
+      <member refid="classbase_1_1RunLoop_1a22a473869aeff684451c584905cc180e" prot="public" virt="non-virtual"><scope>base::RunLoop</scope><name>Run</name></member>
+      <member refid="classbase_1_1RunLoop_1aac7a9aa5ad6d06a7821900520463ee8a" prot="public" virt="non-virtual"><scope>base::RunLoop</scope><name>RunLoop</name></member>
+      <member refid="classbase_1_1RunLoop_1a60cf81fcc08c4a703682302716770e51" prot="public" virt="non-virtual"><scope>base::RunLoop</scope><name>RunOnce</name></member>
+      <member refid="classbase_1_1RunLoop_1a74e7cbe4abe02750ae43656b572b6b0b" prot="public" virt="non-virtual"><scope>base::RunLoop</scope><name>RunUntilIdle</name></member>
+      <member refid="classbase_1_1RunLoop_1adc5c696f63ecca86e7222f597ea98b54" prot="protected" virt="non-virtual"><scope>base::RunLoop</scope><name>scoped_sequence_id_</name></member>
+      <member refid="classbase_1_1RunLoop_1a789d9b2dd6ca46ded7a88a07208f54a5" prot="protected" virt="non-virtual"><scope>base::RunLoop</scope><name>scoped_task_runner_handle_</name></member>
+      <member refid="classbase_1_1RunLoop_1a340018e6e30d8a2c0b7500f2bba8763f" prot="protected" virt="non-virtual"><scope>base::RunLoop</scope><name>sequence_id_</name></member>
+      <member refid="classbase_1_1RunLoop_1a2e58d25c8d2d082165fa09b809a87723" prot="protected" virt="non-virtual"><scope>base::RunLoop</scope><name>task_runner_</name></member>
+      <member refid="classbase_1_1RunLoop_1aee47b4fe35713fd53e9efe4a9e506b0c" prot="public" virt="non-virtual"><scope>base::RunLoop</scope><name>TaskRunner</name></member>
+      <member refid="classbase_1_1RunLoop_1af827fc335dd535c24f6542cd40849830" prot="public" virt="non-virtual"><scope>base::RunLoop</scope><name>~RunLoop</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

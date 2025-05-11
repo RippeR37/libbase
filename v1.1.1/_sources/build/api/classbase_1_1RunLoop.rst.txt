@@ -1,0 +1,17 @@
+.. _exhale_class_classbase_1_1RunLoop:
+
+Class RunLoop
+=============
+
+- Defined in :ref:`file_base_message_loop_run_loop.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::RunLoop
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

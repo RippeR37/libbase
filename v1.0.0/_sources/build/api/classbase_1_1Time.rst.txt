@@ -1,0 +1,17 @@
+.. _exhale_class_classbase_1_1Time:
+
+Class Time
+==========
+
+- Defined in :ref:`file_base_time_time.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::Time
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

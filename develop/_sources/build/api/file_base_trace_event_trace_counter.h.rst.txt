@@ -1,0 +1,36 @@
+
+.. _file_base_trace_event_trace_counter.h:
+
+File trace_counter.h
+====================
+
+|exhale_lsh| :ref:`Parent directory <dir_base_trace_event>` (``base/trace_event``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/trace_event/trace_counter.h``)
+-------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_trace__counter_8h_1a7dec43654f584ea55475e2f11568ac0d`
+
+- :ref:`exhale_define_trace__counter_8h_1adf69ea16b20e716072c3f20399695650`
+

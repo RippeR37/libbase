@@ -1,0 +1,105 @@
+
+.. _file_base_callback.h:
+
+File callback.h
+===============
+
+|exhale_lsh| :ref:`Parent directory <dir_base>` (``base``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/callback.h``)
+--------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``base/bind.h`` (:ref:`file_base_bind.h`)
+
+- ``base/callback_iface.h`` (:ref:`file_base_callback_iface.h`)
+
+- ``base/callback_internals.h`` (:ref:`file_base_callback_internals.h`)
+
+- ``memory`` (:ref:`file_base_memory_weak_ptr.h`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_base_barrier_callback.h`
+
+- :ref:`file_base_barrier_closure.h`
+
+- :ref:`file_base_bind_post_task.h`
+
+- :ref:`file_base_callback_helpers.h`
+
+- :ref:`file_base_message_loop_message_pump.h`
+
+- :ref:`file_base_task_runner.h`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+- :ref:`namespace_base__traits`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structbase_1_1traits_1_1IsOnceCallbackType`
+
+- :ref:`exhale_struct_structbase_1_1traits_1_1IsOnceCallbackType_3_01OnceCallback_3_01CallbackSignatureType_01_4_01_4`
+
+- :ref:`exhale_struct_structbase_1_1traits_1_1IsRepeatingCallbackType`
+
+- :ref:`exhale_struct_structbase_1_1traits_1_1IsRepeatingCallbackType_3_01RepeatingCallback_3_01CallbackSignatureType_01_4_01_4`
+
+- :ref:`exhale_class_classbase_1_1OnceCallback`
+
+- :ref:`exhale_class_classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4`
+
+- :ref:`exhale_class_classbase_1_1RepeatingCallback`
+
+- :ref:`exhale_class_classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_callback_8h_1a59567d24a110228ba40af5b34848458f`
+
+- :ref:`exhale_typedef_callback_8h_1ac4a76f1827e048560c85b9f94dd96ed4`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_callback_8h_1aacae931da3f6079b8f832b3fab110386`
+
+- :ref:`exhale_variable_callback_8h_1af6b47086eb59b691e2bafda006a39ee8`
+
+- :ref:`exhale_variable_callback_8h_1aa05fd00751e9212347ae5e2bc132d21b`
+

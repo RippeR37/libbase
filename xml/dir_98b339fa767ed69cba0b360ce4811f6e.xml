@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_98b339fa767ed69cba0b360ce4811f6e" kind="dir">
+    <compoundname>base/message_loop/win</compoundname>
+    <innerfile refid="win__message__loop__attachment_8h">win_message_loop_attachment.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/message_loop/win/"/>
+  </compounddef>
+</doxygen>
