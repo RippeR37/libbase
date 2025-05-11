@@ -66,7 +66,7 @@ bool MessageLoopImpl::DoRunOnce(bool wait_for_task) {
 }
 
 void MessageLoopImpl::RunUntilIdleOrStop() {
-  while (!is_stopped_ && DoRunOnce(false)) {
+  while (!is_stopped_ && DoRunOnce(true)) {
   }
 }
 
