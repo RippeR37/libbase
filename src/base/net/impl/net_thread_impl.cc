@@ -73,7 +73,8 @@ struct NetThread::NetThreadImpl::DownloadInfo {
 // Logic executed on main thread
 //
 
-NetThread::NetThreadImpl::NetThreadImpl() : multi_handle_(nullptr) {
+NetThread::NetThreadImpl::NetThreadImpl()
+    : not_quit_(), not_modified_(), multi_handle_(nullptr) {
   curl_global_init(CURL_GLOBAL_DEFAULT);
 }
 
