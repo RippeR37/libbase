@@ -21,9 +21,8 @@ void LogNetResponse(const base::net::ResourceResponse& response) {
   for (const auto& [h, v] : response.headers) {
     LOG(INFO) << "  " << h << ": " << v;
   }
-  LOG_IF(INFO, !response.data.empty())
-      << "Content:\n"
-      << std::string{response.data.begin(), response.data.end()};
+  LOG_IF(INFO, !response.data.empty()) << "Content:\n"
+                                       << response.DataAsStringView();
 }
 
 void NetExampleGet() {

@@ -5,6 +5,7 @@
 #include <cstdint>
 #include <map>
 #include <string>
+#include <string_view>
 #include <vector>
 
 #include "base/net/result.h"
@@ -24,6 +25,9 @@ struct ResourceResponse {
   base::TimeDelta timing_connect = base::Seconds(-1);
   base::TimeDelta timing_start_transfer = base::Seconds(-1);
   base::TimeDelta timing_total = base::Seconds(-1);
+
+  std::string DataAsString() const;
+  std::string_view DataAsStringView() const;
 };
 
 }  // namespace net
