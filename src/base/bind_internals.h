@@ -145,8 +145,10 @@ struct FunctorTraitsImpl {
       BoundArgumentsTupleType&& bound_arguments,
       RunArgumentTypes&&... run_arguments) {
     return std::invoke(std::forward<Functor>(functor),
+                       // NOLINTBEGIN(bugprone-use-after-move)
                        std::get<Indexes>(std::forward<BoundArgumentsTupleType>(
                            bound_arguments))...,
+                       // NOLINTEND(bugprone-use-after-move)
                        std::forward<RunArgumentTypes>(run_arguments)...);
   }
 };
@@ -175,29 +177,30 @@ struct FunctorTraits<ReturnType (*)(ArgumentTypes...)>
                         sizeof...(ArgumentTypes)> {};
 
 // Member functions
-#define LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(INSTANCE_TYPE, ...)            \
-  template <typename ReturnType, typename ClassType,                      \
-            typename... ArgumentTypes>                                    \
-  struct FunctorTraits<ReturnType (ClassType::*)(ArgumentTypes...)        \
-                           __VA_ARGS__>                                   \
-      : FunctorTraitsImpl<ReturnType,                                     \
-                          std::tuple<INSTANCE_TYPE*, ArgumentTypes...>,   \
-                          1 + sizeof...(ArgumentTypes)> {                 \
-    template <typename Functor,                                           \
-              std::size_t... Indexes,                                     \
-              typename BoundArgumentsTupleType,                           \
-              typename... RunArgumentTypes>                               \
-    static constexpr decltype(auto) Invoke(                               \
-        Functor&& functor,                                                \
-        std::index_sequence<Indexes...>,                                  \
-        BoundArgumentsTupleType&& bound_arguments,                        \
-        RunArgumentTypes&&... run_arguments) {                            \
-      return MemberFunctionInvoke(                                        \
-          std::forward<Functor>(functor),                                 \
-          std::get<Indexes>(                                              \
-              std::forward<BoundArgumentsTupleType>(bound_arguments))..., \
-          std::forward<RunArgumentTypes>(run_arguments)...);              \
-    }                                                                     \
+#define LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(INSTANCE_TYPE, ...)               \
+  template <typename ReturnType, typename ClassType,                         \
+            typename... ArgumentTypes>                                       \
+  struct FunctorTraits<ReturnType (ClassType::*)(ArgumentTypes...)           \
+                           __VA_ARGS__>                                      \
+      : FunctorTraitsImpl<ReturnType,                                        \
+                          std::tuple<INSTANCE_TYPE*, ArgumentTypes...>,      \
+                          1 + sizeof...(ArgumentTypes)> {                    \
+    template <typename Functor,                                              \
+              std::size_t... Indexes,                                        \
+              typename BoundArgumentsTupleType,                              \
+              typename... RunArgumentTypes>                                  \
+    static constexpr decltype(auto) Invoke(                                  \
+        Functor&& functor,                                                   \
+        std::index_sequence<Indexes...>,                                     \
+        BoundArgumentsTupleType&& bound_arguments,                           \
+        RunArgumentTypes&&... run_arguments) {                               \
+      return MemberFunctionInvoke(                                           \
+          std::forward<Functor>(                                             \
+              functor), /* NOLINTBEGIN(bugprone-use-after-move) */           \
+          std::get<Indexes>(std::forward<BoundArgumentsTupleType>(           \
+              bound_arguments))..., /* NOLINTEND(bugprone-use-after-move) */ \
+          std::forward<RunArgumentTypes>(run_arguments)...);                 \
+    }                                                                        \
   }
 
 LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT(ClassType, );
@@ -243,8 +246,10 @@ struct FunctorTraits<OnceCallback<ReturnType(ArgumentTypes...)>>
       BoundArgumentsTupleType&& bound_arguments,
       RunArgumentTypes&&... run_arguments) {
     return std::forward<Functor>(functor).Run(
+        // NOLINTBEGIN(bugprone-use-after-move)
         std::get<Indexes>(
             std::forward<BoundArgumentsTupleType>(bound_arguments))...,
+        // NOLINTEND(bugprone-use-after-move)
         std::forward<RunArgumentTypes>(run_arguments)...);
   }
 };

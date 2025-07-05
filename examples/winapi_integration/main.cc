@@ -33,10 +33,10 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR, int nCmdShow) {
   RECT rect = {0, 0, 800, 600};
   AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, FALSE);
 
-  HWND hwnd =
-      CreateWindowEx(0, CLASS_NAME, L"Default title", WS_OVERLAPPEDWINDOW,
-                     CW_USEDEFAULT, CW_USEDEFAULT, rect.right - rect.left,
-                     rect.bottom - rect.top, nullptr, nullptr, hInstance, nullptr);
+  HWND hwnd = CreateWindowEx(0, CLASS_NAME, L"Default title",
+                             WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT,
+                             rect.right - rect.left, rect.bottom - rect.top,
+                             nullptr, nullptr, hInstance, nullptr);
   if (hwnd == nullptr) {
     return 0;
   }
