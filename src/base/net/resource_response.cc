@@ -8,7 +8,8 @@ std::string ResourceResponse::DataAsString() const {
 }
 
 std::string_view ResourceResponse::DataAsStringView() const {
-  return std::string_view{reinterpret_cast<const char*>(data.data()), data.size()};
+  return std::string_view{reinterpret_cast<const char*>(data.data()),
+                          data.size()};
 }
 
 }  // namespace net
