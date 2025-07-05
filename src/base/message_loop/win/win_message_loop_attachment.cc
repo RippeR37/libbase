@@ -12,8 +12,8 @@ namespace base {
 namespace win {
 
 namespace {
-inline static const UINT WM_LIBBASE_EXECUTE_TASK = WM_USER + 0;
-inline static const wchar_t LIBBASE_CLASS_NAME[] = L"libbaseMessageOnlyWindow";
+inline const UINT WM_LIBBASE_EXECUTE_TASK = WM_USER + 0;
+inline const wchar_t LIBBASE_CLASS_NAME[] = L"libbaseMessageOnlyWindow";
 
 thread_local WinMessageLoopAttachment* g_current_instance = nullptr;
 
@@ -29,7 +29,7 @@ HWND CreateMessageOnlyWindow(WNDPROC wndProc) {
   WNDCLASS window_class = {};
   window_class.lpfnWndProc = wndProc;
   window_class.lpszClassName = LIBBASE_CLASS_NAME;
-  window_class.hInstance = NULL;  // hModule;
+  window_class.hInstance = nullptr;  // hModule;
   window_class.hbrBackground = reinterpret_cast<HBRUSH>(COLOR_BTNFACE + 1);
   RegisterClass(&window_class);
 
@@ -70,7 +70,7 @@ class WinMessagePumpImpl : public MessagePumpImpl {
 // static
 std::unique_ptr<WinMessageLoopAttachment>
 WinMessageLoopAttachment::TryCreate() {
-  if (auto hWnd =
+  if (auto* hWnd =
           CreateMessageOnlyWindow(&WinMessageLoopAttachment::WindowProc)) {
     return std::unique_ptr<WinMessageLoopAttachment>(
         new WinMessageLoopAttachment(hWnd));

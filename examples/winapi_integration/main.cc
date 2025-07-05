@@ -33,11 +33,11 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR, int nCmdShow) {
   RECT rect = {0, 0, 800, 600};
   AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, FALSE);
 
-  HWND hwnd =
-      CreateWindowEx(0, CLASS_NAME, L"Default title", WS_OVERLAPPEDWINDOW,
-                     CW_USEDEFAULT, CW_USEDEFAULT, rect.right - rect.left,
-                     rect.bottom - rect.top, NULL, NULL, hInstance, NULL);
-  if (hwnd == NULL) {
+  HWND hwnd = CreateWindowEx(0, CLASS_NAME, L"Default title",
+                             WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT,
+                             rect.right - rect.left, rect.bottom - rect.top,
+                             nullptr, nullptr, hInstance, nullptr);
+  if (hwnd == nullptr) {
     return 0;
   }
 
@@ -63,7 +63,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR, int nCmdShow) {
 
   // Run the message loop.
   MSG msg = {};
-  while (GetMessage(&msg, NULL, 0, 0) > 0) {
+  while (GetMessage(&msg, nullptr, 0, 0) > 0) {
     TranslateMessage(&msg);
     DispatchMessage(&msg);
   }
@@ -87,7 +87,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd,
     case WM_PAINT: {
       PAINTSTRUCT ps;
       HDC hdc = BeginPaint(hwnd, &ps);
-      FillRect(hdc, &ps.rcPaint, (HBRUSH)(COLOR_WINDOW + 1));
+      FillRect(hdc, &ps.rcPaint, reinterpret_cast<HBRUSH>(COLOR_WINDOW + 1));
       EndPaint(hwnd, &ps);
       return 0;
     }
