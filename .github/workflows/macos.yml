@@ -63,7 +63,7 @@ jobs:
         if: matrix.compiler.package && github.event_name != 'pull_request' && success()
         uses: actions/upload-artifact@v4
         with:
-          name: libbase-${{ github.ref_name }}-${{ matrix.compiler.cc }}-${{ matrix.build_type }}-${{ matrix.os }}-x64.zip
+          name: libbase-${{ github.ref_name }}-${{ matrix.compiler.cc }}-${{ matrix.build_type }}-${{ matrix.os }}.zip
           path: install
           retention-days: 7
         continue-on-error: true
