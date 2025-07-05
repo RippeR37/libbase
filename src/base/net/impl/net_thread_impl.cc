@@ -20,15 +20,23 @@ Result CurlCodeToNetResult(CURLcode code) {
   }
 }
 
-std::tuple<int, std::string, std::map<std::string, std::string>>
+std::tuple<int, std::string, std::string, std::map<std::string, std::string>>
 GetResponseInfo(CURL* handle, Result result = Result::kOk) {
   int code = -1;
+  std::string scheme;
   std::string final_url;
   std::map<std::string, std::string> headers;
 
   // Response code
   if (result == Result::kOk || result == Result::kAborted) {
     curl_easy_getinfo(handle, CURLINFO_RESPONSE_CODE, &code);
+  }
+
+  // Protocol scheme
+  {
+    char* curl_scheme = nullptr;
+    curl_easy_getinfo(handle, CURLINFO_SCHEME, &curl_scheme);
+    scheme = curl_scheme ? curl_scheme : "";
   }
 
   // Get the URL of the completed transfer
@@ -46,7 +54,7 @@ GetResponseInfo(CURL* handle, Result result = Result::kOk) {
     }
   }
 
-  return {code, final_url, headers};
+  return {code, scheme, final_url, headers};
 }
 }  // namespace
 
@@ -323,8 +331,8 @@ void NetThread::NetThreadImpl::EnqueueDownload_NetThread(
           auto response_info = GetResponseInfo(info->handle);
           std::move(info->on_response_started)
               .Run(std::get<0>(response_info),
-                   std::move(std::get<1>(response_info)),
-                   std::move(std::get<2>(response_info)));
+                   std::move(std::get<2>(response_info)),
+                   std::move(std::get<3>(response_info)));
         }
 
         if (info->on_write_data) {
@@ -351,13 +359,18 @@ void NetThread::NetThreadImpl::DownloadFinished_NetThread(CURL* finished_curl,
   CHECK(download_iter != active_downloads_.end());
 
   auto& download = download_iter->second;
+  const auto [code, scheme, final_url, headers] =
+      GetResponseInfo(finished_curl);
+
+  // Override result in case of HTTP status code reporting an error
+  if (result == Result::kOk && (scheme == "http" || scheme == "https") &&
+      (code >= 400 && code < 600)) {
+    result = Result::kError;
+  }
 
   // Handle advanced path and just send status & do cleanup
   if (download.on_response_started) {
-    auto response_info = GetResponseInfo(finished_curl);
-    std::move(download.on_response_started)
-        .Run(std::get<0>(response_info), std::move(std::get<1>(response_info)),
-             std::move(std::get<2>(response_info)));
+    std::move(download.on_response_started).Run(code, final_url, headers);
   }
   if (download.on_finished) {
     std::move(download.on_finished).Run(result);
@@ -372,7 +385,7 @@ void NetThread::NetThreadImpl::DownloadFinished_NetThread(CURL* finished_curl,
 
   // Response info
   std::tie(download.response.code, download.response.final_url,
-           download.response.headers) = GetResponseInfo(finished_curl, result);
+           download.response.headers) = std::tie(code, final_url, headers);
 
   // Get timing data
   {

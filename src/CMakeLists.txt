@@ -164,6 +164,7 @@ if(LIBBASE_BUILD_MODULE_NET)
       base/net/request_cancellation_token.h
       base/net/resource_request.cc
       base/net/resource_request.h
+      base/net/resource_response.cc
       base/net/resource_response.h
       base/net/result.h
       base/net/simple_url_loader.cc
