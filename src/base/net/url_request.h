@@ -18,6 +18,7 @@ class UrlRequest {
  public:
   class Client {
    public:
+    virtual ~Client() = default;
     virtual void OnResponseStarted(
         const UrlRequest* request,
         int code,

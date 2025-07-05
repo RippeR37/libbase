@@ -16,7 +16,7 @@ function(SETUP_COMPILE_FLAGS)
       set(WARNINGS "-Wall;-Wextra;-Werror;-Wunreachable-code")
 
       if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-        set(WARNINGS "${WARNINGS};-Wpedantic;-Wshadow;-Wno-gnu-zero-variadic-macro-arguments;-Wno-c++98-compat;-Wno-c++98-compat-pedantic;-Wno-exit-time-destructors;-Wno-global-constructors;-Wno-missing-prototypes;-Wno-ctad-maybe-unsupported;-Wno-switch-default")
+        set(WARNINGS "${WARNINGS};-Wpedantic;-Wshadow;-Wno-gnu-zero-variadic-macro-arguments;-Wno-c++98-compat;-Wno-c++98-compat-pedantic;-Wno-exit-time-destructors;-Wno-global-constructors;-Wno-missing-prototypes;-Wno-ctad-maybe-unsupported;-Wno-switch-default;-Wno-extra-semi-stmt;-Wno-switch-enum;-Wno-unsafe-buffer-usage")
       else()
         set(WARNINGS "${WARNINGS};-Wshadow=local")
 

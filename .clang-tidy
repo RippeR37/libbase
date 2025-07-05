@@ -96,6 +96,7 @@ Checks: ' -*,
   readability-string-compare,
   readability-uniqueptr-delete-release,
 
+  -modernize-avoid-c-arrays,
   -modernize-concat-nested-namespaces,
   -modernize-raw-string-literal,
   -modernize-use-default-member-init,

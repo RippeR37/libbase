@@ -73,8 +73,7 @@ struct NetThread::NetThreadImpl::DownloadInfo {
 // Logic executed on main thread
 //
 
-NetThread::NetThreadImpl::NetThreadImpl()
-    : not_quit_(), not_modified_(), multi_handle_(nullptr) {
+NetThread::NetThreadImpl::NetThreadImpl() : multi_handle_(nullptr) {
   curl_global_init(CURL_GLOBAL_DEFAULT);
 }
 
@@ -303,10 +302,11 @@ void NetThread::NetThreadImpl::EnqueueDownload_NetThread(
   auto [iter, inserted] =
       active_downloads_.emplace(easy_handle, std::move(download_info));
   DCHECK(inserted);
-  const auto& inserted_info = iter->second;
+  auto& inserted_info = iter->second;
 
   // WARNING: Lambda has to be converted to function pointer or it will crash!
-  curl_easy_setopt(easy_handle, CURLOPT_WRITEDATA, (void*)(&inserted_info));
+  curl_easy_setopt(easy_handle, CURLOPT_WRITEDATA,
+                   static_cast<void*>(&inserted_info));
   curl_easy_setopt(
       easy_handle, CURLOPT_WRITEFUNCTION,
       +[](char* data, size_t n, size_t l, void* userp) -> size_t {
