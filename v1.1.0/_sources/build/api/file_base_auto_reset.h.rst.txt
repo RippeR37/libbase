@@ -1,0 +1,47 @@
+
+.. _file_base_auto_reset.h:
+
+File auto_reset.h
+=================
+
+|exhale_lsh| :ref:`Parent directory <dir_base>` (``base``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/auto_reset.h``)
+----------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``utility``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classbase_1_1AutoReset`
+

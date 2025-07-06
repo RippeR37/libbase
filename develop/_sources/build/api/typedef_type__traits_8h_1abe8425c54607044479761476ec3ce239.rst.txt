@@ -1,0 +1,14 @@
+.. _exhale_typedef_type__traits_8h_1abe8425c54607044479761476ec3ce239:
+
+Typedef base::traits::RemoveCVRefT
+==================================
+
+- Defined in :ref:`file_base_type_traits.h`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: base::traits::RemoveCVRefT
+   :project: libbase

@@ -1,0 +1,27 @@
+.. _exhale_class_classbase_1_1SingleThreadTaskRunnerImpl:
+
+Class SingleThreadTaskRunnerImpl
+================================
+
+- Defined in :ref:`file_base_threading_task_runner_impl.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Types
+**********
+
+- ``public base::SingleThreadTaskRunner`` (:ref:`exhale_class_classbase_1_1SingleThreadTaskRunner`)
+- ``public std::enable_shared_from_this< SingleThreadTaskRunnerImpl >``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::SingleThreadTaskRunnerImpl
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

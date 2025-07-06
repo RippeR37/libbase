@@ -1,0 +1,57 @@
+
+.. _file_base_barrier_callback.h:
+
+File barrier_callback.h
+=======================
+
+|exhale_lsh| :ref:`Parent directory <dir_base>` (``base``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/barrier_callback.h``)
+----------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``base/bind.h`` (:ref:`file_base_bind.h`)
+
+- ``base/callback.h`` (:ref:`file_base_callback.h`)
+
+- ``base/type_traits.h`` (:ref:`file_base_type_traits.h`)
+
+- ``mutex``
+
+- ``utility``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_barrier__callback_8h_1a2cb9f7f382fdcbf25d2f60b942660879`
+
+- :ref:`exhale_function_barrier__callback_8h_1a514a483cf5a92ec926334a10a4e1a233`
+

@@ -1,0 +1,14 @@
+.. _exhale_function_bind_8h_1a027b226247fe184c655649dc5767cfe9:
+
+Template Function base::IgnoreResult
+====================================
+
+- Defined in :ref:`file_base_bind.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: base::IgnoreResult(Functor)
+   :project: libbase

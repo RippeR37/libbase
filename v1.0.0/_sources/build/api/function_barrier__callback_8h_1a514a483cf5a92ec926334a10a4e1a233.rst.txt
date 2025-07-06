@@ -1,0 +1,14 @@
+.. _exhale_function_barrier__callback_8h_1a514a483cf5a92ec926334a10a4e1a233:
+
+Template Function base::BarrierCallback(size_t, OnceCallback<void(CallbackArgumentsType)>)
+==========================================================================================
+
+- Defined in :ref:`file_base_barrier_callback.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: base::BarrierCallback(size_t, OnceCallback<void(CallbackArgumentsType)>)
+   :project: libbase

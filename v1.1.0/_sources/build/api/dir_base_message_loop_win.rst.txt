@@ -1,0 +1,21 @@
+.. _dir_base_message_loop_win:
+
+
+Directory win
+=============
+
+
+|exhale_lsh| :ref:`Parent directory <dir_base_message_loop>` (``base/message_loop``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``base/message_loop/win``
+
+
+Files
+-----
+
+- :ref:`file_base_message_loop_win_win_message_loop_attachment.h`
+
+

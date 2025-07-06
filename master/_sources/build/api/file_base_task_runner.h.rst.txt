@@ -1,0 +1,65 @@
+
+.. _file_base_task_runner.h:
+
+File task_runner.h
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_base>` (``base``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/task_runner.h``)
+-----------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``base/callback.h`` (:ref:`file_base_callback.h`)
+
+- ``base/source_location.h`` (:ref:`file_base_source_location.h`)
+
+- ``base/task_runner_internals.h`` (:ref:`file_base_task_runner_internals.h`)
+
+- ``base/time/time_delta.h`` (:ref:`file_base_time_time_delta.h`)
+
+- ``optional``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_base_bind_post_task.h`
+
+- :ref:`file_base_sequenced_task_runner.h`
+
+- :ref:`file_base_threading_task_runner_impl.h`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classbase_1_1TaskRunner`
+

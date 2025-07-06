@@ -1,0 +1,173 @@
+
+.. _namespace_base:
+
+Namespace base
+==============
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base__traits`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structbase_1_1DelayedTaskManager_1_1DelayedTask`
+
+- :ref:`exhale_struct_structbase_1_1InitOptions`
+
+- :ref:`exhale_struct_structbase_1_1MessagePump_1_1PendingTask`
+
+- :ref:`exhale_class_classbase_1_1AutoReset`
+
+- :ref:`exhale_class_classbase_1_1AutoSignaller`
+
+- :ref:`exhale_class_classbase_1_1DelayedTaskManager`
+
+- :ref:`exhale_class_classbase_1_1DelayedTaskManagerSharedInstance`
+
+- :ref:`exhale_class_classbase_1_1DoNothing`
+
+- :ref:`exhale_class_classbase_1_1ElapsedTimer`
+
+- :ref:`exhale_class_classbase_1_1MessageLoop`
+
+- :ref:`exhale_class_classbase_1_1MessageLoopImpl`
+
+- :ref:`exhale_class_classbase_1_1MessagePump`
+
+- :ref:`exhale_class_classbase_1_1MessagePumpImpl`
+
+- :ref:`exhale_class_classbase_1_1OnceCallback`
+
+- :ref:`exhale_class_classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4`
+
+- :ref:`exhale_class_classbase_1_1RepeatingCallback`
+
+- :ref:`exhale_class_classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4`
+
+- :ref:`exhale_class_classbase_1_1RunLoop`
+
+- :ref:`exhale_class_classbase_1_1ScopedClosureRunner`
+
+- :ref:`exhale_class_classbase_1_1SequenceChecker`
+
+- :ref:`exhale_class_classbase_1_1SequencedTaskRunner`
+
+- :ref:`exhale_class_classbase_1_1SequencedTaskRunnerHandle`
+
+- :ref:`exhale_class_classbase_1_1SequencedTaskRunnerImpl`
+
+- :ref:`exhale_class_classbase_1_1SequenceId`
+
+- :ref:`exhale_class_classbase_1_1SingleThreadTaskRunner`
+
+- :ref:`exhale_class_classbase_1_1SingleThreadTaskRunnerImpl`
+
+- :ref:`exhale_class_classbase_1_1SourceLocation`
+
+- :ref:`exhale_class_classbase_1_1TaskRunner`
+
+- :ref:`exhale_class_classbase_1_1TaskRunnerImpl`
+
+- :ref:`exhale_class_classbase_1_1Thread`
+
+- :ref:`exhale_class_classbase_1_1ThreadPool`
+
+- :ref:`exhale_class_classbase_1_1Time`
+
+- :ref:`exhale_class_classbase_1_1TimeDelta`
+
+- :ref:`exhale_class_classbase_1_1TimeTicks`
+
+- :ref:`exhale_class_classbase_1_1WaitableEvent`
+
+- :ref:`exhale_class_classbase_1_1WeakPtr`
+
+- :ref:`exhale_class_classbase_1_1WeakPtrFactory`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_barrier__callback_8h_1a514a483cf5a92ec926334a10a4e1a233`
+
+- :ref:`exhale_function_barrier__callback_8h_1a2cb9f7f382fdcbf25d2f60b942660879`
+
+- :ref:`exhale_function_barrier__closure_8h_1ac63e035ad926f27f95b2275245357c0e`
+
+- :ref:`exhale_function_bind_8h_1a93f52b871dd8441675fd964165924e8f`
+
+- :ref:`exhale_function_bind__post__task_8h_1a04bd769566ae6d4532f950e4626197ba`
+
+- :ref:`exhale_function_bind__post__task_8h_1a20e62f693034981ddd7a8178d180c0cb`
+
+- :ref:`exhale_function_bind_8h_1af69e87ed12e057256882baa1052326e7`
+
+- :ref:`exhale_function_bind__post__task_8h_1ac9a1db204b1778768527712f189c836d`
+
+- :ref:`exhale_function_bind__post__task_8h_1af680c7aa696c150746f3df19f4af6ace`
+
+- :ref:`exhale_function_time__delta_8h_1a9014824d944120c7546e22c2e9af63ea`
+
+- :ref:`exhale_function_init_8h_1a73aeac72e46f9d795d43b5ed1f74a292`
+
+- :ref:`exhale_function_time__delta_8h_1afd9a85b6ee9d335db49969c604b7ca7f`
+
+- :ref:`exhale_function_bind_8h_1a027b226247fe184c655649dc5767cfe9`
+
+- :ref:`exhale_function_init_8h_1a3bbef369d24aa1cc8eedb3b6b33a2d29`
+
+- :ref:`exhale_function_init_8h_1afecfc13c50e2984c5dc873fba47c8841`
+
+- :ref:`exhale_function_time__delta_8h_1a11e670d8718883d973e2fb31d25739ea`
+
+- :ref:`exhale_function_time__delta_8h_1adc43a089f5d5ba5fcb30fc98cb6a231c`
+
+- :ref:`exhale_function_time__delta_8h_1a1456698c7bcbf5249cf25bb72952fe02`
+
+- :ref:`exhale_function_time__delta_8h_1a1992a1bf37f7c54a97c77d82d3a8687e`
+
+- :ref:`exhale_function_weak__ptr_8h_1a7fabe800bcebfdb72d533eebd41a466d`
+
+- :ref:`exhale_function_weak__ptr_8h_1a01deba814835fc3363db9f15290d8e77`
+
+- :ref:`exhale_function_weak__ptr_8h_1a49d18eb459faf71b5a8700424c938a50`
+
+- :ref:`exhale_function_weak__ptr_8h_1a3a91cebf3759df9d2d0ea7e75e48d9cd`
+
+- :ref:`exhale_function_bind_8h_1a757b196e60d6f4d93f8ec22d554fbf9a`
+
+- :ref:`exhale_function_bind_8h_1a5452c26d25fe20be80ec370581653525`
+
+- :ref:`exhale_function_bind_8h_1acfa44e3724b6e74d1bfbccba23bbf2c9`
+
+- :ref:`exhale_function_bind_8h_1ae9bbece310034980402ba6320c1e1801`
+
+- :ref:`exhale_function_time__delta_8h_1a0c5abc2df90df6fcd0bf3c856e7c150a`
+
+- :ref:`exhale_function_callback__helpers_8h_1a05fed922487db2be71e14ef93d36ba34`
+
+- :ref:`exhale_function_bind_8h_1ad5d66862bbd0dbeebce8e46adda08f8e`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_callback_8h_1a59567d24a110228ba40af5b34848458f`
+
+- :ref:`exhale_typedef_callback_8h_1ac4a76f1827e048560c85b9f94dd96ed4`

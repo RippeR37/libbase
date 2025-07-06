@@ -1,0 +1,14 @@
+.. _exhale_define_trace__counter_8h_1a7dec43654f584ea55475e2f11568ac0d:
+
+Define TRACE_COUNTER
+====================
+
+- Defined in :ref:`file_base_trace_event_trace_counter.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: TRACE_COUNTER
+   :project: libbase

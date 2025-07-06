@@ -1,0 +1,14 @@
+.. _exhale_function_bind_8h_1ad5d66862bbd0dbeebce8e46adda08f8e:
+
+Template Function base::Unretained
+==================================
+
+- Defined in :ref:`file_base_bind.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: base::Unretained(InstanceType *)
+   :project: libbase

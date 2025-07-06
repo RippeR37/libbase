@@ -1,0 +1,17 @@
+.. _exhale_struct_structbase_1_1traits_1_1IsCapturelessLambda_3_01Lambda_00_01std_1_1enable__if__t_3_01traits_1_1If8dd78fe42ca6c93819d1e3d1f57c337:
+
+Template Struct IsCapturelessLambda< Lambda, std::enable_if_t< traits::IsCapturelessLambdaSfinaeV< Lambda > > >
+===============================================================================================================
+
+- Defined in :ref:`file_base_type_traits.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: base::traits::IsCapturelessLambda< Lambda, std::enable_if_t< traits::IsCapturelessLambdaSfinaeV< Lambda > > >
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

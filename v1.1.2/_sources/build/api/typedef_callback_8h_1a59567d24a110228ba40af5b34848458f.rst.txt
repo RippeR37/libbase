@@ -1,0 +1,14 @@
+.. _exhale_typedef_callback_8h_1a59567d24a110228ba40af5b34848458f:
+
+Typedef base::OnceClosure
+=========================
+
+- Defined in :ref:`file_base_callback.h`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: base::OnceClosure
+   :project: libbase

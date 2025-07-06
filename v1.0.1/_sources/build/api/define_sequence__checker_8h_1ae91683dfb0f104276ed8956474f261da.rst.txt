@@ -1,0 +1,14 @@
+.. _exhale_define_sequence__checker_8h_1ae91683dfb0f104276ed8956474f261da:
+
+Define DETACH_FROM_SEQUENCE
+===========================
+
+- Defined in :ref:`file_base_sequence_checker.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: DETACH_FROM_SEQUENCE
+   :project: libbase

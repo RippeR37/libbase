@@ -1,0 +1,32 @@
+.. _dir_base_net:
+
+
+Directory net
+=============
+
+
+|exhale_lsh| :ref:`Parent directory <dir_base>` (``base``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``base/net``
+
+Subdirectories
+--------------
+
+- :ref:`dir_base_net_impl`
+
+
+Files
+-----
+
+- :ref:`file_base_net_init.h`
+- :ref:`file_base_net_request_cancellation_token.h`
+- :ref:`file_base_net_resource_request.h`
+- :ref:`file_base_net_resource_response.h`
+- :ref:`file_base_net_result.h`
+- :ref:`file_base_net_simple_url_loader.h`
+- :ref:`file_base_net_url_request.h`
+
+

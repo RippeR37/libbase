@@ -1,0 +1,14 @@
+.. _exhale_define_trace__complete_8h_1a06e651758207172afcc30d9b115d01c1:
+
+Define TRACE_EVENT_COMPLETE
+===========================
+
+- Defined in :ref:`file_base_trace_event_trace_complete.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: TRACE_EVENT_COMPLETE
+   :project: libbase

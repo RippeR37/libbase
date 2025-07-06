@@ -1,0 +1,14 @@
+.. _exhale_typedef_callback_8h_1ac4a76f1827e048560c85b9f94dd96ed4:
+
+Typedef base::RepeatingClosure
+==============================
+
+- Defined in :ref:`file_base_callback.h`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: base::RepeatingClosure
+   :project: libbase

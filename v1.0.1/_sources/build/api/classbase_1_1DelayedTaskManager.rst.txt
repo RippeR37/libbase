@@ -1,0 +1,27 @@
+.. _exhale_class_classbase_1_1DelayedTaskManager:
+
+Class DelayedTaskManager
+========================
+
+- Defined in :ref:`file_base_threading_delayed_task_manager.h`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+- :ref:`exhale_struct_structbase_1_1DelayedTaskManager_1_1DelayedTask`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::DelayedTaskManager
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

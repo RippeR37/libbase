@@ -1,0 +1,49 @@
+
+.. _file_base_synchronization_waitable_event.h:
+
+File waitable_event.h
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_base_synchronization>` (``base/synchronization``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/synchronization/waitable_event.h``)
+------------------------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``condition_variable``
+
+- ``mutex``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classbase_1_1WaitableEvent`
+

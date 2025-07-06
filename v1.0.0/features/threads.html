@@ -1,0 +1,910 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Threads and sequences &mdash; libbase  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3826cd6f" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Weak pointers" href="weak_ptrs.html" />
+    <link rel="prev" title="Callbacks" href="callbacks.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            libbase
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#about-libbase">About <code class="docutils literal notranslate"><span class="pre">libbase</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#goals">Goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#non-goals">Non-goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#differences-from-base">Differences from <code class="docutils literal notranslate"><span class="pre">//base</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/prerequisites.html">Prerequisites</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/prerequisites.html#hard-requirements">Hard requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/prerequisites.html#internal-dependencies">Internal dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/prerequisites.html#optional-dependencies">Optional dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/building.html">Building <code class="docutils literal notranslate"><span class="pre">libbase</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#obtaining-the-source-code">Obtaining the source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#building-with-cmake">Building with CMake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#running-the-tests">Running the tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#configuration">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/configuration.html">Configuration options</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#cmake-build-options">CMake build options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#library-code-options">Library code options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/using.html">Using in your project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/using.html#recommended-way-cmake">Recommended way (CMake)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/using.html#other-build-systems">Other build systems</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Features</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="callbacks.html">Callbacks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#function-objects">Function objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#running-callbacks">Running callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#binding-callbacks">Binding callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#binding-adapters">Binding adapters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="callbacks.html#member-functions">Member functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="callbacks.html#ignore-result">Ignore result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="callbacks.html#binding-arguments-into-the-callback">Binding arguments into the callback</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#chaining-callbacks">Chaining callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#chaining-callbacks-across-different-task-runners">Chaining callbacks across different task runners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#splitting-a-oncecallback">Splitting a OnceCallback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#barriercallback-and-barrierclosure">BarrierCallback and BarrierClosure</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Threads and sequences</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#concepts">Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-types">Task types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sequences-vs-threads">Sequences vs Threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#base-taskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::TaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#base-sequencedtaskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#base-singlethreadtaskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SingleThreadTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#base-thread"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::Thread</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#base-threadpool"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::ThreadPool</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#obtaining-current-base-sequencedtaskrunner">Obtaining current <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ensuring-sequence-affinity">Ensuring sequence affinity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#canceling-posted-task">Canceling posted task</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#blocking-post-tasks">Blocking post-tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="weak_ptrs.html">Weak pointers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#glog-s-user-guide">GLOG’s user guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Tracing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tracing.html#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracing.html#tracing-apis">Tracing APIs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_ASYNC_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_ASYNC_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_ASYNC_STEP"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_STEP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_WITH_FLOW_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_WITH_FLOW_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_WITH_FLOW_STEP"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_STEP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_COUNTER"><code class="docutils literal notranslate"><span class="pre">TRACE_COUNTER</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_COUNTER_ID"><code class="docutils literal notranslate"><span class="pre">TRACE_COUNTER_ID</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_SIGNAL"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_SIGNAL_PROCESS"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL_PROCESS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_SIGNAL_THREAD"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL_THREAD</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_NAME_PROCESS"><code class="docutils literal notranslate"><span class="pre">TRACE_NAME_PROCESS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_NAME_THREAD"><code class="docutils literal notranslate"><span class="pre">TRACE_NAME_THREAD</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_FLUSH_TO_FILE"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_FLUSH_TO_FILE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_FLUSH_TO_STREAM"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_FLUSH_TO_STREAM</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tracing.html#example">Example</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/simple.html">Simple example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../build/api/index.html">C++ API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../build/api/index.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/api/index.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/api/index.html#full-api">Full API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#classes-and-structs">Classes and Structs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#variables">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#defines">Defines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">libbase</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Threads and sequences</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/RippeR37/libbase/blob/master/docs/features/threads.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="threads-and-sequences">
+<h1>Threads and sequences<a class="headerlink" href="#threads-and-sequences" title="Link to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>Chromium introduces a lot of new concepts to facilitate writing faster and safer
+multithreaded code. It is crucial to understand them to fully utilize provided
+tools. <code class="docutils literal notranslate"><span class="pre">libbase</span></code> tries to bring the most useful of them to you.</p>
+<section id="concepts">
+<h3>Concepts<a class="headerlink" href="#concepts" title="Link to this heading"></a></h3>
+<dl id="task">
+<dt><strong>Task</strong></dt><dd><p>A single unit of work. It can be represented with <a class="reference internal" href="../build/api/classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::OnceCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::OnceCallback&lt;...&gt;</span> </code></a> or <a class="reference internal" href="../build/api/classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::RepeatingCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::RepeatingCallback&lt;...&gt;</span> </code></a>
+callbacks, while most often it is <a class="reference internal" href="../build/api/typedef_callback_8h_1a59567d24a110228ba40af5b34848458f.html#_CPPv4N4base11OnceClosureE" title="base::OnceClosure"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::OnceClosure</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See <a class="reference internal" href="callbacks.html"><span class="doc">Callbacks</span></a> page for more details.</p>
+</div>
+</dd>
+</dl>
+<dl id="thread">
+<dt><strong>Thread</strong></dt><dd><p>Threads are provided by the operating system and are used to execute code in
+parallel. Special care has to be taken if multiple threads can access the
+same data simultaneously.</p>
+<p><a class="reference internal" href="../build/api/classbase_1_1Thread.html#_CPPv4N4base6ThreadE" title="base::Thread"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::Thread</span></code></a> is an utility class that wraps a physical thread and
+allows you to execute arbitrary <a class="reference internal" href="#task"><span class="std std-ref">tasks</span></a> queued on its <em>task
+queue</em>.</p>
+</dd>
+</dl>
+<dl id="thread-pool">
+<dt><strong>Thread pool</strong></dt><dd><p>A <em>thread pool</em> is a pool of threads that share a common <em>task queue</em>. Each
+task enqueued on it will be executed by one of the threads within the pool
+but it is not specified by which one.</p>
+<p><a class="reference internal" href="../build/api/classbase_1_1ThreadPool.html#_CPPv4N4base10ThreadPoolE" title="base::ThreadPool"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::ThreadPool</span></code></a> is an utility class that provides you the <em>thread
+pool</em> functionality while also exposing multiple different
+<a class="reference internal" href="#task-runner"><span class="std std-ref">task runners</span></a> to schedule work on them.</p>
+</dd>
+</dl>
+<dl class="simple" id="sequence">
+<dt><strong>Sequence</strong></dt><dd><p>A sequence (sometimes also called <em>virtual thread</em>) is a logical construct
+specifying the rules of execution of <a class="reference internal" href="#task"><span class="std std-ref">tasks</span></a>. All tasks that are
+to be executed on a given sequence will be executed in a specified order and
+none will overlap (only one task can be executed at the same time) on some
+physical thread(s), but there are no guarantees on which physical threads of
+execution the tasks will be executed and it may change between the tasks.</p>
+</dd>
+</dl>
+<dl id="task-runner">
+<dt><strong>Task runner</strong></dt><dd><p>Task runners are objects that can be used to enqueue <a class="reference internal" href="#task"><span class="std std-ref">tasks</span></a> on a
+specific <em>task queue</em> to which they are bound. Such task will later be
+executed on the corresponding physcial thread of execution. Queuing (or
+<em>scheduling</em>) of tasks through a task runner is often referred to as
+<strong>post-tasking</strong> them.</p>
+<p>There are 3 types of task runners available to use:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><a class="reference internal" href="../build/api/classbase_1_1TaskRunner.html#_CPPv4N4base10TaskRunnerE" title="base::TaskRunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::TaskRunner</span></code></a></dt><dd><p>Provides no guarantees about the order of execution of posted tasks.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="../build/api/classbase_1_1SequencedTaskRunner.html#_CPPv4N4base19SequencedTaskRunnerE" title="base::SequencedTaskRunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a></dt><dd><p>All posted tasks will be invoked in the same order in which they were
+posted and none will overlap. There are no guarantees specifying on which
+physical thread of execution given tasks will execute.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="../build/api/classbase_1_1SingleThreadTaskRunner.html#_CPPv4N4base22SingleThreadTaskRunnerE" title="base::SingleThreadTaskRunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SingleThreadTaskRunner</span></code></a></dt><dd><p>All posted tasks will be invoked in the same order they were posted on
+the same physical thread of execution.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="task-types">
+<h3>Task types<a class="headerlink" href="#task-types" title="Link to this heading"></a></h3>
+<p>When dealing with a group of tasks to be executed in parallel, we can categorize
+them in these groups:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>Thread unsafe</strong></dt><dd><p>These tasks do not use any synchronization primitives and may need external
+synchronization if executed in parallel on the same set of data.
+Alternatively, they can be executed on a single <a class="reference internal" href="#thread"><span class="std std-ref">thread</span></a> or
+a single <a class="reference internal" href="#sequence"><span class="std std-ref">sequence</span></a>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<ul class="simple" id="thread-affine">
+<li><dl class="simple">
+<dt><strong>Thread-affine</strong></dt><dd><p>These tasks require to be run only on a single (possibly on a specific
+instance of) <a class="reference internal" href="#thread"><span class="std std-ref">thread</span></a>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Thread-safe</strong></dt><dd><p>These tasks can be safely executed from any <a class="reference internal" href="#thread"><span class="std std-ref">threads</span></a> and/or
+<a class="reference internal" href="#sequence"><span class="std std-ref">sequences</span></a> in parallel.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
+<section id="sequences-vs-threads">
+<h2>Sequences vs Threads<a class="headerlink" href="#sequences-vs-threads" title="Link to this heading"></a></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>There are a number of benefits to executing your tasks in sequences over the
+physical threads and as such, <strong>it is highly preferred to write code that can
+be executed on any sequence instead of being</strong>
+<a class="reference internal" href="#thread-affine"><span class="std std-ref">thread-affine</span></a>.</p>
+<p>Some benefits to using sequences over physical threads:</p>
+<ul class="simple">
+<li><p>Code is easier to understand and reason about.</p></li>
+<li><p>Code is easier to reuse in different components.</p></li>
+<li><p>Code is easier to be parallelized.</p></li>
+<li><p>Fewer physical threads means smaller overhead.</p></li>
+<li><p>You can post tasks to any number of sequences that are tied to a number of
+threads that match your hardware. This allows you to fully utilize the CPU
+power without the overhead of context switches.</p></li>
+</ul>
+</div>
+</section>
+<section id="base-taskrunner">
+<h2><a class="reference internal" href="../build/api/classbase_1_1TaskRunner.html#_CPPv4N4base10TaskRunnerE" title="base::TaskRunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::TaskRunner</span></code></a><a class="headerlink" href="#base-taskrunner" title="Link to this heading"></a></h2>
+<p>The <a class="reference internal" href="../build/api/classbase_1_1TaskRunner.html#_CPPv4N4base10TaskRunnerE" title="base::TaskRunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::TaskRunner</span></code></a> interface has two main methods and a few helpers
+to make it easier to write your code. The main method is:</p>
+<ul>
+<li><p><a class="reference internal" href="../build/api/classbase_1_1TaskRunner.html#_CPPv4N4base10TaskRunner8PostTaskE14SourceLocation11OnceClosure" title="base::TaskRunner::PostTask"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::TaskRunner::PostTask()</span></code></a></p>
+<blockquote>
+<div><p>This function takes two arguments - a task to be executed and a location in
+source code (aquired via <a class="reference internal" href="../build/api/define_source__location_8h_1aa4b9d8432798552dc1aa25ab49a6c595.html#c.FROM_HERE" title="FROM_HERE"><code class="xref c c-macro docutils literal notranslate"><span class="pre">FROM_HERE</span></code></a> macro) from where the post-task
+operation is done. When called, the passed task will be queued on a task
+queue associated with that task runner.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Remember: there are no guarantees as to ordering of execution between two
+tasks posted to the same <a class="reference internal" href="../build/api/classbase_1_1TaskRunner.html#_CPPv4N4base10TaskRunnerE" title="base::TaskRunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::TaskRunner</span></code></a> or whether they will be
+executed on the same physical thread at all.</p>
+</div>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">ScheduleTwoTasks</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">base</span><span class="o">::</span><span class="n">TaskRunner</span><span class="o">&gt;</span><span class="w"> </span><span class="n">task_runner</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">DCHECK</span><span class="p">(</span><span class="n">task_runner</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;task_runner should be provided&quot;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">OnceClosure</span><span class="w"> </span><span class="n">task_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/* acquire task_1 */</span><span class="p">;</span>
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">OnceClosure</span><span class="w"> </span><span class="n">task_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/* acquire task_2 */</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">task_runner</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">(</span><span class="n">FROM_HERE</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">task_1</span><span class="p">));</span>
+<span class="w">  </span><span class="n">task_runner</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">(</span><span class="n">FROM_HERE</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">task_2</span><span class="p">));</span>
+
+<span class="w">  </span><span class="c1">// `task_1` and `task_2` will be executed in some order in the future</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div></blockquote>
+</li>
+<li><p><a class="reference internal" href="../build/api/classbase_1_1TaskRunner.html#_CPPv4N4base10TaskRunner15PostDelayedTaskE14SourceLocation11OnceClosure9TimeDelta" title="base::TaskRunner::PostDelayedTask"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::TaskRunner::PostDelayedTask()</span></code></a></p>
+<blockquote>
+<div><p>This function behaves similarly to the above one, but takes one more
+parameter (<a class="reference internal" href="../build/api/classbase_1_1TimeDelta.html#_CPPv4N4base9TimeDeltaE" title="base::TimeDelta"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::TimeDelta</span> <span class="pre">delay</span></code></a>) and ensures that
+the posted task will <strong>not</strong> be executed before <code class="docutils literal notranslate"><span class="pre">delay</span></code> time has passed.</p>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">ScheduleTwoDelayedTasks</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">base</span><span class="o">::</span><span class="n">TaskRunner</span><span class="o">&gt;</span><span class="w"> </span><span class="n">task_runner</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">DCHECK</span><span class="p">(</span><span class="n">task_runner</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;task_runner should be provided&quot;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">OnceClosure</span><span class="w"> </span><span class="n">task_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/* acquire task_1 */</span><span class="p">;</span>
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">OnceClosure</span><span class="w"> </span><span class="n">task_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/* acquire task_2 */</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">task_runner</span><span class="o">-&gt;</span><span class="n">PostDelayedTask</span><span class="p">(</span><span class="n">FROM_HERE</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">task_1</span><span class="p">),</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">Seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+<span class="w">  </span><span class="n">task_runner</span><span class="o">-&gt;</span><span class="n">PostDelayedTask</span><span class="p">(</span><span class="n">FROM_HERE</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">task_2</span><span class="p">),</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">Seconds</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+
+<span class="w">  </span><span class="c1">// `task_1` will be executed after at least one second has passed</span>
+<span class="w">  </span><span class="c1">// `task_2` will be executed after at least two seconds have passed</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>In the above example it is still <strong>not</strong> guaranteed that <code class="docutils literal notranslate"><span class="pre">task_1</span></code> will
+be executed before <code class="docutils literal notranslate"><span class="pre">task_2</span></code>!</p>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<p>There are also two additional helper functions defined in that class:</p>
+<ul>
+<li><dl>
+<dt><a class="reference internal" href="../build/api/classbase_1_1TaskRunner.html#_CPPv4N4base10TaskRunner16PostTaskAndReplyE14SourceLocation11OnceClosure11OnceClosure" title="base::TaskRunner::PostTaskAndReply"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::TaskRunner::PostTaskAndReply()</span></code></a></dt><dd><p>This helper can be used to post-task operation that - when finished - will
+automatically post-task a <em>reply</em> task on the original task runner from
+which the original call was made.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this case, the <code class="docutils literal notranslate"><span class="pre">reply</span></code> callback is guaranteed to be run after the
+<code class="docutils literal notranslate"><span class="pre">task</span></code> callback.</p>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>This method can be called <strong>only</strong> from a thread with a task queue
+(<a class="reference internal" href="../build/api/classbase_1_1Thread.html#_CPPv4N4base6ThreadE" title="base::Thread"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::Thread</span></code></a> or <a class="reference internal" href="../build/api/classbase_1_1ThreadPool.html#_CPPv4N4base10ThreadPoolE" title="base::ThreadPool"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::ThreadPool</span></code></a>)!</p>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="../build/api/classbase_1_1TaskRunner.html#_CPPv4N4base10TaskRunner16PostTaskAndReplyE14SourceLocation11OnceClosure11OnceClosure" title="base::TaskRunner::PostTaskAndReply"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::TaskRunner::PostTaskAndReply()</span></code></a></dt><dd><p>Similar to the above, but <code class="docutils literal notranslate"><span class="pre">task</span></code> callback should return a result that
+will be passed to the <code class="docutils literal notranslate"><span class="pre">reply</span></code> callback.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="base-sequencedtaskrunner">
+<h2><a class="reference internal" href="../build/api/classbase_1_1SequencedTaskRunner.html#_CPPv4N4base19SequencedTaskRunnerE" title="base::SequencedTaskRunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a><a class="headerlink" href="#base-sequencedtaskrunner" title="Link to this heading"></a></h2>
+<p>This interface inherits from <a class="reference internal" href="../build/api/classbase_1_1TaskRunner.html#_CPPv4N4base10TaskRunnerE" title="base::TaskRunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::TaskRunner</span></code></a> and adds an additional
+method called <a class="reference internal" href="../build/api/classbase_1_1SequencedTaskRunner.html#_CPPv4NK4base19SequencedTaskRunner26RunsTasksInCurrentSequenceEv" title="base::SequencedTaskRunner::RunsTasksInCurrentSequence"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::SequencedTaskRunner::RunsTasksInCurrentSequence()</span></code></a> that
+can be used to check if currently-executed task is executing within the same
+sequence as the one affiliated with that task runner.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>All tasks posted with task runners of this type will be executed in the same
+sequence in order in which they were posted.</p>
+</div>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">ScheduleTwoSequencedTasks</span><span class="p">(</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">base</span><span class="o">::</span><span class="n">SequencedTaskRunner</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sequenced_task_runner</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">DCHECK</span><span class="p">(</span><span class="n">task_runner</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;task_runner should be provided&quot;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">OnceClosure</span><span class="w"> </span><span class="n">task_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/* acquire task_1 */</span><span class="p">;</span>
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">OnceClosure</span><span class="w"> </span><span class="n">task_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/* acquire task_2 */</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">sequenced_task_runner</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">(</span><span class="n">FROM_HERE</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">task_1</span><span class="p">));</span>
+<span class="w">  </span><span class="n">sequenced_task_runner</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">(</span><span class="n">FROM_HERE</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">task_2</span><span class="p">));</span>
+
+<span class="w">  </span><span class="c1">// It is guaranteed that `task_1` will finish before `task_2` will be</span>
+<span class="w">  </span><span class="c1">// started and that `task_2` will *see* all effects of `task_1`&#39;s work.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="base-singlethreadtaskrunner">
+<h2><a class="reference internal" href="../build/api/classbase_1_1SingleThreadTaskRunner.html#_CPPv4N4base22SingleThreadTaskRunnerE" title="base::SingleThreadTaskRunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SingleThreadTaskRunner</span></code></a><a class="headerlink" href="#base-singlethreadtaskrunner" title="Link to this heading"></a></h2>
+<p>This interface inherits from <a class="reference internal" href="../build/api/classbase_1_1SequencedTaskRunner.html#_CPPv4N4base19SequencedTaskRunnerE" title="base::SequencedTaskRunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a> and adds an additional
+method called <a class="reference internal" href="../build/api/classbase_1_1SingleThreadTaskRunner.html#_CPPv4NK4base22SingleThreadTaskRunner22BelongsToCurrentThreadEv" title="base::SingleThreadTaskRunner::BelongsToCurrentThread"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::SingleThreadTaskRunner::BelongsToCurrentThread()</span></code></a>
+which is just an alias for
+<a class="reference internal" href="../build/api/classbase_1_1SequencedTaskRunner.html#_CPPv4NK4base19SequencedTaskRunner26RunsTasksInCurrentSequenceEv" title="base::SequencedTaskRunner::RunsTasksInCurrentSequence"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::SequencedTaskRunner::RunsTasksInCurrentSequence()</span></code></a>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>All tasks posted with task runners of this type will be executed on the same
+physical thread in order in which they were posted.</p>
+</div>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">ScheduleTwoSingleThreadedTasks</span><span class="p">(</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">base</span><span class="o">::</span><span class="n">SingleThreadTaskRunner</span><span class="o">&gt;</span><span class="w"> </span><span class="n">single_thread_task_runner</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">DCHECK</span><span class="p">(</span><span class="n">task_runner</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;task_runner should be provided&quot;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">OnceClosure</span><span class="w"> </span><span class="n">task_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/* acquire task_1 */</span><span class="p">;</span>
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">OnceClosure</span><span class="w"> </span><span class="n">task_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/* acquire task_2 */</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">single_thread_task_runner</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">(</span><span class="n">FROM_HERE</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">task_1</span><span class="p">));</span>
+<span class="w">  </span><span class="n">single_thread_task_runner</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">(</span><span class="n">FROM_HERE</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">task_2</span><span class="p">));</span>
+
+<span class="w">  </span><span class="c1">// It is guaranteed that both tasks will be executed on the same physical</span>
+<span class="w">  </span><span class="c1">// thread and that `task_1` will finish before `task_2` will be started.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="base-thread">
+<h2><a class="reference internal" href="../build/api/classbase_1_1Thread.html#_CPPv4N4base6ThreadE" title="base::Thread"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::Thread</span></code></a><a class="headerlink" href="#base-thread" title="Link to this heading"></a></h2>
+<p>This class can be used to create a new physical thread of execution. Once
+created, it needs to be started (with <a class="reference internal" href="../build/api/classbase_1_1Thread.html#_CPPv4N4base6Thread5StartEv" title="base::Thread::Start"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::Thread::Start()</span></code></a>) to start
+execution of tasks on its task queue. If not stopped before being destroyed, it
+will stop and join in its destructor.</p>
+<p>After the thread is started, you can obtain a
+<a class="reference internal" href="../build/api/classbase_1_1SingleThreadTaskRunner.html#_CPPv4N4base22SingleThreadTaskRunnerE" title="base::SingleThreadTaskRunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SingleThreadTaskRunner</span></code></a> by calling
+<a class="reference internal" href="../build/api/classbase_1_1Thread.html#_CPPv4N4base6Thread10TaskRunnerEv" title="base::Thread::TaskRunner"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::Thread::TaskRunner()</span></code></a> member function.</p>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example - <a class="reference internal" href="../build/api/classbase_1_1Thread.html#_CPPv4N4base6ThreadE" title="base::Thread"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::Thread</span></code></a></p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Program</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/bind.h&quot;</span>
+<span class="linenos"> 4</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/callback.h&quot;</span>
+<span class="linenos"> 5</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/single_thread_task_runner.h&quot;</span>
+<span class="linenos"> 6</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/threading/thread.h&quot;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="kt">void</span><span class="w"> </span><span class="nf">SayHello</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">text</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">10</span><span class="p">}</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">13</span><span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">Thread</span><span class="w"> </span><span class="kr">thread</span><span class="p">;</span>
+<span class="linenos">14</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">task_runner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">thread</span><span class="p">.</span><span class="n">TaskRunner</span><span class="p">();</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="w">  </span><span class="n">task_runner</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">(</span><span class="n">FROM_HERE</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">BindOnce</span><span class="p">(</span><span class="o">&amp;</span><span class="n">SayHello</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;World&quot;</span><span class="p">));</span>
+<span class="linenos">17</span><span class="w">  </span><span class="n">task_runner</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">(</span><span class="n">FROM_HERE</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">BindOnce</span><span class="p">(</span><span class="o">&amp;</span><span class="n">SayHello</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Everyone&quot;</span><span class="p">));</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="w">  </span><span class="kr">thread</span><span class="p">.</span><span class="n">Stop</span><span class="p">();</span>
+<span class="linenos">20</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">21</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Program output</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Hello World!</span>
+<span class="go">Hello Everyone!</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="base-threadpool">
+<h2><a class="reference internal" href="../build/api/classbase_1_1ThreadPool.html#_CPPv4N4base10ThreadPoolE" title="base::ThreadPool"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::ThreadPool</span></code></a><a class="headerlink" href="#base-threadpool" title="Link to this heading"></a></h2>
+<p>This class can be used to create a pool of physical threads of execution. To
+create it, you need to specify the initial number of physical threads that will
+be created in that pool. Once created, it needs to be started (with
+<a class="reference internal" href="../build/api/classbase_1_1ThreadPool.html#_CPPv4N4base10ThreadPool5StartEv" title="base::ThreadPool::Start"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::ThreadPool::Start()</span></code></a>) to start execution of tasks on its task queue.
+If not stopped before being destroyed, it will stop and join in its destructor.</p>
+<p>After the thread is started, you can obtain or create different task runners to
+this thread pool with these methods:</p>
+<ul>
+<li><dl class="simple">
+<dt><a class="reference internal" href="../build/api/classbase_1_1ThreadPool.html#_CPPv4NK4base10ThreadPool13GetTaskRunnerEv" title="base::ThreadPool::GetTaskRunner"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::ThreadPool::GetTaskRunner()</span></code></a></dt><dd><p>This member function returns a <a class="reference internal" href="../build/api/classbase_1_1TaskRunner.html#_CPPv4N4base10TaskRunnerE" title="base::TaskRunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::TaskRunner</span></code></a> that schedules
+tasks for execution on the thread pool without any guarantees about ordering
+with different tasks scheduled to it and without specifying on which thread
+within the pool the task will be executed.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><a class="reference internal" href="../build/api/classbase_1_1ThreadPool.html#_CPPv4N4base10ThreadPool25CreateSequencedTaskRunnerEv" title="base::ThreadPool::CreateSequencedTaskRunner"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::ThreadPool::CreateSequencedTaskRunner()</span></code></a></dt><dd><p>This member function creates a new <a class="reference internal" href="../build/api/classbase_1_1SequencedTaskRunner.html#_CPPv4N4base19SequencedTaskRunnerE" title="base::SequencedTaskRunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a> that
+schedules tasks for execution on the thread pool within a single
+<a class="reference internal" href="#sequence"><span class="std std-ref">sequence</span></a>.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Calling this method multiple times will return you task runners belonging
+to new and unique sequences! If you want to ensure that tasks end up being
+posted to the same sequence, you need to hold on to the already obtained
+task runners and reuse them.</p>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><a class="reference internal" href="../build/api/classbase_1_1ThreadPool.html#_CPPv4N4base10ThreadPool28CreateSingleThreadTaskRunnerEv" title="base::ThreadPool::CreateSingleThreadTaskRunner"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::ThreadPool::CreateSingleThreadTaskRunner()</span></code></a></dt><dd><p>This member function creates a new <a class="reference internal" href="../build/api/classbase_1_1SingleThreadTaskRunner.html#_CPPv4N4base22SingleThreadTaskRunnerE" title="base::SingleThreadTaskRunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SingleThreadTaskRunner</span></code></a> that
+schedules tasks for execution on a single (but unspecified which) physical
+thread within the thread.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Calling this method multiple times will return you task runners thay may
+be bound to a different physical threads! If you want to ensure that tasks
+end up being posted to the same physical thread, you need to hold on to
+the already obtained task runners and reuse them.</p>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example - <a class="reference internal" href="../build/api/classbase_1_1ThreadPool.html#_CPPv4N4base10ThreadPoolE" title="base::ThreadPool"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::ThreadPool</span></code></a></p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Program</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="linenos"> 2</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mutex&gt;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/bind.h&quot;</span>
+<span class="linenos"> 5</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/callback.h&quot;</span>
+<span class="linenos"> 6</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/single_thread_task_runner.h&quot;</span>
+<span class="linenos"> 7</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/threading/thread.h&quot;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="w"> </span><span class="n">g_cout_mutex</span><span class="p">;</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="kt">void</span><span class="w"> </span><span class="nf">Print</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">text</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">12</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span><span class="w"> </span><span class="n">guard</span><span class="p">(</span><span class="n">g_cout_mutex</span><span class="p">);</span>
+<span class="linenos">13</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">14</span><span class="p">}</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">17</span><span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">ThreadPool</span><span class="w"> </span><span class="n">thread_pool</span><span class="p">{</span><span class="mi">4</span><span class="p">};</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">task_runner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">thread_pool</span><span class="p">.</span><span class="n">GetTaskRunner</span><span class="p">();</span>
+<span class="linenos">20</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">seq_task_runner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">thread_pool</span><span class="p">.</span><span class="n">CreateSequencedTaskRunner</span><span class="p">();</span>
+<span class="linenos">21</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">st_task_runner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">thread_pool</span><span class="p">.</span><span class="n">CreateSingleThreadTaskRunner</span><span class="p">();</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="w">  </span><span class="n">task_runner</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">(</span><span class="n">FROM_HERE</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">BindOnce</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Print</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Generic1&quot;</span><span class="p">));</span>
+<span class="linenos">24</span><span class="w">  </span><span class="n">task_runner</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">(</span><span class="n">FROM_HERE</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">BindOnce</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Print</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Generic2&quot;</span><span class="p">));</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span><span class="w">  </span><span class="n">seq_task_runner</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">(</span><span class="n">FROM_HERE</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">BindOnce</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Print</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Seq1&quot;</span><span class="p">));</span>
+<span class="linenos">27</span><span class="w">  </span><span class="n">seq_task_runner</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">(</span><span class="n">FROM_HERE</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">BindOnce</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Print</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Seq2&quot;</span><span class="p">));</span>
+<span class="linenos">28</span><span class="w">  </span><span class="n">seq_task_runner</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">(</span><span class="n">FROM_HERE</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">BindOnce</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Print</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Seq3&quot;</span><span class="p">));</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span><span class="w">  </span><span class="n">st_task_runner</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">(</span><span class="n">FROM_HERE</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">BindOnce</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Print</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;St1&quot;</span><span class="p">));</span>
+<span class="linenos">31</span><span class="w">  </span><span class="n">st_task_runner</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">(</span><span class="n">FROM_HERE</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">BindOnce</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Print</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;St2&quot;</span><span class="p">));</span>
+<span class="linenos">32</span><span class="w">  </span><span class="n">st_task_runner</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">(</span><span class="n">FROM_HERE</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">BindOnce</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Print</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;St3&quot;</span><span class="p">));</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span><span class="w">  </span><span class="n">thread_pool</span><span class="p">.</span><span class="n">Stop</span><span class="p">();</span>
+<span class="linenos">35</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">36</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">Possible program output</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">St1</span>
+<span class="go">St2</span>
+<span class="go">Generic2</span>
+<span class="go">Seq1</span>
+<span class="go">St3</span>
+<span class="go">Generic1</span>
+<span class="go">Seq2</span>
+<span class="go">Seq3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>The only guarantees about the output of the above program are that:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Seq1</span></code> will be printed before <code class="docutils literal notranslate"><span class="pre">Seq2</span></code> and both will be printed before
+<code class="docutils literal notranslate"><span class="pre">Seq3</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">St1</span></code> will be printed before <code class="docutils literal notranslate"><span class="pre">St2</span></code>, both will be printed before
+<code class="docutils literal notranslate"><span class="pre">Seq3</span></code>, and all of these three outputs will be printed from the same
+physical thread.</p></li>
+</ul>
+</div>
+</section>
+<section id="obtaining-current-base-sequencedtaskrunner">
+<h2>Obtaining current <a class="reference internal" href="../build/api/classbase_1_1SequencedTaskRunner.html#_CPPv4N4base19SequencedTaskRunnerE" title="base::SequencedTaskRunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a><a class="headerlink" href="#obtaining-current-base-sequencedtaskrunner" title="Link to this heading"></a></h2>
+<p>You can obtain the <a class="reference internal" href="../build/api/classbase_1_1SequencedTaskRunner.html#_CPPv4N4base19SequencedTaskRunnerE" title="base::SequencedTaskRunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a> on which the currently
+executed task is executed with <a class="reference internal" href="../build/api/classbase_1_1SequencedTaskRunnerHandle.html#_CPPv4N4base25SequencedTaskRunnerHandle3GetEv" title="base::SequencedTaskRunnerHandle::Get"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::SequencedTaskRunnerHandle::Get()</span></code></a>
+static function.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This method may only be called from tasks executed within a sequence. If
+you’re not sure where the task is executed, you need to first call a
+<a class="reference internal" href="../build/api/classbase_1_1SequencedTaskRunnerHandle.html#_CPPv4N4base25SequencedTaskRunnerHandle5IsSetEv" title="base::SequencedTaskRunnerHandle::IsSet"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::SequencedTaskRunnerHandle::IsSet()</span></code></a> static function to check if
+current task is executed on a sequence.</p>
+</div>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example - <a class="reference internal" href="../build/api/classbase_1_1SequencedTaskRunnerHandle.html#_CPPv4N4base25SequencedTaskRunnerHandleE" title="base::SequencedTaskRunnerHandle"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunnerHandle</span></code></a></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/bind.h&quot;</span>
+<span class="linenos"> 2</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/callback.h&quot;</span>
+<span class="linenos"> 3</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/sequenced_task_runner.h&quot;</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="kt">void</span><span class="w"> </span><span class="nf">VerifyRunOnSpecificTaskRunner</span><span class="p">(</span>
+<span class="linenos"> 6</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">base</span><span class="o">::</span><span class="n">SequencedTaskRunner</span><span class="o">&gt;</span><span class="w"> </span><span class="n">task_runner</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="n">CHECK</span><span class="p">(</span><span class="n">task_runner</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">SequencedTaskRunnerHandle</span><span class="o">::</span><span class="n">Get</span><span class="p">());</span>
+<span class="linenos"> 8</span><span class="p">}</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="kt">void</span><span class="w"> </span><span class="nf">Test</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">base</span><span class="o">::</span><span class="n">SequencedTaskRunner</span><span class="o">&gt;</span><span class="w"> </span><span class="n">task_runner</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">11</span><span class="w">  </span><span class="n">task_runner</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">(</span>
+<span class="linenos">12</span><span class="w">      </span><span class="n">FROM_HERE</span><span class="p">,</span>
+<span class="linenos">13</span><span class="w">      </span><span class="n">base</span><span class="o">::</span><span class="n">BindOnce</span><span class="p">(</span><span class="o">&amp;</span><span class="n">VerifyRunOnSpecificTaskRunner</span><span class="p">,</span><span class="w"> </span><span class="n">task_runner</span><span class="p">));</span>
+<span class="linenos">14</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="ensuring-sequence-affinity">
+<h2>Ensuring sequence affinity<a class="headerlink" href="#ensuring-sequence-affinity" title="Link to this heading"></a></h2>
+<p>When writing a code that must be executed within the same sequence, it is a good
+practice to add (possibly debug-only) checks that will verify if - for example -
+all calls to such class are made from the correct sequence.</p>
+<p>You can use <a class="reference internal" href="../build/api/classbase_1_1SequenceChecker.html#_CPPv4N4base15SequenceCheckerE" title="base::SequenceChecker"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequenceChecker</span></code></a> helper class to do this. Objects of
+this class, when constructed, bind to the sequence the current task runs in and
+later on you can verify that the object is used on correct (the same) sequence
+by calling <a class="reference internal" href="../build/api/classbase_1_1SequenceChecker.html#_CPPv4NK4base15SequenceChecker21CalledOnValidSequenceEv" title="base::SequenceChecker::CalledOnValidSequence"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::SequenceChecker::CalledOnValidSequence()</span></code></a> member function.
+Invalid usage of code protected with that check will trigger a <code class="docutils literal notranslate"><span class="pre">CHECK()</span></code> macro
+that will crash your application.</p>
+<p>You can also detach a bound <a class="reference internal" href="../build/api/classbase_1_1SequenceChecker.html#_CPPv4N4base15SequenceCheckerE" title="base::SequenceChecker"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequenceChecker</span></code></a> from current sequence
+and allow it to bind to the one on which it will be used the next time. This
+<strong>must</strong> be done from the previously bound sequence and is often useful when
+creating objects on some sequence and them passing them to another sequence,
+possibly for the rest of their lifetime. This way allows you to acquire - for
+example - a weak pointer to that object, so that you can safely post tasks to it
+even if you’re not sure about whether it is still alive.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>There are also helper macros defined for you that can be used to create a
+<a class="reference internal" href="../build/api/classbase_1_1SequenceChecker.html#_CPPv4N4base15SequenceCheckerE" title="base::SequenceChecker"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequenceChecker</span></code></a> and perform checks <strong>but only within a debug
+builds</strong>:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><a class="reference internal" href="../build/api/define_sequence__checker_8h_1a6e1de0e8bf469bc7898cbaf88725254f.html#c.SEQUENCE_CHECKER" title="SEQUENCE_CHECKER"><code class="xref c c-macro docutils literal notranslate"><span class="pre">SEQUENCE_CHECKER(name)</span></code></a></dt><dd><p>Creates a <a class="reference internal" href="../build/api/classbase_1_1SequenceChecker.html#_CPPv4N4base15SequenceCheckerE" title="base::SequenceChecker"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequenceChecker</span></code></a> object with given name. This is
+usually used to define a debug-only member variable.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="../build/api/define_sequence__checker_8h_1a4d9e87e3566670d3068ebfaef0970676.html#c.DCHECK_CALLED_ON_VALID_SEQUENCE" title="DCHECK_CALLED_ON_VALID_SEQUENCE"><code class="xref c c-macro docutils literal notranslate"><span class="pre">DCHECK_CALLED_ON_VALID_SEQUENCE(name)</span></code></a></dt><dd><p>Verifies that current call is done on a correct sequence through a given
+<a class="reference internal" href="../build/api/classbase_1_1SequenceChecker.html#_CPPv4N4base15SequenceCheckerE" title="base::SequenceChecker"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequenceChecker</span></code></a> instance.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="../build/api/define_sequence__checker_8h_1ae91683dfb0f104276ed8956474f261da.html#c.DETACH_FROM_SEQUENCE" title="DETACH_FROM_SEQUENCE"><code class="xref c c-macro docutils literal notranslate"><span class="pre">DETACH_FROM_SEQUENCE(name)</span></code></a></dt><dd><p>Detaches given <a class="reference internal" href="../build/api/classbase_1_1SequenceChecker.html#_CPPv4N4base15SequenceCheckerE" title="base::SequenceChecker"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequenceChecker</span></code></a> instance from currently
+bound sequence.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example - <a class="reference internal" href="../build/api/classbase_1_1SequenceChecker.html#_CPPv4N4base15SequenceCheckerE" title="base::SequenceChecker"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequenceChecker</span></code></a></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/sequence_checker.h&quot;</span>
+
+<span class="c1">// This class can be created on any sequenced and then all other usages</span>
+<span class="c1">// (including its destruction) must be done on the same (but possibly</span>
+<span class="c1">// a different one than the one on which the object was created) sequence.</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="n">Foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">DETACH_FROM_SEQUENCE</span><span class="p">(</span><span class="n">sequence_checker_</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="o">~</span><span class="n">Foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">DCHECK_CALLED_ON_VALID_SEQUENCE</span><span class="p">(</span><span class="n">sequence_checker_</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">Bar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">DCHECK_CALLED_ON_VALID_SEQUENCE</span><span class="p">(</span><span class="n">sequence_checker_</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w"> </span><span class="k">private</span><span class="o">:</span>
+<span class="w">  </span><span class="n">SEQUENCE_CHECKER</span><span class="p">(</span><span class="n">sequence_checker_</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>It is best to use provided macros to work with <a class="reference internal" href="../build/api/classbase_1_1SequenceChecker.html#_CPPv4N4base15SequenceCheckerE" title="base::SequenceChecker"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequenceChecker</span></code></a>
+to avoid overhead in release builds.</p>
+</div>
+</section>
+<section id="canceling-posted-task">
+<h2>Canceling posted task<a class="headerlink" href="#canceling-posted-task" title="Link to this heading"></a></h2>
+<p>By default, once a task is posted, you have no control whether it will be
+executed or not. To allow yourself to cancel already posted task (but only if it
+wasn’t executed yet) you can bind the callback to a <a class="reference internal" href="../build/api/classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtrE" title="base::WeakPtr"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtr</span></code></a> and -
+if needed - invalidate it which will stop it from being executed.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See more on <a class="reference internal" href="weak_ptrs.html"><span class="doc">Weak pointers</span></a> page.</p>
+</div>
+</section>
+<section id="blocking-post-tasks">
+<h2>Blocking post-tasks<a class="headerlink" href="#blocking-post-tasks" title="Link to this heading"></a></h2>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Using this mechanism is not recommended unless there is a good reason for it.
+Overusing it may complicate your code and severly affect performance of your
+application. In most cases a better way is to design components to work
+asynchronously whenever possible. Take special care to minimize usages of
+blocking post-tasks and ensure that they are used in a safe and correct way
+to avoid problems (e.g. deadlocks).</p>
+</div>
+<p>If you need to block execution of the current task or thread until some other
+task finishes on the other thread, you can use <a class="reference internal" href="../build/api/classbase_1_1WaitableEvent.html#_CPPv4N4base13WaitableEventE" title="base::WaitableEvent"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WaitableEvent</span></code></a>
+class.</p>
+<p>To create it you need to specify two parameters that decide how the object will
+behave:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><a class="reference internal" href="../build/api/classbase_1_1WaitableEvent.html#_CPPv4N4base13WaitableEvent11ResetPolicyE" title="base::WaitableEvent::ResetPolicy"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">base::WaitableEvent::ResetPolicy</span></code></a></dt><dd><p>This enum decides whether checking or waiting on a waitable event will
+reset its state back to not-signalled or if the state will be preserved
+until a call to <a class="reference internal" href="../build/api/classbase_1_1WaitableEvent.html#_CPPv4N4base13WaitableEvent5ResetEv" title="base::WaitableEvent::Reset"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::WaitableEvent::Reset()</span></code></a>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="../build/api/classbase_1_1WaitableEvent.html#_CPPv4N4base13WaitableEvent12InitialStateE" title="base::WaitableEvent::InitialState"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">base::WaitableEvent::InitialState</span></code></a></dt><dd><p>This enum decides whether newly created <a class="reference internal" href="../build/api/classbase_1_1WaitableEvent.html#_CPPv4N4base13WaitableEventE" title="base::WaitableEvent"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WaitableEvent</span></code></a> object
+is signaled from the start or not.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Once created, you can pass a reference or a pointer to it to some callback that
+will - eventually - signal it, and wait for it on your thread. This will stop
+processing current and any other tasks on this thread and sequence until the
+waitable event will be signalled from a different thread.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>To write safer code, you can also use <a class="reference internal" href="../build/api/classbase_1_1AutoSignaller.html#_CPPv4N4base13AutoSignallerE" title="base::AutoSignaller"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::AutoSignaller</span></code></a> that will
+automatically signal the waitable event on its destruction. This can help you
+ensure that the logic will be unblocked even if post-tasking fails or
+something unexpected happens.</p>
+</div>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example - <a class="reference internal" href="../build/api/classbase_1_1WaitableEvent.html#_CPPv4N4base13WaitableEventE" title="base::WaitableEvent"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WaitableEvent</span></code></a></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">DoSomethingOnOtherSequence</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">AutoSignaller</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">DoSomething</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">PostDoSomethingOnSequenceAndWait</span><span class="p">(</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">base</span><span class="o">::</span><span class="n">TaskRunner</span><span class="o">&gt;</span><span class="w"> </span><span class="n">task_runner</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">WaitableEvent</span><span class="w"> </span><span class="n">event</span><span class="p">{};</span>
+
+<span class="w">  </span><span class="n">task_runner</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">(</span>
+<span class="w">      </span><span class="n">FROM_HERE</span><span class="p">,</span>
+<span class="w">      </span><span class="n">base</span><span class="o">::</span><span class="n">BindOnce</span><span class="p">(</span><span class="o">&amp;</span><span class="n">DoSomethingOnOtherSequence</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">base</span><span class="o">::</span><span class="n">AutoSignaller</span><span class="p">{</span><span class="o">&amp;</span><span class="n">event</span><span class="p">}));</span>
+<span class="w">  </span><span class="n">event</span><span class="p">.</span><span class="n">Wait</span><span class="p">();</span>
+
+<span class="w">  </span><span class="c1">// `DoSomething()` has finished by this point (or post-tasking has failed)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>If you need to use <a class="reference internal" href="../build/api/classbase_1_1WaitableEvent.html#_CPPv4N4base13WaitableEventE" title="base::WaitableEvent"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WaitableEvent</span></code></a> together with <code class="docutils literal notranslate"><span class="pre">std::mutex</span></code>,
+you should probably use <code class="docutils literal notranslate"><span class="pre">std::mutex</span></code> with <code class="docutils literal notranslate"><span class="pre">std::condition_variable</span></code>
+instead.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For more details, please refer to the Chromium’s <a class="reference external" href="https://chromium.googlesource.com/chromium/src.git/+/HEAD/docs/threading_and_tasks.md">Threading and tasks </a>
+documentation page.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="callbacks.html" class="btn btn-neutral float-left" title="Callbacks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="weak_ptrs.html" class="btn btn-neutral float-right" title="Weak pointers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Damian Dyńdo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: v1.0.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../develop/features/threads.html">develop</a></dd><br />
+      <dd><a href="../../master/features/threads.html">master</a></dd><br />
+    </dl>
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="threads.html">v1.0.0</a></dd><br>
+      <dd><a href="../../v1.0.1/features/threads.html">v1.0.1</a></dd><br>
+      <dd><a href="../../v1.1.0/features/threads.html">v1.1.0</a></dd><br>
+      <dd><a href="../../v1.1.1/features/threads.html">v1.1.1</a></dd><br>
+      <dd><a href="../../v1.1.2/features/threads.html">v1.1.2</a></dd><br>
+    </dl>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    // $(".admonition-example-code > *:not(div .admonition-title)").hide();
+
+    $(".admonition-example-code > .admonition-title").click(function () {
+      $(this).parent().children().not(".admonition-title").slideToggle();
+      $(this).parent().children(".admonition-title").toggleClass("open");
+    });
+  });
+</script>
+
+
+</body>
+</html>

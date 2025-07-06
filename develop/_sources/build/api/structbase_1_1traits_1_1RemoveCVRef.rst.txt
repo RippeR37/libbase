@@ -1,0 +1,17 @@
+.. _exhale_struct_structbase_1_1traits_1_1RemoveCVRef:
+
+Template Struct RemoveCVRef
+===========================
+
+- Defined in :ref:`file_base_type_traits.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: base::traits::RemoveCVRef
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

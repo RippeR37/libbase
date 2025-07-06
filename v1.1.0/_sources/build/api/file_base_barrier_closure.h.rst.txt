@@ -1,0 +1,49 @@
+
+.. _file_base_barrier_closure.h:
+
+File barrier_closure.h
+======================
+
+|exhale_lsh| :ref:`Parent directory <dir_base>` (``base``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/barrier_closure.h``)
+---------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``base/callback.h`` (:ref:`file_base_callback.h`)
+
+- ``cstddef``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_barrier__closure_8h_1ac63e035ad926f27f95b2275245357c0e`
+

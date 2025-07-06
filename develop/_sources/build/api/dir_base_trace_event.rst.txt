@@ -1,0 +1,33 @@
+.. _dir_base_trace_event:
+
+
+Directory trace_event
+=====================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_base>` (``base``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``base/trace_event``
+
+
+Files
+-----
+
+- :ref:`file_base_trace_event_trace_argument_packer.h`
+- :ref:`file_base_trace_event_trace_async.h`
+- :ref:`file_base_trace_event_trace_complete.h`
+- :ref:`file_base_trace_event_trace_counter.h`
+- :ref:`file_base_trace_event_trace_event.h`
+- :ref:`file_base_trace_event_trace_event_register.h`
+- :ref:`file_base_trace_event_trace_events.h`
+- :ref:`file_base_trace_event_trace_flow.h`
+- :ref:`file_base_trace_event_trace_flush.h`
+- :ref:`file_base_trace_event_trace_json_writer.h`
+- :ref:`file_base_trace_event_trace_metadata.h`
+- :ref:`file_base_trace_event_trace_platform.h`
+- :ref:`file_base_trace_event_trace_signal.h`
+
+

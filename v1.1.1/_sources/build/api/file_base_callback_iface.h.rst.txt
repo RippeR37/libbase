@@ -1,0 +1,48 @@
+
+.. _file_base_callback_iface.h:
+
+File callback_iface.h
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_base>` (``base``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/callback_iface.h``)
+--------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``memory`` (:ref:`file_base_memory_weak_ptr.h`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_base_bind_internals.h`
+
+- :ref:`file_base_callback.h`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+

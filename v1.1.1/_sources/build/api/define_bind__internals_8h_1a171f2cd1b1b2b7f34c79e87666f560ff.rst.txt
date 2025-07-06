@@ -1,0 +1,14 @@
+.. _exhale_define_bind__internals_8h_1a171f2cd1b1b2b7f34c79e87666f560ff:
+
+Define LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT
+=========================================
+
+- Defined in :ref:`file_base_bind_internals.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT
+   :project: libbase

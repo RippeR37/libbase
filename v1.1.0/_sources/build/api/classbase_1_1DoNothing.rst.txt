@@ -1,0 +1,17 @@
+.. _exhale_class_classbase_1_1DoNothing:
+
+Class DoNothing
+===============
+
+- Defined in :ref:`file_base_callback_helpers.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::DoNothing
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

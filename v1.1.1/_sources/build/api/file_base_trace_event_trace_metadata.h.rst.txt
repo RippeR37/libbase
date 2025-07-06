@@ -1,0 +1,36 @@
+
+.. _file_base_trace_event_trace_metadata.h:
+
+File trace_metadata.h
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_base_trace_event>` (``base/trace_event``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/trace_event/trace_metadata.h``)
+--------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_trace__metadata_8h_1af42d9eb778e7e8250fea2e5976b20947`
+
+- :ref:`exhale_define_trace__metadata_8h_1ad82f3ad577aecc88dc8f8aa7e70f0269`
+

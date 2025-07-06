@@ -1,0 +1,14 @@
+.. _exhale_function_init_8h_1a73aeac72e46f9d795d43b5ed1f74a292:
+
+Function base::Deinitialize
+===========================
+
+- Defined in :ref:`file_base_init.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: base::Deinitialize()
+   :project: libbase

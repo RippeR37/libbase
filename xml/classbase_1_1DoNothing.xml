@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classbase_1_1DoNothing" kind="class" language="C++" prot="public">
+    <compoundname>base::DoNothing</compoundname>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classbase_1_1DoNothing_1a0a350093c4bf8eb1aaf4f029ab218f75" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classbase_1_1OnceCallback" kindref="compound">OnceCallback</ref>&lt; void(Args...)&gt;</type>
+        <definition>static OnceCallback&lt; void(Args...)&gt; base::DoNothing::Once</definition>
+        <argsstring>()</argsstring>
+        <name>Once</name>
+        <qualifiedname>base::DoNothing::Once</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback_helpers.h" line="53" column="23" bodyfile="base/callback_helpers.h" bodystart="53" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1DoNothing_1ae9b5b997f42523711e58f058d08f48ff" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classbase_1_1RepeatingCallback" kindref="compound">RepeatingCallback</ref>&lt; void(Args...)&gt;</type>
+        <definition>static RepeatingCallback&lt; void(Args...)&gt; base::DoNothing::Repeatedly</definition>
+        <argsstring>()</argsstring>
+        <name>Repeatedly</name>
+        <qualifiedname>base::DoNothing::Repeatedly</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback_helpers.h" line="58" column="28" bodyfile="base/callback_helpers.h" bodystart="58" bodyend="60"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1DoNothing_1a8c48bb694fbfcce6cf47de3f31fd7952" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>base::DoNothing::operator OnceCallback&lt; void</definition>
+        <argsstring>(Args...)&gt;()</argsstring>
+        <name>operator OnceCallback&lt; void</name>
+        <qualifiedname>base::DoNothing::operator OnceCallback&lt; void</qualifiedname>
+        <param>
+          <type>Args...</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback_helpers.h" line="63" column="3" bodyfile="base/callback_helpers.h" bodystart="63" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1DoNothing_1a7af651cb3350936ba7a3881d38769cc8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>base::DoNothing::operator RepeatingCallback&lt; void</definition>
+        <argsstring>(Args...)&gt;()</argsstring>
+        <name>operator RepeatingCallback&lt; void</name>
+        <qualifiedname>base::DoNothing::operator RepeatingCallback&lt; void</qualifiedname>
+        <param>
+          <type>Args...</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/callback_helpers.h" line="68" column="3" bodyfile="base/callback_helpers.h" bodystart="68" bodyend="70"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/callback_helpers.h" line="50" column="1" bodyfile="base/callback_helpers.h" bodystart="50" bodyend="71"/>
+    <listofallmembers>
+      <member refid="classbase_1_1DoNothing_1a0a350093c4bf8eb1aaf4f029ab218f75" prot="public" virt="non-virtual"><scope>base::DoNothing</scope><name>Once</name></member>
+      <member refid="classbase_1_1DoNothing_1a8c48bb694fbfcce6cf47de3f31fd7952" prot="public" virt="non-virtual"><scope>base::DoNothing</scope><name>operator OnceCallback&lt; void</name></member>
+      <member refid="classbase_1_1DoNothing_1a7af651cb3350936ba7a3881d38769cc8" prot="public" virt="non-virtual"><scope>base::DoNothing</scope><name>operator RepeatingCallback&lt; void</name></member>
+      <member refid="classbase_1_1DoNothing_1ae9b5b997f42523711e58f058d08f48ff" prot="public" virt="non-virtual"><scope>base::DoNothing</scope><name>Repeatedly</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

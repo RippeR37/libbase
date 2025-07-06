@@ -1,0 +1,373 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Building libbase &mdash; libbase  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3826cd6f" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Configuration options" href="configuration.html" />
+    <link rel="prev" title="Prerequisites" href="prerequisites.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            libbase
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#about-libbase">About <code class="docutils literal notranslate"><span class="pre">libbase</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#goals">Goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#non-goals">Non-goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#differences-from-base">Differences from <code class="docutils literal notranslate"><span class="pre">//base</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="prerequisites.html">Prerequisites</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="prerequisites.html#hard-requirements">Hard requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prerequisites.html#internal-dependencies">Internal dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prerequisites.html#optional-dependencies">Optional dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Building <code class="docutils literal notranslate"><span class="pre">libbase</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#obtaining-the-source-code">Obtaining the source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resolving-libbase-dependencies">Resolving libbase dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-with-cmake">Building with CMake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-the-tests">Running the tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration options</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#cmake-build-options">CMake build options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#library-code-options">Library code options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using in your project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="using.html#recommended-way-cmake-vcpkg">Recommended way (CMake + vcpkg)</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Features</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../features/callbacks.html">Callbacks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../features/callbacks.html#function-objects">Function objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/callbacks.html#running-callbacks">Running callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/callbacks.html#binding-callbacks">Binding callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/callbacks.html#binding-adapters">Binding adapters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../features/callbacks.html#member-functions">Member functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/callbacks.html#ignore-result">Ignore result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/callbacks.html#binding-arguments-into-the-callback">Binding arguments into the callback</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../features/callbacks.html#chaining-callbacks">Chaining callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/callbacks.html#chaining-callbacks-across-different-task-runners">Chaining callbacks across different task runners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/callbacks.html#splitting-a-oncecallback">Splitting a OnceCallback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/callbacks.html#barriercallback-and-barrierclosure">BarrierCallback and BarrierClosure</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../features/threads.html">Threads and sequences</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../features/threads.html#concepts">Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/threads.html#task-types">Task types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#sequences-vs-threads">Sequences vs Threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#base-taskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::TaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#base-sequencedtaskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#base-singlethreadtaskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SingleThreadTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#base-thread"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::Thread</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#base-threadpool"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::ThreadPool</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#obtaining-current-base-sequencedtaskrunner">Obtaining current <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#ensuring-sequence-affinity">Ensuring sequence affinity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#canceling-posted-task">Canceling posted task</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#blocking-post-tasks">Blocking post-tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#run-loop">Run Loop</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../features/weak_ptrs.html">Weak pointers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../features/logging.html">Logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../features/logging.html#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/logging.html#glog-s-user-guide">GLOG’s user guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#severity-levels">Severity Levels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#log-line-prefix-format">Log Line Prefix Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#customizing-the-log-line-prefix">Customizing the Log Line Prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#setting-flags">Setting Flags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#conditional-occasional-logging">Conditional / Occasional Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#debug-mode-support">Debug Mode Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#check-macros"><code class="docutils literal notranslate"><span class="pre">CHECK</span></code> Macros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#verbose-logging">Verbose Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#failure-signal-handler">Failure Signal Handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#performance-of-messages">Performance of Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#user-defined-failure-function">User-defined Failure Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#raw-logging">Raw Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#google-style-perror">Google Style <code class="docutils literal notranslate"><span class="pre">perror()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#syslog">Syslog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#strip-logging-messages">Strip Logging Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#automatically-remove-old-logs">Automatically Remove Old Logs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#notes-for-windows-users">Notes for Windows Users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#installation-notes-for-64-bit-linux-systems">Installation Notes for 64-bit Linux Systems</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../features/tracing.html">Tracing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../features/tracing.html#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/tracing.html#tracing-apis">Tracing APIs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_EVENT"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_EVENT_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_EVENT_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_EVENT_ASYNC_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_EVENT_ASYNC_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_EVENT_ASYNC_STEP"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_STEP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_EVENT_WITH_FLOW_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_EVENT_WITH_FLOW_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_EVENT_WITH_FLOW_STEP"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_STEP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_COUNTER"><code class="docutils literal notranslate"><span class="pre">TRACE_COUNTER</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_COUNTER_ID"><code class="docutils literal notranslate"><span class="pre">TRACE_COUNTER_ID</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_SIGNAL"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_SIGNAL_PROCESS"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL_PROCESS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_SIGNAL_THREAD"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL_THREAD</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_NAME_PROCESS"><code class="docutils literal notranslate"><span class="pre">TRACE_NAME_PROCESS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_NAME_THREAD"><code class="docutils literal notranslate"><span class="pre">TRACE_NAME_THREAD</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_EVENT_FLUSH_TO_FILE"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_FLUSH_TO_FILE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_EVENT_FLUSH_TO_STREAM"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_FLUSH_TO_STREAM</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../features/tracing.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../features/networking.html">Networking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../features/networking.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../features/networking.html#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../features/networking.html#base-net-simpleurlloader"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::SimpleUrlLoader</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/networking.html#base-net-urlrequest"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::UrlRequest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../features/integrations.html">Integrations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../features/integrations.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/integrations.html#winapi">WinAPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/integrations.html#wxwidgets">wxWidgets</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/simple.html">Simple example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/networking.html">Networking example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/winapi_integration.html">WinAPI integration module example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/wxwidgets_integration.html">wxWidgets integration module example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../build/api/index.html">C++ API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../build/api/index.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/api/index.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/api/index.html#full-api">Full API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#classes-and-structs">Classes and Structs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#variables">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#defines">Defines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">libbase</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Building <code class="docutils literal notranslate"><span class="pre">libbase</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/RippeR37/libbase/blob/master/docs/getting_started/building.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="building-libbase">
+<h1>Building <code class="docutils literal notranslate"><span class="pre">libbase</span></code><a class="headerlink" href="#building-libbase" title="Link to this heading"></a></h1>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Ensure you have all prerequisites installed and configured. See
+<a class="reference internal" href="prerequisites.html"><span class="doc">Prerequisites</span></a> for more details.</p>
+</div>
+</section>
+<section id="obtaining-the-source-code">
+<h2>Obtaining the source code<a class="headerlink" href="#obtaining-the-source-code" title="Link to this heading"></a></h2>
+<p>The recommended way to obtain the source code is:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/RippeR37/libbase.git
+</pre></div>
+</div>
+<p>You can pass an additional <code class="docutils literal notranslate"><span class="pre">--depth</span> <span class="pre">&lt;depth&gt;</span></code> argument to limit the repository
+history to be downloaded (e.g. <code class="docutils literal notranslate"><span class="pre">--depth</span> <span class="pre">1</span></code>).</p>
+</section>
+<section id="resolving-libbase-dependencies">
+<h2>Resolving libbase dependencies<a class="headerlink" href="#resolving-libbase-dependencies" title="Link to this heading"></a></h2>
+<p>Before configuring and building <code class="docutils literal notranslate"><span class="pre">libbase</span></code> you either have to build and install
+them yourself or configure <code class="docutils literal notranslate"><span class="pre">vcpkg</span></code> and set <code class="docutils literal notranslate"><span class="pre">VCPKG_ROOT</span></code> environment variable
+so that <code class="docutils literal notranslate"><span class="pre">libbase</span></code> CMake script can find and use it to resolve dependencies
+automatically.</p>
+</section>
+<section id="building-with-cmake">
+<h2>Building with CMake<a class="headerlink" href="#building-with-cmake" title="Link to this heading"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>libbase
+<span class="gp">$ </span>cmake<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span>-B<span class="w"> </span>build
+<span class="gp">$ </span>cmake<span class="w"> </span>--build<span class="w"> </span>build
+</pre></div>
+</div>
+<p>This will configure <code class="docutils literal notranslate"><span class="pre">libbase</span></code> with the default
+<a class="reference internal" href="#configuration"><span class="std std-ref">configuration options</span></a> and build it in the <code class="docutils literal notranslate"><span class="pre">build/</span></code>
+subdirectory.</p>
+</section>
+<section id="running-the-tests">
+<h2>Running the tests<a class="headerlink" href="#running-the-tests" title="Link to this heading"></a></h2>
+<p>If you’ve built the library with unit tests (see <a class="reference internal" href="configuration.html"><span class="doc">Configuration options</span></a>), you can
+run them all with:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ctest<span class="w"> </span>--test-dir<span class="w"> </span>build
+</pre></div>
+</div>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h2>
+<p>You can configure <code class="docutils literal notranslate"><span class="pre">libbase</span></code> build or library itself by overriding default
+options defined in CMake scripts. You can do this by specifying the
+<code class="docutils literal notranslate"><span class="pre">-DOPTION_NAME=[ON/OFF]</span></code> switch for a given option during CMake configuration
+phase. For example, to build <code class="docutils literal notranslate"><span class="pre">libbase</span></code> with the documentation, you would have
+to execute:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>cmake<span class="w"> </span>-DLIBBASE_BUILD_DOCS<span class="o">=</span>ON<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span>-B<span class="w"> </span>build
+<span class="gp">$ </span>cmake<span class="w"> </span>--build<span class="w"> </span>build
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Check out the <a class="reference internal" href="configuration.html"><span class="doc">Configuration options</span></a> page to see what are the available options
+and their description.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="prerequisites.html" class="btn btn-neutral float-left" title="Prerequisites" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="configuration.html" class="btn btn-neutral float-right" title="Configuration options" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Damian Dyńdo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: v1.1.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../develop/getting_started/building.html">develop</a></dd><br />
+      <dd><a href="../../master/getting_started/building.html">master</a></dd><br />
+    </dl>
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="../../v1.0.0/getting_started/building.html">v1.0.0</a></dd><br>
+      <dd><a href="../../v1.0.1/getting_started/building.html">v1.0.1</a></dd><br>
+      <dd><a href="building.html">v1.1.0</a></dd><br>
+      <dd><a href="../../v1.1.1/getting_started/building.html">v1.1.1</a></dd><br>
+      <dd><a href="../../v1.1.2/getting_started/building.html">v1.1.2</a></dd><br>
+    </dl>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    // $(".admonition-example-code > *:not(div .admonition-title)").hide();
+
+    $(".admonition-example-code > .admonition-title").click(function () {
+      $(this).parent().children().not(".admonition-title").slideToggle();
+      $(this).parent().children(".admonition-title").toggleClass("open");
+    });
+  });
+</script>
+
+
+</body>
+</html>

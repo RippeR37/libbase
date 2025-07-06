@@ -1,0 +1,14 @@
+.. _exhale_function_time__delta_8h_1a9014824d944120c7546e22c2e9af63ea:
+
+Template Function base::Days
+============================
+
+- Defined in :ref:`file_base_time_time_delta.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: base::Days(T)
+   :project: libbase

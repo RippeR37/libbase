@@ -1,0 +1,69 @@
+
+.. _file_base_message_loop_message_pump.h:
+
+File message_pump.h
+===================
+
+|exhale_lsh| :ref:`Parent directory <dir_base_message_loop>` (``base/message_loop``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/message_loop/message_pump.h``)
+-------------------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``base/callback.h`` (:ref:`file_base_callback.h`)
+
+- ``base/sequence_id.h`` (:ref:`file_base_sequence_id.h`)
+
+- ``memory`` (:ref:`file_base_memory_weak_ptr.h`)
+
+- ``optional``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_base_message_loop_message_loop.h`
+
+- :ref:`file_base_message_loop_message_loop_impl.h`
+
+- :ref:`file_base_message_loop_message_pump_impl.h`
+
+- :ref:`file_base_threading_delayed_task_manager.h`
+
+- :ref:`file_base_threading_task_runner_impl.h`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structbase_1_1MessagePump_1_1PendingTask`
+
+- :ref:`exhale_class_classbase_1_1MessagePump`
+

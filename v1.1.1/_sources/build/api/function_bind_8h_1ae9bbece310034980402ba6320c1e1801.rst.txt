@@ -1,0 +1,14 @@
+.. _exhale_function_bind_8h_1ae9bbece310034980402ba6320c1e1801:
+
+Template Function base::RetainedRef
+===================================
+
+- Defined in :ref:`file_base_bind.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: base::RetainedRef(std::shared_ptr<InstanceType>)
+   :project: libbase

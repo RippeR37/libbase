@@ -1,0 +1,14 @@
+.. _exhale_typedef_type__traits_8h_1a4bba8383fa06060652b703dcee1e01c1:
+
+Typedef base::traits::IdentityT
+===============================
+
+- Defined in :ref:`file_base_type_traits.h`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: base::traits::IdentityT
+   :project: libbase

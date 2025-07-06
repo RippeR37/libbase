@@ -1,0 +1,482 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Networking example &mdash; libbase  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3826cd6f" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="WinAPI integration module example" href="winapi_integration.html" />
+    <link rel="prev" title="Simple example" href="simple.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            libbase
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#about-libbase">About <code class="docutils literal notranslate"><span class="pre">libbase</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#goals">Goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#non-goals">Non-goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#differences-from-base">Differences from <code class="docutils literal notranslate"><span class="pre">//base</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/prerequisites.html">Prerequisites</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/prerequisites.html#hard-requirements">Hard requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/prerequisites.html#internal-dependencies">Internal dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/prerequisites.html#optional-dependencies">Optional dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/building.html">Building <code class="docutils literal notranslate"><span class="pre">libbase</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#obtaining-the-source-code">Obtaining the source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#resolving-libbase-dependencies">Resolving libbase dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#building-with-cmake-and-pre-installed-dependencies">Building with CMake and pre-installed dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#building-with-cmake-and-vcpkg">Building with CMake and vcpkg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#building-with-cmake-and-conan">Building with CMake and Conan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#running-the-tests">Running the tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/configuration.html">Configuration options</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#cmake-build-options">CMake build options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#library-code-options">Library code options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/using.html">Using in your project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/using.html#recommended-way-cmake-vcpkg">Recommended way (CMake + vcpkg)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/using.html#alternative-ways">Alternative ways</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Features</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../features/callbacks.html">Callbacks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../features/callbacks.html#function-objects">Function objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/callbacks.html#running-callbacks">Running callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/callbacks.html#binding-callbacks">Binding callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/callbacks.html#binding-adapters">Binding adapters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../features/callbacks.html#member-functions">Member functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/callbacks.html#ignore-result">Ignore result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/callbacks.html#binding-arguments-into-the-callback">Binding arguments into the callback</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../features/callbacks.html#chaining-callbacks">Chaining callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/callbacks.html#chaining-callbacks-across-different-task-runners">Chaining callbacks across different task runners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/callbacks.html#splitting-a-oncecallback">Splitting a OnceCallback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/callbacks.html#barriercallback-and-barrierclosure">BarrierCallback and BarrierClosure</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../features/threads.html">Threads and sequences</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../features/threads.html#concepts">Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/threads.html#task-types">Task types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#sequences-vs-threads">Sequences vs Threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#base-taskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::TaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#base-sequencedtaskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#base-singlethreadtaskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SingleThreadTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#base-thread"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::Thread</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#base-threadpool"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::ThreadPool</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#obtaining-current-base-sequencedtaskrunner">Obtaining current <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#ensuring-sequence-affinity">Ensuring sequence affinity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#canceling-posted-task">Canceling posted task</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#blocking-post-tasks">Blocking post-tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/threads.html#run-loop">Run Loop</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../features/weak_ptrs.html">Weak pointers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../features/logging.html">Logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../features/logging.html#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/logging.html#glog-s-user-guide">GLOG’s user guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#severity-levels">Severity Levels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#log-line-prefix-format">Log Line Prefix Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#customizing-the-log-line-prefix">Customizing the Log Line Prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#setting-flags">Setting Flags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#conditional-occasional-logging">Conditional / Occasional Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#debug-mode-support">Debug Mode Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#check-macros"><code class="docutils literal notranslate"><span class="pre">CHECK</span></code> Macros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#verbose-logging">Verbose Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#failure-signal-handler">Failure Signal Handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#performance-of-messages">Performance of Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#user-defined-failure-function">User-defined Failure Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#raw-logging">Raw Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#google-style-perror">Google Style <code class="docutils literal notranslate"><span class="pre">perror()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#syslog">Syslog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#strip-logging-messages">Strip Logging Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#automatically-remove-old-logs">Automatically Remove Old Logs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#notes-for-windows-users">Notes for Windows Users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/logging.html#installation-notes-for-64-bit-linux-systems">Installation Notes for 64-bit Linux Systems</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../features/tracing.html">Tracing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../features/tracing.html#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/tracing.html#tracing-apis">Tracing APIs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_EVENT"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_EVENT_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_EVENT_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_EVENT_ASYNC_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_EVENT_ASYNC_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_EVENT_ASYNC_STEP"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_STEP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_EVENT_WITH_FLOW_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_EVENT_WITH_FLOW_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_EVENT_WITH_FLOW_STEP"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_STEP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_COUNTER"><code class="docutils literal notranslate"><span class="pre">TRACE_COUNTER</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_COUNTER_ID"><code class="docutils literal notranslate"><span class="pre">TRACE_COUNTER_ID</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_SIGNAL"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_SIGNAL_PROCESS"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL_PROCESS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_SIGNAL_THREAD"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL_THREAD</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_NAME_PROCESS"><code class="docutils literal notranslate"><span class="pre">TRACE_NAME_PROCESS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_NAME_THREAD"><code class="docutils literal notranslate"><span class="pre">TRACE_NAME_THREAD</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_EVENT_FLUSH_TO_FILE"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_FLUSH_TO_FILE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../features/tracing.html#c.TRACE_EVENT_FLUSH_TO_STREAM"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_FLUSH_TO_STREAM</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../features/tracing.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../features/networking.html">Networking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../features/networking.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../features/networking.html#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../features/networking.html#base-net-simpleurlloader"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::SimpleUrlLoader</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/networking.html#base-net-urlrequest"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::UrlRequest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../features/integrations.html">Integrations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../features/integrations.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/integrations.html#winapi">WinAPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../features/integrations.html#wxwidgets">wxWidgets</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="simple.html">Simple example</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Networking example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="winapi_integration.html">WinAPI integration module example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wxwidgets_integration.html">wxWidgets integration module example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../build/api/index.html">C++ API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../build/api/index.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/api/index.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/api/index.html#full-api">Full API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#classes-and-structs">Classes and Structs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#variables">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#defines">Defines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">libbase</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Networking example</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/RippeR37/libbase/blob/master/docs/examples/networking.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="networking-example">
+<h1>Networking example<a class="headerlink" href="#networking-example" title="Link to this heading"></a></h1>
+<p>Below you can find source code of a <code class="docutils literal notranslate"><span class="pre">networking</span></code> example that showcases usage
+of the <code class="docutils literal notranslate"><span class="pre">libbase</span></code> functionality for performing network requests. This example
+is located in the <code class="docutils literal notranslate"><span class="pre">/examples/networking/</span></code> directory in the repository and - if
+<a class="reference internal" href="../getting_started/configuration.html#configuration-libbase-build-examples"><span class="std std-ref">enabled</span></a> - will be built along the
+<code class="docutils literal notranslate"><span class="pre">libbase</span></code> library itself.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">CMakeLists.txt</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nb">add_executable</span><span class="p">(</span><span class="s">networking</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="nb">target_compile_options</span><span class="p">(</span><span class="s">networking</span>
+<span class="linenos"> 4</span><span class="w">  </span><span class="s">PRIVATE</span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="o">${</span><span class="nv">LIBBASE_COMPILE_FLAGS</span><span class="o">}</span>
+<span class="linenos"> 6</span><span class="p">)</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">networking</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="s">PRIVATE</span>
+<span class="linenos">10</span><span class="w">    </span><span class="s">libbase</span>
+<span class="linenos">11</span><span class="w">    </span><span class="s">libbase_net</span>
+<span class="linenos">12</span><span class="p">)</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="nb">target_sources</span><span class="p">(</span><span class="s">networking</span>
+<span class="linenos">15</span><span class="w">  </span><span class="s">PRIVATE</span>
+<span class="linenos">16</span><span class="w">    </span><span class="s">main.cc</span>
+<span class="linenos">17</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">main.cc</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span>
+<span class="linenos">  2</span>
+<span class="linenos">  3</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/bind.h&quot;</span>
+<span class="linenos">  4</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/callback.h&quot;</span>
+<span class="linenos">  5</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/init.h&quot;</span>
+<span class="linenos">  6</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/logging.h&quot;</span>
+<span class="linenos">  7</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/message_loop/run_loop.h&quot;</span>
+<span class="linenos">  8</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/net/init.h&quot;</span>
+<span class="linenos">  9</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/net/simple_url_loader.h&quot;</span>
+<span class="linenos"> 10</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/net/url_request.h&quot;</span>
+<span class="linenos"> 11</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/sequence_checker.h&quot;</span>
+<span class="linenos"> 12</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/timer/elapsed_timer.h&quot;</span>
+<span class="linenos"> 13</span>
+<span class="linenos"> 14</span><span class="kt">void</span><span class="w"> </span><span class="nf">LogNetResponse</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">net</span><span class="o">::</span><span class="n">ResourceResponse</span><span class="o">&amp;</span><span class="w"> </span><span class="n">response</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 15</span><span class="w">  </span><span class="n">LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Result: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">result</span><span class="p">);</span>
+<span class="linenos"> 16</span><span class="w">  </span><span class="n">LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;HTTP code: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">response</span><span class="p">.</span><span class="n">code</span><span class="p">;</span>
+<span class="linenos"> 17</span><span class="w">  </span><span class="n">LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Final URL: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">response</span><span class="p">.</span><span class="n">final_url</span><span class="p">;</span>
+<span class="linenos"> 18</span><span class="w">  </span><span class="n">LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Downloaded &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">response</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; bytes&quot;</span><span class="p">;</span>
+<span class="linenos"> 19</span><span class="w">  </span><span class="n">LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Latency: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">response</span><span class="p">.</span><span class="n">timing_connect</span><span class="p">.</span><span class="n">InMilliseconds</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;ms&quot;</span><span class="p">;</span>
+<span class="linenos"> 20</span><span class="w">  </span><span class="n">LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Headers&quot;</span><span class="p">;</span>
+<span class="linenos"> 21</span><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">response</span><span class="p">.</span><span class="n">headers</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 22</span><span class="w">    </span><span class="n">LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
+<span class="linenos"> 23</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 24</span><span class="w">  </span><span class="n">LOG_IF</span><span class="p">(</span><span class="n">INFO</span><span class="p">,</span><span class="w"> </span><span class="o">!</span><span class="n">response</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Content:</span><span class="se">\n</span><span class="s">&quot;</span>
+<span class="linenos"> 25</span><span class="w">                                       </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">response</span><span class="p">.</span><span class="n">DataAsStringView</span><span class="p">();</span>
+<span class="linenos"> 26</span><span class="p">}</span>
+<span class="linenos"> 27</span>
+<span class="linenos"> 28</span><span class="kt">void</span><span class="w"> </span><span class="nf">NetExampleGet</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 29</span><span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">RunLoop</span><span class="w"> </span><span class="n">run_loop</span><span class="p">{};</span>
+<span class="linenos"> 30</span>
+<span class="linenos"> 31</span><span class="w">  </span><span class="c1">// Try to download and signal on finish</span>
+<span class="linenos"> 32</span><span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">net</span><span class="o">::</span><span class="n">SimpleUrlLoader</span><span class="o">::</span><span class="n">DownloadUnbounded</span><span class="p">(</span>
+<span class="linenos"> 33</span><span class="w">      </span><span class="n">base</span><span class="o">::</span><span class="n">net</span><span class="o">::</span><span class="n">ResourceRequest</span><span class="p">{</span><span class="s">&quot;https://www.google.com/robots.txt&quot;</span><span class="p">}</span>
+<span class="linenos"> 34</span><span class="w">          </span><span class="p">.</span><span class="n">WithHeadersOnly</span><span class="p">()</span>
+<span class="linenos"> 35</span><span class="w">          </span><span class="p">.</span><span class="n">WithTimeout</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">Seconds</span><span class="p">(</span><span class="mi">5</span><span class="p">)),</span>
+<span class="linenos"> 36</span><span class="w">      </span><span class="n">base</span><span class="o">::</span><span class="n">BindOnce</span><span class="p">([](</span><span class="n">base</span><span class="o">::</span><span class="n">net</span><span class="o">::</span><span class="n">ResourceResponse</span><span class="w"> </span><span class="n">response</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 37</span><span class="w">        </span><span class="n">LogNetResponse</span><span class="p">(</span><span class="n">response</span><span class="p">);</span>
+<span class="linenos"> 38</span><span class="w">      </span><span class="p">}).</span><span class="n">Then</span><span class="p">(</span><span class="n">run_loop</span><span class="p">.</span><span class="n">QuitClosure</span><span class="p">()));</span>
+<span class="linenos"> 39</span>
+<span class="linenos"> 40</span><span class="w">  </span><span class="c1">// Runs all tasks until the quit callback is called</span>
+<span class="linenos"> 41</span><span class="w">  </span><span class="n">run_loop</span><span class="p">.</span><span class="n">Run</span><span class="p">();</span>
+<span class="linenos"> 42</span><span class="p">}</span>
+<span class="linenos"> 43</span>
+<span class="linenos"> 44</span><span class="kt">void</span><span class="w"> </span><span class="nf">NetExamplePost</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 45</span><span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">RunLoop</span><span class="w"> </span><span class="n">run_loop</span><span class="p">{};</span>
+<span class="linenos"> 46</span>
+<span class="linenos"> 47</span><span class="w">  </span><span class="c1">// Try to download and signal on finish</span>
+<span class="linenos"> 48</span><span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">net</span><span class="o">::</span><span class="n">SimpleUrlLoader</span><span class="o">::</span><span class="n">DownloadUnbounded</span><span class="p">(</span>
+<span class="linenos"> 49</span><span class="w">      </span><span class="n">base</span><span class="o">::</span><span class="n">net</span><span class="o">::</span><span class="n">ResourceRequest</span><span class="p">{</span><span class="s">&quot;https://httpbin.org/post&quot;</span><span class="p">}</span>
+<span class="linenos"> 50</span><span class="w">          </span><span class="p">.</span><span class="n">WithHeaders</span><span class="p">({</span><span class="s">&quot;Content-Type: application/json&quot;</span><span class="p">})</span>
+<span class="linenos"> 51</span><span class="w">          </span><span class="p">.</span><span class="n">WithPostData</span><span class="p">(</span><span class="s">&quot;{</span><span class="se">\&quot;</span><span class="s">key</span><span class="se">\&quot;</span><span class="s">: </span><span class="se">\&quot;</span><span class="s">value</span><span class="se">\&quot;</span><span class="s">}&quot;</span><span class="p">)</span>
+<span class="linenos"> 52</span><span class="w">          </span><span class="p">.</span><span class="n">WithTimeout</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">Seconds</span><span class="p">(</span><span class="mi">5</span><span class="p">)),</span>
+<span class="linenos"> 53</span><span class="w">      </span><span class="n">base</span><span class="o">::</span><span class="n">BindOnce</span><span class="p">([](</span><span class="n">base</span><span class="o">::</span><span class="n">net</span><span class="o">::</span><span class="n">ResourceResponse</span><span class="w"> </span><span class="n">response</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 54</span><span class="w">        </span><span class="n">LogNetResponse</span><span class="p">(</span><span class="n">response</span><span class="p">);</span>
+<span class="linenos"> 55</span><span class="w">      </span><span class="p">}).</span><span class="n">Then</span><span class="p">(</span><span class="n">run_loop</span><span class="p">.</span><span class="n">QuitClosure</span><span class="p">()));</span>
+<span class="linenos"> 56</span>
+<span class="linenos"> 57</span><span class="w">  </span><span class="n">run_loop</span><span class="p">.</span><span class="n">Run</span><span class="p">();</span>
+<span class="linenos"> 58</span><span class="p">}</span>
+<span class="linenos"> 59</span>
+<span class="linenos"> 60</span><span class="k">class</span><span class="w"> </span><span class="nc">UrlRequestExampleUser</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">net</span><span class="o">::</span><span class="n">UrlRequest</span><span class="o">::</span><span class="n">Client</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 61</span><span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="linenos"> 62</span><span class="w">  </span><span class="n">UrlRequestExampleUser</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">OnceClosure</span><span class="w"> </span><span class="n">finished_closure</span><span class="p">)</span>
+<span class="linenos"> 63</span><span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="n">finished_closure_</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">finished_closure</span><span class="p">)),</span><span class="w"> </span><span class="n">request_</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="linenos"> 64</span>
+<span class="linenos"> 65</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">Download</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">net</span><span class="o">::</span><span class="n">ResourceRequest</span><span class="w"> </span><span class="n">request</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 66</span><span class="w">    </span><span class="n">DCHECK_CALLED_ON_VALID_SEQUENCE</span><span class="p">(</span><span class="n">sequence_checker_</span><span class="p">);</span>
+<span class="linenos"> 67</span><span class="w">    </span><span class="n">request_</span><span class="p">.</span><span class="n">Start</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">request</span><span class="p">));</span>
+<span class="linenos"> 68</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 69</span>
+<span class="linenos"> 70</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">OnResponseStarted</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">net</span><span class="o">::</span><span class="n">UrlRequest</span><span class="o">*</span><span class="w"> </span><span class="n">request</span><span class="p">,</span>
+<span class="linenos"> 71</span><span class="w">                         </span><span class="kt">int</span><span class="w"> </span><span class="n">code</span><span class="p">,</span>
+<span class="linenos"> 72</span><span class="w">                         </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">final_url</span><span class="p">,</span>
+<span class="linenos"> 73</span><span class="w">                         </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">headers</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 74</span><span class="w">    </span><span class="n">DCHECK_CALLED_ON_VALID_SEQUENCE</span><span class="p">(</span><span class="n">sequence_checker_</span><span class="p">);</span>
+<span class="linenos"> 75</span><span class="w">    </span><span class="n">DCHECK_EQ</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">request_</span><span class="p">);</span>
+<span class="linenos"> 76</span>
+<span class="linenos"> 77</span><span class="w">    </span><span class="n">LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">__FUNCTION__</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;() code: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">code</span><span class="p">;</span>
+<span class="linenos"> 78</span><span class="w">    </span><span class="n">LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">__FUNCTION__</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;() final_url: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">final_url</span><span class="p">;</span>
+<span class="linenos"> 79</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">headers</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 80</span><span class="w">      </span><span class="n">LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">__FUNCTION__</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;() header[&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;]: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
+<span class="linenos"> 81</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 82</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 83</span>
+<span class="linenos"> 84</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">OnWriteData</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">net</span><span class="o">::</span><span class="n">UrlRequest</span><span class="o">*</span><span class="w"> </span><span class="n">request</span><span class="p">,</span>
+<span class="linenos"> 85</span><span class="w">                   </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">chunk</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 86</span><span class="w">    </span><span class="n">DCHECK_CALLED_ON_VALID_SEQUENCE</span><span class="p">(</span><span class="n">sequence_checker_</span><span class="p">);</span>
+<span class="linenos"> 87</span><span class="w">    </span><span class="n">DCHECK_EQ</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">request_</span><span class="p">);</span>
+<span class="linenos"> 88</span>
+<span class="linenos"> 89</span><span class="w">    </span><span class="n">LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">__FUNCTION__</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;() received bytes: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">chunk</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="linenos"> 90</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 91</span>
+<span class="linenos"> 92</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">OnRequestFinished</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">net</span><span class="o">::</span><span class="n">UrlRequest</span><span class="o">*</span><span class="w"> </span><span class="n">request</span><span class="p">,</span>
+<span class="linenos"> 93</span><span class="w">                         </span><span class="n">base</span><span class="o">::</span><span class="n">net</span><span class="o">::</span><span class="n">Result</span><span class="w"> </span><span class="n">result</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 94</span><span class="w">    </span><span class="n">DCHECK_CALLED_ON_VALID_SEQUENCE</span><span class="p">(</span><span class="n">sequence_checker_</span><span class="p">);</span>
+<span class="linenos"> 95</span><span class="w">    </span><span class="n">DCHECK_EQ</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">request_</span><span class="p">);</span>
+<span class="linenos"> 96</span>
+<span class="linenos"> 97</span><span class="w">    </span><span class="n">LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">__FUNCTION__</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;() result: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+<span class="linenos"> 98</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">finished_closure_</span><span class="p">).</span><span class="n">Run</span><span class="p">();</span>
+<span class="linenos"> 99</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">100</span>
+<span class="linenos">101</span><span class="w"> </span><span class="k">private</span><span class="o">:</span>
+<span class="linenos">102</span><span class="w">  </span><span class="n">SEQUENCE_CHECKER</span><span class="p">(</span><span class="n">sequence_checker_</span><span class="p">);</span>
+<span class="linenos">103</span><span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">OnceClosure</span><span class="w"> </span><span class="n">finished_closure_</span><span class="p">;</span>
+<span class="linenos">104</span><span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">net</span><span class="o">::</span><span class="n">UrlRequest</span><span class="w"> </span><span class="n">request_</span><span class="p">;</span>
+<span class="linenos">105</span><span class="p">};</span>
+<span class="linenos">106</span>
+<span class="linenos">107</span><span class="kt">void</span><span class="w"> </span><span class="nf">NetExampleUrlRequest</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">108</span><span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">RunLoop</span><span class="w"> </span><span class="n">run_loop</span><span class="p">;</span>
+<span class="linenos">109</span>
+<span class="linenos">110</span><span class="w">  </span><span class="n">UrlRequestExampleUser</span><span class="w"> </span><span class="n">url_request_user</span><span class="p">{</span><span class="n">run_loop</span><span class="p">.</span><span class="n">QuitClosure</span><span class="p">()};</span>
+<span class="linenos">111</span><span class="w">  </span><span class="n">url_request_user</span><span class="p">.</span><span class="n">Download</span><span class="p">(</span>
+<span class="linenos">112</span><span class="w">      </span><span class="n">base</span><span class="o">::</span><span class="n">net</span><span class="o">::</span><span class="n">ResourceRequest</span><span class="p">{</span><span class="s">&quot;https://www.google.com/robots.txt&quot;</span><span class="p">}</span>
+<span class="linenos">113</span><span class="w">          </span><span class="p">.</span><span class="n">WithTimeout</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">Seconds</span><span class="p">(</span><span class="mi">5</span><span class="p">)));</span>
+<span class="linenos">114</span>
+<span class="linenos">115</span><span class="w">  </span><span class="n">run_loop</span><span class="p">.</span><span class="n">Run</span><span class="p">();</span>
+<span class="linenos">116</span><span class="p">}</span>
+<span class="linenos">117</span>
+<span class="linenos">118</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">119</span><span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">Initialize</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">InitOptions</span><span class="p">{});</span>
+<span class="linenos">120</span><span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">net</span><span class="o">::</span><span class="n">Initialize</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">net</span><span class="o">::</span><span class="n">InitOptions</span><span class="p">{});</span>
+<span class="linenos">121</span>
+<span class="linenos">122</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">timer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">ElapsedTimer</span><span class="p">{};</span>
+<span class="linenos">123</span>
+<span class="linenos">124</span><span class="w">  </span><span class="n">NetExampleGet</span><span class="p">();</span>
+<span class="linenos">125</span><span class="w">  </span><span class="n">NetExamplePost</span><span class="p">();</span>
+<span class="linenos">126</span><span class="w">  </span><span class="n">NetExampleUrlRequest</span><span class="p">();</span>
+<span class="linenos">127</span>
+<span class="linenos">128</span><span class="w">  </span><span class="n">LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Example finished in &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">timer</span><span class="p">.</span><span class="n">Elapsed</span><span class="p">().</span><span class="n">InMillisecondsF</span><span class="p">()</span>
+<span class="linenos">129</span><span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;ms&quot;</span><span class="p">;</span>
+<span class="linenos">130</span>
+<span class="linenos">131</span><span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">net</span><span class="o">::</span><span class="n">Deinitialize</span><span class="p">();</span>
+<span class="linenos">132</span><span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">Deinitialize</span><span class="p">();</span>
+<span class="linenos">133</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">134</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="simple.html" class="btn btn-neutral float-left" title="Simple example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="winapi_integration.html" class="btn btn-neutral float-right" title="WinAPI integration module example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Damian Dyńdo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: master
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../develop/examples/networking.html">develop</a></dd><br />
+      <dd><a href="networking.html">master</a></dd><br />
+    </dl>
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="../../v1.0.0/index.html">v1.0.0</a></dd><br>
+      <dd><a href="../../v1.0.1/index.html">v1.0.1</a></dd><br>
+      <dd><a href="../../v1.1.0/examples/networking.html">v1.1.0</a></dd><br>
+      <dd><a href="../../v1.1.1/examples/networking.html">v1.1.1</a></dd><br>
+      <dd><a href="../../v1.1.2/examples/networking.html">v1.1.2</a></dd><br>
+    </dl>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    // $(".admonition-example-code > *:not(div .admonition-title)").hide();
+
+    $(".admonition-example-code > .admonition-title").click(function () {
+      $(this).parent().children().not(".admonition-title").slideToggle();
+      $(this).parent().children(".admonition-title").toggleClass("open");
+    });
+  });
+</script>
+
+
+</body>
+</html>

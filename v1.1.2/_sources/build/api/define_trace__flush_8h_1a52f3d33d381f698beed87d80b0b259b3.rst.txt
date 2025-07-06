@@ -1,0 +1,14 @@
+.. _exhale_define_trace__flush_8h_1a52f3d33d381f698beed87d80b0b259b3:
+
+Define TRACE_EVENT_FLUSH_TO_FILE
+================================
+
+- Defined in :ref:`file_base_trace_event_trace_flush.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: TRACE_EVENT_FLUSH_TO_FILE
+   :project: libbase

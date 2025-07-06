@@ -1,0 +1,14 @@
+.. _exhale_function_barrier__closure_8h_1ac63e035ad926f27f95b2275245357c0e:
+
+Function base::BarrierClosure
+=============================
+
+- Defined in :ref:`file_base_barrier_closure.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: base::BarrierClosure(size_t, OnceClosure)
+   :project: libbase

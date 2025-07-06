@@ -1,0 +1,14 @@
+.. _exhale_function_bind_8h_1a757b196e60d6f4d93f8ec22d554fbf9a:
+
+Template Function base::Owned(std::unique_ptr<InstanceType>)
+============================================================
+
+- Defined in :ref:`file_base_bind.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: base::Owned(std::unique_ptr<InstanceType>)
+   :project: libbase

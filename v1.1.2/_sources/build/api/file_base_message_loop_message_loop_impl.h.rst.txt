@@ -1,0 +1,53 @@
+
+.. _file_base_message_loop_message_loop_impl.h:
+
+File message_loop_impl.h
+========================
+
+|exhale_lsh| :ref:`Parent directory <dir_base_message_loop>` (``base/message_loop``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/message_loop/message_loop_impl.h``)
+------------------------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``atomic``
+
+- ``base/message_loop/message_loop.h`` (:ref:`file_base_message_loop_message_loop.h`)
+
+- ``base/message_loop/message_pump.h`` (:ref:`file_base_message_loop_message_pump.h`)
+
+- ``memory`` (:ref:`file_base_memory_weak_ptr.h`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classbase_1_1MessageLoopImpl`
+

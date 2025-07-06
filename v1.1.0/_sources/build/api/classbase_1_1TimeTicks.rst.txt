@@ -1,0 +1,17 @@
+.. _exhale_class_classbase_1_1TimeTicks:
+
+Class TimeTicks
+===============
+
+- Defined in :ref:`file_base_time_time_ticks.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::TimeTicks
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

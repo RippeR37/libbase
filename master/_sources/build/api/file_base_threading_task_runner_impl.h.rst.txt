@@ -1,0 +1,61 @@
+
+.. _file_base_threading_task_runner_impl.h:
+
+File task_runner_impl.h
+=======================
+
+|exhale_lsh| :ref:`Parent directory <dir_base_threading>` (``base/threading``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/threading/task_runner_impl.h``)
+--------------------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``base/message_loop/message_pump.h`` (:ref:`file_base_message_loop_message_pump.h`)
+
+- ``base/sequenced_task_runner.h`` (:ref:`file_base_sequenced_task_runner.h`)
+
+- ``base/single_thread_task_runner.h`` (:ref:`file_base_single_thread_task_runner.h`)
+
+- ``base/task_runner.h`` (:ref:`file_base_task_runner.h`)
+
+- ``memory`` (:ref:`file_base_memory_weak_ptr.h`)
+
+- ``optional``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classbase_1_1SequencedTaskRunnerImpl`
+
+- :ref:`exhale_class_classbase_1_1SingleThreadTaskRunnerImpl`
+
+- :ref:`exhale_class_classbase_1_1TaskRunnerImpl`
+

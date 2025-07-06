@@ -1,0 +1,23 @@
+.. _exhale_struct_structbase_1_1MessagePump_1_1PendingTask:
+
+Struct MessagePump::PendingTask
+===============================
+
+- Defined in :ref:`file_base_message_loop_message_pump.h`
+
+
+Nested Relationships
+--------------------
+
+This struct is a nested type of :ref:`exhale_class_classbase_1_1MessagePump`.
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: base::MessagePump::PendingTask
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

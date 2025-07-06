@@ -1,0 +1,2010 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C++ API reference &mdash; libbase  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=3826cd6f" />
+      <link rel="stylesheet" type="text/css" href="../../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Namespace base" href="namespace_base.html" />
+    <link rel="prev" title="Simple example" href="../../examples/simple.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            libbase
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../introduction/introduction.html#about-libbase">About <code class="docutils literal notranslate"><span class="pre">libbase</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../introduction/introduction.html#goals">Goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../introduction/introduction.html#non-goals">Non-goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../introduction/introduction.html#differences-from-base">Differences from <code class="docutils literal notranslate"><span class="pre">//base</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/prerequisites.html">Prerequisites</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/prerequisites.html#hard-requirements">Hard requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/prerequisites.html#internal-dependencies">Internal dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/prerequisites.html#optional-dependencies">Optional dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/building.html">Building <code class="docutils literal notranslate"><span class="pre">libbase</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/building.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/building.html#obtaining-the-source-code">Obtaining the source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/building.html#building-with-cmake">Building with CMake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/building.html#running-the-tests">Running the tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/building.html#configuration">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/configuration.html">Configuration options</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#cmake-build-options">CMake build options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#library-code-options">Library code options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/using.html">Using in your project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/using.html#recommended-way-cmake">Recommended way (CMake)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/using.html#other-build-systems">Other build systems</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Features</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../features/callbacks.html">Callbacks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../features/callbacks.html#function-objects">Function objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/callbacks.html#running-callbacks">Running callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/callbacks.html#binding-callbacks">Binding callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/callbacks.html#binding-adapters">Binding adapters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../features/callbacks.html#member-functions">Member functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/callbacks.html#ignore-result">Ignore result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/callbacks.html#binding-arguments-into-the-callback">Binding arguments into the callback</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/callbacks.html#chaining-callbacks">Chaining callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/callbacks.html#chaining-callbacks-across-different-task-runners">Chaining callbacks across different task runners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/callbacks.html#splitting-a-oncecallback">Splitting a OnceCallback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/callbacks.html#barriercallback-and-barrierclosure">BarrierCallback and BarrierClosure</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../features/threads.html">Threads and sequences</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../features/threads.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../features/threads.html#concepts">Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/threads.html#task-types">Task types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/threads.html#sequences-vs-threads">Sequences vs Threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/threads.html#base-taskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::TaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/threads.html#base-sequencedtaskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/threads.html#base-singlethreadtaskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SingleThreadTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/threads.html#base-thread"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::Thread</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/threads.html#base-threadpool"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::ThreadPool</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/threads.html#obtaining-current-base-sequencedtaskrunner">Obtaining current <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/threads.html#ensuring-sequence-affinity">Ensuring sequence affinity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/threads.html#canceling-posted-task">Canceling posted task</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/threads.html#blocking-post-tasks">Blocking post-tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../features/weak_ptrs.html">Weak pointers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../features/logging.html">Logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../features/logging.html#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/logging.html#glog-s-user-guide">GLOG’s user guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../features/tracing.html">Tracing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../features/tracing.html#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/tracing.html#tracing-apis">Tracing APIs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_EVENT"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_EVENT_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_EVENT_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_EVENT_ASYNC_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_EVENT_ASYNC_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_EVENT_ASYNC_STEP"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_STEP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_EVENT_WITH_FLOW_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_EVENT_WITH_FLOW_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_EVENT_WITH_FLOW_STEP"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_STEP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_COUNTER"><code class="docutils literal notranslate"><span class="pre">TRACE_COUNTER</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_COUNTER_ID"><code class="docutils literal notranslate"><span class="pre">TRACE_COUNTER_ID</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_SIGNAL"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_SIGNAL_PROCESS"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL_PROCESS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_SIGNAL_THREAD"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL_THREAD</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_NAME_PROCESS"><code class="docutils literal notranslate"><span class="pre">TRACE_NAME_PROCESS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_NAME_THREAD"><code class="docutils literal notranslate"><span class="pre">TRACE_NAME_THREAD</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_EVENT_FLUSH_TO_FILE"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_FLUSH_TO_FILE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_EVENT_FLUSH_TO_STREAM"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_FLUSH_TO_STREAM</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/tracing.html#example">Example</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/simple.html">Simple example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">C++ API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#full-api">Full API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#namespaces">Namespaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#classes-and-structs">Classes and Structs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variables">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#defines">Defines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">libbase</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">C++ API reference</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/RippeR37/libbase/blob/master/docs/build/api/index.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="c-api-reference">
+<h1>C++ API reference<a class="headerlink" href="#c-api-reference" title="Link to this heading"></a></h1>
+<section id="class-hierarchy">
+<h2>Class Hierarchy<a class="headerlink" href="#class-hierarchy" title="Link to this heading"></a></h2>
+<ul class="treeView" id="class-treeView">
+  <li>
+    <ul class="collapsibleList">
+      <li>Namespace <a href="namespace_base.html#namespace-base">base</a><ul><li>Namespace <a href="namespace_base__traits.html#namespace-base-traits">base::traits</a><ul><li>Template Struct <a href="structbase_1_1traits_1_1IdentityType.html#exhale-struct-structbase-1-1traits-1-1IdentityType">IdentityType</a></li><li>Template Struct <a href="structbase_1_1traits_1_1IsCapturelessLambda.html#exhale-struct-structbase-1-1traits-1-1IsCapturelessLambda">IsCapturelessLambda</a></li><li>Template Struct <a href="structbase_1_1traits_1_1IsCapturelessLambda_3_01Lambda_00_01std_1_1enable__if__t_3_01traits_1_1If8dd78fe42ca6c93819d1e3d1f57c337.html#exhale-struct-structbase-1-1traits-1-1IsCapturelessLambda-3-01Lambda-00-01std-1-1enable-if-t-3-01traits-1-1If8dd78fe42ca6c93819d1e3d1f57c337">IsCapturelessLambda&lt; Lambda, std::enable_if_t&lt; traits::IsCapturelessLambdaSfinaeV&lt; Lambda &gt; &gt; &gt;</a></li><li>Template Struct <a href="structbase_1_1traits_1_1IsFunctionPointer.html#exhale-struct-structbase-1-1traits-1-1IsFunctionPointer">IsFunctionPointer</a></li><li>Template Struct <a href="structbase_1_1traits_1_1IsFunctionPointer_3_01T_07_5_08_07Args_8_8_8_08_4.html#exhale-struct-structbase-1-1traits-1-1IsFunctionPointer-3-01T-07-5-08-07Args-8-8-8-08-4">IsFunctionPointer&lt; T(\*)(Args...) &gt;</a></li><li>Template Struct <a href="structbase_1_1traits_1_1IsOnceCallbackType.html#exhale-struct-structbase-1-1traits-1-1IsOnceCallbackType">IsOnceCallbackType</a></li><li>Template Struct <a href="structbase_1_1traits_1_1IsOnceCallbackType_3_01OnceCallback_3_01CallbackSignatureType_01_4_01_4.html#exhale-struct-structbase-1-1traits-1-1IsOnceCallbackType-3-01OnceCallback-3-01CallbackSignatureType-01-4-01-4">IsOnceCallbackType&lt; OnceCallback&lt; CallbackSignatureType &gt; &gt;</a></li><li>Template Struct <a href="structbase_1_1traits_1_1IsRepeatingCallbackType.html#exhale-struct-structbase-1-1traits-1-1IsRepeatingCallbackType">IsRepeatingCallbackType</a></li><li>Template Struct <a href="structbase_1_1traits_1_1IsRepeatingCallbackType_3_01RepeatingCallback_3_01CallbackSignatureType_01_4_01_4.html#exhale-struct-structbase-1-1traits-1-1IsRepeatingCallbackType-3-01RepeatingCallback-3-01CallbackSignatureType-01-4-01-4">IsRepeatingCallbackType&lt; RepeatingCallback&lt; CallbackSignatureType &gt; &gt;</a></li><li>Template Struct <a href="structbase_1_1traits_1_1RemoveCVRef.html#exhale-struct-structbase-1-1traits-1-1RemoveCVRef">RemoveCVRef</a></li><li>Template Struct <a href="structbase_1_1traits_1_1TypesRange.html#exhale-struct-structbase-1-1traits-1-1TypesRange">TypesRange</a></li><li class="lastChild">Template Struct <a href="structbase_1_1traits_1_1TypesRange_3_01Offset_00_01TupleType_00_01std_1_1index__sequence_3_01Indexes_8_8_8_01_4_01_4.html#exhale-struct-structbase-1-1traits-1-1TypesRange-3-01Offset-00-01TupleType-00-01std-1-1index-sequence-3-01Indexes-8-8-8-01-4-01-4">TypesRange&lt; Offset, TupleType, std::index_sequence&lt; Indexes... &gt; &gt;</a></li></ul></li><li>Struct <a href="structbase_1_1InitOptions.html#exhale-struct-structbase-1-1InitOptions">InitOptions</a></li><li>Template Class <a href="classbase_1_1AutoReset.html#exhale-class-classbase-1-1AutoReset">AutoReset</a></li><li>Class <a href="classbase_1_1AutoSignaller.html#exhale-class-classbase-1-1AutoSignaller">AutoSignaller</a></li><li>Class <a href="classbase_1_1DelayedTaskManager.html#exhale-class-classbase-1-1DelayedTaskManager">DelayedTaskManager</a><ul><li class="lastChild">Struct <a href="structbase_1_1DelayedTaskManager_1_1DelayedTask.html#exhale-struct-structbase-1-1DelayedTaskManager-1-1DelayedTask">DelayedTaskManager::DelayedTask</a></li></ul></li><li>Class <a href="classbase_1_1DelayedTaskManagerSharedInstance.html#exhale-class-classbase-1-1DelayedTaskManagerSharedInstance">DelayedTaskManagerSharedInstance</a></li><li>Class <a href="classbase_1_1DoNothing.html#exhale-class-classbase-1-1DoNothing">DoNothing</a></li><li>Class <a href="classbase_1_1ElapsedTimer.html#exhale-class-classbase-1-1ElapsedTimer">ElapsedTimer</a></li><li>Class <a href="classbase_1_1MessageLoop.html#exhale-class-classbase-1-1MessageLoop">MessageLoop</a></li><li>Class <a href="classbase_1_1MessageLoopImpl.html#exhale-class-classbase-1-1MessageLoopImpl">MessageLoopImpl</a></li><li>Class <a href="classbase_1_1MessagePump.html#exhale-class-classbase-1-1MessagePump">MessagePump</a><ul><li class="lastChild">Struct <a href="structbase_1_1MessagePump_1_1PendingTask.html#exhale-struct-structbase-1-1MessagePump-1-1PendingTask">MessagePump::PendingTask</a></li></ul></li><li>Class <a href="classbase_1_1MessagePumpImpl.html#exhale-class-classbase-1-1MessagePumpImpl">MessagePumpImpl</a></li><li>Template Class <a href="classbase_1_1OnceCallback.html#exhale-class-classbase-1-1OnceCallback">OnceCallback</a></li><li>Template Class <a href="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#exhale-class-classbase-1-1OnceCallback-3-01ReturnType-07ArgumentTypes-8-8-8-08-4">OnceCallback&lt; ReturnType(ArgumentTypes...) &gt;</a></li><li>Template Class <a href="classbase_1_1RepeatingCallback.html#exhale-class-classbase-1-1RepeatingCallback">RepeatingCallback</a></li><li>Template Class <a href="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#exhale-class-classbase-1-1RepeatingCallback-3-01ReturnType-07ArgumentTypes-8-8-8-08-4">RepeatingCallback&lt; ReturnType(ArgumentTypes...) &gt;</a></li><li>Class <a href="classbase_1_1RunLoop.html#exhale-class-classbase-1-1RunLoop">RunLoop</a></li><li>Class <a href="classbase_1_1ScopedClosureRunner.html#exhale-class-classbase-1-1ScopedClosureRunner">ScopedClosureRunner</a></li><li>Class <a href="classbase_1_1SequenceChecker.html#exhale-class-classbase-1-1SequenceChecker">SequenceChecker</a></li><li>Class <a href="classbase_1_1SequencedTaskRunner.html#exhale-class-classbase-1-1SequencedTaskRunner">SequencedTaskRunner</a></li><li>Class <a href="classbase_1_1SequencedTaskRunnerHandle.html#exhale-class-classbase-1-1SequencedTaskRunnerHandle">SequencedTaskRunnerHandle</a></li><li>Class <a href="classbase_1_1SequencedTaskRunnerImpl.html#exhale-class-classbase-1-1SequencedTaskRunnerImpl">SequencedTaskRunnerImpl</a></li><li>Class <a href="classbase_1_1SequenceId.html#exhale-class-classbase-1-1SequenceId">SequenceId</a></li><li>Class <a href="classbase_1_1SingleThreadTaskRunner.html#exhale-class-classbase-1-1SingleThreadTaskRunner">SingleThreadTaskRunner</a></li><li>Class <a href="classbase_1_1SingleThreadTaskRunnerImpl.html#exhale-class-classbase-1-1SingleThreadTaskRunnerImpl">SingleThreadTaskRunnerImpl</a></li><li>Class <a href="classbase_1_1SourceLocation.html#exhale-class-classbase-1-1SourceLocation">SourceLocation</a></li><li>Class <a href="classbase_1_1TaskRunner.html#exhale-class-classbase-1-1TaskRunner">TaskRunner</a></li><li>Class <a href="classbase_1_1TaskRunnerImpl.html#exhale-class-classbase-1-1TaskRunnerImpl">TaskRunnerImpl</a></li><li>Class <a href="classbase_1_1Thread.html#exhale-class-classbase-1-1Thread">Thread</a></li><li>Class <a href="classbase_1_1ThreadPool.html#exhale-class-classbase-1-1ThreadPool">ThreadPool</a></li><li>Class <a href="classbase_1_1Time.html#exhale-class-classbase-1-1Time">Time</a></li><li>Class <a href="classbase_1_1TimeDelta.html#exhale-class-classbase-1-1TimeDelta">TimeDelta</a></li><li>Class <a href="classbase_1_1TimeTicks.html#exhale-class-classbase-1-1TimeTicks">TimeTicks</a></li><li>Class <a href="classbase_1_1WaitableEvent.html#exhale-class-classbase-1-1WaitableEvent">WaitableEvent</a></li><li>Template Class <a href="classbase_1_1WeakPtr.html#exhale-class-classbase-1-1WeakPtr">WeakPtr</a></li><li class="lastChild">Template Class <a href="classbase_1_1WeakPtrFactory.html#exhale-class-classbase-1-1WeakPtrFactory">WeakPtrFactory</a></li></ul></li>
+    </ul>
+  </li><!-- only tree view element -->
+</ul><!-- /treeView class-treeView --></section>
+<section id="file-hierarchy">
+<h2>File Hierarchy<a class="headerlink" href="#file-hierarchy" title="Link to this heading"></a></h2>
+<ul class="treeView" id="file-treeView">
+  <li>
+    <ul class="collapsibleList">
+      <li class="lastChild">Directory <a href="dir_base.html#dir-base">base</a><ul><li>Directory <a href="dir_base_memory.html#dir-base-memory">memory</a><ul><li class="lastChild">File <a href="file_base_memory_weak_ptr.h.html#file-base-memory-weak-ptr.h">weak_ptr.h</a></li></ul></li><li>Directory <a href="dir_base_message_loop.html#dir-base-message-loop">message_loop</a><ul><li>Directory <a href="dir_base_message_loop_win.html#dir-base-message-loop-win">win</a><ul><li class="lastChild">File <a href="file_base_message_loop_win_win_message_loop_attachment.h.html#file-base-message-loop-win-win-message-loop-attachment.h">win_message_loop_attachment.h</a></li></ul></li><li>Directory <a href="dir_base_message_loop_wx.html#dir-base-message-loop-wx">wx</a><ul><li class="lastChild">File <a href="file_base_message_loop_wx_wx_message_loop_attachment.h.html#file-base-message-loop-wx-wx-message-loop-attachment.h">wx_message_loop_attachment.h</a></li></ul></li><li>File <a href="file_base_message_loop_message_loop.h.html#file-base-message-loop-message-loop.h">message_loop.h</a></li><li>File <a href="file_base_message_loop_message_loop_impl.h.html#file-base-message-loop-message-loop-impl.h">message_loop_impl.h</a></li><li>File <a href="file_base_message_loop_message_pump.h.html#file-base-message-loop-message-pump.h">message_pump.h</a></li><li>File <a href="file_base_message_loop_message_pump_impl.h.html#file-base-message-loop-message-pump-impl.h">message_pump_impl.h</a></li><li class="lastChild">File <a href="file_base_message_loop_run_loop.h.html#file-base-message-loop-run-loop.h">run_loop.h</a></li></ul></li><li>Directory <a href="dir_base_net.html#dir-base-net">net</a><ul><li>Directory <a href="dir_base_net_impl.html#dir-base-net-impl">impl</a><ul><li>File <a href="file_base_net_impl_net_thread.h.html#file-base-net-impl-net-thread.h">net_thread.h</a></li><li class="lastChild">File <a href="file_base_net_impl_net_thread_impl.h.html#file-base-net-impl-net-thread-impl.h">net_thread_impl.h</a></li></ul></li><li>File <a href="file_base_net_init.h.html#file-base-net-init.h">init.h</a></li><li>File <a href="file_base_net_request_cancellation_token.h.html#file-base-net-request-cancellation-token.h">request_cancellation_token.h</a></li><li>File <a href="file_base_net_resource_request.h.html#file-base-net-resource-request.h">resource_request.h</a></li><li>File <a href="file_base_net_resource_response.h.html#file-base-net-resource-response.h">resource_response.h</a></li><li>File <a href="file_base_net_result.h.html#file-base-net-result.h">result.h</a></li><li>File <a href="file_base_net_simple_url_loader.h.html#file-base-net-simple-url-loader.h">simple_url_loader.h</a></li><li class="lastChild">File <a href="file_base_net_url_request.h.html#file-base-net-url-request.h">url_request.h</a></li></ul></li><li>Directory <a href="dir_base_platform.html#dir-base-platform">platform</a><ul><li class="lastChild">File <a href="file_base_platform_windows.h.html#file-base-platform-windows.h">windows.h</a></li></ul></li><li>Directory <a href="dir_base_synchronization.html#dir-base-synchronization">synchronization</a><ul><li>File <a href="file_base_synchronization_auto_signaller.h.html#file-base-synchronization-auto-signaller.h">auto_signaller.h</a></li><li class="lastChild">File <a href="file_base_synchronization_waitable_event.h.html#file-base-synchronization-waitable-event.h">waitable_event.h</a></li></ul></li><li>Directory <a href="dir_base_threading.html#dir-base-threading">threading</a><ul><li>File <a href="file_base_threading_delayed_task_manager.h.html#file-base-threading-delayed-task-manager.h">delayed_task_manager.h</a></li><li>File <a href="file_base_threading_delayed_task_manager_shared_instance.h.html#file-base-threading-delayed-task-manager-shared-instance.h">delayed_task_manager_shared_instance.h</a></li><li>File <a href="file_base_threading_sequenced_task_runner_handle.h.html#file-base-threading-sequenced-task-runner-handle.h">sequenced_task_runner_handle.h</a></li><li>File <a href="file_base_threading_task_runner_impl.h.html#file-base-threading-task-runner-impl.h">task_runner_impl.h</a></li><li>File <a href="file_base_threading_thread.h.html#file-base-threading-thread.h">thread.h</a></li><li class="lastChild">File <a href="file_base_threading_thread_pool.h.html#file-base-threading-thread-pool.h">thread_pool.h</a></li></ul></li><li>Directory <a href="dir_base_time.html#dir-base-time">time</a><ul><li>File <a href="file_base_time_time.h.html#file-base-time-time.h">time.h</a></li><li>File <a href="file_base_time_time_delta.h.html#file-base-time-time-delta.h">time_delta.h</a></li><li class="lastChild">File <a href="file_base_time_time_ticks.h.html#file-base-time-time-ticks.h">time_ticks.h</a></li></ul></li><li>Directory <a href="dir_base_timer.html#dir-base-timer">timer</a><ul><li class="lastChild">File <a href="file_base_timer_elapsed_timer.h.html#file-base-timer-elapsed-timer.h">elapsed_timer.h</a></li></ul></li><li>Directory <a href="dir_base_trace_event.html#dir-base-trace-event">trace_event</a><ul><li>File <a href="file_base_trace_event_trace_argument_packer.h.html#file-base-trace-event-trace-argument-packer.h">trace_argument_packer.h</a></li><li>File <a href="file_base_trace_event_trace_async.h.html#file-base-trace-event-trace-async.h">trace_async.h</a></li><li>File <a href="file_base_trace_event_trace_complete.h.html#file-base-trace-event-trace-complete.h">trace_complete.h</a></li><li>File <a href="file_base_trace_event_trace_counter.h.html#file-base-trace-event-trace-counter.h">trace_counter.h</a></li><li>File <a href="file_base_trace_event_trace_event.h.html#file-base-trace-event-trace-event.h">trace_event.h</a></li><li>File <a href="file_base_trace_event_trace_event_register.h.html#file-base-trace-event-trace-event-register.h">trace_event_register.h</a></li><li>File <a href="file_base_trace_event_trace_events.h.html#file-base-trace-event-trace-events.h">trace_events.h</a></li><li>File <a href="file_base_trace_event_trace_flow.h.html#file-base-trace-event-trace-flow.h">trace_flow.h</a></li><li>File <a href="file_base_trace_event_trace_flush.h.html#file-base-trace-event-trace-flush.h">trace_flush.h</a></li><li>File <a href="file_base_trace_event_trace_json_writer.h.html#file-base-trace-event-trace-json-writer.h">trace_json_writer.h</a></li><li>File <a href="file_base_trace_event_trace_metadata.h.html#file-base-trace-event-trace-metadata.h">trace_metadata.h</a></li><li>File <a href="file_base_trace_event_trace_platform.h.html#file-base-trace-event-trace-platform.h">trace_platform.h</a></li><li class="lastChild">File <a href="file_base_trace_event_trace_signal.h.html#file-base-trace-event-trace-signal.h">trace_signal.h</a></li></ul></li><li>File <a href="file_base_auto_reset.h.html#file-base-auto-reset.h">auto_reset.h</a></li><li>File <a href="file_base_barrier_callback.h.html#file-base-barrier-callback.h">barrier_callback.h</a></li><li>File <a href="file_base_barrier_closure.h.html#file-base-barrier-closure.h">barrier_closure.h</a></li><li>File <a href="file_base_bind.h.html#file-base-bind.h">bind.h</a></li><li>File <a href="file_base_bind_internals.h.html#file-base-bind-internals.h">bind_internals.h</a></li><li>File <a href="file_base_bind_post_task.h.html#file-base-bind-post-task.h">bind_post_task.h</a></li><li>File <a href="file_base_callback.h.html#file-base-callback.h">callback.h</a></li><li>File <a href="file_base_callback_forward.h.html#file-base-callback-forward.h">callback_forward.h</a></li><li>File <a href="file_base_callback_helpers.h.html#file-base-callback-helpers.h">callback_helpers.h</a></li><li>File <a href="file_base_callback_iface.h.html#file-base-callback-iface.h">callback_iface.h</a></li><li>File <a href="file_base_callback_internals.h.html#file-base-callback-internals.h">callback_internals.h</a></li><li>File <a href="file_base_init.h.html#file-base-init.h">init.h</a></li><li>File <a href="file_base_logging.h.html#file-base-logging.h">logging.h</a></li><li>File <a href="file_base_sequence_checker.h.html#file-base-sequence-checker.h">sequence_checker.h</a></li><li>File <a href="file_base_sequence_id.h.html#file-base-sequence-id.h">sequence_id.h</a></li><li>File <a href="file_base_sequenced_task_runner.h.html#file-base-sequenced-task-runner.h">sequenced_task_runner.h</a></li><li>File <a href="file_base_sequenced_task_runner_helpers.h.html#file-base-sequenced-task-runner-helpers.h">sequenced_task_runner_helpers.h</a></li><li>File <a href="file_base_sequenced_task_runner_internals.h.html#file-base-sequenced-task-runner-internals.h">sequenced_task_runner_internals.h</a></li><li>File <a href="file_base_single_thread_task_runner.h.html#file-base-single-thread-task-runner.h">single_thread_task_runner.h</a></li><li>File <a href="file_base_source_location.h.html#file-base-source-location.h">source_location.h</a></li><li>File <a href="file_base_task_runner.h.html#file-base-task-runner.h">task_runner.h</a></li><li>File <a href="file_base_task_runner_internals.h.html#file-base-task-runner-internals.h">task_runner_internals.h</a></li><li>File <a href="file_base_type_traits.h.html#file-base-type-traits.h">type_traits.h</a></li><li class="lastChild">File <a href="file_base_vlog_is_on.h.html#file-base-vlog-is-on.h">vlog_is_on.h</a></li></ul></li>
+    </ul>
+  </li><!-- only tree view element -->
+</ul><!-- /treeView file-treeView --></section>
+<section id="full-api">
+<h2>Full API<a class="headerlink" href="#full-api" title="Link to this heading"></a></h2>
+<section id="namespaces">
+<h3>Namespaces<a class="headerlink" href="#namespaces" title="Link to this heading"></a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_base.html">Namespace base</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="namespace_base.html#namespaces">Namespaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_base.html#classes">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_base.html#functions">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_base.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_base__traits.html">Namespace base::traits</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="namespace_base__traits.html#classes">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_base__traits.html#typedefs">Typedefs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_base__traits.html#variables">Variables</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_std.html">Namespace std</a></li>
+</ul>
+</div>
+</section>
+<section id="classes-and-structs">
+<h3>Classes and Structs<a class="headerlink" href="#classes-and-structs" title="Link to this heading"></a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structbase_1_1DelayedTaskManager_1_1DelayedTask.html">Struct DelayedTaskManager::DelayedTask</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structbase_1_1DelayedTaskManager_1_1DelayedTask.html#nested-relationships">Nested Relationships</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structbase_1_1DelayedTaskManager_1_1DelayedTask.html#struct-documentation">Struct Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="structbase_1_1DelayedTaskManager_1_1DelayedTask.html#_CPPv4N4base18DelayedTaskManager11DelayedTaskE"><code class="docutils literal notranslate"><span class="pre">base::DelayedTaskManager::DelayedTask</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="structbase_1_1DelayedTaskManager_1_1DelayedTask.html#_CPPv4NK4base18DelayedTaskManager11DelayedTaskltERK11DelayedTask"><code class="docutils literal notranslate"><span class="pre">operator&lt;()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="structbase_1_1DelayedTaskManager_1_1DelayedTask.html#_CPPv4N4base18DelayedTaskManager11DelayedTask10start_timeE"><code class="docutils literal notranslate"><span class="pre">start_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="structbase_1_1DelayedTaskManager_1_1DelayedTask.html#_CPPv4N4base18DelayedTaskManager11DelayedTask12message_pumpE"><code class="docutils literal notranslate"><span class="pre">message_pump</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="structbase_1_1DelayedTaskManager_1_1DelayedTask.html#_CPPv4N4base18DelayedTaskManager11DelayedTask12pending_taskE"><code class="docutils literal notranslate"><span class="pre">pending_task</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structbase_1_1InitOptions.html">Struct InitOptions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structbase_1_1InitOptions.html#struct-documentation">Struct Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="structbase_1_1InitOptions.html#_CPPv4N4base11InitOptionsE"><code class="docutils literal notranslate"><span class="pre">base::InitOptions</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="structbase_1_1InitOptions.html#_CPPv4N4base11InitOptions11LogToStderrE"><code class="docutils literal notranslate"><span class="pre">LogToStderr</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structbase_1_1MessagePump_1_1PendingTask.html">Struct MessagePump::PendingTask</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structbase_1_1MessagePump_1_1PendingTask.html#nested-relationships">Nested Relationships</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structbase_1_1MessagePump_1_1PendingTask.html#struct-documentation">Struct Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="structbase_1_1MessagePump_1_1PendingTask.html#_CPPv4N4base11MessagePump11PendingTaskE"><code class="docutils literal notranslate"><span class="pre">base::MessagePump::PendingTask</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="structbase_1_1MessagePump_1_1PendingTask.html#_CPPv4NK4base11MessagePump11PendingTaskcvbEv"><code class="docutils literal notranslate"><span class="pre">operator</span> <span class="pre">bool()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="structbase_1_1MessagePump_1_1PendingTask.html#_CPPv4N4base11MessagePump11PendingTask4taskE"><code class="docutils literal notranslate"><span class="pre">task</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="structbase_1_1MessagePump_1_1PendingTask.html#_CPPv4N4base11MessagePump11PendingTask11sequence_idE"><code class="docutils literal notranslate"><span class="pre">sequence_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="structbase_1_1MessagePump_1_1PendingTask.html#_CPPv4N4base11MessagePump11PendingTask19allowed_executor_idE"><code class="docutils literal notranslate"><span class="pre">allowed_executor_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="structbase_1_1MessagePump_1_1PendingTask.html#_CPPv4N4base11MessagePump11PendingTask18target_task_runnerE"><code class="docutils literal notranslate"><span class="pre">target_task_runner</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structbase_1_1traits_1_1IdentityType.html">Template Struct IdentityType</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structbase_1_1traits_1_1IdentityType.html#struct-documentation">Struct Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="structbase_1_1traits_1_1IdentityType.html#_CPPv4I0EN4base6traits12IdentityTypeE"><code class="docutils literal notranslate"><span class="pre">base::traits::IdentityType</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="structbase_1_1traits_1_1IdentityType.html#_CPPv4N4base6traits12IdentityType4typeE"><code class="docutils literal notranslate"><span class="pre">type</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structbase_1_1traits_1_1IsCapturelessLambda.html">Template Struct IsCapturelessLambda</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structbase_1_1traits_1_1IsCapturelessLambda.html#struct-documentation">Struct Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="structbase_1_1traits_1_1IsCapturelessLambda.html#_CPPv4I00EN4base6traits19IsCapturelessLambdaE"><code class="docutils literal notranslate"><span class="pre">base::traits::IsCapturelessLambda</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="structbase_1_1traits_1_1IsCapturelessLambda.html#_CPPv4N4base6traits19IsCapturelessLambda5valueE"><code class="docutils literal notranslate"><span class="pre">value</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structbase_1_1traits_1_1IsCapturelessLambda_3_01Lambda_00_01std_1_1enable__if__t_3_01traits_1_1If8dd78fe42ca6c93819d1e3d1f57c337.html">Template Struct IsCapturelessLambda&lt; Lambda, std::enable_if_t&lt; traits::IsCapturelessLambdaSfinaeV&lt; Lambda &gt; &gt; &gt;</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structbase_1_1traits_1_1IsCapturelessLambda_3_01Lambda_00_01std_1_1enable__if__t_3_01traits_1_1If8dd78fe42ca6c93819d1e3d1f57c337.html#struct-documentation">Struct Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="structbase_1_1traits_1_1IsCapturelessLambda_3_01Lambda_00_01std_1_1enable__if__t_3_01traits_1_1If8dd78fe42ca6c93819d1e3d1f57c337.html#_CPPv4I0EN4base6traits19IsCapturelessLambdaI6LambdaNSt11enable_if_tIN6traits26IsCapturelessLambdaSfinaeVI6LambdaEEEEEE"><code class="docutils literal notranslate"><span class="pre">base::traits::IsCapturelessLambda&lt;</span> <span class="pre">Lambda,</span> <span class="pre">std::enable_if_t&lt;</span> <span class="pre">traits::IsCapturelessLambdaSfinaeV&lt;</span> <span class="pre">Lambda</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="structbase_1_1traits_1_1IsCapturelessLambda_3_01Lambda_00_01std_1_1enable__if__t_3_01traits_1_1If8dd78fe42ca6c93819d1e3d1f57c337.html#_CPPv4N4base6traits19IsCapturelessLambdaI6LambdaNSt11enable_if_tIN6traits26IsCapturelessLambdaSfinaeVI6LambdaEEEEE5valueE"><code class="docutils literal notranslate"><span class="pre">value</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structbase_1_1traits_1_1IsFunctionPointer.html">Template Struct IsFunctionPointer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structbase_1_1traits_1_1IsFunctionPointer.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="structbase_1_1traits_1_1IsFunctionPointer.html#base-type">Base Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="structbase_1_1traits_1_1IsFunctionPointer.html#struct-documentation">Struct Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="structbase_1_1traits_1_1IsFunctionPointer.html#_CPPv4I0EN4base6traits17IsFunctionPointerE"><code class="docutils literal notranslate"><span class="pre">base::traits::IsFunctionPointer</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structbase_1_1traits_1_1IsFunctionPointer_3_01T_07_5_08_07Args_8_8_8_08_4.html">Template Struct IsFunctionPointer&lt; T(*)(Args…) &gt;</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structbase_1_1traits_1_1IsFunctionPointer_3_01T_07_5_08_07Args_8_8_8_08_4.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="structbase_1_1traits_1_1IsFunctionPointer_3_01T_07_5_08_07Args_8_8_8_08_4.html#base-type">Base Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="structbase_1_1traits_1_1IsFunctionPointer_3_01T_07_5_08_07Args_8_8_8_08_4.html#struct-documentation">Struct Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="structbase_1_1traits_1_1IsFunctionPointer_3_01T_07_5_08_07Args_8_8_8_08_4.html#_CPPv4I0DpEN4base6traits17IsFunctionPointerIPF1TDp4ArgsEEE"><code class="docutils literal notranslate"><span class="pre">base::traits::IsFunctionPointer&lt;</span> <span class="pre">T(*)(Args...)&gt;</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structbase_1_1traits_1_1IsOnceCallbackType.html">Template Struct IsOnceCallbackType</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structbase_1_1traits_1_1IsOnceCallbackType.html#struct-documentation">Struct Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="structbase_1_1traits_1_1IsOnceCallbackType.html#_CPPv4I0EN4base6traits18IsOnceCallbackTypeE"><code class="docutils literal notranslate"><span class="pre">base::traits::IsOnceCallbackType</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="structbase_1_1traits_1_1IsOnceCallbackType.html#_CPPv4N4base6traits18IsOnceCallbackType5valueE"><code class="docutils literal notranslate"><span class="pre">value</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structbase_1_1traits_1_1IsOnceCallbackType_3_01OnceCallback_3_01CallbackSignatureType_01_4_01_4.html">Template Struct IsOnceCallbackType&lt; OnceCallback&lt; CallbackSignatureType &gt; &gt;</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structbase_1_1traits_1_1IsOnceCallbackType_3_01OnceCallback_3_01CallbackSignatureType_01_4_01_4.html#struct-documentation">Struct Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="structbase_1_1traits_1_1IsOnceCallbackType_3_01OnceCallback_3_01CallbackSignatureType_01_4_01_4.html#_CPPv4I0EN4base6traits18IsOnceCallbackTypeI12OnceCallbackI21CallbackSignatureTypeEEE"><code class="docutils literal notranslate"><span class="pre">base::traits::IsOnceCallbackType&lt;</span> <span class="pre">OnceCallback&lt;</span> <span class="pre">CallbackSignatureType</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="structbase_1_1traits_1_1IsOnceCallbackType_3_01OnceCallback_3_01CallbackSignatureType_01_4_01_4.html#_CPPv4N4base6traits18IsOnceCallbackTypeI12OnceCallbackI21CallbackSignatureTypeEE5valueE"><code class="docutils literal notranslate"><span class="pre">value</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structbase_1_1traits_1_1IsRepeatingCallbackType.html">Template Struct IsRepeatingCallbackType</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structbase_1_1traits_1_1IsRepeatingCallbackType.html#struct-documentation">Struct Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="structbase_1_1traits_1_1IsRepeatingCallbackType.html#_CPPv4I0EN4base6traits23IsRepeatingCallbackTypeE"><code class="docutils literal notranslate"><span class="pre">base::traits::IsRepeatingCallbackType</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="structbase_1_1traits_1_1IsRepeatingCallbackType.html#_CPPv4N4base6traits23IsRepeatingCallbackType5valueE"><code class="docutils literal notranslate"><span class="pre">value</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structbase_1_1traits_1_1IsRepeatingCallbackType_3_01RepeatingCallback_3_01CallbackSignatureType_01_4_01_4.html">Template Struct IsRepeatingCallbackType&lt; RepeatingCallback&lt; CallbackSignatureType &gt; &gt;</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structbase_1_1traits_1_1IsRepeatingCallbackType_3_01RepeatingCallback_3_01CallbackSignatureType_01_4_01_4.html#struct-documentation">Struct Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="structbase_1_1traits_1_1IsRepeatingCallbackType_3_01RepeatingCallback_3_01CallbackSignatureType_01_4_01_4.html#_CPPv4I0EN4base6traits23IsRepeatingCallbackTypeI17RepeatingCallbackI21CallbackSignatureTypeEEE"><code class="docutils literal notranslate"><span class="pre">base::traits::IsRepeatingCallbackType&lt;</span> <span class="pre">RepeatingCallback&lt;</span> <span class="pre">CallbackSignatureType</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="structbase_1_1traits_1_1IsRepeatingCallbackType_3_01RepeatingCallback_3_01CallbackSignatureType_01_4_01_4.html#_CPPv4N4base6traits23IsRepeatingCallbackTypeI17RepeatingCallbackI21CallbackSignatureTypeEE5valueE"><code class="docutils literal notranslate"><span class="pre">value</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structbase_1_1traits_1_1RemoveCVRef.html">Template Struct RemoveCVRef</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structbase_1_1traits_1_1RemoveCVRef.html#struct-documentation">Struct Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="structbase_1_1traits_1_1RemoveCVRef.html#_CPPv4I0EN4base6traits11RemoveCVRefE"><code class="docutils literal notranslate"><span class="pre">base::traits::RemoveCVRef</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="structbase_1_1traits_1_1RemoveCVRef.html#_CPPv4N4base6traits11RemoveCVRef4typeE"><code class="docutils literal notranslate"><span class="pre">type</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structbase_1_1traits_1_1TypesRange.html">Template Struct TypesRange</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structbase_1_1traits_1_1TypesRange.html#struct-documentation">Struct Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="structbase_1_1traits_1_1TypesRange.html#_CPPv4I_6size_t00EN4base6traits10TypesRangeE"><code class="docutils literal notranslate"><span class="pre">base::traits::TypesRange</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structbase_1_1traits_1_1TypesRange_3_01Offset_00_01TupleType_00_01std_1_1index__sequence_3_01Indexes_8_8_8_01_4_01_4.html">Template Struct TypesRange&lt; Offset, TupleType, std::index_sequence&lt; Indexes… &gt; &gt;</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structbase_1_1traits_1_1TypesRange_3_01Offset_00_01TupleType_00_01std_1_1index__sequence_3_01Indexes_8_8_8_01_4_01_4.html#struct-documentation">Struct Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="structbase_1_1traits_1_1TypesRange_3_01Offset_00_01TupleType_00_01std_1_1index__sequence_3_01Indexes_8_8_8_01_4_01_4.html#_CPPv4I_6size_t0_Dp6size_tEN4base6traits10TypesRangeI6Offset9TupleTypeNSt14index_sequenceIDp7IndexesEEEE"><code class="docutils literal notranslate"><span class="pre">base::traits::TypesRange&lt;</span> <span class="pre">Offset,</span> <span class="pre">TupleType,</span> <span class="pre">std::index_sequence&lt;</span> <span class="pre">Indexes...</span> <span class="pre">&gt;</span> <span class="pre">&gt;</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="structbase_1_1traits_1_1TypesRange_3_01Offset_00_01TupleType_00_01std_1_1index__sequence_3_01Indexes_8_8_8_01_4_01_4.html#_CPPv4N4base6traits10TypesRangeI6Offset9TupleTypeNSt14index_sequenceIDp7IndexesEEE4typeE"><code class="docutils literal notranslate"><span class="pre">type</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1AutoReset.html">Template Class AutoReset</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1AutoReset.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1AutoReset.html#_CPPv4I0EN4base9AutoResetE"><code class="docutils literal notranslate"><span class="pre">base::AutoReset</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1AutoReset.html#_CPPv4I0EN4base9AutoReset9AutoResetEP1TRR1U"><code class="docutils literal notranslate"><span class="pre">AutoReset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1AutoReset.html#_CPPv4N4base9AutoResetD0Ev"><code class="docutils literal notranslate"><span class="pre">~AutoReset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1AutoReset.html#_CPPv4N4base9AutoReset9AutoResetERR9AutoReset"><code class="docutils literal notranslate"><span class="pre">AutoReset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1AutoReset.html#_CPPv4N4base9AutoResetaSERR9AutoReset"><code class="docutils literal notranslate"><span class="pre">operator=()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1AutoSignaller.html">Class AutoSignaller</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1AutoSignaller.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1AutoSignaller.html#_CPPv4N4base13AutoSignallerE"><code class="docutils literal notranslate"><span class="pre">base::AutoSignaller</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1AutoSignaller.html#_CPPv4N4base13AutoSignaller13AutoSignallerEP13WaitableEvent"><code class="docutils literal notranslate"><span class="pre">AutoSignaller()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1AutoSignaller.html#_CPPv4N4base13AutoSignaller13AutoSignallerENSt9nullptr_tE"><code class="docutils literal notranslate"><span class="pre">AutoSignaller()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1AutoSignaller.html#_CPPv4N4base13AutoSignallerD0Ev"><code class="docutils literal notranslate"><span class="pre">~AutoSignaller()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1AutoSignaller.html#_CPPv4N4base13AutoSignaller13AutoSignallerERR13AutoSignaller"><code class="docutils literal notranslate"><span class="pre">AutoSignaller()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1AutoSignaller.html#_CPPv4N4base13AutoSignalleraSERR13AutoSignaller"><code class="docutils literal notranslate"><span class="pre">operator=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1AutoSignaller.html#_CPPv4N4base13AutoSignaller14SignalAndResetEv"><code class="docutils literal notranslate"><span class="pre">SignalAndReset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1AutoSignaller.html#_CPPv4N4base13AutoSignaller6CancelEv"><code class="docutils literal notranslate"><span class="pre">Cancel()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1DelayedTaskManager.html">Class DelayedTaskManager</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1DelayedTaskManager.html#nested-relationships">Nested Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1DelayedTaskManager.html#nested-types">Nested Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1DelayedTaskManager.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1DelayedTaskManager.html#_CPPv4N4base18DelayedTaskManagerE"><code class="docutils literal notranslate"><span class="pre">base::DelayedTaskManager</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1DelayedTaskManager.html#_CPPv4N4base18DelayedTaskManager17TimeTicksProviderE"><code class="docutils literal notranslate"><span class="pre">TimeTicksProvider</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1DelayedTaskManager.html#_CPPv4N4base18DelayedTaskManager18DelayedTaskManagerE17TimeTicksProvider"><code class="docutils literal notranslate"><span class="pre">DelayedTaskManager()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1DelayedTaskManager.html#_CPPv4N4base18DelayedTaskManagerD0Ev"><code class="docutils literal notranslate"><span class="pre">~DelayedTaskManager()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1DelayedTaskManager.html#_CPPv4N4base18DelayedTaskManager16QueueDelayedTaskE11DelayedTask"><code class="docutils literal notranslate"><span class="pre">QueueDelayedTask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1DelayedTaskManager.html#_CPPv4N4base18DelayedTaskManager29ScheduleAllReadyTasksForTestsEv"><code class="docutils literal notranslate"><span class="pre">ScheduleAllReadyTasksForTests()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1DelayedTaskManager.html#_CPPv4N4base18DelayedTaskManager11DelayedTaskE"><code class="docutils literal notranslate"><span class="pre">base::DelayedTaskManager::DelayedTask</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="classbase_1_1DelayedTaskManager.html#_CPPv4NK4base18DelayedTaskManager11DelayedTaskltERK11DelayedTask"><code class="docutils literal notranslate"><span class="pre">operator&lt;()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="classbase_1_1DelayedTaskManager.html#_CPPv4N4base18DelayedTaskManager11DelayedTask10start_timeE"><code class="docutils literal notranslate"><span class="pre">start_time</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="classbase_1_1DelayedTaskManager.html#_CPPv4N4base18DelayedTaskManager11DelayedTask12message_pumpE"><code class="docutils literal notranslate"><span class="pre">message_pump</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="classbase_1_1DelayedTaskManager.html#_CPPv4N4base18DelayedTaskManager11DelayedTask12pending_taskE"><code class="docutils literal notranslate"><span class="pre">pending_task</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1DelayedTaskManagerSharedInstance.html">Class DelayedTaskManagerSharedInstance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1DelayedTaskManagerSharedInstance.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1DelayedTaskManagerSharedInstance.html#_CPPv4N4base32DelayedTaskManagerSharedInstanceE"><code class="docutils literal notranslate"><span class="pre">base::DelayedTaskManagerSharedInstance</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1DelayedTaskManagerSharedInstance.html#_CPPv4N4base32DelayedTaskManagerSharedInstance25GetOrCreateSharedInstanceEv"><code class="docutils literal notranslate"><span class="pre">GetOrCreateSharedInstance()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1DoNothing.html">Class DoNothing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1DoNothing.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1DoNothing.html#_CPPv4N4base9DoNothingE"><code class="docutils literal notranslate"><span class="pre">base::DoNothing</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1DoNothing.html#_CPPv4IDpEN4base9DoNothingcv12OnceCallbackIFvDp4ArgsEEEv"><code class="docutils literal notranslate"><span class="pre">operator</span> <span class="pre">OnceCallback&lt;</span> <span class="pre">void()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1DoNothing.html#_CPPv4IDpEN4base9DoNothingcv17RepeatingCallbackIFvDp4ArgsEEEv"><code class="docutils literal notranslate"><span class="pre">operator</span> <span class="pre">RepeatingCallback&lt;</span> <span class="pre">void()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1DoNothing.html#_CPPv4IDpEN4base9DoNothing4OnceE12OnceCallbackIFvDp4ArgsEEv"><code class="docutils literal notranslate"><span class="pre">Once()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1DoNothing.html#_CPPv4IDpEN4base9DoNothing10RepeatedlyE17RepeatingCallbackIFvDp4ArgsEEv"><code class="docutils literal notranslate"><span class="pre">Repeatedly()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1ElapsedTimer.html">Class ElapsedTimer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1ElapsedTimer.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1ElapsedTimer.html#_CPPv4N4base12ElapsedTimerE"><code class="docutils literal notranslate"><span class="pre">base::ElapsedTimer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1ElapsedTimer.html#_CPPv4N4base12ElapsedTimer12ElapsedTimerEv"><code class="docutils literal notranslate"><span class="pre">ElapsedTimer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1ElapsedTimer.html#_CPPv4N4base12ElapsedTimer12ElapsedTimerERR12ElapsedTimer"><code class="docutils literal notranslate"><span class="pre">ElapsedTimer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1ElapsedTimer.html#_CPPv4N4base12ElapsedTimeraSERR12ElapsedTimer"><code class="docutils literal notranslate"><span class="pre">operator=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1ElapsedTimer.html#_CPPv4N4base12ElapsedTimer12ElapsedTimerERK12ElapsedTimer"><code class="docutils literal notranslate"><span class="pre">ElapsedTimer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1ElapsedTimer.html#_CPPv4N4base12ElapsedTimeraSERK12ElapsedTimer"><code class="docutils literal notranslate"><span class="pre">operator=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1ElapsedTimer.html#_CPPv4NK4base12ElapsedTimer7ElapsedEv"><code class="docutils literal notranslate"><span class="pre">Elapsed()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1ElapsedTimer.html#_CPPv4NK4base12ElapsedTimer5BeginEv"><code class="docutils literal notranslate"><span class="pre">Begin()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1MessageLoop.html">Class MessageLoop</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1MessageLoop.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1MessageLoop.html#derived-type">Derived Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1MessageLoop.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1MessageLoop.html#_CPPv4N4base11MessageLoopE"><code class="docutils literal notranslate"><span class="pre">base::MessageLoop</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1MessageLoop.html#_CPPv4N4base11MessageLoopD0Ev"><code class="docutils literal notranslate"><span class="pre">~MessageLoop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1MessageLoop.html#_CPPv4N4base11MessageLoop7RunOnceEv"><code class="docutils literal notranslate"><span class="pre">RunOnce()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1MessageLoop.html#_CPPv4N4base11MessageLoop12RunUntilIdleEv"><code class="docutils literal notranslate"><span class="pre">RunUntilIdle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1MessageLoop.html#_CPPv4N4base11MessageLoop3RunEv"><code class="docutils literal notranslate"><span class="pre">Run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1MessageLoop.html#_CPPv4N4base11MessageLoop4StopEN11MessagePump11PendingTaskE"><code class="docutils literal notranslate"><span class="pre">Stop()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1MessageLoopImpl.html">Class MessageLoopImpl</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1MessageLoopImpl.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1MessageLoopImpl.html#base-type">Base Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1MessageLoopImpl.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1MessageLoopImpl.html#_CPPv4N4base15MessageLoopImplE"><code class="docutils literal notranslate"><span class="pre">base::MessageLoopImpl</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1MessageLoopImpl.html#_CPPv4N4base15MessageLoopImpl15MessageLoopImplEN11MessagePump10ExecutorIdENSt10shared_ptrI11MessagePumpEEb"><code class="docutils literal notranslate"><span class="pre">MessageLoopImpl()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1MessageLoopImpl.html#_CPPv4N4base15MessageLoopImplD0Ev"><code class="docutils literal notranslate"><span class="pre">~MessageLoopImpl()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1MessageLoopImpl.html#_CPPv4N4base15MessageLoopImpl7RunOnceEv"><code class="docutils literal notranslate"><span class="pre">RunOnce()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1MessageLoopImpl.html#_CPPv4N4base15MessageLoopImpl12RunUntilIdleEv"><code class="docutils literal notranslate"><span class="pre">RunUntilIdle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1MessageLoopImpl.html#_CPPv4N4base15MessageLoopImpl3RunEv"><code class="docutils literal notranslate"><span class="pre">Run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1MessageLoopImpl.html#_CPPv4N4base15MessageLoopImpl4StopEN11MessagePump11PendingTaskE"><code class="docutils literal notranslate"><span class="pre">Stop()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1MessagePump.html">Class MessagePump</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1MessagePump.html#nested-relationships">Nested Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1MessagePump.html#nested-types">Nested Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1MessagePump.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1MessagePump.html#derived-type">Derived Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1MessagePump.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1MessagePump.html#_CPPv4N4base11MessagePumpE"><code class="docutils literal notranslate"><span class="pre">base::MessagePump</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1MessagePump.html#_CPPv4N4base11MessagePump10ExecutorIdE"><code class="docutils literal notranslate"><span class="pre">ExecutorId</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1MessagePump.html#_CPPv4N4base11MessagePumpD0Ev"><code class="docutils literal notranslate"><span class="pre">~MessagePump()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1MessagePump.html#_CPPv4N4base11MessagePump18GetNextPendingTaskE10ExecutorIdb"><code class="docutils literal notranslate"><span class="pre">GetNextPendingTask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1MessagePump.html#_CPPv4N4base11MessagePump16QueuePendingTaskE11PendingTask"><code class="docutils literal notranslate"><span class="pre">QueuePendingTask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1MessagePump.html#_CPPv4N4base11MessagePump4StopE11PendingTask"><code class="docutils literal notranslate"><span class="pre">Stop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1MessagePump.html#_CPPv4N4base11MessagePump11PendingTaskE"><code class="docutils literal notranslate"><span class="pre">base::MessagePump::PendingTask</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="classbase_1_1MessagePump.html#_CPPv4NK4base11MessagePump11PendingTaskcvbEv"><code class="docutils literal notranslate"><span class="pre">operator</span> <span class="pre">bool()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="classbase_1_1MessagePump.html#_CPPv4N4base11MessagePump11PendingTask4taskE"><code class="docutils literal notranslate"><span class="pre">task</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="classbase_1_1MessagePump.html#_CPPv4N4base11MessagePump11PendingTask11sequence_idE"><code class="docutils literal notranslate"><span class="pre">sequence_id</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="classbase_1_1MessagePump.html#_CPPv4N4base11MessagePump11PendingTask19allowed_executor_idE"><code class="docutils literal notranslate"><span class="pre">allowed_executor_id</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="classbase_1_1MessagePump.html#_CPPv4N4base11MessagePump11PendingTask18target_task_runnerE"><code class="docutils literal notranslate"><span class="pre">target_task_runner</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1MessagePumpImpl.html">Class MessagePumpImpl</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1MessagePumpImpl.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1MessagePumpImpl.html#base-type">Base Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1MessagePumpImpl.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1MessagePumpImpl.html#_CPPv4N4base15MessagePumpImplE"><code class="docutils literal notranslate"><span class="pre">base::MessagePumpImpl</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1MessagePumpImpl.html#_CPPv4N4base15MessagePumpImpl15MessagePumpImplE6size_t"><code class="docutils literal notranslate"><span class="pre">MessagePumpImpl()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1MessagePumpImpl.html#_CPPv4N4base15MessagePumpImpl18GetNextPendingTaskE10ExecutorIdb"><code class="docutils literal notranslate"><span class="pre">GetNextPendingTask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1MessagePumpImpl.html#_CPPv4N4base15MessagePumpImpl16QueuePendingTaskE11PendingTask"><code class="docutils literal notranslate"><span class="pre">QueuePendingTask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1MessagePumpImpl.html#_CPPv4N4base15MessagePumpImpl4StopE11PendingTask"><code class="docutils literal notranslate"><span class="pre">Stop()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1OnceCallback.html">Template Class OnceCallback</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1OnceCallback.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1OnceCallback.html#_CPPv4I0EN4base12OnceCallbackE"><code class="docutils literal notranslate"><span class="pre">base::OnceCallback</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html">Template Class OnceCallback&lt; ReturnType(ArgumentTypes…) &gt;</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEEE"><code class="docutils literal notranslate"><span class="pre">base::OnceCallback&lt;</span> <span class="pre">ReturnType(ArgumentTypes...)&gt;</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4N4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEE12OnceCallbackEv"><code class="docutils literal notranslate"><span class="pre">OnceCallback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4N4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEE12OnceCallbackERR12OnceCallback"><code class="docutils literal notranslate"><span class="pre">OnceCallback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4N4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEEaSERR12OnceCallback"><code class="docutils literal notranslate"><span class="pre">operator=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4N4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEE12OnceCallbackE17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEE"><code class="docutils literal notranslate"><span class="pre">OnceCallback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4NK4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEEcvbEv"><code class="docutils literal notranslate"><span class="pre">operator</span> <span class="pre">bool()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4NO4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEE3RunEDp13ArgumentTypes"><code class="docutils literal notranslate"><span class="pre">Run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpENO4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEE4ThenE12OnceCallbackIF10ThenReturnDp13ArgumentTypesEE12OnceCallbackIF10ThenReturnDp13ThenArgumentsEE"><code class="docutils literal notranslate"><span class="pre">Then()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpENO4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEE4ThenE12OnceCallbackIF10ThenReturnDp13ArgumentTypesEE17RepeatingCallbackIF10ThenReturnDp13ThenArgumentsEE"><code class="docutils literal notranslate"><span class="pre">Then()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1RepeatingCallback.html">Template Class RepeatingCallback</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1RepeatingCallback.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1RepeatingCallback.html#_CPPv4I0EN4base17RepeatingCallbackE"><code class="docutils literal notranslate"><span class="pre">base::RepeatingCallback</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html">Template Class RepeatingCallback&lt; ReturnType(ArgumentTypes…) &gt;</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEEE"><code class="docutils literal notranslate"><span class="pre">base::RepeatingCallback&lt;</span> <span class="pre">ReturnType(ArgumentTypes...)&gt;</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4N4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEE17RepeatingCallbackEv"><code class="docutils literal notranslate"><span class="pre">RepeatingCallback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4N4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEE17RepeatingCallbackERR17RepeatingCallback"><code class="docutils literal notranslate"><span class="pre">RepeatingCallback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4N4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEEaSERR17RepeatingCallback"><code class="docutils literal notranslate"><span class="pre">operator=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4N4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEE17RepeatingCallbackERK17RepeatingCallback"><code class="docutils literal notranslate"><span class="pre">RepeatingCallback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4N4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEEaSERK17RepeatingCallback"><code class="docutils literal notranslate"><span class="pre">operator=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4NK4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEEcvbEv"><code class="docutils literal notranslate"><span class="pre">operator</span> <span class="pre">bool()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4NKR4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEE3RunEDp13ArgumentTypes"><code class="docutils literal notranslate"><span class="pre">Run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4NO4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEE3RunEDp13ArgumentTypes"><code class="docutils literal notranslate"><span class="pre">Run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpENKR4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEE4ThenE17RepeatingCallbackIF10ThenReturnDp13ArgumentTypesEE17RepeatingCallbackIF10ThenReturnDp13ThenArgumentsEE"><code class="docutils literal notranslate"><span class="pre">Then()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpENO4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEE4ThenE17RepeatingCallbackIF10ThenReturnDp13ArgumentTypesEE17RepeatingCallbackIF10ThenReturnDp13ThenArgumentsEE"><code class="docutils literal notranslate"><span class="pre">Then()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpENKR4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEE4ThenE12OnceCallbackIF10ThenReturnDp13ArgumentTypesEE12OnceCallbackIF10ThenReturnDp13ThenArgumentsEE"><code class="docutils literal notranslate"><span class="pre">Then()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpENO4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEE4ThenE12OnceCallbackIF10ThenReturnDp13ArgumentTypesEE12OnceCallbackIF10ThenReturnDp13ThenArgumentsEE"><code class="docutils literal notranslate"><span class="pre">Then()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1RunLoop.html">Class RunLoop</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1RunLoop.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1RunLoop.html#_CPPv4N4base7RunLoopE"><code class="docutils literal notranslate"><span class="pre">base::RunLoop</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RunLoop.html#_CPPv4N4base7RunLoop7RunLoopEv"><code class="docutils literal notranslate"><span class="pre">RunLoop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RunLoop.html#_CPPv4N4base7RunLoopD0Ev"><code class="docutils literal notranslate"><span class="pre">~RunLoop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RunLoop.html#_CPPv4N4base7RunLoop10TaskRunnerEv"><code class="docutils literal notranslate"><span class="pre">TaskRunner()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RunLoop.html#_CPPv4N4base7RunLoop7RunOnceEv"><code class="docutils literal notranslate"><span class="pre">RunOnce()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RunLoop.html#_CPPv4N4base7RunLoop12RunUntilIdleEv"><code class="docutils literal notranslate"><span class="pre">RunUntilIdle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RunLoop.html#_CPPv4N4base7RunLoop3RunEv"><code class="docutils literal notranslate"><span class="pre">Run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RunLoop.html#_CPPv4N4base7RunLoop4QuitEv"><code class="docutils literal notranslate"><span class="pre">Quit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RunLoop.html#_CPPv4N4base7RunLoop4QuitE11OnceClosure"><code class="docutils literal notranslate"><span class="pre">Quit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RunLoop.html#_CPPv4N4base7RunLoop11QuitClosureEv"><code class="docutils literal notranslate"><span class="pre">QuitClosure()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RunLoop.html#_CPPv4N4base7RunLoop12QuitCallbackEv"><code class="docutils literal notranslate"><span class="pre">QuitCallback()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RunLoop.html#_CPPv4N4base7RunLoop19scoped_sequence_id_E"><code class="docutils literal notranslate"><span class="pre">scoped_sequence_id_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RunLoop.html#_CPPv4N4base7RunLoop26scoped_task_runner_handle_E"><code class="docutils literal notranslate"><span class="pre">scoped_task_runner_handle_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RunLoop.html#_CPPv4N4base7RunLoop12sequence_id_E"><code class="docutils literal notranslate"><span class="pre">sequence_id_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RunLoop.html#_CPPv4N4base7RunLoop12task_runner_E"><code class="docutils literal notranslate"><span class="pre">task_runner_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1RunLoop.html#_CPPv4N4base7RunLoop13message_loop_E"><code class="docutils literal notranslate"><span class="pre">message_loop_</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1ScopedClosureRunner.html">Class ScopedClosureRunner</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1ScopedClosureRunner.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1ScopedClosureRunner.html#_CPPv4N4base19ScopedClosureRunnerE"><code class="docutils literal notranslate"><span class="pre">base::ScopedClosureRunner</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1ScopedClosureRunner.html#_CPPv4N4base19ScopedClosureRunner19ScopedClosureRunnerEv"><code class="docutils literal notranslate"><span class="pre">ScopedClosureRunner()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1ScopedClosureRunner.html#_CPPv4N4base19ScopedClosureRunner19ScopedClosureRunnerE11OnceClosure"><code class="docutils literal notranslate"><span class="pre">ScopedClosureRunner()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1ScopedClosureRunner.html#_CPPv4N4base19ScopedClosureRunner19ScopedClosureRunnerERR19ScopedClosureRunner"><code class="docutils literal notranslate"><span class="pre">ScopedClosureRunner()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1ScopedClosureRunner.html#_CPPv4N4base19ScopedClosureRunnerD0Ev"><code class="docutils literal notranslate"><span class="pre">~ScopedClosureRunner()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1ScopedClosureRunner.html#_CPPv4N4base19ScopedClosureRunneraSERR19ScopedClosureRunner"><code class="docutils literal notranslate"><span class="pre">operator=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1ScopedClosureRunner.html#_CPPv4NK4base19ScopedClosureRunnercvbEv"><code class="docutils literal notranslate"><span class="pre">operator</span> <span class="pre">bool()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1ScopedClosureRunner.html#_CPPv4N4base19ScopedClosureRunner11RunAndResetEv"><code class="docutils literal notranslate"><span class="pre">RunAndReset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1ScopedClosureRunner.html#_CPPv4N4base19ScopedClosureRunner14ReplaceClosureE11OnceClosure"><code class="docutils literal notranslate"><span class="pre">ReplaceClosure()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1ScopedClosureRunner.html#_CPPv4N4base19ScopedClosureRunner7ReleaseEv"><code class="docutils literal notranslate"><span class="pre">Release()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1SequenceChecker.html">Class SequenceChecker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1SequenceChecker.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1SequenceChecker.html#_CPPv4N4base15SequenceCheckerE"><code class="docutils literal notranslate"><span class="pre">base::SequenceChecker</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SequenceChecker.html#_CPPv4N4base15SequenceChecker15SequenceCheckerEv"><code class="docutils literal notranslate"><span class="pre">SequenceChecker()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SequenceChecker.html#_CPPv4N4base15SequenceCheckerD0Ev"><code class="docutils literal notranslate"><span class="pre">~SequenceChecker()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SequenceChecker.html#_CPPv4N4base15SequenceChecker15SequenceCheckerERR15SequenceChecker"><code class="docutils literal notranslate"><span class="pre">SequenceChecker()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SequenceChecker.html#_CPPv4N4base15SequenceCheckeraSERR15SequenceChecker"><code class="docutils literal notranslate"><span class="pre">operator=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SequenceChecker.html#_CPPv4NK4base15SequenceChecker21CalledOnValidSequenceEv"><code class="docutils literal notranslate"><span class="pre">CalledOnValidSequence()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SequenceChecker.html#_CPPv4N4base15SequenceChecker18DetachFromSequenceEv"><code class="docutils literal notranslate"><span class="pre">DetachFromSequence()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1SequencedTaskRunner.html">Class SequencedTaskRunner</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1SequencedTaskRunner.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1SequencedTaskRunner.html#base-type">Base Type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1SequencedTaskRunner.html#derived-types">Derived Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1SequencedTaskRunner.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1SequencedTaskRunner.html#_CPPv4N4base19SequencedTaskRunnerE"><code class="docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SequencedTaskRunner.html#_CPPv4NK4base19SequencedTaskRunner26RunsTasksInCurrentSequenceEv"><code class="docutils literal notranslate"><span class="pre">RunsTasksInCurrentSequence()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SequencedTaskRunner.html#_CPPv4I0EN4base19SequencedTaskRunner10DeleteSoonEb14SourceLocationNSt10unique_ptrI1TEE"><code class="docutils literal notranslate"><span class="pre">DeleteSoon()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SequencedTaskRunner.html#_CPPv4I0EN4base19SequencedTaskRunner10DeleteSoonEb14SourceLocationPK1T"><code class="docutils literal notranslate"><span class="pre">DeleteSoon()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1SequencedTaskRunnerHandle.html">Class SequencedTaskRunnerHandle</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1SequencedTaskRunnerHandle.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1SequencedTaskRunnerHandle.html#_CPPv4N4base25SequencedTaskRunnerHandleE"><code class="docutils literal notranslate"><span class="pre">base::SequencedTaskRunnerHandle</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SequencedTaskRunnerHandle.html#_CPPv4N4base25SequencedTaskRunnerHandle25SequencedTaskRunnerHandleENSt10shared_ptrI19SequencedTaskRunnerEE"><code class="docutils literal notranslate"><span class="pre">SequencedTaskRunnerHandle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SequencedTaskRunnerHandle.html#_CPPv4N4base25SequencedTaskRunnerHandleD0Ev"><code class="docutils literal notranslate"><span class="pre">~SequencedTaskRunnerHandle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SequencedTaskRunnerHandle.html#_CPPv4N4base25SequencedTaskRunnerHandle25SequencedTaskRunnerHandleERK25SequencedTaskRunnerHandle"><code class="docutils literal notranslate"><span class="pre">SequencedTaskRunnerHandle()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SequencedTaskRunnerHandle.html#_CPPv4N4base25SequencedTaskRunnerHandleaSERK25SequencedTaskRunnerHandle"><code class="docutils literal notranslate"><span class="pre">operator=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SequencedTaskRunnerHandle.html#_CPPv4N4base25SequencedTaskRunnerHandle3GetEv"><code class="docutils literal notranslate"><span class="pre">Get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SequencedTaskRunnerHandle.html#_CPPv4N4base25SequencedTaskRunnerHandle5IsSetEv"><code class="docutils literal notranslate"><span class="pre">IsSet()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1SequencedTaskRunnerImpl.html">Class SequencedTaskRunnerImpl</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1SequencedTaskRunnerImpl.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1SequencedTaskRunnerImpl.html#base-types">Base Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1SequencedTaskRunnerImpl.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1SequencedTaskRunnerImpl.html#_CPPv4N4base23SequencedTaskRunnerImplE"><code class="docutils literal notranslate"><span class="pre">base::SequencedTaskRunnerImpl</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SequencedTaskRunnerImpl.html#_CPPv4N4base23SequencedTaskRunnerImpl15PostDelayedTaskE14SourceLocation11OnceClosure9TimeDelta"><code class="docutils literal notranslate"><span class="pre">PostDelayedTask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SequencedTaskRunnerImpl.html#_CPPv4NK4base23SequencedTaskRunnerImpl26RunsTasksInCurrentSequenceEv"><code class="docutils literal notranslate"><span class="pre">RunsTasksInCurrentSequence()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SequencedTaskRunnerImpl.html#_CPPv4N4base23SequencedTaskRunnerImpl6CreateENSt8weak_ptrI11MessagePumpEE10SequenceIdNSt10shared_ptrI18DelayedTaskManagerEE"><code class="docutils literal notranslate"><span class="pre">Create()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1SequenceId.html">Class SequenceId</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1SequenceId.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1SequenceId.html#_CPPv4N4base10SequenceIdE"><code class="docutils literal notranslate"><span class="pre">base::SequenceId</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SequenceId.html#_CPPv4N4base10SequenceId10SequenceIdERK10SequenceId"><code class="docutils literal notranslate"><span class="pre">SequenceId()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SequenceId.html#_CPPv4N4base10SequenceIdaSERK10SequenceId"><code class="docutils literal notranslate"><span class="pre">operator=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SequenceId.html#_CPPv4NK4base10SequenceIdeqERK10SequenceId"><code class="docutils literal notranslate"><span class="pre">operator==()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SequenceId.html#_CPPv4NK4base10SequenceIdneERK10SequenceId"><code class="docutils literal notranslate"><span class="pre">operator!=()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1SingleThreadTaskRunner.html">Class SingleThreadTaskRunner</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1SingleThreadTaskRunner.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1SingleThreadTaskRunner.html#base-type">Base Type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1SingleThreadTaskRunner.html#derived-type">Derived Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1SingleThreadTaskRunner.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1SingleThreadTaskRunner.html#_CPPv4N4base22SingleThreadTaskRunnerE"><code class="docutils literal notranslate"><span class="pre">base::SingleThreadTaskRunner</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SingleThreadTaskRunner.html#_CPPv4NK4base22SingleThreadTaskRunner22BelongsToCurrentThreadEv"><code class="docutils literal notranslate"><span class="pre">BelongsToCurrentThread()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1SingleThreadTaskRunnerImpl.html">Class SingleThreadTaskRunnerImpl</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1SingleThreadTaskRunnerImpl.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1SingleThreadTaskRunnerImpl.html#base-types">Base Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1SingleThreadTaskRunnerImpl.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1SingleThreadTaskRunnerImpl.html#_CPPv4N4base26SingleThreadTaskRunnerImplE"><code class="docutils literal notranslate"><span class="pre">base::SingleThreadTaskRunnerImpl</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SingleThreadTaskRunnerImpl.html#_CPPv4N4base26SingleThreadTaskRunnerImpl15PostDelayedTaskE14SourceLocation11OnceClosure9TimeDelta"><code class="docutils literal notranslate"><span class="pre">PostDelayedTask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SingleThreadTaskRunnerImpl.html#_CPPv4NK4base26SingleThreadTaskRunnerImpl26RunsTasksInCurrentSequenceEv"><code class="docutils literal notranslate"><span class="pre">RunsTasksInCurrentSequence()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SingleThreadTaskRunnerImpl.html#_CPPv4N4base26SingleThreadTaskRunnerImpl6CreateENSt8weak_ptrI11MessagePumpEE10SequenceIdN11MessagePump10ExecutorIdENSt10shared_ptrI18DelayedTaskManagerEE"><code class="docutils literal notranslate"><span class="pre">Create()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1SourceLocation.html">Class SourceLocation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1SourceLocation.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1SourceLocation.html#_CPPv4N4base14SourceLocationE"><code class="docutils literal notranslate"><span class="pre">base::SourceLocation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SourceLocation.html#_CPPv4N4base14SourceLocation14SourceLocationEPKc6size_t"><code class="docutils literal notranslate"><span class="pre">SourceLocation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SourceLocation.html#_CPPv4N4base14SourceLocation4fileE"><code class="docutils literal notranslate"><span class="pre">file</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1SourceLocation.html#_CPPv4N4base14SourceLocation4lineE"><code class="docutils literal notranslate"><span class="pre">line</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1TaskRunner.html">Class TaskRunner</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1TaskRunner.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1TaskRunner.html#derived-types">Derived Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1TaskRunner.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1TaskRunner.html#_CPPv4N4base10TaskRunnerE"><code class="docutils literal notranslate"><span class="pre">base::TaskRunner</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TaskRunner.html#_CPPv4N4base10TaskRunnerD0Ev"><code class="docutils literal notranslate"><span class="pre">~TaskRunner()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TaskRunner.html#_CPPv4N4base10TaskRunner8PostTaskE14SourceLocation11OnceClosure"><code class="docutils literal notranslate"><span class="pre">PostTask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TaskRunner.html#_CPPv4N4base10TaskRunner15PostDelayedTaskE14SourceLocation11OnceClosure9TimeDelta"><code class="docutils literal notranslate"><span class="pre">PostDelayedTask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TaskRunner.html#_CPPv4N4base10TaskRunner16PostTaskAndReplyE14SourceLocation11OnceClosure11OnceClosure"><code class="docutils literal notranslate"><span class="pre">PostTaskAndReply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TaskRunner.html#_CPPv4I00I0E0I0E0EN4base10TaskRunner26PostTaskAndReplyWithResultEb14SourceLocation12TaskCallbackIF10TaskResultvEE13ReplyCallbackIFv13ReplyArgumentEE"><code class="docutils literal notranslate"><span class="pre">PostTaskAndReplyWithResult()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1TaskRunnerImpl.html">Class TaskRunnerImpl</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1TaskRunnerImpl.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1TaskRunnerImpl.html#base-type">Base Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1TaskRunnerImpl.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1TaskRunnerImpl.html#_CPPv4N4base14TaskRunnerImplE"><code class="docutils literal notranslate"><span class="pre">base::TaskRunnerImpl</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TaskRunnerImpl.html#_CPPv4N4base14TaskRunnerImpl15PostDelayedTaskE14SourceLocation11OnceClosure9TimeDelta"><code class="docutils literal notranslate"><span class="pre">PostDelayedTask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TaskRunnerImpl.html#_CPPv4N4base14TaskRunnerImpl6CreateENSt8weak_ptrI11MessagePumpEENSt10shared_ptrI18DelayedTaskManagerEE"><code class="docutils literal notranslate"><span class="pre">Create()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1Thread.html">Class Thread</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1Thread.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1Thread.html#_CPPv4N4base6ThreadE"><code class="docutils literal notranslate"><span class="pre">base::Thread</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1Thread.html#_CPPv4N4base6Thread6ThreadEv"><code class="docutils literal notranslate"><span class="pre">Thread()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1Thread.html#_CPPv4N4base6ThreadD0Ev"><code class="docutils literal notranslate"><span class="pre">~Thread()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1Thread.html#_CPPv4N4base6Thread5StartEv"><code class="docutils literal notranslate"><span class="pre">Start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1Thread.html#_CPPv4N4base6Thread4StopEv"><code class="docutils literal notranslate"><span class="pre">Stop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1Thread.html#_CPPv4N4base6Thread4StopE14SourceLocation11OnceClosure"><code class="docutils literal notranslate"><span class="pre">Stop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1Thread.html#_CPPv4NK4base6Thread2IdEv"><code class="docutils literal notranslate"><span class="pre">Id()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1Thread.html#_CPPv4N4base6Thread10TaskRunnerEv"><code class="docutils literal notranslate"><span class="pre">TaskRunner()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1Thread.html#_CPPv4N4base6Thread15FlushForTestingEv"><code class="docutils literal notranslate"><span class="pre">FlushForTesting()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1ThreadPool.html">Class ThreadPool</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1ThreadPool.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1ThreadPool.html#_CPPv4N4base10ThreadPoolE"><code class="docutils literal notranslate"><span class="pre">base::ThreadPool</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1ThreadPool.html#_CPPv4N4base10ThreadPool10ThreadPoolE6size_t"><code class="docutils literal notranslate"><span class="pre">ThreadPool()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1ThreadPool.html#_CPPv4N4base10ThreadPoolD0Ev"><code class="docutils literal notranslate"><span class="pre">~ThreadPool()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1ThreadPool.html#_CPPv4N4base10ThreadPool5StartEv"><code class="docutils literal notranslate"><span class="pre">Start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1ThreadPool.html#_CPPv4N4base10ThreadPool4StopEv"><code class="docutils literal notranslate"><span class="pre">Stop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1ThreadPool.html#_CPPv4NK4base10ThreadPool13GetTaskRunnerEv"><code class="docutils literal notranslate"><span class="pre">GetTaskRunner()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1ThreadPool.html#_CPPv4N4base10ThreadPool25CreateSequencedTaskRunnerEv"><code class="docutils literal notranslate"><span class="pre">CreateSequencedTaskRunner()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1ThreadPool.html#_CPPv4N4base10ThreadPool28CreateSingleThreadTaskRunnerEv"><code class="docutils literal notranslate"><span class="pre">CreateSingleThreadTaskRunner()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1Time.html">Class Time</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1Time.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1Time.html#_CPPv4N4base4TimeE"><code class="docutils literal notranslate"><span class="pre">base::Time</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1Time.html#_CPPv4N4base4Time4TimeEv"><code class="docutils literal notranslate"><span class="pre">Time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1Time.html#_CPPv4NK4base4Time7ToTimeTEv"><code class="docutils literal notranslate"><span class="pre">ToTimeT()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1Time.html#_CPPv4NK4base4TimeeqE4Time"><code class="docutils literal notranslate"><span class="pre">operator==()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1Time.html#_CPPv4NK4base4TimeneE4Time"><code class="docutils literal notranslate"><span class="pre">operator!=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1Time.html#_CPPv4NK4base4TimeltE4Time"><code class="docutils literal notranslate"><span class="pre">operator&lt;()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1Time.html#_CPPv4NK4base4TimegtE4Time"><code class="docutils literal notranslate"><span class="pre">operator&gt;()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1Time.html#_CPPv4NK4base4TimeleE4Time"><code class="docutils literal notranslate"><span class="pre">operator&lt;=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1Time.html#_CPPv4NK4base4TimegeE4Time"><code class="docutils literal notranslate"><span class="pre">operator&gt;=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1Time.html#_CPPv4NK4base4TimeplE9TimeDelta"><code class="docutils literal notranslate"><span class="pre">operator+()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1Time.html#_CPPv4NK4base4TimemiE9TimeDelta"><code class="docutils literal notranslate"><span class="pre">operator-()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1Time.html#_CPPv4N4base4TimepLE9TimeDelta"><code class="docutils literal notranslate"><span class="pre">operator+=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1Time.html#_CPPv4N4base4TimemIE9TimeDelta"><code class="docutils literal notranslate"><span class="pre">operator-=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1Time.html#_CPPv4NK4base4TimemiE4Time"><code class="docutils literal notranslate"><span class="pre">operator-()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1Time.html#_CPPv4N4base4Time3NowEv"><code class="docutils literal notranslate"><span class="pre">Now()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1Time.html#_CPPv4N4base4Time9FromTimeTE6time_t"><code class="docutils literal notranslate"><span class="pre">FromTimeT()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1TimeDelta.html">Class TimeDelta</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1TimeDelta.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4N4base9TimeDeltaE"><code class="docutils literal notranslate"><span class="pre">base::TimeDelta</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4N4base9TimeDelta9TimeDeltaEv"><code class="docutils literal notranslate"><span class="pre">TimeDelta()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4NK4base9TimeDelta6IsZeroEv"><code class="docutils literal notranslate"><span class="pre">IsZero()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4NK4base9TimeDelta10IsPositiveEv"><code class="docutils literal notranslate"><span class="pre">IsPositive()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4NK4base9TimeDelta10IsNegativeEv"><code class="docutils literal notranslate"><span class="pre">IsNegative()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4NK4base9TimeDelta6InDaysEv"><code class="docutils literal notranslate"><span class="pre">InDays()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4NK4base9TimeDelta7InHoursEv"><code class="docutils literal notranslate"><span class="pre">InHours()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4NK4base9TimeDelta9InMinutesEv"><code class="docutils literal notranslate"><span class="pre">InMinutes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4NK4base9TimeDelta10InSecondsFEv"><code class="docutils literal notranslate"><span class="pre">InSecondsF()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4NK4base9TimeDelta9InSecondsEv"><code class="docutils literal notranslate"><span class="pre">InSeconds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4NK4base9TimeDelta15InMillisecondsFEv"><code class="docutils literal notranslate"><span class="pre">InMillisecondsF()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4NK4base9TimeDelta14InMillisecondsEv"><code class="docutils literal notranslate"><span class="pre">InMilliseconds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4NK4base9TimeDelta14InMicrosecondsEv"><code class="docutils literal notranslate"><span class="pre">InMicroseconds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4NK4base9TimeDelta15InMicrosecondsFEv"><code class="docutils literal notranslate"><span class="pre">InMicrosecondsF()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4NK4base9TimeDelta13InNanosecondsEv"><code class="docutils literal notranslate"><span class="pre">InNanoseconds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4NK4base9TimeDeltaplE9TimeDelta"><code class="docutils literal notranslate"><span class="pre">operator+()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4NK4base9TimeDeltamiE9TimeDelta"><code class="docutils literal notranslate"><span class="pre">operator-()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4N4base9TimeDeltapLE9TimeDelta"><code class="docutils literal notranslate"><span class="pre">operator+=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4N4base9TimeDeltamIE9TimeDelta"><code class="docutils literal notranslate"><span class="pre">operator-=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4NK4base9TimeDeltamiEv"><code class="docutils literal notranslate"><span class="pre">operator-()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4I0ENK4base9TimeDeltamlE9TimeDelta1T"><code class="docutils literal notranslate"><span class="pre">operator*()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4I0ENK4base9TimeDeltadvE9TimeDelta1T"><code class="docutils literal notranslate"><span class="pre">operator/()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4I0EN4base9TimeDeltamLER9TimeDelta1T"><code class="docutils literal notranslate"><span class="pre">operator*=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4I0EN4base9TimeDeltadVER9TimeDelta1T"><code class="docutils literal notranslate"><span class="pre">operator/=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4NK4base9TimeDeltaeqE9TimeDelta"><code class="docutils literal notranslate"><span class="pre">operator==()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4NK4base9TimeDeltaneE9TimeDelta"><code class="docutils literal notranslate"><span class="pre">operator!=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4NK4base9TimeDeltaltE9TimeDelta"><code class="docutils literal notranslate"><span class="pre">operator&lt;()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4NK4base9TimeDeltaleE9TimeDelta"><code class="docutils literal notranslate"><span class="pre">operator&lt;=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4NK4base9TimeDeltagtE9TimeDelta"><code class="docutils literal notranslate"><span class="pre">operator&gt;()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeDelta.html#_CPPv4NK4base9TimeDeltageE9TimeDelta"><code class="docutils literal notranslate"><span class="pre">operator&gt;=()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1TimeTicks.html">Class TimeTicks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1TimeTicks.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1TimeTicks.html#_CPPv4N4base9TimeTicksE"><code class="docutils literal notranslate"><span class="pre">base::TimeTicks</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeTicks.html#_CPPv4N4base9TimeTicks9TimeTicksEv"><code class="docutils literal notranslate"><span class="pre">TimeTicks()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeTicks.html#_CPPv4NK4base9TimeTickseqE9TimeTicks"><code class="docutils literal notranslate"><span class="pre">operator==()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeTicks.html#_CPPv4NK4base9TimeTicksneE9TimeTicks"><code class="docutils literal notranslate"><span class="pre">operator!=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeTicks.html#_CPPv4NK4base9TimeTicksltE9TimeTicks"><code class="docutils literal notranslate"><span class="pre">operator&lt;()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeTicks.html#_CPPv4NK4base9TimeTicksgtE9TimeTicks"><code class="docutils literal notranslate"><span class="pre">operator&gt;()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeTicks.html#_CPPv4NK4base9TimeTicksleE9TimeTicks"><code class="docutils literal notranslate"><span class="pre">operator&lt;=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeTicks.html#_CPPv4NK4base9TimeTicksgeE9TimeTicks"><code class="docutils literal notranslate"><span class="pre">operator&gt;=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeTicks.html#_CPPv4NK4base9TimeTicksplE9TimeDelta"><code class="docutils literal notranslate"><span class="pre">operator+()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeTicks.html#_CPPv4NK4base9TimeTicksmiE9TimeDelta"><code class="docutils literal notranslate"><span class="pre">operator-()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeTicks.html#_CPPv4N4base9TimeTickspLE9TimeDelta"><code class="docutils literal notranslate"><span class="pre">operator+=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeTicks.html#_CPPv4N4base9TimeTicksmIE9TimeDelta"><code class="docutils literal notranslate"><span class="pre">operator-=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeTicks.html#_CPPv4NK4base9TimeTicksmiE9TimeTicks"><code class="docutils literal notranslate"><span class="pre">operator-()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1TimeTicks.html#_CPPv4N4base9TimeTicks3NowEv"><code class="docutils literal notranslate"><span class="pre">Now()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1WaitableEvent.html">Class WaitableEvent</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1WaitableEvent.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1WaitableEvent.html#_CPPv4N4base13WaitableEventE"><code class="docutils literal notranslate"><span class="pre">base::WaitableEvent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WaitableEvent.html#_CPPv4N4base13WaitableEvent11ResetPolicyE"><code class="docutils literal notranslate"><span class="pre">ResetPolicy</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="classbase_1_1WaitableEvent.html#_CPPv4N4base13WaitableEvent11ResetPolicy7kManualE"><code class="docutils literal notranslate"><span class="pre">kManual</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="classbase_1_1WaitableEvent.html#_CPPv4N4base13WaitableEvent11ResetPolicy10kAutomaticE"><code class="docutils literal notranslate"><span class="pre">kAutomatic</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WaitableEvent.html#_CPPv4N4base13WaitableEvent12InitialStateE"><code class="docutils literal notranslate"><span class="pre">InitialState</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="classbase_1_1WaitableEvent.html#_CPPv4N4base13WaitableEvent12InitialState9kSignaledE"><code class="docutils literal notranslate"><span class="pre">kSignaled</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="classbase_1_1WaitableEvent.html#_CPPv4N4base13WaitableEvent12InitialState12kNotSignaledE"><code class="docutils literal notranslate"><span class="pre">kNotSignaled</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WaitableEvent.html#_CPPv4N4base13WaitableEvent13WaitableEventE11ResetPolicy12InitialState"><code class="docutils literal notranslate"><span class="pre">WaitableEvent()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WaitableEvent.html#_CPPv4N4base13WaitableEventD0Ev"><code class="docutils literal notranslate"><span class="pre">~WaitableEvent()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WaitableEvent.html#_CPPv4N4base13WaitableEvent5ResetEv"><code class="docutils literal notranslate"><span class="pre">Reset()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WaitableEvent.html#_CPPv4N4base13WaitableEvent6SignalEv"><code class="docutils literal notranslate"><span class="pre">Signal()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WaitableEvent.html#_CPPv4N4base13WaitableEvent10IsSignaledEv"><code class="docutils literal notranslate"><span class="pre">IsSignaled()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WaitableEvent.html#_CPPv4N4base13WaitableEvent4WaitEv"><code class="docutils literal notranslate"><span class="pre">Wait()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1WeakPtr.html">Template Class WeakPtr</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1WeakPtr.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtrE"><code class="docutils literal notranslate"><span class="pre">base::WeakPtr</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtr.html#_CPPv4N4base7WeakPtr7WeakPtrEv"><code class="docutils literal notranslate"><span class="pre">WeakPtr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtr.html#_CPPv4N4base7WeakPtr7WeakPtrENSt9nullptr_tE"><code class="docutils literal notranslate"><span class="pre">WeakPtr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtr.html#_CPPv4N4base7WeakPtrD0Ev"><code class="docutils literal notranslate"><span class="pre">~WeakPtr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtr.html#_CPPv4N4base7WeakPtr7WeakPtrERK7WeakPtr"><code class="docutils literal notranslate"><span class="pre">WeakPtr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtr7WeakPtrERK7WeakPtrI1UE"><code class="docutils literal notranslate"><span class="pre">WeakPtr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtr7WeakPtrERR7WeakPtrI1UE"><code class="docutils literal notranslate"><span class="pre">WeakPtr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtraSER7WeakPtrRK7WeakPtrI1UE"><code class="docutils literal notranslate"><span class="pre">operator=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtraSER7WeakPtrRR7WeakPtrI1UE"><code class="docutils literal notranslate"><span class="pre">operator=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtr.html#_CPPv4NK4base7WeakPtrptEv"><code class="docutils literal notranslate"><span class="pre">operator-&gt;()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtr.html#_CPPv4NK4base7WeakPtrmlEv"><code class="docutils literal notranslate"><span class="pre">operator*()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtr.html#_CPPv4NK4base7WeakPtrcvbEv"><code class="docutils literal notranslate"><span class="pre">operator</span> <span class="pre">bool()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtr.html#_CPPv4NK4base7WeakPtr3GetEv"><code class="docutils literal notranslate"><span class="pre">Get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtr.html#_CPPv4NK4base7WeakPtr10MaybeValidEv"><code class="docutils literal notranslate"><span class="pre">MaybeValid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtr.html#_CPPv4NK4base7WeakPtr14WasInvalidatedEv"><code class="docutils literal notranslate"><span class="pre">WasInvalidated()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classbase_1_1WeakPtrFactory.html">Template Class WeakPtrFactory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classbase_1_1WeakPtrFactory.html#class-documentation">Class Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="classbase_1_1WeakPtrFactory.html#_CPPv4I0EN4base14WeakPtrFactoryE"><code class="docutils literal notranslate"><span class="pre">base::WeakPtrFactory</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtrFactory.html#_CPPv4N4base14WeakPtrFactory14WeakPtrFactoryEP1T"><code class="docutils literal notranslate"><span class="pre">WeakPtrFactory()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtrFactory.html#_CPPv4N4base14WeakPtrFactory14WeakPtrFactoryERK14WeakPtrFactory"><code class="docutils literal notranslate"><span class="pre">WeakPtrFactory()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtrFactory.html#_CPPv4N4base14WeakPtrFactory14WeakPtrFactoryERR14WeakPtrFactory"><code class="docutils literal notranslate"><span class="pre">WeakPtrFactory()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtrFactory.html#_CPPv4N4base14WeakPtrFactoryaSERK14WeakPtrFactory"><code class="docutils literal notranslate"><span class="pre">operator=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtrFactory.html#_CPPv4N4base14WeakPtrFactoryaSERR14WeakPtrFactory"><code class="docutils literal notranslate"><span class="pre">operator=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtrFactory.html#_CPPv4NK4base14WeakPtrFactory10GetWeakPtrEv"><code class="docutils literal notranslate"><span class="pre">GetWeakPtr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtrFactory.html#_CPPv4N4base14WeakPtrFactory18InvalidateWeakPtrsEv"><code class="docutils literal notranslate"><span class="pre">InvalidateWeakPtrs()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtrFactory.html#_CPPv4NK4base14WeakPtrFactory11HasWeakPtrsEv"><code class="docutils literal notranslate"><span class="pre">HasWeakPtrs()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtrFactory.html#_CPPv4N4base14WeakPtrFactory4ptr_E"><code class="docutils literal notranslate"><span class="pre">ptr_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="classbase_1_1WeakPtrFactory.html#_CPPv4N4base14WeakPtrFactory14control_block_E"><code class="docutils literal notranslate"><span class="pre">control_block_</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_barrier__callback_8h_1a514a483cf5a92ec926334a10a4e1a233.html">Template Function base::BarrierCallback(size_t, OnceCallback&lt;void(CallbackArgumentsType)&gt;)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_barrier__callback_8h_1a514a483cf5a92ec926334a10a4e1a233.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_barrier__callback_8h_1a2cb9f7f382fdcbf25d2f60b942660879.html">Template Function base::BarrierCallback(size_t, RepeatingCallback&lt;void(CallbackArgumentsType)&gt;)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_barrier__callback_8h_1a2cb9f7f382fdcbf25d2f60b942660879.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_barrier__closure_8h_1ac63e035ad926f27f95b2275245357c0e.html">Function base::BarrierClosure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_barrier__closure_8h_1ac63e035ad926f27f95b2275245357c0e.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_barrier__closure_8h_1ac63e035ad926f27f95b2275245357c0e.html#_CPPv4N4base14BarrierClosureE6size_t11OnceClosure"><code class="docutils literal notranslate"><span class="pre">BarrierClosure()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_bind_8h_1a93f52b871dd8441675fd964165924e8f.html">Template Function base::BindOnce</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_bind_8h_1a93f52b871dd8441675fd964165924e8f.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_bind_8h_1a93f52b871dd8441675fd964165924e8f.html#_CPPv4I0DpEN4base8BindOnceEDaRR7FunctorDpRR9Arguments"><code class="docutils literal notranslate"><span class="pre">BindOnce()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_bind__post__task_8h_1a04bd769566ae6d4532f950e4626197ba.html">Template Function base::BindPostTask(std::shared_ptr&lt;TaskRunner&gt;, OnceCallback&lt;Return(Arguments…)&gt;, SourceLocation)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_bind__post__task_8h_1a04bd769566ae6d4532f950e4626197ba.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_bind__post__task_8h_1a20e62f693034981ddd7a8178d180c0cb.html">Template Function base::BindPostTask(std::shared_ptr&lt;TaskRunner&gt;, RepeatingCallback&lt;Return(Arguments…)&gt;, SourceLocation)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_bind__post__task_8h_1a20e62f693034981ddd7a8178d180c0cb.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_bind_8h_1af69e87ed12e057256882baa1052326e7.html">Template Function base::BindRepeating</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_bind_8h_1af69e87ed12e057256882baa1052326e7.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_bind_8h_1af69e87ed12e057256882baa1052326e7.html#_CPPv4I0DpEN4base13BindRepeatingEDaRR7FunctorDpRR9Arguments"><code class="docutils literal notranslate"><span class="pre">BindRepeating()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_bind__post__task_8h_1ac9a1db204b1778768527712f189c836d.html">Template Function base::BindToCurrentSequence(OnceCallback&lt;Return(Arguments…)&gt;, SourceLocation)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_bind__post__task_8h_1ac9a1db204b1778768527712f189c836d.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_bind__post__task_8h_1af680c7aa696c150746f3df19f4af6ace.html">Template Function base::BindToCurrentSequence(RepeatingCallback&lt;Return(Arguments…)&gt;, SourceLocation)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_bind__post__task_8h_1af680c7aa696c150746f3df19f4af6ace.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_time__delta_8h_1a9014824d944120c7546e22c2e9af63ea.html">Template Function base::Days</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_time__delta_8h_1a9014824d944120c7546e22c2e9af63ea.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_time__delta_8h_1a9014824d944120c7546e22c2e9af63ea.html#_CPPv4I0EN4base4DaysE9TimeDelta1T"><code class="docutils literal notranslate"><span class="pre">Days()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_init_8h_1a73aeac72e46f9d795d43b5ed1f74a292.html">Function base::Deinitialize</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_init_8h_1a73aeac72e46f9d795d43b5ed1f74a292.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_init_8h_1a73aeac72e46f9d795d43b5ed1f74a292.html#_CPPv4N4base12DeinitializeEv"><code class="docutils literal notranslate"><span class="pre">Deinitialize()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_time__delta_8h_1afd9a85b6ee9d335db49969c604b7ca7f.html">Template Function base::Hours</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_time__delta_8h_1afd9a85b6ee9d335db49969c604b7ca7f.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_time__delta_8h_1afd9a85b6ee9d335db49969c604b7ca7f.html#_CPPv4I0EN4base5HoursE9TimeDelta1T"><code class="docutils literal notranslate"><span class="pre">Hours()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_bind_8h_1a027b226247fe184c655649dc5767cfe9.html">Template Function base::IgnoreResult</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_bind_8h_1a027b226247fe184c655649dc5767cfe9.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_bind_8h_1a027b226247fe184c655649dc5767cfe9.html#_CPPv4I0EN4base12IgnoreResultEDa7Functor"><code class="docutils literal notranslate"><span class="pre">IgnoreResult()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_init_8h_1a3bbef369d24aa1cc8eedb3b6b33a2d29.html">Function base::Initialize</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_init_8h_1a3bbef369d24aa1cc8eedb3b6b33a2d29.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_init_8h_1afecfc13c50e2984c5dc873fba47c8841.html">Function base::InitializeForTests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_init_8h_1afecfc13c50e2984c5dc873fba47c8841.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_time__delta_8h_1a11e670d8718883d973e2fb31d25739ea.html">Template Function base::Microseconds</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_time__delta_8h_1a11e670d8718883d973e2fb31d25739ea.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_time__delta_8h_1a11e670d8718883d973e2fb31d25739ea.html#_CPPv4I0EN4base12MicrosecondsE9TimeDelta1T"><code class="docutils literal notranslate"><span class="pre">Microseconds()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_time__delta_8h_1adc43a089f5d5ba5fcb30fc98cb6a231c.html">Template Function base::Milliseconds</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_time__delta_8h_1adc43a089f5d5ba5fcb30fc98cb6a231c.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_time__delta_8h_1adc43a089f5d5ba5fcb30fc98cb6a231c.html#_CPPv4I0EN4base12MillisecondsE9TimeDelta1T"><code class="docutils literal notranslate"><span class="pre">Milliseconds()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_time__delta_8h_1a1456698c7bcbf5249cf25bb72952fe02.html">Template Function base::Minutes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_time__delta_8h_1a1456698c7bcbf5249cf25bb72952fe02.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_time__delta_8h_1a1456698c7bcbf5249cf25bb72952fe02.html#_CPPv4I0EN4base7MinutesE9TimeDelta1T"><code class="docutils literal notranslate"><span class="pre">Minutes()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_time__delta_8h_1a1992a1bf37f7c54a97c77d82d3a8687e.html">Template Function base::Nanoseconds</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_time__delta_8h_1a1992a1bf37f7c54a97c77d82d3a8687e.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_time__delta_8h_1a1992a1bf37f7c54a97c77d82d3a8687e.html#_CPPv4I0EN4base11NanosecondsE9TimeDelta1T"><code class="docutils literal notranslate"><span class="pre">Nanoseconds()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_weak__ptr_8h_1a7fabe800bcebfdb72d533eebd41a466d.html">Template Function base::operator!=(const WeakPtr&lt;T&gt;&amp;, std::nullptr_t)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_weak__ptr_8h_1a7fabe800bcebfdb72d533eebd41a466d.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_weak__ptr_8h_1a7fabe800bcebfdb72d533eebd41a466d.html#_CPPv4I0EN4baseneEbRK7WeakPtrI1TENSt9nullptr_tE"><code class="docutils literal notranslate"><span class="pre">operator!=()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_weak__ptr_8h_1a01deba814835fc3363db9f15290d8e77.html">Template Function base::operator!=(std::nullptr_t, const WeakPtr&lt;T&gt;&amp;)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_weak__ptr_8h_1a01deba814835fc3363db9f15290d8e77.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_weak__ptr_8h_1a01deba814835fc3363db9f15290d8e77.html#_CPPv4I0EN4baseneEbNSt9nullptr_tERK7WeakPtrI1TE"><code class="docutils literal notranslate"><span class="pre">operator!=()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_weak__ptr_8h_1a49d18eb459faf71b5a8700424c938a50.html">Template Function base::operator==(const WeakPtr&lt;T&gt;&amp;, std::nullptr_t)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_weak__ptr_8h_1a49d18eb459faf71b5a8700424c938a50.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_weak__ptr_8h_1a49d18eb459faf71b5a8700424c938a50.html#_CPPv4I0EN4baseeqEbRK7WeakPtrI1TENSt9nullptr_tE"><code class="docutils literal notranslate"><span class="pre">operator==()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_weak__ptr_8h_1a3a91cebf3759df9d2d0ea7e75e48d9cd.html">Template Function base::operator==(std::nullptr_t, const WeakPtr&lt;T&gt;&amp;)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_weak__ptr_8h_1a3a91cebf3759df9d2d0ea7e75e48d9cd.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_weak__ptr_8h_1a3a91cebf3759df9d2d0ea7e75e48d9cd.html#_CPPv4I0EN4baseeqEbNSt9nullptr_tERK7WeakPtrI1TE"><code class="docutils literal notranslate"><span class="pre">operator==()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_bind_8h_1a757b196e60d6f4d93f8ec22d554fbf9a.html">Template Function base::Owned(std::unique_ptr&lt;InstanceType&gt;)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_bind_8h_1a757b196e60d6f4d93f8ec22d554fbf9a.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_bind_8h_1a757b196e60d6f4d93f8ec22d554fbf9a.html#_CPPv4I0EN4base5OwnedEDaNSt10unique_ptrI12InstanceTypeEE"><code class="docutils literal notranslate"><span class="pre">Owned()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_bind_8h_1a5452c26d25fe20be80ec370581653525.html">Template Function base::Owned(InstanceType *)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_bind_8h_1a5452c26d25fe20be80ec370581653525.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_bind_8h_1a5452c26d25fe20be80ec370581653525.html#_CPPv4I0EN4base5OwnedEDaP12InstanceType"><code class="docutils literal notranslate"><span class="pre">Owned()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_bind_8h_1acfa44e3724b6e74d1bfbccba23bbf2c9.html">Template Function base::OwnedRef</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_bind_8h_1acfa44e3724b6e74d1bfbccba23bbf2c9.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_bind_8h_1acfa44e3724b6e74d1bfbccba23bbf2c9.html#_CPPv4I0EN4base8OwnedRefEDaRR12InstanceType"><code class="docutils literal notranslate"><span class="pre">OwnedRef()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_bind_8h_1ae9bbece310034980402ba6320c1e1801.html">Template Function base::RetainedRef</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_bind_8h_1ae9bbece310034980402ba6320c1e1801.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_bind_8h_1ae9bbece310034980402ba6320c1e1801.html#_CPPv4I0EN4base11RetainedRefEDaNSt10shared_ptrI12InstanceTypeEE"><code class="docutils literal notranslate"><span class="pre">RetainedRef()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_time__delta_8h_1a0c5abc2df90df6fcd0bf3c856e7c150a.html">Template Function base::Seconds</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_time__delta_8h_1a0c5abc2df90df6fcd0bf3c856e7c150a.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_time__delta_8h_1a0c5abc2df90df6fcd0bf3c856e7c150a.html#_CPPv4I0EN4base7SecondsE9TimeDelta1T"><code class="docutils literal notranslate"><span class="pre">Seconds()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_callback__helpers_8h_1a05fed922487db2be71e14ef93d36ba34.html">Template Function base::SplitOnceCallback</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_callback__helpers_8h_1a05fed922487db2be71e14ef93d36ba34.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_bind_8h_1ad5d66862bbd0dbeebce8e46adda08f8e.html">Template Function base::Unretained</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_bind_8h_1ad5d66862bbd0dbeebce8e46adda08f8e.html#function-documentation">Function Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="function_bind_8h_1ad5d66862bbd0dbeebce8e46adda08f8e.html#_CPPv4I0EN4base10UnretainedEDaP12InstanceType"><code class="docutils literal notranslate"><span class="pre">Unretained()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="variables">
+<h3>Variables<a class="headerlink" href="#variables" title="Link to this heading"></a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="variable_callback_8h_1aacae931da3f6079b8f832b3fab110386.html">Variable base::traits::IsCallbackV</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="variable_callback_8h_1aacae931da3f6079b8f832b3fab110386.html#variable-documentation">Variable Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="variable_callback_8h_1aacae931da3f6079b8f832b3fab110386.html#_CPPv4I0EN4base6traits11IsCallbackVE"><code class="docutils literal notranslate"><span class="pre">IsCallbackV</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="variable_type__traits_8h_1a0c6de81cab3853d2f0f0c8bd6234bcce.html">Variable base::traits::IsCapturelessLambdaSfinaeV</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="variable_type__traits_8h_1a0c6de81cab3853d2f0f0c8bd6234bcce.html#variable-documentation">Variable Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="variable_type__traits_8h_1a0c6de81cab3853d2f0f0c8bd6234bcce.html#_CPPv4I00EN4base6traits26IsCapturelessLambdaSfinaeVE"><code class="docutils literal notranslate"><span class="pre">IsCapturelessLambdaSfinaeV</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="variable_type__traits_8h_1a126f4cf1dd4ff094880392783a63472a.html">Variable base::traits::IsCapturelessLambdaV</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="variable_type__traits_8h_1a126f4cf1dd4ff094880392783a63472a.html#variable-documentation">Variable Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="variable_type__traits_8h_1a126f4cf1dd4ff094880392783a63472a.html#_CPPv4I0EN4base6traits20IsCapturelessLambdaVE"><code class="docutils literal notranslate"><span class="pre">IsCapturelessLambdaV</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="variable_type__traits_8h_1ab7cc3c8e03545cc299eed463e370e728.html">Variable base::traits::IsFunctionPointerV</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="variable_type__traits_8h_1ab7cc3c8e03545cc299eed463e370e728.html#variable-documentation">Variable Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="variable_type__traits_8h_1ab7cc3c8e03545cc299eed463e370e728.html#_CPPv4I0EN4base6traits18IsFunctionPointerVE"><code class="docutils literal notranslate"><span class="pre">IsFunctionPointerV</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="variable_callback_8h_1af6b47086eb59b691e2bafda006a39ee8.html">Variable base::traits::IsOnceCallbackV</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="variable_callback_8h_1af6b47086eb59b691e2bafda006a39ee8.html#variable-documentation">Variable Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="variable_callback_8h_1af6b47086eb59b691e2bafda006a39ee8.html#_CPPv4I0EN4base6traits15IsOnceCallbackVE"><code class="docutils literal notranslate"><span class="pre">IsOnceCallbackV</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="variable_callback_8h_1aa05fd00751e9212347ae5e2bc132d21b.html">Variable base::traits::IsRepeatingCallbackV</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="variable_callback_8h_1aa05fd00751e9212347ae5e2bc132d21b.html#variable-documentation">Variable Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="variable_callback_8h_1aa05fd00751e9212347ae5e2bc132d21b.html#_CPPv4I0EN4base6traits20IsRepeatingCallbackVE"><code class="docutils literal notranslate"><span class="pre">IsRepeatingCallbackV</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="defines">
+<h3>Defines<a class="headerlink" href="#defines" title="Link to this heading"></a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_sequence__checker_8h_1a4d9e87e3566670d3068ebfaef0970676.html">Define DCHECK_CALLED_ON_VALID_SEQUENCE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_sequence__checker_8h_1a4d9e87e3566670d3068ebfaef0970676.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_sequence__checker_8h_1a4d9e87e3566670d3068ebfaef0970676.html#c.DCHECK_CALLED_ON_VALID_SEQUENCE"><code class="docutils literal notranslate"><span class="pre">DCHECK_CALLED_ON_VALID_SEQUENCE</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_sequence__checker_8h_1ae91683dfb0f104276ed8956474f261da.html">Define DETACH_FROM_SEQUENCE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_sequence__checker_8h_1ae91683dfb0f104276ed8956474f261da.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_sequence__checker_8h_1ae91683dfb0f104276ed8956474f261da.html#c.DETACH_FROM_SEQUENCE"><code class="docutils literal notranslate"><span class="pre">DETACH_FROM_SEQUENCE</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_source__location_8h_1aa4b9d8432798552dc1aa25ab49a6c595.html">Define FROM_HERE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_source__location_8h_1aa4b9d8432798552dc1aa25ab49a6c595.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_source__location_8h_1aa4b9d8432798552dc1aa25ab49a6c595.html#c.FROM_HERE"><code class="docutils literal notranslate"><span class="pre">FROM_HERE</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_bind__internals_8h_1a171f2cd1b1b2b7f34c79e87666f560ff.html">Define LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_bind__internals_8h_1a171f2cd1b1b2b7f34c79e87666f560ff.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_bind__internals_8h_1a171f2cd1b1b2b7f34c79e87666f560ff.html#c.LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT"><code class="docutils literal notranslate"><span class="pre">LIBBASE_IMPL_MEMBER_FUNCTION_TRAIT</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_logging_8h_1a9f918755b601cf4bffca775992e6fb90.html">Define NOMINMAX</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_logging_8h_1a9f918755b601cf4bffca775992e6fb90.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_logging_8h_1a9f918755b601cf4bffca775992e6fb90.html#c.NOMINMAX"><code class="docutils literal notranslate"><span class="pre">NOMINMAX</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_sequence__checker_8h_1a6e1de0e8bf469bc7898cbaf88725254f.html">Define SEQUENCE_CHECKER</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_sequence__checker_8h_1a6e1de0e8bf469bc7898cbaf88725254f.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_sequence__checker_8h_1a6e1de0e8bf469bc7898cbaf88725254f.html#c.SEQUENCE_CHECKER"><code class="docutils literal notranslate"><span class="pre">SEQUENCE_CHECKER</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_trace__counter_8h_1a7dec43654f584ea55475e2f11568ac0d.html">Define TRACE_COUNTER</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_trace__counter_8h_1a7dec43654f584ea55475e2f11568ac0d.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_trace__counter_8h_1a7dec43654f584ea55475e2f11568ac0d.html#c.TRACE_COUNTER"><code class="docutils literal notranslate"><span class="pre">TRACE_COUNTER</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_trace__counter_8h_1adf69ea16b20e716072c3f20399695650.html">Define TRACE_COUNTER_ID</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_trace__counter_8h_1adf69ea16b20e716072c3f20399695650.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_trace__counter_8h_1adf69ea16b20e716072c3f20399695650.html#c.TRACE_COUNTER_ID"><code class="docutils literal notranslate"><span class="pre">TRACE_COUNTER_ID</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_trace__event_8h_1a3872ccab53bf7aff62114d42f536229a.html">Define TRACE_EVENT</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_trace__event_8h_1a3872ccab53bf7aff62114d42f536229a.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_trace__event_8h_1a3872ccab53bf7aff62114d42f536229a.html#c.TRACE_EVENT"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_trace__async_8h_1ad6580e98c5d7661b2646a6d0e02ae00f.html">Define TRACE_EVENT_ASYNC_BEGIN</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_trace__async_8h_1ad6580e98c5d7661b2646a6d0e02ae00f.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_trace__async_8h_1ad6580e98c5d7661b2646a6d0e02ae00f.html#c.TRACE_EVENT_ASYNC_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_BEGIN</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_trace__async_8h_1a11beb9695695f4b2795d91f3a70088d1.html">Define TRACE_EVENT_ASYNC_END</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_trace__async_8h_1a11beb9695695f4b2795d91f3a70088d1.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_trace__async_8h_1a11beb9695695f4b2795d91f3a70088d1.html#c.TRACE_EVENT_ASYNC_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_END</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_trace__async_8h_1a4d0dec35deab6a1ab8a283843c68ac01.html">Define TRACE_EVENT_ASYNC_STEP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_trace__async_8h_1a4d0dec35deab6a1ab8a283843c68ac01.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_trace__async_8h_1a4d0dec35deab6a1ab8a283843c68ac01.html#c.TRACE_EVENT_ASYNC_STEP"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_STEP</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_trace__event_8h_1afd4ff45b7d6191282a8968d47c1fa9e9.html">Define TRACE_EVENT_BEGIN</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_trace__event_8h_1afd4ff45b7d6191282a8968d47c1fa9e9.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_trace__event_8h_1afd4ff45b7d6191282a8968d47c1fa9e9.html#c.TRACE_EVENT_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_BEGIN</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_trace__complete_8h_1a06e651758207172afcc30d9b115d01c1.html">Define TRACE_EVENT_COMPLETE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_trace__complete_8h_1a06e651758207172afcc30d9b115d01c1.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_trace__complete_8h_1a06e651758207172afcc30d9b115d01c1.html#c.TRACE_EVENT_COMPLETE"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_COMPLETE</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_trace__event_8h_1a549b0a65535fe53339f3f41d723cad8c.html">Define TRACE_EVENT_END</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_trace__event_8h_1a549b0a65535fe53339f3f41d723cad8c.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_trace__event_8h_1a549b0a65535fe53339f3f41d723cad8c.html#c.TRACE_EVENT_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_END</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_trace__flush_8h_1a52f3d33d381f698beed87d80b0b259b3.html">Define TRACE_EVENT_FLUSH_TO_FILE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_trace__flush_8h_1a52f3d33d381f698beed87d80b0b259b3.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_trace__flush_8h_1a52f3d33d381f698beed87d80b0b259b3.html#c.TRACE_EVENT_FLUSH_TO_FILE"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_FLUSH_TO_FILE</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_trace__flush_8h_1aabfa93781b3ccffd8d794a7c77d7f740.html">Define TRACE_EVENT_FLUSH_TO_STREAM</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_trace__flush_8h_1aabfa93781b3ccffd8d794a7c77d7f740.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_trace__flush_8h_1aabfa93781b3ccffd8d794a7c77d7f740.html#c.TRACE_EVENT_FLUSH_TO_STREAM"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_FLUSH_TO_STREAM</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_trace__flow_8h_1aa31dc9f58f891bce7566fbe0cafa513c.html">Define TRACE_EVENT_WITH_FLOW_BEGIN</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_trace__flow_8h_1aa31dc9f58f891bce7566fbe0cafa513c.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_trace__flow_8h_1aa31dc9f58f891bce7566fbe0cafa513c.html#c.TRACE_EVENT_WITH_FLOW_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_BEGIN</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_trace__flow_8h_1a884da60ad50c64c0f1f2fff45fd8bd4e.html">Define TRACE_EVENT_WITH_FLOW_END</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_trace__flow_8h_1a884da60ad50c64c0f1f2fff45fd8bd4e.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_trace__flow_8h_1a884da60ad50c64c0f1f2fff45fd8bd4e.html#c.TRACE_EVENT_WITH_FLOW_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_END</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_trace__flow_8h_1a3d28d92c861273fc85dfca8c13d0f368.html">Define TRACE_EVENT_WITH_FLOW_STEP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_trace__flow_8h_1a3d28d92c861273fc85dfca8c13d0f368.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_trace__flow_8h_1a3d28d92c861273fc85dfca8c13d0f368.html#c.TRACE_EVENT_WITH_FLOW_STEP"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_STEP</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_trace__metadata_8h_1af42d9eb778e7e8250fea2e5976b20947.html">Define TRACE_NAME_PROCESS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_trace__metadata_8h_1af42d9eb778e7e8250fea2e5976b20947.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_trace__metadata_8h_1af42d9eb778e7e8250fea2e5976b20947.html#c.TRACE_NAME_PROCESS"><code class="docutils literal notranslate"><span class="pre">TRACE_NAME_PROCESS</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_trace__metadata_8h_1ad82f3ad577aecc88dc8f8aa7e70f0269.html">Define TRACE_NAME_THREAD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_trace__metadata_8h_1ad82f3ad577aecc88dc8f8aa7e70f0269.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_trace__metadata_8h_1ad82f3ad577aecc88dc8f8aa7e70f0269.html#c.TRACE_NAME_THREAD"><code class="docutils literal notranslate"><span class="pre">TRACE_NAME_THREAD</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_trace__signal_8h_1a7455b881f5f684142a1a9c3999a0243e.html">Define TRACE_SIGNAL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_trace__signal_8h_1a7455b881f5f684142a1a9c3999a0243e.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_trace__signal_8h_1a7455b881f5f684142a1a9c3999a0243e.html#c.TRACE_SIGNAL"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_trace__signal_8h_1a52e34069027795f458a6463139a8aeac.html">Define TRACE_SIGNAL_PROCESS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_trace__signal_8h_1a52e34069027795f458a6463139a8aeac.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_trace__signal_8h_1a52e34069027795f458a6463139a8aeac.html#c.TRACE_SIGNAL_PROCESS"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL_PROCESS</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="define_trace__signal_8h_1ac62ea382085eb5e904b23c437f542163.html">Define TRACE_SIGNAL_THREAD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define_trace__signal_8h_1ac62ea382085eb5e904b23c437f542163.html#define-documentation">Define Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="define_trace__signal_8h_1ac62ea382085eb5e904b23c437f542163.html#c.TRACE_SIGNAL_THREAD"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL_THREAD</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="typedefs">
+<h3>Typedefs<a class="headerlink" href="#typedefs" title="Link to this heading"></a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_callback_8h_1a59567d24a110228ba40af5b34848458f.html">Typedef base::OnceClosure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_callback_8h_1a59567d24a110228ba40af5b34848458f.html#typedef-documentation">Typedef Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="typedef_callback_8h_1a59567d24a110228ba40af5b34848458f.html#_CPPv4N4base11OnceClosureE"><code class="docutils literal notranslate"><span class="pre">OnceClosure</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_callback_8h_1ac4a76f1827e048560c85b9f94dd96ed4.html">Typedef base::RepeatingClosure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_callback_8h_1ac4a76f1827e048560c85b9f94dd96ed4.html#typedef-documentation">Typedef Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="typedef_callback_8h_1ac4a76f1827e048560c85b9f94dd96ed4.html#_CPPv4N4base16RepeatingClosureE"><code class="docutils literal notranslate"><span class="pre">RepeatingClosure</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_type__traits_8h_1ab7acc86ecbfa1c9d19f5e3bbddc3aaed.html">Typedef base::traits::HeadTypesRangeT</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_type__traits_8h_1ab7acc86ecbfa1c9d19f5e3bbddc3aaed.html#typedef-documentation">Typedef Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="typedef_type__traits_8h_1ab7acc86ecbfa1c9d19f5e3bbddc3aaed.html#_CPPv4I_6size_t0EN4base6traits15HeadTypesRangeTE"><code class="docutils literal notranslate"><span class="pre">HeadTypesRangeT</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_type__traits_8h_1a4bba8383fa06060652b703dcee1e01c1.html">Typedef base::traits::IdentityT</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_type__traits_8h_1a4bba8383fa06060652b703dcee1e01c1.html#typedef-documentation">Typedef Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="typedef_type__traits_8h_1a4bba8383fa06060652b703dcee1e01c1.html#_CPPv4I0EN4base6traits9IdentityTE"><code class="docutils literal notranslate"><span class="pre">IdentityT</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_type__traits_8h_1abe8425c54607044479761476ec3ce239.html">Typedef base::traits::RemoveCVRefT</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_type__traits_8h_1abe8425c54607044479761476ec3ce239.html#typedef-documentation">Typedef Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="typedef_type__traits_8h_1abe8425c54607044479761476ec3ce239.html#_CPPv4I0EN4base6traits12RemoveCVRefTE"><code class="docutils literal notranslate"><span class="pre">RemoveCVRefT</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_type__traits_8h_1aa86db756ce6265af44a292ec66cbe3a8.html">Typedef base::traits::TypesRangeT</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_type__traits_8h_1aa86db756ce6265af44a292ec66cbe3a8.html#typedef-documentation">Typedef Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="typedef_type__traits_8h_1aa86db756ce6265af44a292ec66cbe3a8.html#_CPPv4I_6size_t_6size_t0EN4base6traits11TypesRangeTE"><code class="docutils literal notranslate"><span class="pre">TypesRangeT</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../examples/simple.html" class="btn btn-neutral float-left" title="Simple example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="namespace_base.html" class="btn btn-neutral float-right" title="Namespace base" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Damian Dyńdo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: v1.0.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../develop/index.html">develop</a></dd><br />
+      <dd><a href="../../../master/index.html">master</a></dd><br />
+    </dl>
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="index.html">v1.0.0</a></dd><br>
+      <dd><a href="../../../v1.0.1/index.html">v1.0.1</a></dd><br>
+      <dd><a href="../../../v1.1.0/index.html">v1.1.0</a></dd><br>
+      <dd><a href="../../../v1.1.1/index.html">v1.1.1</a></dd><br>
+      <dd><a href="../../../v1.1.2/index.html">v1.1.2</a></dd><br>
+    </dl>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    // $(".admonition-example-code > *:not(div .admonition-title)").hide();
+
+    $(".admonition-example-code > .admonition-title").click(function () {
+      $(this).parent().children().not(".admonition-title").slideToggle();
+      $(this).parent().children(".admonition-title").toggleClass("open");
+    });
+  });
+</script>
+
+
+</body>
+</html>

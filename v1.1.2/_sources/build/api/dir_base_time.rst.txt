@@ -1,0 +1,23 @@
+.. _dir_base_time:
+
+
+Directory time
+==============
+
+
+|exhale_lsh| :ref:`Parent directory <dir_base>` (``base``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``base/time``
+
+
+Files
+-----
+
+- :ref:`file_base_time_time.h`
+- :ref:`file_base_time_time_delta.h`
+- :ref:`file_base_time_time_ticks.h`
+
+

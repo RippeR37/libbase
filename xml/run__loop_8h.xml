@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="run__loop_8h" kind="file" language="C++">
+    <compoundname>run_loop.h</compoundname>
+    <includes refid="message__loop_8h" local="yes">base/message_loop/message_loop.h</includes>
+    <includes refid="sequenced__task__runner__helpers_8h" local="yes">base/sequenced_task_runner_helpers.h</includes>
+    <includes refid="single__thread__task__runner_8h" local="yes">base/single_thread_task_runner.h</includes>
+    <includes refid="sequenced__task__runner__handle_8h" local="yes">base/threading/sequenced_task_runner_handle.h</includes>
+    <innerclass refid="classbase_1_1RunLoop" prot="public">base::RunLoop</innerclass>
+    <innernamespace refid="namespacebase">base</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/message_loop/run_loop.h"/>
+  </compounddef>
+</doxygen>

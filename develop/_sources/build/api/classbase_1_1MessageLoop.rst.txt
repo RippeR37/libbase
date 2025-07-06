@@ -1,0 +1,26 @@
+.. _exhale_class_classbase_1_1MessageLoop:
+
+Class MessageLoop
+=================
+
+- Defined in :ref:`file_base_message_loop_message_loop.h`
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Type
+************
+
+- ``public base::MessageLoopImpl`` (:ref:`exhale_class_classbase_1_1MessageLoopImpl`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::MessageLoop
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

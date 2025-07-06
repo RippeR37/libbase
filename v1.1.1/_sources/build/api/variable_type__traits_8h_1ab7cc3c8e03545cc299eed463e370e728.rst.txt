@@ -1,0 +1,14 @@
+.. _exhale_variable_type__traits_8h_1ab7cc3c8e03545cc299eed463e370e728:
+
+Variable base::traits::IsFunctionPointerV
+=========================================
+
+- Defined in :ref:`file_base_type_traits.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: base::traits::IsFunctionPointerV
+   :project: libbase

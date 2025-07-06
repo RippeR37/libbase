@@ -1,0 +1,14 @@
+.. _exhale_define_trace__event_8h_1a549b0a65535fe53339f3f41d723cad8c:
+
+Define TRACE_EVENT_END
+======================
+
+- Defined in :ref:`file_base_trace_event_trace_event.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: TRACE_EVENT_END
+   :project: libbase

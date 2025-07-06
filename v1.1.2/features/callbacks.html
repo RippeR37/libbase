@@ -1,0 +1,873 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Callbacks &mdash; libbase  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3826cd6f" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Threads and sequences" href="threads.html" />
+    <link rel="prev" title="Using in your project" href="../getting_started/using.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            libbase
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#about-libbase">About <code class="docutils literal notranslate"><span class="pre">libbase</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#goals">Goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#non-goals">Non-goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#differences-from-base">Differences from <code class="docutils literal notranslate"><span class="pre">//base</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/prerequisites.html">Prerequisites</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/prerequisites.html#hard-requirements">Hard requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/prerequisites.html#internal-dependencies">Internal dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/prerequisites.html#optional-dependencies">Optional dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/building.html">Building <code class="docutils literal notranslate"><span class="pre">libbase</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#obtaining-the-source-code">Obtaining the source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#resolving-libbase-dependencies">Resolving libbase dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#building-with-cmake-and-pre-installed-dependencies">Building with CMake and pre-installed dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#building-with-cmake-and-vcpkg">Building with CMake and vcpkg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#building-with-cmake-and-conan">Building with CMake and Conan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#running-the-tests">Running the tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/configuration.html">Configuration options</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#cmake-build-options">CMake build options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#library-code-options">Library code options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/using.html">Using in your project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/using.html#recommended-way-cmake-vcpkg">Recommended way (CMake + vcpkg)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/using.html#alternative-ways">Alternative ways</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Features</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Callbacks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#function-objects">Function objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-callbacks">Running callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#binding-callbacks">Binding callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#binding-adapters">Binding adapters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#member-functions">Member functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ignore-result">Ignore result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#binding-arguments-into-the-callback">Binding arguments into the callback</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#chaining-callbacks">Chaining callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#chaining-callbacks-across-different-task-runners">Chaining callbacks across different task runners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#splitting-a-oncecallback">Splitting a OnceCallback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#barriercallback-and-barrierclosure">BarrierCallback and BarrierClosure</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="threads.html">Threads and sequences</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="threads.html#concepts">Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="threads.html#task-types">Task types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#sequences-vs-threads">Sequences vs Threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#base-taskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::TaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#base-sequencedtaskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#base-singlethreadtaskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SingleThreadTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#base-thread"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::Thread</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#base-threadpool"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::ThreadPool</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#obtaining-current-base-sequencedtaskrunner">Obtaining current <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#ensuring-sequence-affinity">Ensuring sequence affinity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#canceling-posted-task">Canceling posted task</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#blocking-post-tasks">Blocking post-tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#run-loop">Run Loop</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="weak_ptrs.html">Weak pointers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#glog-s-user-guide">GLOG’s user guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#severity-levels">Severity Levels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#log-line-prefix-format">Log Line Prefix Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#customizing-the-log-line-prefix">Customizing the Log Line Prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#setting-flags">Setting Flags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#conditional-occasional-logging">Conditional / Occasional Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#debug-mode-support">Debug Mode Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#check-macros"><code class="docutils literal notranslate"><span class="pre">CHECK</span></code> Macros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#verbose-logging">Verbose Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#failure-signal-handler">Failure Signal Handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#performance-of-messages">Performance of Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#user-defined-failure-function">User-defined Failure Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#raw-logging">Raw Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#google-style-perror">Google Style <code class="docutils literal notranslate"><span class="pre">perror()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#syslog">Syslog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#strip-logging-messages">Strip Logging Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#automatically-remove-old-logs">Automatically Remove Old Logs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#notes-for-windows-users">Notes for Windows Users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#installation-notes-for-64-bit-linux-systems">Installation Notes for 64-bit Linux Systems</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Tracing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tracing.html#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracing.html#tracing-apis">Tracing APIs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_ASYNC_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_ASYNC_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_ASYNC_STEP"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_STEP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_WITH_FLOW_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_WITH_FLOW_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_WITH_FLOW_STEP"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_STEP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_COUNTER"><code class="docutils literal notranslate"><span class="pre">TRACE_COUNTER</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_COUNTER_ID"><code class="docutils literal notranslate"><span class="pre">TRACE_COUNTER_ID</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_SIGNAL"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_SIGNAL_PROCESS"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL_PROCESS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_SIGNAL_THREAD"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL_THREAD</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_NAME_PROCESS"><code class="docutils literal notranslate"><span class="pre">TRACE_NAME_PROCESS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_NAME_THREAD"><code class="docutils literal notranslate"><span class="pre">TRACE_NAME_THREAD</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_FLUSH_TO_FILE"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_FLUSH_TO_FILE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_FLUSH_TO_STREAM"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_FLUSH_TO_STREAM</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tracing.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="networking.html">Networking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="networking.html#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#base-net-simpleurlloader"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::SimpleUrlLoader</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#base-net-urlrequest"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::UrlRequest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="integrations.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrations.html#winapi">WinAPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrations.html#wxwidgets">wxWidgets</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/simple.html">Simple example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/networking.html">Networking example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/winapi_integration.html">WinAPI integration module example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/wxwidgets_integration.html">wxWidgets integration module example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../build/api/index.html">C++ API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../build/api/index.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/api/index.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/api/index.html#full-api">Full API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#classes-and-structs">Classes and Structs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#variables">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#defines">Defines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">libbase</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Callbacks</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/RippeR37/libbase/blob/master/docs/features/callbacks.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="callbacks">
+<h1>Callbacks<a class="headerlink" href="#callbacks" title="Link to this heading"></a></h1>
+<section id="function-objects">
+<h2>Function objects<a class="headerlink" href="#function-objects" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">libbase</span></code> library provides two implementations of templated functions
+objects:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../build/api/classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::OnceCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::OnceCallback&lt;Result(Arguments...)&gt;</span> </code></a></p></li>
+<li><p><a class="reference internal" href="../build/api/classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::RepeatingCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::RepeatingCallback&lt;Result(Arguments...)&gt;</span> </code></a></p></li>
+</ul>
+<p>These two types represent generic functors that take <code class="docutils literal notranslate"><span class="pre">Arguments...</span></code>
+arguments as an input and return result of type <code class="docutils literal notranslate"><span class="pre">Result</span></code> (or nothing, if
+<code class="docutils literal notranslate"><span class="pre">Result</span></code> is <code class="docutils literal notranslate"><span class="pre">void</span></code>). The main differences between them are whether they are
+copyable and at most how many times they can be run/called.</p>
+<table class="docutils align-center">
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Copyable</p></th>
+<th class="head"><p>Moveable</p></th>
+<th class="head"><p>Max runs</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../build/api/classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::OnceCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">OnceCallback&lt;...&gt;</span> </code></a></p></td>
+<td><p>✕</p></td>
+<td><p>✓</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../build/api/classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::RepeatingCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">RepeatingCallback&lt;...&gt;</span> </code></a></p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>∞</p></td>
+</tr>
+</tbody>
+</table>
+<p>Callbacks that don’t take any arguments and return nothing are called
+<em>closures</em>. There are two handy aliases defined for them:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../build/api/typedef_callback_8h_1a59567d24a110228ba40af5b34848458f.html#_CPPv4N4base11OnceClosureE" title="base::OnceClosure"><code class="xref cpp cpp-type docutils literal notranslate"><span class="pre">base::OnceClosure</span></code></a></p></li>
+<li><p><a class="reference internal" href="../build/api/typedef_callback_8h_1ac4a76f1827e048560c85b9f94dd96ed4.html#_CPPv4N4base16RepeatingClosureE" title="base::RepeatingClosure"><code class="xref cpp cpp-type docutils literal notranslate"><span class="pre">base::RepeatingClosure</span></code></a></p></li>
+</ul>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">base::OnceCallback&lt;int(float,</span> <span class="pre">std::string)&gt;</span></code></dt><dd><p>refers to callbacks that can be run at most once, take two arguments to
+run: a float and a string, and the result of running them will be of the
+integer type.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">base::RepeatingCallback&lt;void()&gt;</span></code> (or <code class="docutils literal notranslate"><span class="pre">base::RepeatingClosure</span></code>)</dt><dd><p>refers to callbacks that can be run any number of times, take no arguments
+and return nothing from each run.</p>
+</dd>
+</dl>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These types act similarly to <code class="docutils literal notranslate"><span class="pre">std::function&lt;...&gt;</span></code> <a class="footnote-reference brackets" href="#std-function" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> template
+class from the standard library, except that they provide additional
+functionality and better integration with the rest of <code class="docutils literal notranslate"><span class="pre">libbase</span></code> components.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Prefer using <a class="reference internal" href="../build/api/classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::OnceCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">OnceCallback&lt;...&gt;</span> </code></a> when possible, as it provides clearer ownership and
+lifetime semantics.</p>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p><a class="reference internal" href="../build/api/classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::RepeatingCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">RepeatingCallback&lt;...&gt;</span> </code></a> callbacks are implicitly convertible to <a class="reference internal" href="../build/api/classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::OnceCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">OnceCallback&lt;...&gt;</span> </code></a> counterparts.</p>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>When using the original implementations from Chromium’s <code class="docutils literal notranslate"><span class="pre">//base</span></code> module,
+copies of the same <a class="reference internal" href="../build/api/classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::RepeatingCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">RepeatingCallback&lt;...&gt;</span> </code></a> callbacks share any bound state. In <code class="docutils literal notranslate"><span class="pre">libbase</span></code>,
+however, they do not and the state is copied whenever the callback is copied.
+Your application should <strong>not</strong> depend on it as this may change in the future
+versions of <code class="docutils literal notranslate"><span class="pre">libbase</span></code> library.</p>
+</div>
+</section>
+<section id="running-callbacks">
+<h2>Running callbacks<a class="headerlink" href="#running-callbacks" title="Link to this heading"></a></h2>
+<p>To run (execute/call) <a class="reference internal" href="../build/api/classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::OnceCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">OnceCallback&lt;...&gt;</span> </code></a> you need to <code class="docutils literal notranslate"><span class="pre">std::move()</span></code> the object to
+obtain rvalue-reference to it. This is done to signal to the readers of code
+that this callback will be reset (“moved-away”) after running it.</p>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example - running <a class="reference internal" href="../build/api/classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::OnceCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">OnceCallback&lt;...&gt;</span> </code></a></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">base</span><span class="o">::</span><span class="n">OnceCallback</span><span class="o">&lt;</span><span class="p">...</span><span class="o">&gt;</span><span class="w"> </span><span class="n">my_callback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/* ... */</span><span class="p">;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">my_callback</span><span class="p">).</span><span class="n">Run</span><span class="p">(</span><span class="cm">/* arguments */</span><span class="p">);</span>
+<span class="n">CHECK</span><span class="p">(</span><span class="o">!</span><span class="n">my_callback</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<p><a class="reference internal" href="../build/api/classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::RepeatingCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">RepeatingCallback&lt;...&gt;</span> </code></a> can be run both with lvalue-reference and rvalue-reference - the
+former will keep the callback unmodified, while the latter will reset it.</p>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example - running <a class="reference internal" href="../build/api/classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::RepeatingCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">RepeatingCallback&lt;...&gt;</span> </code></a></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">base</span><span class="o">::</span><span class="n">RepeatingCallback</span><span class="o">&lt;</span><span class="p">...(...)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">my_callback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/* ... */</span><span class="p">;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">result_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_callback</span><span class="p">.</span><span class="n">Run</span><span class="p">(</span><span class="cm">/* arguments */</span><span class="p">);</span>
+<span class="n">CHECK</span><span class="p">(</span><span class="n">my_callback</span><span class="p">);</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">result_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">my_callback</span><span class="p">).</span><span class="n">Run</span><span class="p">(</span><span class="cm">/* arguments */</span><span class="p">);</span>
+<span class="n">CHECK</span><span class="p">(</span><span class="o">!</span><span class="n">my_callback</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="binding-callbacks">
+<h2>Binding callbacks<a class="headerlink" href="#binding-callbacks" title="Link to this heading"></a></h2>
+<p>To create a callback you need to bind a functor (<em>function</em>, <em>member function</em>,
+<em>captureless lambda</em> or <em>another callback</em>) and - optionally - perform a partial
+application of <em>some</em> arguments.</p>
+<p><code class="docutils literal notranslate"><span class="pre">libbase</span></code> provides two functions that allow you to create a callback of a
+given type and perform partial application:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../build/api/function_bind_8h_1a93f52b871dd8441675fd964165924e8f.html#_CPPv4I0DpEN4base8BindOnceEDaRR7FunctorDpRR9Arguments" title="base::BindOnce"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::BindOnce()</span></code></a> - binds functor and returns <a class="reference internal" href="../build/api/classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::OnceCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">OnceCallback&lt;...&gt;</span> </code></a>.</p></li>
+<li><p><a class="reference internal" href="../build/api/function_bind_8h_1af69e87ed12e057256882baa1052326e7.html#_CPPv4I0DpEN4base13BindRepeatingEDaRR7FunctorDpRR9Arguments" title="base::BindRepeating"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::BindRepeating()</span></code></a> - binds functor and returns <a class="reference internal" href="../build/api/classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::RepeatingCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">RepeatingCallback&lt;...&gt;</span> </code></a>.</p></li>
+</ul>
+<p>All passed arguments are then copied (or moved) into the callback state and will
+be used when the callback will be run.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These functions are similar to <code class="docutils literal notranslate"><span class="pre">std::bind_front()</span></code> <a class="footnote-reference brackets" href="#std-bind-front" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> from
+the standard library.</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>You cannot bind move-only types with a <a class="reference internal" href="../build/api/function_bind_8h_1af69e87ed12e057256882baa1052326e7.html#_CPPv4I0DpEN4base13BindRepeatingEDaRR7FunctorDpRR9Arguments" title="base::BindRepeating"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::BindRepeating()</span></code></a> to
+<a class="reference internal" href="../build/api/classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::RepeatingCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">RepeatingCallback&lt;...&gt;</span> </code></a> if they will be passed as an argument taken by value. This is
+because <a class="reference internal" href="../build/api/classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::RepeatingCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">RepeatingCallback&lt;...&gt;</span> </code></a> are allowed to be copied and execute any number of times,
+while the bound argument would have to be moved-into the bound function.</p>
+</div>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example - <a class="reference internal" href="../build/api/function_bind_8h_1a93f52b871dd8441675fd964165924e8f.html#_CPPv4I0DpEN4base8BindOnceEDaRR7FunctorDpRR9Arguments" title="base::BindOnce"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::BindOnce()</span></code></a></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/bind.h&quot;</span>
+<span class="linenos"> 2</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/callback.h&quot;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="kt">int</span><span class="w"> </span><span class="nf">GetNext</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 5</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="p">}</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">OnceCallback</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cb_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">BindOnce</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GetNext</span><span class="p">);</span>
+<span class="linenos">10</span><span class="w">  </span><span class="n">CHECK</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">cb_1</span><span class="p">).</span><span class="n">Run</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span>
+<span class="linenos">11</span><span class="w">  </span><span class="n">CHECK</span><span class="p">(</span><span class="o">!</span><span class="n">cb_1</span><span class="p">);</span><span class="w">  </span><span class="c1">// `cb_1` can be executed only once</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">OnceCallback</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cb_2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">BindOnce</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GetNext</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<span class="linenos">14</span><span class="w">  </span><span class="n">CHECK</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">cb_1</span><span class="p">).</span><span class="n">Run</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="linenos">15</span><span class="w">  </span><span class="n">CHECK</span><span class="p">(</span><span class="o">!</span><span class="n">cb_2</span><span class="p">);</span><span class="w">  </span><span class="c1">// `cb_2` can be executed only once too</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">18</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example - <a class="reference internal" href="../build/api/function_bind_8h_1af69e87ed12e057256882baa1052326e7.html#_CPPv4I0DpEN4base13BindRepeatingEDaRR7FunctorDpRR9Arguments" title="base::BindRepeating"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::BindRepeating()</span></code></a></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/bind.h&quot;</span>
+<span class="linenos"> 2</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/callback.h&quot;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="kt">int</span><span class="w"> </span><span class="nf">IncrementBy</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">increment</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 5</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">increment</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="p">}</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">RepeatingCallback</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_next</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos">10</span><span class="w">      </span><span class="n">base</span><span class="o">::</span><span class="n">BindOnce</span><span class="p">(</span><span class="o">&amp;</span><span class="n">IncrementBy</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="w">  </span><span class="n">CHECK</span><span class="p">(</span><span class="n">get_next</span><span class="p">.</span><span class="n">Run</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span>
+<span class="linenos">13</span><span class="w">  </span><span class="n">CHECK</span><span class="p">(</span><span class="n">get_next</span><span class="p">.</span><span class="n">Run</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<span class="linenos">14</span><span class="w">  </span><span class="n">CHECK</span><span class="p">(</span><span class="n">get_next</span><span class="p">);</span><span class="w">  </span><span class="c1">// `get_next` is still valid</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">17</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="binding-adapters">
+<h2>Binding adapters<a class="headerlink" href="#binding-adapters" title="Link to this heading"></a></h2>
+<section id="member-functions">
+<h3>Member functions<a class="headerlink" href="#member-functions" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">libbase</span></code> library <strong>forbids</strong> binding member functions directly to a raw
+pointers to the object of that class as this is often source of many
+lifetime-related bugs. To bind a callback pointing to a member function, you
+need to use one of the provided adapters.</p>
+<section id="shared-pointers">
+<h4>Shared pointers<a class="headerlink" href="#shared-pointers" title="Link to this heading"></a></h4>
+<p>One of the ways you can bind a member function to a specific object is to pass a
+<code class="docutils literal notranslate"><span class="pre">std::shared_ptr&lt;&gt;</span></code> to that object wrapped in <a class="reference internal" href="../build/api/function_bind_8h_1ae9bbece310034980402ba6320c1e1801.html#_CPPv4I0EN4base11RetainedRefEDaNSt10shared_ptrI12InstanceTypeEE" title="base::RetainedRef"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::RetainedRef()</span></code></a>
+adapter. This adapter binds the shared pointer within the callback state.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This means that the object’s lifetime will be extended with the lifetime of
+the callback and all of its copies!</p>
+</div>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example - binding member function to <code class="docutils literal notranslate"><span class="pre">std::shared_ptr&lt;&gt;</span></code></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;memory&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/bind.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/callback.h&quot;</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span><span class="w"> </span><span class="n">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">callback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">BindRepeating</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Foo</span><span class="o">::</span><span class="n">bar</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">RetainedRef</span><span class="p">(</span><span class="n">foo</span><span class="p">));</span>
+<span class="w">  </span><span class="n">callback</span><span class="p">.</span><span class="n">Run</span><span class="p">();</span><span class="w">  </span><span class="c1">// will print &quot;Hello World!&quot;;</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="weak-pointers">
+<h4>Weak pointers<a class="headerlink" href="#weak-pointers" title="Link to this heading"></a></h4>
+<p>If you do not want to use <code class="docutils literal notranslate"><span class="pre">shared_ptr</span></code> or possibly extend the lifetime of your
+object, you may use <a class="reference internal" href="../build/api/classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtrE" title="base::WeakPtr"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtr</span></code></a>. These weak pointers allow you to
+check if the pointed-to object is still alive and - if so - access it safely.</p>
+<p>When a callback to a member function bound with a <a class="reference internal" href="../build/api/classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtrE" title="base::WeakPtr"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtr</span></code></a> is
+run, the member function will only be executed if the original object pointed to
+by the <a class="reference internal" href="../build/api/classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtrE" title="base::WeakPtr"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtr</span></code></a> is still alive, otherwise the call will be ignored
+and there will be no attempt to access the (now probably destroyed) original
+object. There are no special/extra adapter for weak pointers - the
+<a class="reference internal" href="../build/api/classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtrE" title="base::WeakPtr"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtr</span></code></a> is itself recognized as such and allowed to be used.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Using weak pointers is a bit more complicated than as described here. See
+<a class="reference internal" href="weak_ptrs.html"><span class="doc">Weak pointers</span></a> page for more details.</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>It is forbidden to bind a member function, that has a non-void return type,
+to a weak pointer.</p>
+</div>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example - binding member function to <code class="docutils literal notranslate"><span class="pre">base::WeakPtr&lt;&gt;</span></code></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;memory&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/bind.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/callback.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/memory/weak_ptr.h&quot;</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span><span class="w"> </span><span class="n">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">WeakPtr</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span><span class="w"> </span><span class="n">weak_foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/* obtain the weak pointer */</span><span class="p">;</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">callback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">BindRepeating</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Foo</span><span class="o">::</span><span class="n">bar</span><span class="p">,</span><span class="w"> </span><span class="n">weak_foo</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">callback</span><span class="p">.</span><span class="n">Run</span><span class="p">();</span><span class="w">  </span><span class="c1">// will print &quot;Hello World!&quot;;</span>
+<span class="w">  </span><span class="n">foo</span><span class="p">.</span><span class="n">reset</span><span class="p">();</span><span class="w">     </span><span class="c1">// this invalidates all existing weak pointers to `foo`</span>
+<span class="w">  </span><span class="n">callback</span><span class="p">.</span><span class="n">Run</span><span class="p">();</span><span class="w">  </span><span class="c1">// NO-OP, will do nothing</span>
+<span class="w">                   </span><span class="c1">// note that `callback` is NOT reset/empty at this point</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="manual-lifetime-management">
+<h4>Manual lifetime management<a class="headerlink" href="#manual-lifetime-management" title="Link to this heading"></a></h4>
+<p>In scenarios where you are sure that object to which the member function will be
+bound will outlive the callback, you may disable the lifetime management logic
+and force the callback to bind to - essentially - a raw pointer to that object.
+This can be done with <a class="reference internal" href="../build/api/function_bind_8h_1ad5d66862bbd0dbeebce8e46adda08f8e.html#_CPPv4I0EN4base10UnretainedEDaP12InstanceType" title="base::Unretained"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::Unretained()</span></code></a> adapter.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>While this construct reduces the overhead of the callback execution, it is
+often a source of lifetime-related bugs. Be careful when using it!</p>
+</div>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example - binding member function to <a class="reference internal" href="../build/api/function_bind_8h_1ad5d66862bbd0dbeebce8e46adda08f8e.html#_CPPv4I0EN4base10UnretainedEDaP12InstanceType" title="base::Unretained"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::Unretained()</span></code></a>/raw pointer</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/bind.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/callback.h&quot;</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span><span class="w"> </span><span class="n">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">callback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">BindRepeating</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Foo</span><span class="o">::</span><span class="n">bar</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">Unretained</span><span class="p">(</span><span class="n">foo</span><span class="p">.</span><span class="n">get</span><span class="p">());</span>
+
+<span class="w">  </span><span class="n">callback</span><span class="p">.</span><span class="n">Run</span><span class="p">();</span><span class="w">  </span><span class="c1">// will print &quot;Hello World!&quot;;</span>
+<span class="w">  </span><span class="n">foo</span><span class="p">.</span><span class="n">reset</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// WARNING:</span>
+<span class="w">  </span><span class="c1">//   calling `callback.Run()` now would invoke Undefined Behavior</span>
+<span class="w">  </span><span class="c1">//   (use-after-free)</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="ignore-result">
+<h3>Ignore result<a class="headerlink" href="#ignore-result" title="Link to this heading"></a></h3>
+<p>In some scenarios, it might be required to drop the result from a callback (e.g.
+to match some APIs that don’t expect any return values). In such cases, it is
+possible to do so with the <a class="reference internal" href="../build/api/function_bind_8h_1a027b226247fe184c655649dc5767cfe9.html#_CPPv4I0EN4base12IgnoreResultEDa7Functor" title="base::IgnoreResult"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::IgnoreResult()</span></code></a> adapter.</p>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example - binding function with <a class="reference internal" href="../build/api/function_bind_8h_1a027b226247fe184c655649dc5767cfe9.html#_CPPv4I0EN4base12IgnoreResultEDa7Functor" title="base::IgnoreResult"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::IgnoreResult()</span></code></a> adapter</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/bind.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/callback.h&quot;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">PrintAndReturnLength</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">text</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="n">length</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">DoSomething</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">RepeatingCallback</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">print_cb</span><span class="p">);</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">RepeatingCallback</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">print_cb</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="n">base</span><span class="o">::</span><span class="n">BindRepeating</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">IgnoreResult</span><span class="p">(</span><span class="o">&amp;</span><span class="n">PrintAndReturnLength</span><span class="p">));</span>
+<span class="w">  </span><span class="n">DoSomething</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">print_cb</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="binding-arguments-into-the-callback">
+<h3>Binding arguments into the callback<a class="headerlink" href="#binding-arguments-into-the-callback" title="Link to this heading"></a></h3>
+<p>You can bind arguments into a callback such that it will own them and pass them
+to the function (via pointer or reference).</p>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example - binding arguments with <a class="reference internal" href="../build/api/function_bind_8h_1a5452c26d25fe20be80ec370581653525.html#_CPPv4I0EN4base5OwnedEDaP12InstanceType" title="base::Owned"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::Owned()</span></code></a> and <a class="reference internal" href="../build/api/function_bind_8h_1acfa44e3724b6e74d1bfbccba23bbf2c9.html#_CPPv4I0EN4base8OwnedRefEDaRR12InstanceType" title="base::OwnedRef"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::OwnedRef()</span></code></a></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/bind.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/callback.h&quot;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">PrintByPtr</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">value</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">PrintByRef</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">cb_ptr</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="n">base</span><span class="o">::</span><span class="n">BindRepeating</span><span class="p">(</span><span class="o">&amp;</span><span class="n">PrintByPtr</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">Owned</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">5</span><span class="p">)));</span>
+<span class="w">  </span><span class="n">cb_ptr</span><span class="p">.</span><span class="n">Run</span><span class="p">();</span><span class="w">  </span><span class="c1">// will print `6`</span>
+
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">cb_ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">BindRepeating</span><span class="p">(</span><span class="o">&amp;</span><span class="n">PrintByRef</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">OwnedRef</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+<span class="w">  </span><span class="n">cb_ref</span><span class="p">.</span><span class="n">Run</span><span class="p">();</span><span class="w">  </span><span class="c1">// will print `1`</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="chaining-callbacks">
+<h2>Chaining callbacks<a class="headerlink" href="#chaining-callbacks" title="Link to this heading"></a></h2>
+<p>If you need to run multiple callbacks in a sequence, possibly passing result
+from the previous callback as an input to the next one, you can use
+<code class="docutils literal notranslate"><span class="pre">.Then(/*</span> <span class="pre">next_callback</span> <span class="pre">*/)</span></code> method to obtain a new callback composed from the
+provided two provided ones.</p>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">chained_cb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first_cb</span><span class="p">.</span><span class="n">Then</span><span class="p">(</span><span class="n">second_cb</span><span class="p">);</span>
+<span class="c1">// Running `chained_cb` is equivalent to calling:</span>
+<span class="c1">// - `first_cb.Run(); second_cb.Run();` - if `first_cb` returns nothing</span>
+<span class="c1">// - `second_cb.Run(first_cb.Run());`   - if `first_cb` returns a result</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Normal lvalue/rvalue-reference rules applies - <a class="reference internal" href="../build/api/classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::OnceCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">OnceCallback&lt;...&gt;</span> </code></a> must be <em>moved</em> while
+<a class="reference internal" href="../build/api/classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::RepeatingCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">RepeatingCallback&lt;...&gt;</span> </code></a> can be either copied or moved into the chained callback.</p>
+<p>When chaining <a class="reference internal" href="../build/api/classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::OnceCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">OnceCallback&lt;...&gt;</span> </code></a> with any callback, the result will be of <a class="reference internal" href="../build/api/classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::OnceCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">OnceCallback&lt;...&gt;</span> </code></a> type.
+<a class="reference internal" href="../build/api/classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::RepeatingCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">RepeatingCallback&lt;...&gt;</span> </code></a> callbacks can be chained only with other <a class="reference internal" href="../build/api/classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::RepeatingCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">RepeatingCallback&lt;...&gt;</span> </code></a> callbacks.</p>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example - chaining callbacks</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/bind.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/callback.h&quot;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">GetNext</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">AsString</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">RepeatingCallback</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_next_as_string</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="n">base</span><span class="o">::</span><span class="n">BindRepeating</span><span class="p">(</span><span class="o">&amp;</span><span class="n">GetNext</span><span class="p">).</span><span class="n">Then</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">BindRepeating</span><span class="p">(</span><span class="o">&amp;</span><span class="n">AsString</span><span class="p">));</span>
+<span class="w">  </span><span class="n">CHECK</span><span class="p">(</span><span class="n">get_next_as_string</span><span class="p">.</span><span class="n">Run</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;6&quot;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="chaining-callbacks-across-different-task-runners">
+<h2>Chaining callbacks across different task runners<a class="headerlink" href="#chaining-callbacks-across-different-task-runners" title="Link to this heading"></a></h2>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Before reading this section, familiarize yourself with threads, sequences and
+task runners on the <a class="reference internal" href="threads.html"><span class="doc">Threads and sequences</span></a> page.</p>
+</div>
+<p>There may be a situation where you will have to pass a callback to receive a
+notification of some action which will have to be processed on a specific thread
+or sequence, and you won’t be sure on which thread/sequence it will be invoked.</p>
+<p>In cases like this, you can bind an existing callback to a post-task operation.
+This will result in creating a new callback that - when executed - will
+post-task the original callback to the target task runner. This is possible with
+<code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::BindPostTask()</span></code>.</p>
+<p>If you want to bind callback to current sequence (the task runner your code is
+being executed right now) you can also use <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::BindToCurrentSequence()</span></code>
+function.</p>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example - <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::BindPostTask()</span></code></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/bind.h&quot;</span>
+<span class="linenos"> 2</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/callback.h&quot;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="c1">// No guarantee on which thread/sequence the `on_done` callback will be</span>
+<span class="linenos"> 5</span><span class="c1">// called.</span>
+<span class="linenos"> 6</span><span class="kt">void</span><span class="w"> </span><span class="nf">DoSomeWorkAsync</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">OnceClosure</span><span class="w"> </span><span class="n">on_done</span><span class="p">);</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="c1">// Our code</span>
+<span class="linenos"> 9</span><span class="kt">void</span><span class="w"> </span><span class="nf">WorkManager::StartSomeWork</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">10</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">on_done_callback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">BindOnce</span><span class="p">(</span><span class="o">&amp;</span><span class="n">WorkManager</span><span class="o">::</span><span class="n">WorkDone</span><span class="p">,</span><span class="w"> </span><span class="n">weak_this_</span><span class="p">);</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="w">  </span><span class="c1">// Bind callback specifically to `current_task_runner_` regardless of on which</span>
+<span class="linenos">13</span><span class="w">  </span><span class="c1">// task runner this function is executed</span>
+<span class="linenos">14</span><span class="w">  </span><span class="n">DoSomeWorkAsync</span><span class="p">(</span>
+<span class="linenos">15</span><span class="w">      </span><span class="n">base</span><span class="o">::</span><span class="n">BindPostTask</span><span class="p">(</span><span class="n">current_task_runner_</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">on_done_callback</span><span class="p">)));</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="w">  </span><span class="c1">// ... or assuming you&#39;re running on `current_task_runner_` right now, this is</span>
+<span class="linenos">18</span><span class="w">  </span><span class="c1">// equivalent to calling:</span>
+<span class="linenos">19</span><span class="w">  </span><span class="n">DoSomeWorkAsync</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">BindToCurrentSequence</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">on_done_callback</span><span class="p">)));</span>
+<span class="linenos">20</span><span class="p">}</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="kt">void</span><span class="w"> </span><span class="nf">WorkManager::WorkDone</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">23</span><span class="w">  </span><span class="c1">// The check below is safe to perform</span>
+<span class="linenos">24</span><span class="w">  </span><span class="n">DCHECK</span><span class="p">(</span><span class="n">current_task_runner_</span><span class="o">-&gt;</span><span class="n">RunsTasksInCurrentSequence</span><span class="p">());</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span><span class="w">  </span><span class="c1">// ...</span>
+<span class="linenos">27</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="splitting-a-oncecallback">
+<h2>Splitting a OnceCallback<a class="headerlink" href="#splitting-a-oncecallback" title="Link to this heading"></a></h2>
+<p>Sometimes you may have to bridge two APIs: one that takes two different
+callbacks where exactly one of them will be called - one on success and the
+other on failure, while on the other hand have single <a class="reference internal" href="../build/api/classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::OnceCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">OnceCallback&lt;...&gt;</span> </code></a> that takes
+a boolean or an enum and has to be called to notify if the operation succeded or
+failed.</p>
+<p>Due to <a class="reference internal" href="../build/api/classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::OnceCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">OnceCallback&lt;...&gt;</span> </code></a> not being copyable, you cannot simply create two copies and bind
+one with success value while the other with failure value.
+There is however a tool to help you with this scenario:
+<code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::SplitOnceCallback()</span></code> function. It takes a single <a class="reference internal" href="../build/api/classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::OnceCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">OnceCallback&lt;...&gt;</span> </code></a> callback
+and returns a pair of new <a class="reference internal" href="../build/api/classbase_1_1OnceCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base12OnceCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::OnceCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">OnceCallback&lt;...&gt;</span> </code></a> callbacks. Running either of the new
+callbacks will run the original one. Running the other will result in trggering
+a <code class="docutils literal notranslate"><span class="pre">CHECK()</span></code> and crashing.</p>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example - <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::SplitOnceCallback()</span></code></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/bind.h&quot;</span>
+<span class="linenos"> 2</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/callback.h&quot;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="c1">// Assumed API that we cannot change</span>
+<span class="linenos"> 5</span><span class="kt">void</span><span class="w"> </span><span class="nf">DoSomeWork</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">OnceClosure</span><span class="w"> </span><span class="n">on_success_callback</span><span class="p">,</span>
+<span class="linenos"> 6</span><span class="w">                </span><span class="n">base</span><span class="o">::</span><span class="n">OnceClosure</span><span class="w"> </span><span class="n">on_failure_callback</span><span class="p">);</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="c1">// Our implementation that has to adapt to external APIs</span>
+<span class="linenos"> 9</span><span class="kt">void</span><span class="w"> </span><span class="nf">DoSomeWorkAndReport</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">OnceCallback</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">on_done_callback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">10</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">callback_pair</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">SplitOnceCallback</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">on_done_callback</span><span class="p">));</span>
+<span class="linenos">11</span><span class="w">  </span><span class="n">DoSomeWork</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">BindOnce</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">callback_pair</span><span class="p">.</span><span class="n">first</span><span class="p">),</span><span class="w"> </span><span class="nb">true</span><span class="p">),</span>
+<span class="linenos">12</span><span class="w">             </span><span class="n">base</span><span class="o">::</span><span class="n">BindOnce</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">callback_pair</span><span class="p">.</span><span class="n">first</span><span class="p">),</span><span class="w"> </span><span class="nb">false</span><span class="p">));</span>
+<span class="linenos">13</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Be careful not to overuse this functionality as it can complicate the logic
+and control flow of your application.</p>
+</div>
+</section>
+<section id="barriercallback-and-barrierclosure">
+<h2>BarrierCallback and BarrierClosure<a class="headerlink" href="#barriercallback-and-barrierclosure" title="Link to this heading"></a></h2>
+<p>You might be required to collect some data from several places asynchronously,
+and once all the data is collected, do something with it only then. To
+facilitate this scenario, <code class="docutils literal notranslate"><span class="pre">libbase</span></code> has <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::BarrierCallback()</span></code>
+function.</p>
+<p>To create a <code class="docutils literal notranslate"><span class="pre">BarrierCallback&lt;T&gt;</span></code> you need to pass two arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">size_t</span> <span class="pre">required_run_count</span></code> - number of times the callback must be run (and
+how many data chunks need to be collected).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">base::OnceCallback&lt;void(Container&lt;T&gt;)&gt;</span> <span class="pre">done_callback</span></code> - a callback that
+will be invoked with the collected data chunks.</p></li>
+</ul>
+<p>This will create a new <a class="reference internal" href="../build/api/classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::RepeatingCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">RepeatingCallback&lt;...&gt;</span> </code></a> which will take argument of <code class="docutils literal notranslate"><span class="pre">T</span></code> type. Then,
+after it (or its copies) will be invoked exactly <code class="docutils literal notranslate"><span class="pre">required_run_count</span></code> times,
+the <code class="docutils literal notranslate"><span class="pre">done_callback</span></code> will be invoked with all the collected data chunks.</p>
+<p>If you don’t need to collect any data, you can also use
+<a class="reference internal" href="../build/api/function_barrier__closure_8h_1ac63e035ad926f27f95b2275245357c0e.html#_CPPv4N4base14BarrierClosureE6size_t11OnceClosure" title="base::BarrierClosure"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::BarrierClosure()</span></code></a> method.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Resulting barrier callback of <a class="reference internal" href="../build/api/classbase_1_1RepeatingCallback_3_01ReturnType_07ArgumentTypes_8_8_8_08_4.html#_CPPv4I0DpEN4base17RepeatingCallbackIF10ReturnTypeDp13ArgumentTypesEEE" title="base::RepeatingCallback&lt;ReturnType(ArgumentTypes...)&gt;"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">RepeatingCallback&lt;...&gt;</span> </code></a> is thread-safe, meaning that you can
+safely copy it to different threads and run it without any additional
+synchronization between them. The <code class="docutils literal notranslate"><span class="pre">done_callback</span></code> will be run on the same
+thread/sequence as the final call to the barrier callback.</p>
+</div>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example - <a class="reference internal" href="../build/api/function_barrier__closure_8h_1ac63e035ad926f27f95b2275245357c0e.html#_CPPv4N4base14BarrierClosureE6size_t11OnceClosure" title="base::BarrierClosure"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::BarrierClosure()</span></code></a></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/barrier_closure.h&quot;</span>
+<span class="linenos"> 4</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/bind.h&quot;</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">RepeatingClosure</span><span class="w"> </span><span class="n">barrier_cb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">BarrierClosure</span><span class="p">(</span>
+<span class="linenos"> 8</span><span class="w">      </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">base</span><span class="o">::</span><span class="n">BindOnce</span><span class="p">([]()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}));</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="w">  </span><span class="n">barrier_cb</span><span class="p">.</span><span class="n">run</span><span class="p">();</span><span class="w">  </span><span class="c1">// nothing</span>
+<span class="linenos">11</span><span class="w">  </span><span class="n">barrier_cb</span><span class="p">.</span><span class="n">run</span><span class="p">();</span><span class="w">  </span><span class="c1">// nothing</span>
+<span class="linenos">12</span><span class="w">  </span><span class="n">barrier_cb</span><span class="p">.</span><span class="n">run</span><span class="p">();</span><span class="w">  </span><span class="c1">// prints &quot;Hello World!&quot; on the screen</span>
+<span class="linenos">13</span><span class="w">  </span><span class="c1">// `barrier_cb` must NOT be called any more!</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">16</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>You can find more details about callbacks and binding them <a class="reference external" href="https://chromium.googlesource.com/chromium/src.git/+/HEAD/docs/callback.md">here </a>.</p>
+</div>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="std-function" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://en.cppreference.com/w/cpp/utility/functional/function">https://en.cppreference.com/w/cpp/utility/functional/function</a></p>
+</aside>
+<aside class="footnote brackets" id="std-bind-front" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://en.cppreference.com/w/cpp/utility/functional/bind_front">https://en.cppreference.com/w/cpp/utility/functional/bind_front</a></p>
+</aside>
+</aside>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../getting_started/using.html" class="btn btn-neutral float-left" title="Using in your project" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="threads.html" class="btn btn-neutral float-right" title="Threads and sequences" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Damian Dyńdo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: v1.1.2
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../develop/features/callbacks.html">develop</a></dd><br />
+      <dd><a href="../../master/features/callbacks.html">master</a></dd><br />
+    </dl>
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="../../v1.0.0/features/callbacks.html">v1.0.0</a></dd><br>
+      <dd><a href="../../v1.0.1/features/callbacks.html">v1.0.1</a></dd><br>
+      <dd><a href="../../v1.1.0/features/callbacks.html">v1.1.0</a></dd><br>
+      <dd><a href="../../v1.1.1/features/callbacks.html">v1.1.1</a></dd><br>
+      <dd><a href="callbacks.html">v1.1.2</a></dd><br>
+    </dl>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    // $(".admonition-example-code > *:not(div .admonition-title)").hide();
+
+    $(".admonition-example-code > .admonition-title").click(function () {
+      $(this).parent().children().not(".admonition-title").slideToggle();
+      $(this).parent().children(".admonition-title").toggleClass("open");
+    });
+  });
+</script>
+
+
+</body>
+</html>

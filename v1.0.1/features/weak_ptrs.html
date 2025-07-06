@@ -1,0 +1,398 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weak pointers &mdash; libbase  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3826cd6f" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Logging" href="logging.html" />
+    <link rel="prev" title="Threads and sequences" href="threads.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            libbase
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#about-libbase">About <code class="docutils literal notranslate"><span class="pre">libbase</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#goals">Goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#non-goals">Non-goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#differences-from-base">Differences from <code class="docutils literal notranslate"><span class="pre">//base</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/prerequisites.html">Prerequisites</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/prerequisites.html#hard-requirements">Hard requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/prerequisites.html#internal-dependencies">Internal dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/prerequisites.html#optional-dependencies">Optional dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/building.html">Building <code class="docutils literal notranslate"><span class="pre">libbase</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#obtaining-the-source-code">Obtaining the source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#resolving-libbase-dependencies">Resolving libbase dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#building-with-cmake">Building with CMake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#running-the-tests">Running the tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#configuration">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/configuration.html">Configuration options</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#cmake-build-options">CMake build options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#library-code-options">Library code options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/using.html">Using in your project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/using.html#recommended-way-cmake-vcpkg">Recommended way (CMake + vcpkg)</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Features</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="callbacks.html">Callbacks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#function-objects">Function objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#running-callbacks">Running callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#binding-callbacks">Binding callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#binding-adapters">Binding adapters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="callbacks.html#member-functions">Member functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="callbacks.html#ignore-result">Ignore result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="callbacks.html#binding-arguments-into-the-callback">Binding arguments into the callback</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#chaining-callbacks">Chaining callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#chaining-callbacks-across-different-task-runners">Chaining callbacks across different task runners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#splitting-a-oncecallback">Splitting a OnceCallback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#barriercallback-and-barrierclosure">BarrierCallback and BarrierClosure</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="threads.html">Threads and sequences</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="threads.html#concepts">Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="threads.html#task-types">Task types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#sequences-vs-threads">Sequences vs Threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#base-taskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::TaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#base-sequencedtaskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#base-singlethreadtaskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SingleThreadTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#base-thread"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::Thread</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#base-threadpool"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::ThreadPool</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#obtaining-current-base-sequencedtaskrunner">Obtaining current <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#ensuring-sequence-affinity">Ensuring sequence affinity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#canceling-posted-task">Canceling posted task</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#blocking-post-tasks">Blocking post-tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Weak pointers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#glog-s-user-guide">GLOG’s user guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Tracing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tracing.html#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracing.html#tracing-apis">Tracing APIs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_ASYNC_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_ASYNC_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_ASYNC_STEP"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_STEP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_WITH_FLOW_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_WITH_FLOW_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_WITH_FLOW_STEP"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_STEP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_COUNTER"><code class="docutils literal notranslate"><span class="pre">TRACE_COUNTER</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_COUNTER_ID"><code class="docutils literal notranslate"><span class="pre">TRACE_COUNTER_ID</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_SIGNAL"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_SIGNAL_PROCESS"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL_PROCESS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_SIGNAL_THREAD"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL_THREAD</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_NAME_PROCESS"><code class="docutils literal notranslate"><span class="pre">TRACE_NAME_PROCESS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_NAME_THREAD"><code class="docutils literal notranslate"><span class="pre">TRACE_NAME_THREAD</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_FLUSH_TO_FILE"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_FLUSH_TO_FILE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_FLUSH_TO_STREAM"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_FLUSH_TO_STREAM</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tracing.html#example">Example</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/simple.html">Simple example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../build/api/index.html">C++ API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../build/api/index.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/api/index.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/api/index.html#full-api">Full API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#classes-and-structs">Classes and Structs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#variables">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#defines">Defines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">libbase</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Weak pointers</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/RippeR37/libbase/blob/master/docs/features/weak_ptrs.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="weak-pointers">
+<h1>Weak pointers<a class="headerlink" href="#weak-pointers" title="Link to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">libbase</span></code> implements Chromium’s weak pointers <a class="footnote-reference brackets" href="#chr-weak-ptr" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> to allow
+writing safer code. This module consists of two classes:</p>
+<ul>
+<li><dl class="simple">
+<dt><a class="reference internal" href="../build/api/classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtrE" title="base::WeakPtr"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtr&lt;T&gt;</span></code></a></dt><dd><p>This class represents a weak pointer to an object of type <code class="docutils literal notranslate"><span class="pre">T</span></code> which can
+be used to check if this object is still alive (or if the
+weak pointer itself is still valid, to be precise <a class="footnote-reference brackets" href="#valid-expl" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>) and if it
+is, to access it in a safe manner.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><a class="reference internal" href="../build/api/classbase_1_1WeakPtrFactory.html#_CPPv4I0EN4base14WeakPtrFactoryE" title="base::WeakPtrFactory"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtrFactory&lt;T&gt;</span></code></a></dt><dd><p>This class provides a functionality of creation of <a class="reference internal" href="../build/api/classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtrE" title="base::WeakPtr"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtr&lt;T&gt;</span></code></a> objects and
+managing whether they are still valid and can be used.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A single instance of <a class="reference internal" href="../build/api/classbase_1_1WeakPtrFactory.html#_CPPv4I0EN4base14WeakPtrFactoryE" title="base::WeakPtrFactory"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtrFactory&lt;T&gt;</span></code></a> refers only to one object of type
+<code class="docutils literal notranslate"><span class="pre">T</span></code> throughout its lifetime.</p>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+<p>The notable difference between the <a class="reference internal" href="../build/api/classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtrE" title="base::WeakPtr"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtr&lt;T&gt;</span></code></a> class and the standard
+<code class="docutils literal notranslate"><span class="pre">std::weak_ptr&lt;T&gt;</span></code> class is that <a class="reference internal" href="../build/api/classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtrE" title="base::WeakPtr"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtr&lt;T&gt;</span></code></a> objects do not extend the lifetime
+of the pointed-to object and therefore can be used to point to objects allocated
+on the stack. The user is required to check if the object is still accessible
+(with <a class="reference internal" href="../build/api/classbase_1_1WeakPtr.html#_CPPv4NK4base7WeakPtrcvbEv" title="base::WeakPtr::operator bool"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::WeakPtr::operator</span> <span class="pre">bool()</span></code></a>) before accessing the pointed-to
+object - which can be done with any of these functions:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../build/api/classbase_1_1WeakPtr.html#_CPPv4NK4base7WeakPtrptEv" title="base::WeakPtr::operator-&gt;"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::WeakPtr::operator-&gt;()</span></code></a>,</p></li>
+<li><p><a class="reference internal" href="../build/api/classbase_1_1WeakPtr.html#_CPPv4NK4base7WeakPtrmlEv" title="base::WeakPtr::operator*"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::WeakPtr::operator*()</span></code></a>, or</p></li>
+<li><p><a class="reference internal" href="../build/api/classbase_1_1WeakPtr.html#_CPPv4NK4base7WeakPtr3GetEv" title="base::WeakPtr::Get"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::WeakPtr::Get()</span></code></a>.</p></li>
+</ul>
+<p>A <a class="reference internal" href="../build/api/classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtrE" title="base::WeakPtr"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtr&lt;T&gt;</span></code></a> objects are created from a <a class="reference internal" href="../build/api/classbase_1_1WeakPtrFactory.html#_CPPv4I0EN4base14WeakPtrFactoryE" title="base::WeakPtrFactory"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtrFactory&lt;T&gt;</span></code></a> object. When
+constructing the factory, it requires a pointer to the object to which all the
+<a class="reference internal" href="../build/api/classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtrE" title="base::WeakPtr"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtr&lt;T&gt;</span></code></a> objects created from it will point to. Then, all created <a class="reference internal" href="../build/api/classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtrE" title="base::WeakPtr"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtr&lt;T&gt;</span></code></a>
+objects will be considered valid until either the factory is destroyed or a call
+to the <a class="reference internal" href="../build/api/classbase_1_1WeakPtrFactory.html#_CPPv4N4base14WeakPtrFactory18InvalidateWeakPtrsEv" title="base::WeakPtrFactory::InvalidateWeakPtrs"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::WeakPtrFactory::InvalidateWeakPtrs()</span></code></a> member function is made.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is still possible to create new and valid <a class="reference internal" href="../build/api/classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtrE" title="base::WeakPtr"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtr&lt;T&gt;</span></code></a> objects from
+<a class="reference internal" href="../build/api/classbase_1_1WeakPtrFactory.html#_CPPv4I0EN4base14WeakPtrFactoryE" title="base::WeakPtrFactory"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtrFactory&lt;T&gt;</span></code></a> on which the
+<a class="reference internal" href="../build/api/classbase_1_1WeakPtrFactory.html#_CPPv4N4base14WeakPtrFactory18InvalidateWeakPtrsEv" title="base::WeakPtrFactory::InvalidateWeakPtrs"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::WeakPtrFactory::InvalidateWeakPtrs()</span></code></a> member function was called.
+The invalidation affects only existing weak pointers.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The <a class="reference internal" href="../build/api/classbase_1_1WeakPtrFactory.html#_CPPv4I0EN4base14WeakPtrFactoryE" title="base::WeakPtrFactory"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtrFactory&lt;T&gt;</span></code></a> is often the last member in the class it generates weak
+pointers to. This ensures that all existing weak pointers will be invalidated
+before any other member variable from that class will be destroyed.</p>
+</div>
+<p>Once a first weak pointer from a given factory is dereferenced (tested or used
+to access the pointed-to object), both the factory and all the existing weak
+pointers created by it become bound to the sequence on which it happend and from
+that point in time can only be dereferenced or invalidated on that sequence.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>While it is perfectly safe to copy and pass <a class="reference internal" href="../build/api/classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtrE" title="base::WeakPtr"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtr&lt;T&gt;</span></code></a> objects across
+different <a class="reference internal" href="threads.html"><span class="doc">threads and sequences</span></a>, they can be used only on
+the sequence on which they were bound!</p>
+<p>This is required to ensure that the pointed-to object is not destroyed
+(on a different thread) between checking if it is still alive and actually
+accessing it.</p>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>If all weak pointers created by a given factory would be destroyed, the
+factory automatically unbinds itself from the bounded sequence and newly
+created <a class="reference internal" href="../build/api/classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtrE" title="base::WeakPtr"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtr&lt;T&gt;</span></code></a> can be used on different sequences.</p>
+</div>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example - <a class="reference internal" href="../build/api/classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtrE" title="base::WeakPtr"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtr&lt;T&gt;</span></code></a> and <a class="reference internal" href="../build/api/classbase_1_1WeakPtrFactory.html#_CPPv4I0EN4base14WeakPtrFactoryE" title="base::WeakPtrFactory"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtrFactory&lt;T&gt;</span></code></a> usage</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;base/memory/weak_ptr.h&quot;</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">class</span><span class="w"> </span><span class="nc">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 6</span><span class="w"> </span><span class="k">public</span><span class="o">:</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">Bar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello World!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">WeakPtr</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span><span class="w"> </span><span class="n">GetWeakPtr</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">12</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">weak_factory_</span><span class="p">.</span><span class="n">GetWeakPtr</span><span class="p">();</span>
+<span class="linenos">13</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="w"> </span><span class="k">private</span><span class="o">:</span>
+<span class="linenos">16</span><span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">WeakPtrFactory</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span><span class="w"> </span><span class="n">weak_factory_</span><span class="p">{</span><span class="k">this</span><span class="p">};</span>
+<span class="linenos">17</span><span class="p">};</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">20</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span><span class="w"> </span><span class="n">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="linenos">21</span><span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">WeakPtr</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span><span class="w"> </span><span class="n">weak_foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">foo</span><span class="o">-&gt;</span><span class="n">GetWeakPtr</span><span class="p">();</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="w">  </span><span class="n">CHECK</span><span class="p">(</span><span class="n">weak_foo</span><span class="p">);</span>
+<span class="linenos">24</span><span class="w">  </span><span class="n">weak_foo</span><span class="o">-&gt;</span><span class="n">Bar</span><span class="p">();</span><span class="w">  </span><span class="c1">// prints &quot;Hello World!&quot;</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span><span class="w">  </span><span class="n">foo</span><span class="p">.</span><span class="n">reset</span><span class="p">();</span>
+<span class="linenos">27</span><span class="w">  </span><span class="n">CHECK</span><span class="p">(</span><span class="o">!</span><span class="n">weak_foo</span><span class="p">);</span>
+<span class="linenos">28</span><span class="w">  </span><span class="c1">// must NOT use `weak_foo` to try to access the pointed-to object anymore</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">31</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Check <a class="reference internal" href="callbacks.html"><span class="doc">Callbacks</span></a> page to see how <a class="reference internal" href="../build/api/classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtrE" title="base::WeakPtr"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtr&lt;T&gt;</span></code></a> objects can be used to
+write safer code with callbacks or to create cancelable callbacks.</p>
+</div>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="chr-weak-ptr" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://chromium.googlesource.com/chromium/src/+/HEAD/base/memory/weak_ptr.h">https://chromium.googlesource.com/chromium/src/+/HEAD/base/memory/weak_ptr.h</a></p>
+</aside>
+<aside class="footnote brackets" id="valid-expl" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>It is possible to invalidate <a class="reference internal" href="../build/api/classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtrE" title="base::WeakPtr"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtr&lt;T&gt;</span></code></a> before the object is destroyed.
+This can be useful when you need to prevent access to the object from <em>old</em>
+users or if you need to invalidate any existing callbacks.</p>
+</aside>
+</aside>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="threads.html" class="btn btn-neutral float-left" title="Threads and sequences" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="logging.html" class="btn btn-neutral float-right" title="Logging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Damian Dyńdo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: v1.0.1
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../develop/features/weak_ptrs.html">develop</a></dd><br />
+      <dd><a href="../../master/features/weak_ptrs.html">master</a></dd><br />
+    </dl>
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="../../v1.0.0/features/weak_ptrs.html">v1.0.0</a></dd><br>
+      <dd><a href="weak_ptrs.html">v1.0.1</a></dd><br>
+      <dd><a href="../../v1.1.0/features/weak_ptrs.html">v1.1.0</a></dd><br>
+      <dd><a href="../../v1.1.1/features/weak_ptrs.html">v1.1.1</a></dd><br>
+      <dd><a href="../../v1.1.2/features/weak_ptrs.html">v1.1.2</a></dd><br>
+    </dl>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    // $(".admonition-example-code > *:not(div .admonition-title)").hide();
+
+    $(".admonition-example-code > .admonition-title").click(function () {
+      $(this).parent().children().not(".admonition-title").slideToggle();
+      $(this).parent().children(".admonition-title").toggleClass("open");
+    });
+  });
+</script>
+
+
+</body>
+</html>

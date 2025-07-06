@@ -1,0 +1,17 @@
+.. _exhale_struct_structbase_1_1traits_1_1IsRepeatingCallbackType:
+
+Template Struct IsRepeatingCallbackType
+=======================================
+
+- Defined in :ref:`file_base_callback.h`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: base::traits::IsRepeatingCallbackType
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

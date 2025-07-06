@@ -1,0 +1,14 @@
+.. _exhale_variable_callback_8h_1af6b47086eb59b691e2bafda006a39ee8:
+
+Variable base::traits::IsOnceCallbackV
+======================================
+
+- Defined in :ref:`file_base_callback.h`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: base::traits::IsOnceCallbackV
+   :project: libbase

@@ -1,0 +1,14 @@
+.. _exhale_function_bind_8h_1af69e87ed12e057256882baa1052326e7:
+
+Template Function base::BindRepeating
+=====================================
+
+- Defined in :ref:`file_base_bind.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: base::BindRepeating(Functor&&, Arguments&&...)
+   :project: libbase

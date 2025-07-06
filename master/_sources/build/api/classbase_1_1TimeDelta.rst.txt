@@ -1,0 +1,17 @@
+.. _exhale_class_classbase_1_1TimeDelta:
+
+Class TimeDelta
+===============
+
+- Defined in :ref:`file_base_time_time_delta.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::TimeDelta
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

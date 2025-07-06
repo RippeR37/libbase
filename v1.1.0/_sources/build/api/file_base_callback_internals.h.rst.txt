@@ -1,0 +1,46 @@
+
+.. _file_base_callback_internals.h:
+
+File callback_internals.h
+=========================
+
+|exhale_lsh| :ref:`Parent directory <dir_base>` (``base``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/callback_internals.h``)
+------------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``base/type_traits.h`` (:ref:`file_base_type_traits.h`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_base_callback.h`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+

@@ -1,0 +1,14 @@
+.. _exhale_function_bind__post__task_8h_1af680c7aa696c150746f3df19f4af6ace:
+
+Template Function base::BindToCurrentSequence(RepeatingCallback<Return(Arguments...)>, SourceLocation)
+======================================================================================================
+
+- Defined in :ref:`file_base_bind_post_task.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: base::BindToCurrentSequence(RepeatingCallback<Return(Arguments...)>, SourceLocation)
+   :project: libbase

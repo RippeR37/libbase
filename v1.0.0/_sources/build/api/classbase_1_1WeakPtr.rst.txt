@@ -1,0 +1,17 @@
+.. _exhale_class_classbase_1_1WeakPtr:
+
+Template Class WeakPtr
+======================
+
+- Defined in :ref:`file_base_memory_weak_ptr.h`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: base::WeakPtr
+   :project: libbase
+   :members:
+   :protected-members:
+   :undoc-members:

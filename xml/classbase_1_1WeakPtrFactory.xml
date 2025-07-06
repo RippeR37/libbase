@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classbase_1_1WeakPtrFactory" kind="class" language="C++" prot="public">
+    <compoundname>base::WeakPtrFactory</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classbase_1_1WeakPtrFactory_1a984003fb0634f8968ee52dd7a336b03e" prot="protected" static="no" mutable="no">
+        <type>T *const</type>
+        <definition>T* const base::WeakPtrFactory&lt; T &gt;::ptr_</definition>
+        <argsstring></argsstring>
+        <name>ptr_</name>
+        <qualifiedname>base::WeakPtrFactory::ptr_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/memory/weak_ptr.h" line="183" column="11" bodyfile="base/memory/weak_ptr.h" bodystart="183" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classbase_1_1WeakPtrFactory_1a5e1ac5b2239749825535e0df78d645d2" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; detail::WeakPtrControlBlock &gt;</type>
+        <definition>std::shared_ptr&lt;detail::WeakPtrControlBlock&gt; base::WeakPtrFactory&lt; T &gt;::control_block_</definition>
+        <argsstring></argsstring>
+        <name>control_block_</name>
+        <qualifiedname>base::WeakPtrFactory::control_block_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/memory/weak_ptr.h" line="184" column="19" bodyfile="base/memory/weak_ptr.h" bodystart="184" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classbase_1_1WeakPtrFactory_1ab3450b44b9ca94efbfd9e16dbf44b713" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>base::WeakPtrFactory&lt; T &gt;::WeakPtrFactory</definition>
+        <argsstring>(T *ptr)</argsstring>
+        <name>WeakPtrFactory</name>
+        <qualifiedname>base::WeakPtrFactory::WeakPtrFactory</qualifiedname>
+        <param>
+          <type>T *</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/memory/weak_ptr.h" line="153" column="12" bodyfile="base/memory/weak_ptr.h" bodystart="153" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1WeakPtrFactory_1a94a2f0de1f7f84d0dbb77e28fffb8336" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::WeakPtrFactory&lt; T &gt;::WeakPtrFactory</definition>
+        <argsstring>(const WeakPtrFactory &amp;)=delete</argsstring>
+        <name>WeakPtrFactory</name>
+        <qualifiedname>base::WeakPtrFactory::WeakPtrFactory</qualifiedname>
+        <param>
+          <type>const <ref refid="classbase_1_1WeakPtrFactory" kindref="compound">WeakPtrFactory</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/memory/weak_ptr.h" line="159" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1WeakPtrFactory_1adab821a64f513cf4c2c669bf9f502618" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>base::WeakPtrFactory&lt; T &gt;::WeakPtrFactory</definition>
+        <argsstring>(WeakPtrFactory &amp;&amp;)=delete</argsstring>
+        <name>WeakPtrFactory</name>
+        <qualifiedname>base::WeakPtrFactory::WeakPtrFactory</qualifiedname>
+        <param>
+          <type><ref refid="classbase_1_1WeakPtrFactory" kindref="compound">WeakPtrFactory</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/memory/weak_ptr.h" line="160" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1WeakPtrFactory_1a728c86bdc9f1ce1231081f234a0e06e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1WeakPtrFactory" kindref="compound">WeakPtrFactory</ref> &amp;</type>
+        <definition>WeakPtrFactory &amp; base::WeakPtrFactory&lt; T &gt;::operator=</definition>
+        <argsstring>(const WeakPtrFactory &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>base::WeakPtrFactory::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classbase_1_1WeakPtrFactory" kindref="compound">WeakPtrFactory</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/memory/weak_ptr.h" line="161" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1WeakPtrFactory_1a021bcafec11558127e10bfb621176722" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classbase_1_1WeakPtrFactory" kindref="compound">WeakPtrFactory</ref> &amp;</type>
+        <definition>WeakPtrFactory &amp; base::WeakPtrFactory&lt; T &gt;::operator=</definition>
+        <argsstring>(WeakPtrFactory &amp;&amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>base::WeakPtrFactory::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classbase_1_1WeakPtrFactory" kindref="compound">WeakPtrFactory</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/memory/weak_ptr.h" line="162" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1WeakPtrFactory_1a2509e66f4e82b2b5d39b758c54ad291d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classbase_1_1WeakPtr" kindref="compound">WeakPtr</ref>&lt; T &gt;</type>
+        <definition>WeakPtr&lt; T &gt; base::WeakPtrFactory&lt; T &gt;::GetWeakPtr</definition>
+        <argsstring>() const</argsstring>
+        <name>GetWeakPtr</name>
+        <qualifiedname>base::WeakPtrFactory::GetWeakPtr</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/memory/weak_ptr.h" line="164" column="11" bodyfile="base/memory/weak_ptr.h" bodystart="164" bodyend="169"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1WeakPtrFactory_1a09b22af18f01b8ab874c8223c3cb14ce" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void base::WeakPtrFactory&lt; T &gt;::InvalidateWeakPtrs</definition>
+        <argsstring>()</argsstring>
+        <name>InvalidateWeakPtrs</name>
+        <qualifiedname>base::WeakPtrFactory::InvalidateWeakPtrs</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/memory/weak_ptr.h" line="171" column="8" bodyfile="base/memory/weak_ptr.h" bodystart="171" bodyend="175"/>
+      </memberdef>
+      <memberdef kind="function" id="classbase_1_1WeakPtrFactory_1a44f23b03f65020073523d9a669b96afc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool base::WeakPtrFactory&lt; T &gt;::HasWeakPtrs</definition>
+        <argsstring>() const</argsstring>
+        <name>HasWeakPtrs</name>
+        <qualifiedname>base::WeakPtrFactory::HasWeakPtrs</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="base/memory/weak_ptr.h" line="177" column="8" bodyfile="base/memory/weak_ptr.h" bodystart="177" bodyend="180"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="base/memory/weak_ptr.h" line="151" column="1" bodyfile="base/memory/weak_ptr.h" bodystart="151" bodyend="185"/>
+    <listofallmembers>
+      <member refid="classbase_1_1WeakPtrFactory_1a5e1ac5b2239749825535e0df78d645d2" prot="protected" virt="non-virtual"><scope>base::WeakPtrFactory</scope><name>control_block_</name></member>
+      <member refid="classbase_1_1WeakPtrFactory_1a2509e66f4e82b2b5d39b758c54ad291d" prot="public" virt="non-virtual"><scope>base::WeakPtrFactory</scope><name>GetWeakPtr</name></member>
+      <member refid="classbase_1_1WeakPtrFactory_1a44f23b03f65020073523d9a669b96afc" prot="public" virt="non-virtual"><scope>base::WeakPtrFactory</scope><name>HasWeakPtrs</name></member>
+      <member refid="classbase_1_1WeakPtrFactory_1a09b22af18f01b8ab874c8223c3cb14ce" prot="public" virt="non-virtual"><scope>base::WeakPtrFactory</scope><name>InvalidateWeakPtrs</name></member>
+      <member refid="classbase_1_1WeakPtrFactory_1a728c86bdc9f1ce1231081f234a0e06e7" prot="public" virt="non-virtual"><scope>base::WeakPtrFactory</scope><name>operator=</name></member>
+      <member refid="classbase_1_1WeakPtrFactory_1a021bcafec11558127e10bfb621176722" prot="public" virt="non-virtual"><scope>base::WeakPtrFactory</scope><name>operator=</name></member>
+      <member refid="classbase_1_1WeakPtrFactory_1a984003fb0634f8968ee52dd7a336b03e" prot="protected" virt="non-virtual"><scope>base::WeakPtrFactory</scope><name>ptr_</name></member>
+      <member refid="classbase_1_1WeakPtrFactory_1ab3450b44b9ca94efbfd9e16dbf44b713" prot="public" virt="non-virtual"><scope>base::WeakPtrFactory</scope><name>WeakPtrFactory</name></member>
+      <member refid="classbase_1_1WeakPtrFactory_1a94a2f0de1f7f84d0dbb77e28fffb8336" prot="public" virt="non-virtual"><scope>base::WeakPtrFactory</scope><name>WeakPtrFactory</name></member>
+      <member refid="classbase_1_1WeakPtrFactory_1adab821a64f513cf4c2c669bf9f502618" prot="public" virt="non-virtual"><scope>base::WeakPtrFactory</scope><name>WeakPtrFactory</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

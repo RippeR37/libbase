@@ -1,0 +1,62 @@
+
+.. _file_base_source_location.h:
+
+File source_location.h
+======================
+
+|exhale_lsh| :ref:`Parent directory <dir_base>` (``base``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/source_location.h``)
+---------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cstddef``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_base_task_runner.h`
+
+- :ref:`file_base_threading_thread.h`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_base`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classbase_1_1SourceLocation`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_source__location_8h_1aa4b9d8432798552dc1aa25ab49a6c595`
+

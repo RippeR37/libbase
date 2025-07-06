@@ -1,0 +1,434 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class TimeDelta &mdash; libbase  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=3826cd6f" />
+      <link rel="stylesheet" type="text/css" href="../../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Class TimeTicks" href="classbase_1_1TimeTicks.html" />
+    <link rel="prev" title="Class Time" href="classbase_1_1Time.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            libbase
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../introduction/introduction.html#about-libbase">About <code class="docutils literal notranslate"><span class="pre">libbase</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../introduction/introduction.html#goals">Goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../introduction/introduction.html#non-goals">Non-goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../introduction/introduction.html#differences-from-base">Differences from <code class="docutils literal notranslate"><span class="pre">//base</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/prerequisites.html">Prerequisites</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/prerequisites.html#hard-requirements">Hard requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/prerequisites.html#internal-dependencies">Internal dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/prerequisites.html#optional-dependencies">Optional dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/building.html">Building <code class="docutils literal notranslate"><span class="pre">libbase</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/building.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/building.html#obtaining-the-source-code">Obtaining the source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/building.html#building-with-cmake">Building with CMake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/building.html#running-the-tests">Running the tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/building.html#configuration">Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/configuration.html">Configuration options</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#cmake-build-options">CMake build options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#library-code-options">Library code options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/using.html">Using in your project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/using.html#recommended-way-cmake">Recommended way (CMake)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/using.html#other-build-systems">Other build systems</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Features</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../features/callbacks.html">Callbacks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../features/callbacks.html#function-objects">Function objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/callbacks.html#running-callbacks">Running callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/callbacks.html#binding-callbacks">Binding callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/callbacks.html#binding-adapters">Binding adapters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../features/callbacks.html#member-functions">Member functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/callbacks.html#ignore-result">Ignore result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/callbacks.html#binding-arguments-into-the-callback">Binding arguments into the callback</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/callbacks.html#chaining-callbacks">Chaining callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/callbacks.html#chaining-callbacks-across-different-task-runners">Chaining callbacks across different task runners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/callbacks.html#splitting-a-oncecallback">Splitting a OnceCallback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/callbacks.html#barriercallback-and-barrierclosure">BarrierCallback and BarrierClosure</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../features/threads.html">Threads and sequences</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../features/threads.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../features/threads.html#concepts">Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/threads.html#task-types">Task types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/threads.html#sequences-vs-threads">Sequences vs Threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/threads.html#base-taskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::TaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/threads.html#base-sequencedtaskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/threads.html#base-singlethreadtaskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SingleThreadTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/threads.html#base-thread"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::Thread</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/threads.html#base-threadpool"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::ThreadPool</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/threads.html#obtaining-current-base-sequencedtaskrunner">Obtaining current <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/threads.html#ensuring-sequence-affinity">Ensuring sequence affinity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/threads.html#canceling-posted-task">Canceling posted task</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/threads.html#blocking-post-tasks">Blocking post-tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../features/weak_ptrs.html">Weak pointers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../features/logging.html">Logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../features/logging.html#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/logging.html#glog-s-user-guide">GLOG’s user guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../features/tracing.html">Tracing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../features/tracing.html#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/tracing.html#tracing-apis">Tracing APIs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_EVENT"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_EVENT_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_EVENT_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_EVENT_ASYNC_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_EVENT_ASYNC_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_EVENT_ASYNC_STEP"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_STEP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_EVENT_WITH_FLOW_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_EVENT_WITH_FLOW_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_EVENT_WITH_FLOW_STEP"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_STEP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_COUNTER"><code class="docutils literal notranslate"><span class="pre">TRACE_COUNTER</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_COUNTER_ID"><code class="docutils literal notranslate"><span class="pre">TRACE_COUNTER_ID</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_SIGNAL"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_SIGNAL_PROCESS"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL_PROCESS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_SIGNAL_THREAD"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL_THREAD</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_NAME_PROCESS"><code class="docutils literal notranslate"><span class="pre">TRACE_NAME_PROCESS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_NAME_THREAD"><code class="docutils literal notranslate"><span class="pre">TRACE_NAME_THREAD</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_EVENT_FLUSH_TO_FILE"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_FLUSH_TO_FILE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../features/tracing.html#c.TRACE_EVENT_FLUSH_TO_STREAM"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_FLUSH_TO_STREAM</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/tracing.html#example">Example</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/simple.html">Simple example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C++ API reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#classes-and-structs">Classes and Structs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#variables">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#defines">Defines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about/license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">libbase</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">C++ API reference</a></li>
+      <li class="breadcrumb-item active">Class TimeDelta</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/RippeR37/libbase/blob/master/docs/build/api/classbase_1_1TimeDelta.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-timedelta">
+<span id="exhale-class-classbase-1-1timedelta"></span><h1>Class TimeDelta<a class="headerlink" href="#class-timedelta" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_base_time_time_delta.h.html#file-base-time-time-delta-h"><span class="std std-ref">File time_delta.h</span></a></p></li>
+</ul>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N4base9TimeDeltaE">
+<span id="_CPPv3N4base9TimeDeltaE"></span><span id="_CPPv2N4base9TimeDeltaE"></span><span id="base::TimeDelta"></span><span class="target" id="classbase_1_1TimeDelta"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TimeDelta</span></span></span><a class="headerlink" href="#_CPPv4N4base9TimeDeltaE" title="Link to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4base9TimeDelta9TimeDeltaEv">
+<span id="_CPPv3N4base9TimeDelta9TimeDeltaEv"></span><span id="_CPPv2N4base9TimeDelta9TimeDeltaEv"></span><span id="base::TimeDelta::TimeDelta"></span><span class="target" id="classbase_1_1TimeDelta_1a4675140f14e29e27b04a2792a052a7d4"></span><span class="sig-name descname"><span class="n"><span class="pre">TimeDelta</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N4base9TimeDelta9TimeDeltaEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4base9TimeDelta6IsZeroEv">
+<span id="_CPPv3NK4base9TimeDelta6IsZeroEv"></span><span id="_CPPv2NK4base9TimeDelta6IsZeroEv"></span><span id="base::TimeDelta::IsZeroC"></span><span class="target" id="classbase_1_1TimeDelta_1af9fd37d4a9ff540e27d80794c326ca5f"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IsZero</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4base9TimeDelta6IsZeroEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4base9TimeDelta10IsPositiveEv">
+<span id="_CPPv3NK4base9TimeDelta10IsPositiveEv"></span><span id="_CPPv2NK4base9TimeDelta10IsPositiveEv"></span><span id="base::TimeDelta::IsPositiveC"></span><span class="target" id="classbase_1_1TimeDelta_1a7cba665f930396f8ab08ae6bcfe4e7d3"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IsPositive</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4base9TimeDelta10IsPositiveEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4base9TimeDelta10IsNegativeEv">
+<span id="_CPPv3NK4base9TimeDelta10IsNegativeEv"></span><span id="_CPPv2NK4base9TimeDelta10IsNegativeEv"></span><span id="base::TimeDelta::IsNegativeC"></span><span class="target" id="classbase_1_1TimeDelta_1a7655c4963c15ac9488e069700c15c3b5"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IsNegative</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4base9TimeDelta10IsNegativeEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4base9TimeDelta6InDaysEv">
+<span id="_CPPv3NK4base9TimeDelta6InDaysEv"></span><span id="_CPPv2NK4base9TimeDelta6InDaysEv"></span><span id="base::TimeDelta::InDaysC"></span><span class="target" id="classbase_1_1TimeDelta_1a14cfb6a109c6b358390c5305ef998058"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InDays</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4base9TimeDelta6InDaysEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4base9TimeDelta7InHoursEv">
+<span id="_CPPv3NK4base9TimeDelta7InHoursEv"></span><span id="_CPPv2NK4base9TimeDelta7InHoursEv"></span><span id="base::TimeDelta::InHoursC"></span><span class="target" id="classbase_1_1TimeDelta_1a63ec1edcc96fec79298822522477dfd9"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InHours</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4base9TimeDelta7InHoursEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4base9TimeDelta9InMinutesEv">
+<span id="_CPPv3NK4base9TimeDelta9InMinutesEv"></span><span id="_CPPv2NK4base9TimeDelta9InMinutesEv"></span><span id="base::TimeDelta::InMinutesC"></span><span class="target" id="classbase_1_1TimeDelta_1a7477bb883c32de060717e4151b30d26e"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InMinutes</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4base9TimeDelta9InMinutesEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4base9TimeDelta10InSecondsFEv">
+<span id="_CPPv3NK4base9TimeDelta10InSecondsFEv"></span><span id="_CPPv2NK4base9TimeDelta10InSecondsFEv"></span><span id="base::TimeDelta::InSecondsFC"></span><span class="target" id="classbase_1_1TimeDelta_1a3d5e3ccac26c0dbcca8d01fec5b6e711"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InSecondsF</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4base9TimeDelta10InSecondsFEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4base9TimeDelta9InSecondsEv">
+<span id="_CPPv3NK4base9TimeDelta9InSecondsEv"></span><span id="_CPPv2NK4base9TimeDelta9InSecondsEv"></span><span id="base::TimeDelta::InSecondsC"></span><span class="target" id="classbase_1_1TimeDelta_1a526f219dfc59134824bfce2612f4f026"></span><span class="n"><span class="pre">int64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InSeconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4base9TimeDelta9InSecondsEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4base9TimeDelta15InMillisecondsFEv">
+<span id="_CPPv3NK4base9TimeDelta15InMillisecondsFEv"></span><span id="_CPPv2NK4base9TimeDelta15InMillisecondsFEv"></span><span id="base::TimeDelta::InMillisecondsFC"></span><span class="target" id="classbase_1_1TimeDelta_1ab543a425ac14dbce22a17d02d49b18e8"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InMillisecondsF</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4base9TimeDelta15InMillisecondsFEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4base9TimeDelta14InMillisecondsEv">
+<span id="_CPPv3NK4base9TimeDelta14InMillisecondsEv"></span><span id="_CPPv2NK4base9TimeDelta14InMillisecondsEv"></span><span id="base::TimeDelta::InMillisecondsC"></span><span class="target" id="classbase_1_1TimeDelta_1a397f244b9437a7cbf7b783758c2976fe"></span><span class="n"><span class="pre">int64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InMilliseconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4base9TimeDelta14InMillisecondsEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4base9TimeDelta14InMicrosecondsEv">
+<span id="_CPPv3NK4base9TimeDelta14InMicrosecondsEv"></span><span id="_CPPv2NK4base9TimeDelta14InMicrosecondsEv"></span><span id="base::TimeDelta::InMicrosecondsC"></span><span class="target" id="classbase_1_1TimeDelta_1a386cd9d8658fcf4c3a8c2b2aa9816065"></span><span class="n"><span class="pre">int64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InMicroseconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4base9TimeDelta14InMicrosecondsEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4base9TimeDelta15InMicrosecondsFEv">
+<span id="_CPPv3NK4base9TimeDelta15InMicrosecondsFEv"></span><span id="_CPPv2NK4base9TimeDelta15InMicrosecondsFEv"></span><span id="base::TimeDelta::InMicrosecondsFC"></span><span class="target" id="classbase_1_1TimeDelta_1a42176c1eabb2a680881f978fe7d85a38"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InMicrosecondsF</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4base9TimeDelta15InMicrosecondsFEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4base9TimeDelta13InNanosecondsEv">
+<span id="_CPPv3NK4base9TimeDelta13InNanosecondsEv"></span><span id="_CPPv2NK4base9TimeDelta13InNanosecondsEv"></span><span id="base::TimeDelta::InNanosecondsC"></span><span class="target" id="classbase_1_1TimeDelta_1acfac42aa04d86121864012f34a32c916"></span><span class="n"><span class="pre">int64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InNanoseconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4base9TimeDelta13InNanosecondsEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4base9TimeDeltaplE9TimeDelta">
+<span id="_CPPv3NK4base9TimeDeltaplE9TimeDelta"></span><span id="_CPPv2NK4base9TimeDeltaplE9TimeDelta"></span><span id="base::TimeDelta::add-operator__TimeDeltaC"></span><span class="target" id="classbase_1_1TimeDelta_1ab4eeb7dd3a587ba56a86ff69e3271747"></span><a class="reference internal" href="#_CPPv4N4base9TimeDeltaE" title="base::TimeDelta"><span class="n"><span class="pre">TimeDelta</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">+</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N4base9TimeDeltaE" title="base::TimeDelta"><span class="n"><span class="pre">TimeDelta</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4base9TimeDeltaplE9TimeDelta" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4base9TimeDeltamiE9TimeDelta">
+<span id="_CPPv3NK4base9TimeDeltamiE9TimeDelta"></span><span id="_CPPv2NK4base9TimeDeltamiE9TimeDelta"></span><span id="base::TimeDelta::sub-operator__TimeDeltaC"></span><span class="target" id="classbase_1_1TimeDelta_1a42551c388c4c923da2384ac0832ff05a"></span><a class="reference internal" href="#_CPPv4N4base9TimeDeltaE" title="base::TimeDelta"><span class="n"><span class="pre">TimeDelta</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">-</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N4base9TimeDeltaE" title="base::TimeDelta"><span class="n"><span class="pre">TimeDelta</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4base9TimeDeltamiE9TimeDelta" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4base9TimeDeltapLE9TimeDelta">
+<span id="_CPPv3N4base9TimeDeltapLE9TimeDelta"></span><span id="_CPPv2N4base9TimeDeltapLE9TimeDelta"></span><span id="base::TimeDelta::add-assign-operator__TimeDelta"></span><span class="target" id="classbase_1_1TimeDelta_1a348e7237f157db03192482c67d4dd536"></span><a class="reference internal" href="#_CPPv4N4base9TimeDeltaE" title="base::TimeDelta"><span class="n"><span class="pre">TimeDelta</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">+=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N4base9TimeDeltaE" title="base::TimeDelta"><span class="n"><span class="pre">TimeDelta</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4base9TimeDeltapLE9TimeDelta" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4base9TimeDeltamIE9TimeDelta">
+<span id="_CPPv3N4base9TimeDeltamIE9TimeDelta"></span><span id="_CPPv2N4base9TimeDeltamIE9TimeDelta"></span><span id="base::TimeDelta::sub-assign-operator__TimeDelta"></span><span class="target" id="classbase_1_1TimeDelta_1a27f32eb1fb79aeeb3c91c64d9be23520"></span><a class="reference internal" href="#_CPPv4N4base9TimeDeltaE" title="base::TimeDelta"><span class="n"><span class="pre">TimeDelta</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">-=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N4base9TimeDeltaE" title="base::TimeDelta"><span class="n"><span class="pre">TimeDelta</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4base9TimeDeltamIE9TimeDelta" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4base9TimeDeltamiEv">
+<span id="_CPPv3NK4base9TimeDeltamiEv"></span><span id="_CPPv2NK4base9TimeDeltamiEv"></span><span id="base::TimeDelta::sub-operatorC"></span><span class="target" id="classbase_1_1TimeDelta_1ab971fdf1edb294dddcc837d2c750216a"></span><a class="reference internal" href="#_CPPv4N4base9TimeDeltaE" title="base::TimeDelta"><span class="n"><span class="pre">TimeDelta</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">-</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4base9TimeDeltamiEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK4base9TimeDeltamlE9TimeDelta1T">
+<span id="_CPPv3I0ENK4base9TimeDeltamlE1T"></span><span id="_CPPv2I0ENK4base9TimeDeltamlE1T"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classbase_1_1TimeDelta_1a1de70a6c03963d2312dc081f11f2a1a2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N4base9TimeDeltaE" title="base::TimeDelta"><span class="n"><span class="pre">TimeDelta</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0ENK4base9TimeDeltamlE9TimeDelta1T" title="base::TimeDelta::operator*::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">a</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK4base9TimeDeltamlE9TimeDelta1T" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK4base9TimeDeltadvE9TimeDelta1T">
+<span id="_CPPv3I0ENK4base9TimeDeltadvE1T"></span><span id="_CPPv2I0ENK4base9TimeDeltadvE1T"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classbase_1_1TimeDelta_1a87e0c51a426d84a1f7225d36f9c1bd01"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N4base9TimeDeltaE" title="base::TimeDelta"><span class="n"><span class="pre">TimeDelta</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">/</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0ENK4base9TimeDeltadvE9TimeDelta1T" title="base::TimeDelta::operator/::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">a</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK4base9TimeDeltadvE9TimeDelta1T" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN4base9TimeDeltamLER9TimeDelta1T">
+<span id="_CPPv3I0EN4base9TimeDeltamLE1T"></span><span id="_CPPv2I0EN4base9TimeDeltamLE1T"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classbase_1_1TimeDelta_1a82282b8419b868d7d5756a7b5e97886b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N4base9TimeDeltaE" title="base::TimeDelta"><span class="n"><span class="pre">TimeDelta</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN4base9TimeDeltamLER9TimeDelta1T" title="base::TimeDelta::operator*=::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">a</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN4base9TimeDeltamLER9TimeDelta1T" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN4base9TimeDeltadVER9TimeDelta1T">
+<span id="_CPPv3I0EN4base9TimeDeltadVE1T"></span><span id="_CPPv2I0EN4base9TimeDeltadVE1T"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classbase_1_1TimeDelta_1a53630c25f3e16751b670d737e7a6e100"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N4base9TimeDeltaE" title="base::TimeDelta"><span class="n"><span class="pre">TimeDelta</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">/=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN4base9TimeDeltadVER9TimeDelta1T" title="base::TimeDelta::operator/=::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">a</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN4base9TimeDeltadVER9TimeDelta1T" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4base9TimeDeltaeqE9TimeDelta">
+<span id="_CPPv3NK4base9TimeDeltaeqE9TimeDelta"></span><span id="_CPPv2NK4base9TimeDeltaeqE9TimeDelta"></span><span id="base::TimeDelta::eq-operator__TimeDeltaC"></span><span class="target" id="classbase_1_1TimeDelta_1a3b9d9158b220e69b0b32d9fdad81715a"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N4base9TimeDeltaE" title="base::TimeDelta"><span class="n"><span class="pre">TimeDelta</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4base9TimeDeltaeqE9TimeDelta" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4base9TimeDeltaneE9TimeDelta">
+<span id="_CPPv3NK4base9TimeDeltaneE9TimeDelta"></span><span id="_CPPv2NK4base9TimeDeltaneE9TimeDelta"></span><span id="base::TimeDelta::neq-operator__TimeDeltaC"></span><span class="target" id="classbase_1_1TimeDelta_1a459767659ae6bfdfe70ef50dae733135"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N4base9TimeDeltaE" title="base::TimeDelta"><span class="n"><span class="pre">TimeDelta</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4base9TimeDeltaneE9TimeDelta" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4base9TimeDeltaltE9TimeDelta">
+<span id="_CPPv3NK4base9TimeDeltaltE9TimeDelta"></span><span id="_CPPv2NK4base9TimeDeltaltE9TimeDelta"></span><span id="base::TimeDelta::lt-operator__TimeDeltaC"></span><span class="target" id="classbase_1_1TimeDelta_1a45a5a653b6dc68a9220e21cdfe9f05bc"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&lt;</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N4base9TimeDeltaE" title="base::TimeDelta"><span class="n"><span class="pre">TimeDelta</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4base9TimeDeltaltE9TimeDelta" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4base9TimeDeltaleE9TimeDelta">
+<span id="_CPPv3NK4base9TimeDeltaleE9TimeDelta"></span><span id="_CPPv2NK4base9TimeDeltaleE9TimeDelta"></span><span id="base::TimeDelta::lte-operator__TimeDeltaC"></span><span class="target" id="classbase_1_1TimeDelta_1ac1f39b28311a0c46680d567fb9cb3073"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&lt;=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N4base9TimeDeltaE" title="base::TimeDelta"><span class="n"><span class="pre">TimeDelta</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4base9TimeDeltaleE9TimeDelta" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4base9TimeDeltagtE9TimeDelta">
+<span id="_CPPv3NK4base9TimeDeltagtE9TimeDelta"></span><span id="_CPPv2NK4base9TimeDeltagtE9TimeDelta"></span><span id="base::TimeDelta::gt-operator__TimeDeltaC"></span><span class="target" id="classbase_1_1TimeDelta_1a6c2f782fde4040f59eadca9a97c32ede"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&gt;</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N4base9TimeDeltaE" title="base::TimeDelta"><span class="n"><span class="pre">TimeDelta</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4base9TimeDeltagtE9TimeDelta" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4base9TimeDeltageE9TimeDelta">
+<span id="_CPPv3NK4base9TimeDeltageE9TimeDelta"></span><span id="_CPPv2NK4base9TimeDeltageE9TimeDelta"></span><span id="base::TimeDelta::gte-operator__TimeDeltaC"></span><span class="target" id="classbase_1_1TimeDelta_1a716e310a61d898eb779bd25819744d9d"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&gt;=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N4base9TimeDeltaE" title="base::TimeDelta"><span class="n"><span class="pre">TimeDelta</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4base9TimeDeltageE9TimeDelta" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="classbase_1_1Time.html" class="btn btn-neutral float-left" title="Class Time" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="classbase_1_1TimeTicks.html" class="btn btn-neutral float-right" title="Class TimeTicks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Damian Dyńdo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: v1.0.0
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../../develop/index.html">develop</a></dd><br />
+      <dd><a href="../../../master/index.html">master</a></dd><br />
+    </dl>
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="classbase_1_1TimeDelta.html">v1.0.0</a></dd><br>
+      <dd><a href="../../../v1.0.1/index.html">v1.0.1</a></dd><br>
+      <dd><a href="../../../v1.1.0/index.html">v1.1.0</a></dd><br>
+      <dd><a href="../../../v1.1.1/index.html">v1.1.1</a></dd><br>
+      <dd><a href="../../../v1.1.2/index.html">v1.1.2</a></dd><br>
+    </dl>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    // $(".admonition-example-code > *:not(div .admonition-title)").hide();
+
+    $(".admonition-example-code > .admonition-title").click(function () {
+      $(this).parent().children().not(".admonition-title").slideToggle();
+      $(this).parent().children(".admonition-title").toggleClass("open");
+    });
+  });
+</script>
+
+
+</body>
+</html>

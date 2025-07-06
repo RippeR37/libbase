@@ -1,0 +1,966 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logging &mdash; libbase  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3826cd6f" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tracing" href="tracing.html" />
+    <link rel="prev" title="Weak pointers" href="weak_ptrs.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            libbase
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#about-libbase">About <code class="docutils literal notranslate"><span class="pre">libbase</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#goals">Goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#non-goals">Non-goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#differences-from-base">Differences from <code class="docutils literal notranslate"><span class="pre">//base</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/prerequisites.html">Prerequisites</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/prerequisites.html#hard-requirements">Hard requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/prerequisites.html#internal-dependencies">Internal dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/prerequisites.html#optional-dependencies">Optional dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/building.html">Building <code class="docutils literal notranslate"><span class="pre">libbase</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#obtaining-the-source-code">Obtaining the source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#resolving-libbase-dependencies">Resolving libbase dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#building-with-cmake-and-pre-installed-dependencies">Building with CMake and pre-installed dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#building-with-cmake-and-vcpkg">Building with CMake and vcpkg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#building-with-cmake-and-conan">Building with CMake and Conan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#running-the-tests">Running the tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/configuration.html">Configuration options</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#cmake-build-options">CMake build options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#library-code-options">Library code options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/using.html">Using in your project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/using.html#recommended-way-cmake-vcpkg">Recommended way (CMake + vcpkg)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/using.html#alternative-ways">Alternative ways</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Features</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="callbacks.html">Callbacks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#function-objects">Function objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#running-callbacks">Running callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#binding-callbacks">Binding callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#binding-adapters">Binding adapters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="callbacks.html#member-functions">Member functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="callbacks.html#ignore-result">Ignore result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="callbacks.html#binding-arguments-into-the-callback">Binding arguments into the callback</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#chaining-callbacks">Chaining callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#chaining-callbacks-across-different-task-runners">Chaining callbacks across different task runners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#splitting-a-oncecallback">Splitting a OnceCallback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#barriercallback-and-barrierclosure">BarrierCallback and BarrierClosure</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="threads.html">Threads and sequences</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="threads.html#concepts">Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="threads.html#task-types">Task types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#sequences-vs-threads">Sequences vs Threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#base-taskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::TaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#base-sequencedtaskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#base-singlethreadtaskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SingleThreadTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#base-thread"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::Thread</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#base-threadpool"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::ThreadPool</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#obtaining-current-base-sequencedtaskrunner">Obtaining current <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#ensuring-sequence-affinity">Ensuring sequence affinity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#canceling-posted-task">Canceling posted task</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#blocking-post-tasks">Blocking post-tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#run-loop">Run Loop</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="weak_ptrs.html">Weak pointers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#glog-s-user-guide">GLOG’s user guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#severity-levels">Severity Levels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#log-line-prefix-format">Log Line Prefix Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#customizing-the-log-line-prefix">Customizing the Log Line Prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-flags">Setting Flags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#conditional-occasional-logging">Conditional / Occasional Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debug-mode-support">Debug Mode Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#check-macros"><code class="docutils literal notranslate"><span class="pre">CHECK</span></code> Macros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verbose-logging">Verbose Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#failure-signal-handler">Failure Signal Handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-of-messages">Performance of Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-defined-failure-function">User-defined Failure Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#raw-logging">Raw Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#google-style-perror">Google Style <code class="docutils literal notranslate"><span class="pre">perror()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#syslog">Syslog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#strip-logging-messages">Strip Logging Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#automatically-remove-old-logs">Automatically Remove Old Logs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notes-for-windows-users">Notes for Windows Users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-notes-for-64-bit-linux-systems">Installation Notes for 64-bit Linux Systems</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Tracing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tracing.html#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracing.html#tracing-apis">Tracing APIs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_ASYNC_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_ASYNC_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_ASYNC_STEP"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_STEP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_WITH_FLOW_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_WITH_FLOW_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_WITH_FLOW_STEP"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_STEP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_COUNTER"><code class="docutils literal notranslate"><span class="pre">TRACE_COUNTER</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_COUNTER_ID"><code class="docutils literal notranslate"><span class="pre">TRACE_COUNTER_ID</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_SIGNAL"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_SIGNAL_PROCESS"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL_PROCESS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_SIGNAL_THREAD"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL_THREAD</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_NAME_PROCESS"><code class="docutils literal notranslate"><span class="pre">TRACE_NAME_PROCESS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_NAME_THREAD"><code class="docutils literal notranslate"><span class="pre">TRACE_NAME_THREAD</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_FLUSH_TO_FILE"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_FLUSH_TO_FILE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_FLUSH_TO_STREAM"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_FLUSH_TO_STREAM</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tracing.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="networking.html">Networking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="networking.html#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#base-net-simpleurlloader"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::SimpleUrlLoader</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#base-net-urlrequest"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::UrlRequest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="integrations.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrations.html#winapi">WinAPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrations.html#wxwidgets">wxWidgets</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/simple.html">Simple example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/networking.html">Networking example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/winapi_integration.html">WinAPI integration module example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/wxwidgets_integration.html">wxWidgets integration module example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../build/api/index.html">C++ API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../build/api/index.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/api/index.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/api/index.html#full-api">Full API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#classes-and-structs">Classes and Structs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#variables">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#defines">Defines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">libbase</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Logging</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/RippeR37/libbase/blob/master/docs/features/logging.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="logging">
+<h1>Logging<a class="headerlink" href="#logging" title="Link to this heading"></a></h1>
+<section id="about">
+<h2>About<a class="headerlink" href="#about" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">libbase</span></code> library comes preintegrated with a
+<a class="reference external" href="https://github.com/google/glog">GLOG</a> library that allows you to add logs and
+assertions to your code in the same format as possible within Chromium’s code.</p>
+<p>You can read more on how to use GLOG
+<a class="reference external" href="https://github.com/google/glog/blob/v0.7.1/README.rst#user-guide">here</a> or
+see the same user-guide (from the version <code class="docutils literal notranslate"><span class="pre">v0.7.1</span></code>) included below.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To use logging system, simply include <code class="docutils literal notranslate"><span class="pre">base/logging.h</span></code> file.</p>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>The user-guide included below is created and maintained by the <a class="reference external" href="https://github.com/google/glog">GLOG</a>
+authors. It (<code class="docutils literal notranslate"><span class="pre">README.rst</span></code> file) is simply included here from the original
+repo for ease-of-use. See GLOG’s
+<a class="reference external" href="https://github.com/google/glog/blob/master/COPYING">LICENSE</a> file for
+its license details.</p>
+</div>
+</section>
+<section id="glog-s-user-guide">
+<h2>GLOG’s user guide<a class="headerlink" href="#glog-s-user-guide" title="Link to this heading"></a></h2>
+<hr class="docutils" />
+<p>glog defines a series of macros that simplify many common logging tasks.
+You can log messages by severity level, control logging behavior from
+the command line, log based on conditionals, abort the program when
+expected conditions are not met, introduce your own verbose logging
+levels, customize the prefix attached to log messages, and more.</p>
+<p>Following sections describe the functionality supported by glog. Please note
+this description may not be complete but limited to the most useful ones. If you
+want to find less common features, please check header files under <a class="reference external" href="src/glog">src/glog</a> directory.</p>
+<section id="severity-levels">
+<h3>Severity Levels<a class="headerlink" href="#severity-levels" title="Link to this heading"></a></h3>
+<p>You can specify one of the following severity levels (in increasing
+order of severity):</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">INFO</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WARNING</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ERROR</span></code>, and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FATAL</span></code>.</p></li>
+</ol>
+<p>Logging a <code class="docutils literal notranslate"><span class="pre">FATAL</span></code> message terminates the program (after the message is
+logged).</p>
+<blockquote class="pull-quote">
+<div><p>[!NOTE]</p>
+<p>Messages of a given severity are logged not only to corresponding severity
+logfile but also to other logfiles of lower severity. For instance, a message
+of severity <code class="docutils literal notranslate"><span class="pre">FATAL</span></code> will be logged to logfiles of severity <code class="docutils literal notranslate"><span class="pre">FATAL</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ERROR</span></code>, <code class="docutils literal notranslate"><span class="pre">WARNING</span></code>, and <code class="docutils literal notranslate"><span class="pre">INFO</span></code>.</p>
+</div></blockquote>
+<p>The <code class="docutils literal notranslate"><span class="pre">DFATAL</span></code> severity logs a <code class="docutils literal notranslate"><span class="pre">FATAL</span></code> error in debug mode (i.e.,
+there is no <code class="docutils literal notranslate"><span class="pre">NDEBUG</span></code> macro defined), but avoids halting the program in
+production by automatically reducing the severity to <code class="docutils literal notranslate"><span class="pre">ERROR</span></code>.</p>
+<p>Unless otherwise specified, glog uses the format</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">tmp</span><span class="o">&gt;/&lt;</span><span class="n">program</span><span class="w"> </span><span class="n">name</span><span class="o">&gt;</span><span class="p">.</span><span class="o">&lt;</span><span class="n">hostname</span><span class="o">&gt;</span><span class="p">.</span><span class="o">&lt;</span><span class="n">user</span><span class="w"> </span><span class="n">name</span><span class="o">&gt;</span><span class="p">.</span><span class="n">log</span><span class="p">.</span><span class="o">&lt;</span><span class="n">severity</span><span class="w"> </span><span class="n">level</span><span class="o">&gt;</span><span class="p">.</span><span class="o">&lt;</span><span class="n">date</span><span class="o">&gt;-&lt;</span><span class="n">time</span><span class="o">&gt;</span><span class="p">.</span><span class="o">&lt;</span><span class="n">pid</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>for log filenames written to a directory designated as <code class="docutils literal notranslate"><span class="pre">&lt;tmp&gt;</span></code> and determined
+according to the following rules.</p>
+<dl>
+<dt><strong>Windows</strong></dt><dd><p>glog uses the
+<a class="reference external" href="https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-gettemppatha">GetTempPathA</a>
+API function to retrieve the directory for temporary files with a fallback to</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">C:\TMP\</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C:\TEMP\</span></code></p></li>
+</ol>
+<p>(in the order given.)</p>
+</dd>
+<dt><strong>non-Windows</strong></dt><dd><p>The directory is determined by referencing the environment variables</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TMPDIR</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TMP</span></code></p></li>
+</ol>
+<p>if set with a fallback to <code class="docutils literal notranslate"><span class="pre">/tmp/</span></code>.</p>
+</dd>
+</dl>
+<p>The default path to a log file on Linux, for instance, could be</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">hello_world</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span><span class="p">.</span><span class="n">hamaji</span><span class="p">.</span><span class="n">log</span><span class="p">.</span><span class="n">INFO</span><span class="mf">.20080709-222411.10474</span>
+</pre></div>
+</div>
+<p>By default, glog echos <code class="docutils literal notranslate"><span class="pre">ERROR</span></code> and <code class="docutils literal notranslate"><span class="pre">FATAL</span></code> messages to standard error in
+addition to log files.</p>
+</section>
+<section id="log-line-prefix-format">
+<h3>Log Line Prefix Format<a class="headerlink" href="#log-line-prefix-format" title="Link to this heading"></a></h3>
+<p>Log lines have this form:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Lyyyymmdd</span><span class="w"> </span><span class="n">hh</span><span class="o">:</span><span class="n">mm</span><span class="o">:</span><span class="n">ss</span><span class="p">.</span><span class="n">uuuuuu</span><span class="w"> </span><span class="n">threadid</span><span class="w"> </span><span class="n">file</span><span class="o">:</span><span class="n">line</span><span class="p">]</span><span class="w"> </span><span class="n">msg</span><span class="p">...</span>
+</pre></div>
+</div>
+<p>where the fields are defined as follows:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Placeholder</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">L</span></code></p></td>
+<td><p>A single character, representing the log level (e.g., <code class="docutils literal notranslate"><span class="pre">I</span></code> for <code class="docutils literal notranslate"><span class="pre">INFO</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">yyyy</span></code></p></td>
+<td><p>The year</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mm</span></code></p></td>
+<td><p>The month (zero padded; i.e., May is <code class="docutils literal notranslate"><span class="pre">05</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dd</span></code></p></td>
+<td><p>The day (zero padded)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hh:mm:ss.uuuuuu</span></code></p></td>
+<td><p>Time in hours, minutes and fractional seconds</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">threadid</span></code></p></td>
+<td><p>The space-padded thread ID</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">file</span></code></p></td>
+<td><p>The file name</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">line</span></code></p></td>
+<td><p>The line number</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">msg</span></code></p></td>
+<td><p>The user-supplied message</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">I1103</span><span class="w"> </span><span class="mi">11</span><span class="o">:</span><span class="mi">57</span><span class="o">:</span><span class="mf">31.739339</span><span class="w"> </span><span class="mi">24395</span><span class="w"> </span><span class="n">google</span><span class="p">.</span><span class="n">cc</span><span class="o">:</span><span class="mi">2341</span><span class="p">]</span><span class="w"> </span><span class="n">Command</span><span class="w"> </span><span class="n">line</span><span class="o">:</span><span class="w"> </span><span class="p">.</span><span class="o">/</span><span class="n">some_prog</span>
+<span class="n">I1103</span><span class="w"> </span><span class="mi">11</span><span class="o">:</span><span class="mi">57</span><span class="o">:</span><span class="mf">31.739403</span><span class="w"> </span><span class="mi">24395</span><span class="w"> </span><span class="n">google</span><span class="p">.</span><span class="n">cc</span><span class="o">:</span><span class="mi">2342</span><span class="p">]</span><span class="w"> </span><span class="n">Process</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="mi">24395</span>
+</pre></div>
+</div>
+<blockquote class="pull-quote">
+<div><p>[!NOTE]</p>
+<p>Although microseconds are useful for comparing events on a single machine,
+clocks on different machines may not be well synchronized. Hence, use with
+caution when comparing the low bits of timestamps from different machines.</p>
+</div></blockquote>
+</section>
+<section id="customizing-the-log-line-prefix">
+<h3>Customizing the Log Line Prefix<a class="headerlink" href="#customizing-the-log-line-prefix" title="Link to this heading"></a></h3>
+<p>The predefined log line prefix can be replaced using a user-provided callback
+that formats the corresponding output.</p>
+<p>For each log entry, the callback will be invoked with a reference to a
+<code class="docutils literal notranslate"><span class="pre">google::LogMessage</span></code> instance containing the severity, filename, line number,
+thread ID, and time of the event. It will also be given a reference to the
+output stream, whose contents will be prepended to the actual message in the
+final log line.</p>
+<p>For example, the following function outputs a prefix that matches glog’s default
+format. The third parameter <code class="docutils literal notranslate"><span class="pre">data</span></code> can be used to access user-supplied data
+which unless specified defaults to <code class="code highlight cpp docutils literal highlight-cpp"><span class="k">nullptr</span></code>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">MyPrefixFormatter</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">google</span><span class="o">::</span><span class="n">LogMessage</span><span class="o">&amp;</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="cm">/*data*/</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="n">s</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">google</span><span class="o">::</span><span class="n">GetLogSeverityName</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">severity</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+<span class="w">   </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">setw</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1900</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">time</span><span class="p">().</span><span class="n">year</span><span class="p">()</span>
+<span class="w">   </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">setw</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">time</span><span class="p">().</span><span class="n">month</span><span class="p">()</span>
+<span class="w">   </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">setw</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">time</span><span class="p">().</span><span class="n">day</span><span class="p">()</span>
+<span class="w">   </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span>
+<span class="w">   </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">setw</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">time</span><span class="p">().</span><span class="n">hour</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;:&#39;</span>
+<span class="w">   </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">setw</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">time</span><span class="p">().</span><span class="n">min</span><span class="p">()</span><span class="w">  </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;:&#39;</span>
+<span class="w">   </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">setw</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">time</span><span class="p">().</span><span class="n">sec</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;.&quot;</span>
+<span class="w">   </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">setw</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">time</span><span class="p">().</span><span class="n">usec</span><span class="p">()</span>
+<span class="w">   </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span>
+<span class="w">   </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">setfill</span><span class="p">(</span><span class="sc">&#39; &#39;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">setw</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="w">   </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">thread_id</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">setfill</span><span class="p">(</span><span class="sc">&#39;0&#39;</span><span class="p">)</span>
+<span class="w">   </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39; &#39;</span>
+<span class="w">   </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">basename</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;:&#39;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">line</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;]&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>To enable the use of a prefix formatter, use the</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">google</span><span class="o">::</span><span class="n">InstallPrefixFormatter</span><span class="p">(</span><span class="o">&amp;</span><span class="n">MyPrefixFormatter</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>function to pass a pointer to the corresponding <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">MyPrefixFormatter</span></code>
+callback during initialization. <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">InstallPrefixFormatter</span></code> takes a second
+optional argument of type  <code class="code highlight cpp docutils literal highlight-cpp"><span class="kt">void</span><span class="o">*</span></code> that allows supplying user data to the
+callback.</p>
+</section>
+<section id="setting-flags">
+<h3>Setting Flags<a class="headerlink" href="#setting-flags" title="Link to this heading"></a></h3>
+<p>Several flags influence glog’s output behavior. If the <a class="reference external" href="https://github.com/gflags/gflags">Google gflags library</a> is installed on your machine, the build
+system will automatically detect and use it, allowing you to pass flags on the
+command line. For example, if you want to activate <code class="code highlight cmd bash docutils literal highlight-bash">--logtostderr</code>, you can
+start your application with the following command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./your_application<span class="w"> </span>--logtostderr<span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+<p>If the Google gflags library isn’t installed, you set flags via
+environment variables, prefixing the flag name with <code class="docutils literal notranslate"><span class="pre">GLOG_</span></code>, e.g.,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GLOG_logtostderr</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>./your_application
+</pre></div>
+</div>
+<p>The following flags are most commonly used:</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">logtostderr</span></code> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>, default=<code class="docutils literal notranslate"><span class="pre">false</span></code>)</dt><dd><p>Log messages to <code class="docutils literal notranslate"><span class="pre">stderr</span></code> instead of logfiles.</p>
+<blockquote class="pull-quote">
+<div><p>[!TIP]</p>
+<p>You can set boolean flags to <code class="code highlight cpp docutils literal highlight-cpp"><span class="nb">true</span></code> by specifying <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="code highlight cpp docutils literal highlight-cpp"><span class="nb">true</span></code>,
+or <code class="docutils literal notranslate"><span class="pre">yes</span></code>. To set boolean flags to <code class="code highlight cpp docutils literal highlight-cpp"><span class="nb">false</span></code>, specify <code class="docutils literal notranslate"><span class="pre">0</span></code>,
+<code class="docutils literal notranslate"><span class="pre">false</span></code>, or <code class="docutils literal notranslate"><span class="pre">no</span></code>. In either case the spelling is case-insensitive.</p>
+</div></blockquote>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">stderrthreshold</span></code> (<code class="docutils literal notranslate"><span class="pre">int</span></code>, default=2, which is <code class="docutils literal notranslate"><span class="pre">ERROR</span></code>)</dt><dd><p>Copy log messages at or above this level to stderr in addition to
+logfiles. The numbers of severity levels <code class="docutils literal notranslate"><span class="pre">INFO</span></code>, <code class="docutils literal notranslate"><span class="pre">WARNING</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ERROR</span></code>, and <code class="docutils literal notranslate"><span class="pre">FATAL</span></code> are 0, 1, 2, and 3, respectively.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">minloglevel</span></code> (<code class="docutils literal notranslate"><span class="pre">int</span></code>, default=0, which is <code class="docutils literal notranslate"><span class="pre">INFO</span></code>)</dt><dd><p>Log messages at or above this level. Again, the numbers of severity
+levels <code class="docutils literal notranslate"><span class="pre">INFO</span></code>, <code class="docutils literal notranslate"><span class="pre">WARNING</span></code>, <code class="docutils literal notranslate"><span class="pre">ERROR</span></code>, and <code class="docutils literal notranslate"><span class="pre">FATAL</span></code> are 0, 1, 2,
+and 3, respectively.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">log_dir</span></code> (<code class="docutils literal notranslate"><span class="pre">string</span></code>, default=””)</dt><dd><p>If specified, logfiles are written into this directory instead of the
+default logging directory.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">v</span></code> (<code class="docutils literal notranslate"><span class="pre">int</span></code>, default=0)</dt><dd><p>Show all <code class="docutils literal notranslate"><span class="pre">VLOG(m)</span></code> messages for <code class="docutils literal notranslate"><span class="pre">m</span></code> less or equal the value of this flag.
+Overridable by <code class="code highlight cmd bash docutils literal highlight-bash">--vmodule</code>. Refer to <a class="reference external" href="#verbose-logging">verbose logging</a>
+for more detail.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">vmodule</span></code> (<code class="docutils literal notranslate"><span class="pre">string</span></code>, default=””)</dt><dd><p>Per-module verbose level. The argument has to contain a
+comma-separated list of <code class="docutils literal notranslate"><span class="pre">&lt;module</span> <span class="pre">name&gt;=&lt;log</span> <span class="pre">level&gt;</span></code>. <code class="docutils literal notranslate"><span class="pre">&lt;module</span> <span class="pre">name&gt;</span></code> is a
+glob pattern (e.g., <code class="docutils literal notranslate"><span class="pre">gfs*</span></code> for all modules whose name starts with
+“gfs”), matched against the filename base (that is, name ignoring
+.cc/.h./-inl.h). <code class="docutils literal notranslate"><span class="pre">&lt;log</span> <span class="pre">level&gt;</span></code> overrides any value given by <code class="code highlight cmd bash docutils literal highlight-bash">--v</code>.
+See also <a class="reference external" href="#verbose-logging">verbose logging</a> for more details.</p>
+</dd>
+</dl>
+<p>Additional flags are defined in <a class="reference external" href="src/flags.cc">flags.cc</a>. Please see the
+source for their complete list.</p>
+<p>You can also modify flag values in your program by modifying global
+variables <code class="docutils literal notranslate"><span class="pre">FLAGS_*</span></code> . Most settings start working immediately after
+you update <code class="docutils literal notranslate"><span class="pre">FLAGS_*</span></code> . The exceptions are the flags related to
+destination files. For example, you might want to set <code class="docutils literal notranslate"><span class="pre">FLAGS_log_dir</span></code>
+before calling <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">google</span><span class="o">::</span><span class="n">InitGoogleLogging</span></code> . Here is an example:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;file&quot;</span><span class="p">;</span>
+<span class="c1">// Most flags work immediately after updating values.</span>
+<span class="n">FLAGS_logtostderr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="n">LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;stderr&quot;</span><span class="p">;</span>
+<span class="n">FLAGS_logtostderr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="c1">// This won’t change the log destination. If you want to set this</span>
+<span class="c1">// value, you should do this before google::InitGoogleLogging .</span>
+<span class="n">FLAGS_log_dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;/some/log/directory&quot;</span><span class="p">;</span>
+<span class="n">LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;the same file&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="conditional-occasional-logging">
+<h3>Conditional / Occasional Logging<a class="headerlink" href="#conditional-occasional-logging" title="Link to this heading"></a></h3>
+<p>Sometimes, you may only want to log a message under certain conditions.
+You can use the following macros to perform conditional logging:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">LOG_IF</span><span class="p">(</span><span class="n">INFO</span><span class="p">,</span><span class="w"> </span><span class="n">num_cookies</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Got lots of cookies&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The “Got lots of cookies” message is logged only when the variable
+<code class="docutils literal notranslate"><span class="pre">num_cookies</span></code> exceeds 10. If a line of code is executed many times, it
+may be useful to only log a message at certain intervals. This kind of
+logging is most useful for informational messages.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">LOG_EVERY_N</span><span class="p">(</span><span class="n">INFO</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Got the &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">google</span><span class="o">::</span><span class="n">COUNTER</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;th cookie&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The above line outputs a log messages on the 1st, 11th, 21st, … times
+it is executed.</p>
+<blockquote class="pull-quote">
+<div><p>[!NOTE]</p>
+<p>The placeholder <code class="docutils literal notranslate"><span class="pre">google::COUNTER</span></code> identifies the recurring repetition.</p>
+</div></blockquote>
+<p>You can combine conditional and occasional logging with the following
+macro.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">LOG_IF_EVERY_N</span><span class="p">(</span><span class="n">INFO</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1024</span><span class="p">),</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Got the &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">google</span><span class="o">::</span><span class="n">COUNTER</span>
+<span class="w">                                        </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;th big cookie&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Instead of outputting a message every nth time, you can also limit the
+output to the first n occurrences:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">LOG_FIRST_N</span><span class="p">(</span><span class="n">INFO</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Got the &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">google</span><span class="o">::</span><span class="n">COUNTER</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;th cookie&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Outputs log messages for the first 20 times it is executed. The
+<code class="docutils literal notranslate"><span class="pre">google::COUNTER</span></code> identifier indicates which repetition is happening.</p>
+<p>Other times, it is desired to only log a message periodically based on a time.
+For instance, to log a message every 10ms:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">LOG_EVERY_T</span><span class="p">(</span><span class="n">INFO</span><span class="p">,</span><span class="w"> </span><span class="mf">0.01</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Got a cookie&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Or every 2.35s:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">LOG_EVERY_T</span><span class="p">(</span><span class="n">INFO</span><span class="p">,</span><span class="w"> </span><span class="mf">2.35</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Got a cookie&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="debug-mode-support">
+<h3>Debug Mode Support<a class="headerlink" href="#debug-mode-support" title="Link to this heading"></a></h3>
+<p>Special “debug mode” logging macros only have an effect in debug mode
+and are compiled away to nothing for non-debug mode compiles. Use these
+macros to avoid slowing down your production application due to
+excessive logging.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">DLOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Found cookies&quot;</span><span class="p">;</span>
+<span class="n">DLOG_IF</span><span class="p">(</span><span class="n">INFO</span><span class="p">,</span><span class="w"> </span><span class="n">num_cookies</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Got lots of cookies&quot;</span><span class="p">;</span>
+<span class="n">DLOG_EVERY_N</span><span class="p">(</span><span class="n">INFO</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Got the &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">google</span><span class="o">::</span><span class="n">COUNTER</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;th cookie&quot;</span><span class="p">;</span>
+<span class="n">DLOG_FIRST_N</span><span class="p">(</span><span class="n">INFO</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Got the &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">google</span><span class="o">::</span><span class="n">COUNTER</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;th cookie&quot;</span><span class="p">;</span>
+<span class="n">DLOG_EVERY_T</span><span class="p">(</span><span class="n">INFO</span><span class="p">,</span><span class="w"> </span><span class="mf">0.01</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Got a cookie&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="check-macros">
+<h3><code class="docutils literal notranslate"><span class="pre">CHECK</span></code> Macros<a class="headerlink" href="#check-macros" title="Link to this heading"></a></h3>
+<p>It is a good practice to check expected conditions in your program
+frequently to detect errors as early as possible. The <code class="docutils literal notranslate"><span class="pre">CHECK</span></code> macro
+provides the ability to abort the application when a condition is not
+met, similar to the <code class="docutils literal notranslate"><span class="pre">assert</span></code> macro defined in the standard C library.</p>
+<p><code class="docutils literal notranslate"><span class="pre">CHECK</span></code> aborts the application if a condition is not true. Unlike
+<code class="docutils literal notranslate"><span class="pre">assert</span></code>, it is *not* controlled by <code class="docutils literal notranslate"><span class="pre">NDEBUG</span></code>, so the check will be
+executed regardless of compilation mode. Therefore, <code class="docutils literal notranslate"><span class="pre">fp-&gt;Write(x)</span></code> in
+the following example is always executed:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">CHECK</span><span class="p">(</span><span class="n">fp</span><span class="o">-&gt;</span><span class="n">Write</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Write failed!&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>There are various helper macros for equality/inequality checks -
+<code class="docutils literal notranslate"><span class="pre">CHECK_EQ</span></code>, <code class="docutils literal notranslate"><span class="pre">CHECK_NE</span></code>, <code class="docutils literal notranslate"><span class="pre">CHECK_LE</span></code>, <code class="docutils literal notranslate"><span class="pre">CHECK_LT</span></code>, <code class="docutils literal notranslate"><span class="pre">CHECK_GE</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">CHECK_GT</span></code>. They compare two values, and log a <code class="docutils literal notranslate"><span class="pre">FATAL</span></code> message
+including the two values when the result is not as expected. The values
+must have <code class="code highlight cpp docutils literal highlight-cpp"><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ostream</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span></code> defined.</p>
+<p>You may append to the error message like so:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">CHECK_NE</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;: The world must be ending!&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>We are very careful to ensure that each argument is evaluated exactly
+once, and that anything which is legal to pass as a function argument is
+legal here. In particular, the arguments may be temporary expressions
+which will end up being destroyed at the end of the apparent statement,
+for example:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">CHECK_EQ</span><span class="p">(</span><span class="n">string</span><span class="p">(</span><span class="s">&quot;abc&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="err">’</span><span class="n">b</span><span class="err">’</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The compiler reports an error if one of the arguments is a pointer and the other
+is <code class="code highlight cpp docutils literal highlight-cpp"><span class="k">nullptr</span></code>. To work around this, simply <code class="code highlight cpp docutils literal highlight-cpp"><span class="k">static_cast</span></code> <code class="code highlight cpp docutils literal highlight-cpp"><span class="k">nullptr</span></code> to
+the type of the desired pointer.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">CHECK_EQ</span><span class="p">(</span><span class="n">some_ptr</span><span class="p">,</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">SomeType</span><span class="o">*&gt;</span><span class="p">(</span><span class="k">nullptr</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Better yet, use the <code class="docutils literal notranslate"><span class="pre">CHECK_NOTNULL</span></code> macro:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">CHECK_NOTNULL</span><span class="p">(</span><span class="n">some_ptr</span><span class="p">);</span>
+<span class="n">some_ptr</span><span class="o">-&gt;</span><span class="n">DoSomething</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Since this macro returns the given pointer, this is very useful in
+constructor initializer lists.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">S</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">S</span><span class="p">(</span><span class="n">Something</span><span class="o">*</span><span class="w"> </span><span class="n">ptr</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ptr_</span><span class="p">(</span><span class="n">CHECK_NOTNULL</span><span class="p">(</span><span class="n">ptr</span><span class="p">))</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">    </span><span class="n">Something</span><span class="o">*</span><span class="w"> </span><span class="n">ptr_</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<blockquote class="pull-quote">
+<div><p>[!WARNING]</p>
+<p>Due to the argument forwarding, <code class="docutils literal notranslate"><span class="pre">CHECK_NOTNULL</span></code> cannot be used to
+simultaneously stream an additional custom message. To provide a custom
+message, one can use the macro <code class="docutils literal notranslate"><span class="pre">CHECK_EQ</span></code> prior to the failing check.</p>
+</div></blockquote>
+<p>If you are comparing C strings (<code class="code highlight cpp docutils literal highlight-cpp"><span class="kt">char</span><span class="w"> </span><span class="o">*</span></code>), a handy set of macros performs
+both case sensitive and insensitive comparisons - <code class="docutils literal notranslate"><span class="pre">CHECK_STREQ</span></code>,
+<code class="docutils literal notranslate"><span class="pre">CHECK_STRNE</span></code>, <code class="docutils literal notranslate"><span class="pre">CHECK_STRCASEEQ</span></code>, and <code class="docutils literal notranslate"><span class="pre">CHECK_STRCASENE</span></code>. The
+<code class="docutils literal notranslate"><span class="pre">CHECK_*CASE*</span></code> macro variants are case-insensitive. You can safely pass
+<code class="code highlight cpp docutils literal highlight-cpp"><span class="k">nullptr</span></code> pointers to this macro. They treat <code class="code highlight cpp docutils literal highlight-cpp"><span class="k">nullptr</span></code> and any
+non-<code class="code highlight cpp docutils literal highlight-cpp"><span class="k">nullptr</span></code> string as not equal. Two <code class="code highlight cpp docutils literal highlight-cpp"><span class="k">nullptr</span></code>s are equal.</p>
+<blockquote class="pull-quote">
+<div><p>[!NOTE]</p>
+<p>Both arguments may be temporary objects which are destructed at the end of
+the current “full expression”, such as</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">CHECK_STREQ</span><span class="p">(</span><span class="n">Foo</span><span class="p">().</span><span class="n">c_str</span><span class="p">(),</span><span class="w"> </span><span class="n">Bar</span><span class="p">().</span><span class="n">c_str</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">Foo</span></code> and <code class="docutils literal notranslate"><span class="pre">Bar</span></code> return <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">std</span><span class="o">::</span><span class="n">string</span></code>.</p>
+</div></blockquote>
+<p>The <code class="docutils literal notranslate"><span class="pre">CHECK_DOUBLE_EQ</span></code> macro checks the equality of two floating point
+values, accepting a small error margin. <code class="docutils literal notranslate"><span class="pre">CHECK_NEAR</span></code> accepts a third
+floating point argument, which specifies the acceptable error margin.</p>
+</section>
+<section id="verbose-logging">
+<h3>Verbose Logging<a class="headerlink" href="#verbose-logging" title="Link to this heading"></a></h3>
+<p>When you are chasing difficult bugs, thorough log messages are very useful.
+However, you may want to ignore too verbose messages in usual development. For
+such verbose logging, glog provides the <code class="docutils literal notranslate"><span class="pre">VLOG</span></code> macro, which allows you to
+define your own numeric logging levels. The <code class="code highlight cmd bash docutils literal highlight-bash">--v</code> command line option
+controls which verbose messages are logged:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">VLOG</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;I’m printed when you run the program with --v=1 or higher&quot;</span><span class="p">;</span>
+<span class="n">VLOG</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;I’m printed when you run the program with --v=2 or higher&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>With <code class="docutils literal notranslate"><span class="pre">VLOG</span></code>, the lower the verbose level, the more likely messages are to be
+logged. For example, if <code class="code highlight cmd bash docutils literal highlight-bash">--v<span class="o">==</span><span class="m">1</span></code>, <code class="docutils literal notranslate"><span class="pre">VLOG(1)</span></code> will log, but <code class="docutils literal notranslate"><span class="pre">VLOG(2)</span></code>
+will not log.</p>
+<blockquote class="pull-quote">
+<div><p>[!CAUTION]</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">VLOG</span></code> behavior is opposite of the severity level logging, where
+<code class="docutils literal notranslate"><span class="pre">INFO</span></code>, <code class="docutils literal notranslate"><span class="pre">ERROR</span></code>, etc. are defined in increasing order and thus
+<code class="code highlight cmd bash docutils literal highlight-bash">--minloglevel</code> of 1 will only log <code class="docutils literal notranslate"><span class="pre">WARNING</span></code> and above.</p>
+</div></blockquote>
+<p>Though you can specify any integers for both <code class="docutils literal notranslate"><span class="pre">VLOG</span></code> macro and <code class="code highlight cmd bash docutils literal highlight-bash">--v</code> flag,
+the common values for them are small positive integers. For example, if you
+write <code class="docutils literal notranslate"><span class="pre">VLOG(0)</span></code>, you should specify <code class="code highlight cmd bash docutils literal highlight-bash">--v<span class="o">=</span>-1</code> or lower to silence it. This
+is less useful since we may not want verbose logs by default in most cases. The
+<code class="docutils literal notranslate"><span class="pre">VLOG</span></code> macros always log at the <code class="docutils literal notranslate"><span class="pre">INFO</span></code> log level (when they log at all).</p>
+<p>Verbose logging can be controlled from the command line on a per-module
+basis:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--vmodule<span class="o">=</span><span class="nv">mapreduce</span><span class="o">=</span><span class="m">2</span>,file<span class="o">=</span><span class="m">1</span>,gfs*<span class="o">=</span><span class="m">3</span><span class="w"> </span>--v<span class="o">=</span><span class="m">0</span>
+</pre></div>
+</div>
+<p>Specifying these options will specficially:</p>
+<ol class="arabic simple">
+<li><p>Print <code class="docutils literal notranslate"><span class="pre">VLOG(2)</span></code> and lower messages from mapreduce.{h,cc}</p></li>
+<li><p>Print <code class="docutils literal notranslate"><span class="pre">VLOG(1)</span></code> and lower messages from file.{h,cc}</p></li>
+<li><p>Print <code class="docutils literal notranslate"><span class="pre">VLOG(3)</span></code> and lower messages from files prefixed with “gfs”</p></li>
+<li><p>Print <code class="docutils literal notranslate"><span class="pre">VLOG(0)</span></code> and lower messages from elsewhere</p></li>
+</ol>
+<p>The wildcarding functionality 3. supports both <code class="docutils literal notranslate"><span class="pre">*</span></code> (matches 0
+or more characters) and <code class="docutils literal notranslate"><span class="pre">?</span></code> (matches any single character) wildcards.
+Please also refer to <a class="reference external" href="#setting-flags">command line flags</a> for more
+information.</p>
+<p>There’s also <code class="docutils literal notranslate"><span class="pre">VLOG_IS_ON(n)</span></code> “verbose level” condition macro. This macro
+returns <code class="docutils literal notranslate"><span class="pre">true</span></code> when the <code class="code highlight cmd bash docutils literal highlight-bash">--v</code> is equal to or greater than <code class="docutils literal notranslate"><span class="pre">n</span></code>. The
+macro can be used as follows:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">VLOG_IS_ON</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// do some logging preparation and logging</span>
+<span class="w">    </span><span class="c1">// that can’t be accomplished with just VLOG(2) &lt;&lt; ...;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Verbose level condition macros <code class="docutils literal notranslate"><span class="pre">VLOG_IF</span></code>, <code class="docutils literal notranslate"><span class="pre">VLOG_EVERY_N</span></code> and
+<code class="docutils literal notranslate"><span class="pre">VLOG_IF_EVERY_N</span></code> behave analogous to <code class="docutils literal notranslate"><span class="pre">LOG_IF</span></code>, <code class="docutils literal notranslate"><span class="pre">LOG_EVERY_N</span></code>,
+<code class="docutils literal notranslate"><span class="pre">LOG_IF_EVERY_N</span></code>, but accept a numeric verbosity level as opposed to a
+severity level.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">VLOG_IF</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1024</span><span class="p">))</span>
+<span class="w">   </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;I’m printed when size is more than 1024 and when you run the &quot;</span>
+<span class="w">      </span><span class="s">&quot;program with --v=1 or more&quot;</span><span class="p">;</span>
+<span class="n">VLOG_EVERY_N</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
+<span class="w">   </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;I’m printed every 10th occurrence, and when you run the program &quot;</span>
+<span class="w">      </span><span class="s">&quot;with --v=1 or more. Present occurrence is &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">google</span><span class="o">::</span><span class="n">COUNTER</span><span class="p">;</span>
+<span class="n">VLOG_IF_EVERY_N</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1024</span><span class="p">),</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
+<span class="w">   </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;I’m printed on every 10th occurrence of case when size is more &quot;</span>
+<span class="w">      </span><span class="s">&quot; than 1024, when you run the program with --v=1 or more. &quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="s">&quot;Present occurrence is &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">google</span><span class="o">::</span><span class="n">COUNTER</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="failure-signal-handler">
+<h3>Failure Signal Handler<a class="headerlink" href="#failure-signal-handler" title="Link to this heading"></a></h3>
+<p>The library provides a convenient signal handler that will dump useful
+information when the program crashes on certain signals such as <code class="docutils literal notranslate"><span class="pre">SIGSEGV</span></code>. The
+signal handler can be installed by <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">google</span><span class="o">::</span><span class="n">InstallFailureSignalHandler</span><span class="p">()</span></code>.
+The following is an example of output from the signal handler.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="o">***</span><span class="w"> </span><span class="n">Aborted</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="mi">1225095260</span><span class="w"> </span><span class="p">(</span><span class="n">unix</span><span class="w"> </span><span class="n">time</span><span class="p">)</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="s">&quot;date -d @1225095260&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">GNU</span><span class="w"> </span><span class="n">date</span><span class="w"> </span><span class="o">***</span>
+<span class="o">***</span><span class="w"> </span><span class="n">SIGSEGV</span><span class="w"> </span><span class="p">(</span><span class="err">@</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="n">received</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">PID</span><span class="w"> </span><span class="mi">17711</span><span class="w"> </span><span class="p">(</span><span class="n">TID</span><span class="w"> </span><span class="mh">0x7f893090a6f0</span><span class="p">)</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">PID</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="n">trace</span><span class="o">:</span><span class="w"> </span><span class="o">***</span>
+<span class="nl">PC</span><span class="p">:</span><span class="w"> </span><span class="err">@</span><span class="w">           </span><span class="mh">0x412eb1</span><span class="w"> </span><span class="n">TestWaitingLogSink</span><span class="o">::</span><span class="n">send</span><span class="p">()</span>
+<span class="w">    </span><span class="err">@</span><span class="w">     </span><span class="mh">0x7f892fb417d0</span><span class="w"> </span><span class="p">(</span><span class="n">unknown</span><span class="p">)</span>
+<span class="w">    </span><span class="err">@</span><span class="w">           </span><span class="mh">0x412eb1</span><span class="w"> </span><span class="n">TestWaitingLogSink</span><span class="o">::</span><span class="n">send</span><span class="p">()</span>
+<span class="w">    </span><span class="err">@</span><span class="w">     </span><span class="mh">0x7f89304f7f06</span><span class="w"> </span><span class="n">google</span><span class="o">::</span><span class="n">LogMessage</span><span class="o">::</span><span class="n">SendToLog</span><span class="p">()</span>
+<span class="w">    </span><span class="err">@</span><span class="w">     </span><span class="mh">0x7f89304f35af</span><span class="w"> </span><span class="n">google</span><span class="o">::</span><span class="n">LogMessage</span><span class="o">::</span><span class="n">Flush</span><span class="p">()</span>
+<span class="w">    </span><span class="err">@</span><span class="w">     </span><span class="mh">0x7f89304f3739</span><span class="w"> </span><span class="n">google</span><span class="o">::</span><span class="n">LogMessage</span><span class="o">::~</span><span class="n">LogMessage</span><span class="p">()</span>
+<span class="w">    </span><span class="err">@</span><span class="w">           </span><span class="mh">0x408cf4</span><span class="w"> </span><span class="n">TestLogSinkWaitTillSent</span><span class="p">()</span>
+<span class="w">    </span><span class="err">@</span><span class="w">           </span><span class="mh">0x4115de</span><span class="w"> </span><span class="n">main</span>
+<span class="w">    </span><span class="err">@</span><span class="w">     </span><span class="mh">0x7f892f7ef1c4</span><span class="w"> </span><span class="p">(</span><span class="n">unknown</span><span class="p">)</span>
+<span class="w">    </span><span class="err">@</span><span class="w">           </span><span class="mh">0x4046f9</span><span class="w"> </span><span class="p">(</span><span class="n">unknown</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>By default, the signal handler writes the failure dump to the standard
+error. You can customize the destination by <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">InstallFailureWriter</span><span class="p">()</span></code>.</p>
+</section>
+<section id="performance-of-messages">
+<h3>Performance of Messages<a class="headerlink" href="#performance-of-messages" title="Link to this heading"></a></h3>
+<p>The conditional logging macros provided by glog (e.g., <code class="docutils literal notranslate"><span class="pre">CHECK</span></code>,
+<code class="docutils literal notranslate"><span class="pre">LOG_IF</span></code>, <code class="docutils literal notranslate"><span class="pre">VLOG</span></code>, etc.) are carefully implemented and don’t execute
+the right hand side expressions when the conditions are false. So, the
+following check may not sacrifice the performance of your application.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">CHECK</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">obj</span><span class="p">.</span><span class="n">CreatePrettyFormattedStringButVerySlow</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="user-defined-failure-function">
+<h3>User-defined Failure Function<a class="headerlink" href="#user-defined-failure-function" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">FATAL</span></code> severity level messages or unsatisfied <code class="docutils literal notranslate"><span class="pre">CHECK</span></code> condition
+terminate your program. You can change the behavior of the termination
+by <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">InstallFailureFunction</span></code>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">YourFailureFunction</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Reports something...</span>
+<span class="w">  </span><span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">google</span><span class="o">::</span><span class="n">InstallFailureFunction</span><span class="p">(</span><span class="o">&amp;</span><span class="n">YourFailureFunction</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>By default, glog tries to dump the stacktrace and calls <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">std</span><span class="o">::</span><span class="n">abort</span></code>. The
+stacktrace is generated only when running the application on a system supported
+by glog. Currently, glog supports x86, x86_64, PowerPC architectures,
+<code class="docutils literal notranslate"><span class="pre">libunwind</span></code>, and the Debug Help Library (<code class="docutils literal notranslate"><span class="pre">dbghelp</span></code>) on Windows for
+extracting the stack trace.</p>
+</section>
+<section id="raw-logging">
+<h3>Raw Logging<a class="headerlink" href="#raw-logging" title="Link to this heading"></a></h3>
+<p>The header file <code class="docutils literal notranslate"><span class="pre">&lt;glog/raw_logging.h&gt;</span></code> can be used for thread-safe logging,
+which does not allocate any memory or acquire any locks. Therefore, the macros
+defined in this header file can be used by low-level memory allocation and
+synchronization code. Please check
+<a class="reference external" href="src/glog/raw_logging.h">src/glog/raw_logging.h</a> for detail.</p>
+</section>
+<section id="google-style-perror">
+<h3>Google Style <code class="docutils literal notranslate"><span class="pre">perror()</span></code><a class="headerlink" href="#google-style-perror" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">PLOG()</span></code> and <code class="docutils literal notranslate"><span class="pre">PLOG_IF()</span></code> and <code class="docutils literal notranslate"><span class="pre">PCHECK()</span></code> behave exactly like their
+<code class="docutils literal notranslate"><span class="pre">LOG*</span></code> and <code class="docutils literal notranslate"><span class="pre">CHECK</span></code> equivalents with the addition that they append a
+description of the current state of errno to their output lines. E.g.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">PCHECK</span><span class="p">(</span><span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Write nullptr failed&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This check fails with the following error message.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">F0825</span><span class="w"> </span><span class="mi">185142</span><span class="w"> </span><span class="n">test</span><span class="p">.</span><span class="n">cc</span><span class="o">:</span><span class="mi">22</span><span class="p">]</span><span class="w"> </span><span class="n">Check</span><span class="w"> </span><span class="n">failed</span><span class="o">:</span><span class="w"> </span><span class="n">write</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">Write</span><span class="w"> </span><span class="k">nullptr</span><span class="w"> </span><span class="n">failed</span><span class="o">:</span><span class="w"> </span><span class="n">Bad</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="p">[</span><span class="mi">14</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="syslog">
+<h3>Syslog<a class="headerlink" href="#syslog" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">SYSLOG</span></code>, <code class="docutils literal notranslate"><span class="pre">SYSLOG_IF</span></code>, and <code class="docutils literal notranslate"><span class="pre">SYSLOG_EVERY_N</span></code> macros are available.
+These log to syslog in addition to the normal logs. Be aware that
+logging to syslog can drastically impact performance, especially if
+syslog is configured for remote logging! Make sure you understand the
+implications of outputting to syslog before you use these macros. In
+general, it’s wise to use these macros sparingly.</p>
+</section>
+<section id="strip-logging-messages">
+<h3>Strip Logging Messages<a class="headerlink" href="#strip-logging-messages" title="Link to this heading"></a></h3>
+<p>Strings used in log messages can increase the size of your binary and
+present a privacy concern. You can therefore instruct glog to remove all
+strings which fall below a certain severity level by using the
+<code class="docutils literal notranslate"><span class="pre">GOOGLE_STRIP_LOG</span></code> macro:</p>
+<p>If your application has code like this:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#define GOOGLE_STRIP_LOG 1    </span><span class="c1">// this must go before the #include!</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;glog/logging.h&gt;</span>
+</pre></div>
+</div>
+<p>The compiler will remove the log messages whose severities are less than
+the specified integer value. Since <code class="docutils literal notranslate"><span class="pre">VLOG</span></code> logs at the severity level
+<code class="docutils literal notranslate"><span class="pre">INFO</span></code> (numeric value <code class="docutils literal notranslate"><span class="pre">0</span></code>), setting <code class="docutils literal notranslate"><span class="pre">GOOGLE_STRIP_LOG</span></code> to 1 or
+greater removes all log messages associated with <code class="docutils literal notranslate"><span class="pre">VLOG</span></code>s as well as
+<code class="docutils literal notranslate"><span class="pre">INFO</span></code> log statements.</p>
+</section>
+<section id="automatically-remove-old-logs">
+<h3>Automatically Remove Old Logs<a class="headerlink" href="#automatically-remove-old-logs" title="Link to this heading"></a></h3>
+<p>To enable the log cleaner:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="o">::</span><span class="nn">chrono_literals</span><span class="p">;</span>
+<span class="n">google</span><span class="o">::</span><span class="n">EnableLogCleaner</span><span class="p">(</span><span class="mi">24</span><span class="n">h</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"> </span><span class="c1">// keep your logs for 3 days</span>
+</pre></div>
+</div>
+<p>In C++20 (and later) this can be shortened to:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="o">::</span><span class="nn">chrono_literals</span><span class="p">;</span>
+<span class="n">google</span><span class="o">::</span><span class="n">EnableLogCleaner</span><span class="p">(</span><span class="mi">3</span><span class="n">d</span><span class="p">);</span><span class="w"> </span><span class="c1">// keep your logs for 3 days</span>
+</pre></div>
+</div>
+<p>And then glog will check if there are overdue logs whenever a flush is
+performed. In this example, any log file from your project whose last
+modified time is greater than 3 days will be unlink()ed.</p>
+<p>This feature can be disabled at any time (if it has been enabled)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">google</span><span class="o">::</span><span class="n">DisableLogCleaner</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="notes-for-windows-users">
+<h3>Notes for Windows Users<a class="headerlink" href="#notes-for-windows-users" title="Link to this heading"></a></h3>
+<p>glog defines a severity level <code class="docutils literal notranslate"><span class="pre">ERROR</span></code>, which is also defined in
+<code class="docutils literal notranslate"><span class="pre">windows.h</span></code> . You can make glog not define <code class="docutils literal notranslate"><span class="pre">INFO</span></code>, <code class="docutils literal notranslate"><span class="pre">WARNING</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ERROR</span></code>, and <code class="docutils literal notranslate"><span class="pre">FATAL</span></code> by defining <code class="docutils literal notranslate"><span class="pre">GLOG_NO_ABBREVIATED_SEVERITIES</span></code>
+before including <code class="docutils literal notranslate"><span class="pre">glog/logging.h</span></code> . Even with this macro, you can
+still use the iostream like logging facilities:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#define GLOG_NO_ABBREVIATED_SEVERITIES</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;windows.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;glog/logging.h&gt;</span>
+
+<span class="c1">// ...</span>
+
+<span class="n">LOG</span><span class="p">(</span><span class="n">ERROR</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;This should work&quot;</span><span class="p">;</span>
+<span class="n">LOG_IF</span><span class="p">(</span><span class="n">ERROR</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;This should be also OK&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>However, you cannot use <code class="docutils literal notranslate"><span class="pre">INFO</span></code>, <code class="docutils literal notranslate"><span class="pre">WARNING</span></code>, <code class="docutils literal notranslate"><span class="pre">ERROR</span></code>, and <code class="docutils literal notranslate"><span class="pre">FATAL</span></code>
+anymore for functions defined in <code class="docutils literal notranslate"><span class="pre">glog/logging.h</span></code> .</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#define GLOG_NO_ABBREVIATED_SEVERITIES</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;windows.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;glog/logging.h&gt;</span>
+
+<span class="c1">// ...</span>
+
+<span class="c1">// This won’t work.</span>
+<span class="c1">// google::FlushLogFiles(google::ERROR);</span>
+
+<span class="c1">// Use this instead.</span>
+<span class="n">google</span><span class="o">::</span><span class="n">FlushLogFiles</span><span class="p">(</span><span class="n">google</span><span class="o">::</span><span class="n">GLOG_ERROR</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>If you don’t need <code class="docutils literal notranslate"><span class="pre">ERROR</span></code> defined by <code class="docutils literal notranslate"><span class="pre">windows.h</span></code>, there are a couple
+of more workarounds which sometimes don’t work:</p>
+<ul class="simple">
+<li><p><code class="code highlight cpp docutils literal highlight-cpp"><span class="cp">#define WIN32_LEAN_AND_MEAN</span></code> or <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">NOGDI</span></code> <strong>before</strong>
+<code class="code highlight cpp docutils literal highlight-cpp"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;windows.h&gt;</span></code>.</p></li>
+<li><p><code class="code highlight cpp docutils literal highlight-cpp"><span class="cp">#undef ERROR</span></code> <strong>after</strong> <code class="code highlight cpp docutils literal highlight-cpp"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;windows.h&gt;</span></code>.</p></li>
+</ul>
+<p>See <a class="reference external" href="http://code.google.com/p/google-glog/issues/detail?id=33">this
+issue</a> for
+more detail.</p>
+</section>
+<section id="installation-notes-for-64-bit-linux-systems">
+<h3>Installation Notes for 64-bit Linux Systems<a class="headerlink" href="#installation-notes-for-64-bit-linux-systems" title="Link to this heading"></a></h3>
+<p>The glibc built-in stack-unwinder on 64-bit systems has some problems with glog.
+(In particular, if you are using <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">InstallFailureSignalHandler</span><span class="p">()</span></code>, the
+signal may be raised in the middle of malloc, holding some malloc-related locks
+when they invoke the stack unwinder. The built-in stack unwinder may call malloc
+recursively, which may require the thread to acquire a lock it already holds:
+deadlock.)</p>
+<p>For that reason, if you use a 64-bit system and you need
+<code class="code highlight cpp docutils literal highlight-cpp"><span class="n">InstallFailureSignalHandler</span><span class="p">()</span></code>, we strongly recommend you install
+<code class="docutils literal notranslate"><span class="pre">libunwind</span></code> before trying to configure or install google glog.
+libunwind can be found
+<a class="reference external" href="http://download.savannah.nongnu.org/releases/libunwind/libunwind-snap-070410.tar.gz">here</a>.</p>
+<p>Even if you already have <code class="docutils literal notranslate"><span class="pre">libunwind</span></code> installed, you will probably
+still need to install from the snapshot to get the latest version.</p>
+<p>Caution: if you install libunwind from the URL above, be aware that you
+may have trouble if you try to statically link your binary with glog:
+that is, if you link with <code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">-static</span> <span class="pre">-lgcc_eh</span> <span class="pre">...</span></code>. This is because
+both <code class="docutils literal notranslate"><span class="pre">libunwind</span></code> and <code class="docutils literal notranslate"><span class="pre">libgcc</span></code> implement the same C++ exception
+handling APIs, but they implement them differently on some platforms.
+This is not likely to be a problem on ia64, but may be on x86-64.</p>
+<p>Also, if you link binaries statically, make sure that you add
+<code class="code highlight cmd bash docutils literal highlight-bash">-Wl,--eh-frame-hdr</code> to your linker options. This is required so that
+<code class="docutils literal notranslate"><span class="pre">libunwind</span></code> can find the information generated by the compiler required for
+stack unwinding.</p>
+<p>Using <code class="code highlight cmd bash docutils literal highlight-bash">-static</code> is rare, though, so unless you know this will affect you it
+probably won’t.</p>
+<p>If you cannot or do not wish to install libunwind, you can still try to
+use two kinds of stack-unwinder:</p>
+<dl class="simple">
+<dt>glibc built-in stack-unwinder</dt><dd><p>As we already mentioned, glibc’s unwinder has a deadlock issue. However, if
+you don’t use <code class="code highlight cpp docutils literal highlight-cpp"><span class="n">InstallFailureSignalHandler</span><span class="p">()</span></code> or you don’t worry about
+the rare possibilities of deadlocks, you can use this stack-unwinder. If you
+specify no options and <code class="docutils literal notranslate"><span class="pre">libunwind</span></code> isn’t detected on your system, the
+configure script chooses this unwinder by default.</p>
+</dd>
+<dt>frame pointer based stack-unwinder</dt><dd><p>The frame pointer based stack unwinder requires that your application, the
+glog library, and system libraries like libc, all be compiled with a frame
+pointer. This is <em>not</em> the default for x86-64.</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="weak_ptrs.html" class="btn btn-neutral float-left" title="Weak pointers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tracing.html" class="btn btn-neutral float-right" title="Tracing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Damian Dyńdo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: v1.1.2
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="../../develop/features/logging.html">develop</a></dd><br />
+      <dd><a href="../../master/features/logging.html">master</a></dd><br />
+    </dl>
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="../../v1.0.0/features/logging.html">v1.0.0</a></dd><br>
+      <dd><a href="../../v1.0.1/features/logging.html">v1.0.1</a></dd><br>
+      <dd><a href="../../v1.1.0/features/logging.html">v1.1.0</a></dd><br>
+      <dd><a href="../../v1.1.1/features/logging.html">v1.1.1</a></dd><br>
+      <dd><a href="logging.html">v1.1.2</a></dd><br>
+    </dl>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    // $(".admonition-example-code > *:not(div .admonition-title)").hide();
+
+    $(".admonition-example-code > .admonition-title").click(function () {
+      $(this).parent().children().not(".admonition-title").slideToggle();
+      $(this).parent().children(".admonition-title").toggleClass("open");
+    });
+  });
+</script>
+
+
+</body>
+</html>

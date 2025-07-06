@@ -1,0 +1,38 @@
+
+.. _file_base_trace_event_trace_async.h:
+
+File trace_async.h
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_base_trace_event>` (``base/trace_event``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``base/trace_event/trace_async.h``)
+-----------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define_trace__async_8h_1ad6580e98c5d7661b2646a6d0e02ae00f`
+
+- :ref:`exhale_define_trace__async_8h_1a11beb9695695f4b2795d91f3a70088d1`
+
+- :ref:`exhale_define_trace__async_8h_1a4d0dec35deab6a1ab8a283843c68ac01`
+

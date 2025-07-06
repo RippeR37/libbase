@@ -1,0 +1,14 @@
+.. _exhale_function_bind_8h_1a93f52b871dd8441675fd964165924e8f:
+
+Template Function base::BindOnce
+================================
+
+- Defined in :ref:`file_base_bind.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: base::BindOnce(Functor&&, Arguments&&...)
+   :project: libbase

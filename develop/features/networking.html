@@ -1,0 +1,490 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Networking &mdash; libbase  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=3826cd6f" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Integrations" href="integrations.html" />
+    <link rel="prev" title="Tracing" href="tracing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            libbase
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#about-libbase">About <code class="docutils literal notranslate"><span class="pre">libbase</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#goals">Goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#non-goals">Non-goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/introduction.html#differences-from-base">Differences from <code class="docutils literal notranslate"><span class="pre">//base</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/prerequisites.html">Prerequisites</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/prerequisites.html#hard-requirements">Hard requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/prerequisites.html#internal-dependencies">Internal dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/prerequisites.html#optional-dependencies">Optional dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/building.html">Building <code class="docutils literal notranslate"><span class="pre">libbase</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#obtaining-the-source-code">Obtaining the source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#resolving-libbase-dependencies">Resolving libbase dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#building-with-cmake-and-pre-installed-dependencies">Building with CMake and pre-installed dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#building-with-cmake-and-vcpkg">Building with CMake and vcpkg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#building-with-cmake-and-conan">Building with CMake and Conan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/building.html#running-the-tests">Running the tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/configuration.html">Configuration options</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#cmake-build-options">CMake build options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#library-code-options">Library code options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/using.html">Using in your project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/using.html#recommended-way-cmake-vcpkg">Recommended way (CMake + vcpkg)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/using.html#alternative-ways">Alternative ways</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Features</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="callbacks.html">Callbacks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#function-objects">Function objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#running-callbacks">Running callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#binding-callbacks">Binding callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#binding-adapters">Binding adapters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="callbacks.html#member-functions">Member functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="callbacks.html#ignore-result">Ignore result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="callbacks.html#binding-arguments-into-the-callback">Binding arguments into the callback</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#chaining-callbacks">Chaining callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#chaining-callbacks-across-different-task-runners">Chaining callbacks across different task runners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#splitting-a-oncecallback">Splitting a OnceCallback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="callbacks.html#barriercallback-and-barrierclosure">BarrierCallback and BarrierClosure</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="threads.html">Threads and sequences</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="threads.html#concepts">Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="threads.html#task-types">Task types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#sequences-vs-threads">Sequences vs Threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#base-taskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::TaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#base-sequencedtaskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#base-singlethreadtaskrunner"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SingleThreadTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#base-thread"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::Thread</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#base-threadpool"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::ThreadPool</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#obtaining-current-base-sequencedtaskrunner">Obtaining current <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::SequencedTaskRunner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#ensuring-sequence-affinity">Ensuring sequence affinity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#canceling-posted-task">Canceling posted task</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#blocking-post-tasks">Blocking post-tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="threads.html#run-loop">Run Loop</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="weak_ptrs.html">Weak pointers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#glog-s-user-guide">GLOG’s user guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#severity-levels">Severity Levels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#log-line-prefix-format">Log Line Prefix Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#customizing-the-log-line-prefix">Customizing the Log Line Prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#setting-flags">Setting Flags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#conditional-occasional-logging">Conditional / Occasional Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#debug-mode-support">Debug Mode Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#check-macros"><code class="docutils literal notranslate"><span class="pre">CHECK</span></code> Macros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#verbose-logging">Verbose Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#failure-signal-handler">Failure Signal Handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#performance-of-messages">Performance of Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#user-defined-failure-function">User-defined Failure Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#raw-logging">Raw Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#google-style-perror">Google Style <code class="docutils literal notranslate"><span class="pre">perror()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#syslog">Syslog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#strip-logging-messages">Strip Logging Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#automatically-remove-old-logs">Automatically Remove Old Logs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#notes-for-windows-users">Notes for Windows Users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#installation-notes-for-64-bit-linux-systems">Installation Notes for 64-bit Linux Systems</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tracing.html">Tracing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tracing.html#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tracing.html#tracing-apis">Tracing APIs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_ASYNC_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_ASYNC_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_ASYNC_STEP"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_ASYNC_STEP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_WITH_FLOW_BEGIN"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_BEGIN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_WITH_FLOW_END"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_END</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_WITH_FLOW_STEP"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_WITH_FLOW_STEP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_COUNTER"><code class="docutils literal notranslate"><span class="pre">TRACE_COUNTER</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_COUNTER_ID"><code class="docutils literal notranslate"><span class="pre">TRACE_COUNTER_ID</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_SIGNAL"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_SIGNAL_PROCESS"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL_PROCESS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_SIGNAL_THREAD"><code class="docutils literal notranslate"><span class="pre">TRACE_SIGNAL_THREAD</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_NAME_PROCESS"><code class="docutils literal notranslate"><span class="pre">TRACE_NAME_PROCESS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_NAME_THREAD"><code class="docutils literal notranslate"><span class="pre">TRACE_NAME_THREAD</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_FLUSH_TO_FILE"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_FLUSH_TO_FILE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tracing.html#c.TRACE_EVENT_FLUSH_TO_STREAM"><code class="docutils literal notranslate"><span class="pre">TRACE_EVENT_FLUSH_TO_STREAM</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tracing.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Networking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#base-net-simpleurlloader"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::SimpleUrlLoader</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#base-net-urlrequest"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::UrlRequest</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="integrations.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrations.html#winapi">WinAPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrations.html#wxwidgets">wxWidgets</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/simple.html">Simple example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/networking.html">Networking example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/winapi_integration.html">WinAPI integration module example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/wxwidgets_integration.html">wxWidgets integration module example</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../build/api/index.html">C++ API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../build/api/index.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/api/index.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build/api/index.html#full-api">Full API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#classes-and-structs">Classes and Structs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#variables">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#defines">Defines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/api/index.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about/license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">libbase</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Networking</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/RippeR37/libbase/blob/master/docs/features/networking.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="networking">
+<h1>Networking<a class="headerlink" href="#networking" title="Link to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>While not part of Chromium’s <code class="docutils literal notranslate"><span class="pre">//base</span></code> itself, realizing that applications
+built today almost always require access to network, <code class="docutils literal notranslate"><span class="pre">libbase</span></code> provides users
+with simple yet quite powerful networking utilities built on top of <code class="docutils literal notranslate"><span class="pre">libcurl</span></code>
+and fully integrated with task runners/sequences. The API is loosely based on
+Chromium’s <code class="docutils literal notranslate"><span class="pre">//net</span></code> module.</p>
+<section id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h3>
+<p>While Networking module is enabled by default, it <strong>is</strong> optional so before
+starting make sure that <code class="docutils literal notranslate"><span class="pre">libbase</span></code> build you’re using was built with it (the
+<code class="docutils literal notranslate"><span class="pre">LIBBASE_BUILD_MODULE_NET</span></code> build option enabled).</p>
+<p>Once built, be sure to link your application with <code class="docutils literal notranslate"><span class="pre">libbase_net</span></code> module target.
+All code in networking module is located in <code class="docutils literal notranslate"><span class="pre">base/net/</span></code> directory and all
+classes in that module are in <code class="docutils literal notranslate"><span class="pre">base::net</span></code> namespace.</p>
+<p>Lastly, before using documented below functionality, be sure to initialize and
+deinitialize networking module in runtime (on application’s startup and
+shutdown, respectively) with calls to these functions:</p>
+<ul class="simple">
+<li><p><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::net::Initialize()</span></code></p></li>
+<li><p><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::net::Deinitialize()</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="base-net-simpleurlloader">
+<h2><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::SimpleUrlLoader</span></code><a class="headerlink" href="#base-net-simpleurlloader" title="Link to this heading"></a></h2>
+<p>This class provides two functions that you can use to perform a simple network
+request:</p>
+<ul class="simple">
+<li><p><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::net::SimpleUrlLoader::DownloadUnbounded()</span></code></p></li>
+<li><p><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::net::SimpleUrlLoader::DownloadLimited()</span></code></p></li>
+</ul>
+<p>First variant performs a network request for a resource specified by passed
+<code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::ResourceRequest</span></code> struct as parameter. For HTTP(s) request,
+this may be a <code class="docutils literal notranslate"><span class="pre">GET</span></code>, <code class="docutils literal notranslate"><span class="pre">POST</span></code> or <code class="docutils literal notranslate"><span class="pre">HEAD</span></code> request and once finished, it will
+execute provided <code class="docutils literal notranslate"><span class="pre">on_done_callback</span></code> with response
+(<code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::ResourceResponse</span></code>). The second variant allows you to specify
+maximum size of a response and if there would be more data, it will abort the
+request.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Downloading unknown resource without size limitations may lead to exhausting
+all of memory available for your application. It is recommended to either
+know the response size before making an <code class="docutils literal notranslate"><span class="pre">Unbounded</span></code> request, or using the
+<code class="docutils literal notranslate"><span class="pre">Limited</span></code> version of the function.</p>
+<p>You can also use more advanced utility <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::UrlRequest</span></code>
+described below where you will have much greater control over the process and
+e.g. will be able to stop in the middle of fetching response.</p>
+</div>
+<p>Both of these functions take optional argument of
+<code class="docutils literal notranslate"><span class="pre">std::shared_ptr&lt;base::TaskRunner&gt;</span></code> type. If provided, your callback will be
+executed on that task runner, otherwise provided callback will be executed on
+the task runner on which the request (call to <code class="docutils literal notranslate"><span class="pre">Download*()</span></code> function) was
+made.</p>
+<p>They also return an instance of <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::RequestCancellationToken</span></code>
+class which can be passed to <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::net::SimpleUrlLoader::CancelRequest()</span></code>
+function to <strong>asynchronously</strong> cancel related request.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Request cancellation is an asynchronous process. Calling
+<code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::net::SimpleUrlLoader::CancelRequest()</span></code> function does <strong>not</strong>
+guarantee that provided <code class="docutils literal notranslate"><span class="pre">on_done_callback</span></code> will not be executed. If you
+need to guarantee that - you need to add your own logic to check for that -
+for example by binding the callback to a <a class="reference internal" href="../build/api/classbase_1_1WeakPtr.html#_CPPv4I0EN4base7WeakPtrE" title="base::WeakPtr"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::WeakPtr</span></code></a> that you can
+invalidate when needed.</p>
+</div>
+<div class="admonition-example-code admonition">
+<p class="admonition-title">Example</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">PerformRequest</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">resource_url</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">base</span><span class="o">::</span><span class="n">net</span><span class="o">::</span><span class="n">SimpleUrlLoader</span><span class="o">::</span><span class="n">DownloadUnbounded</span><span class="p">(</span>
+<span class="w">      </span><span class="n">base</span><span class="o">::</span><span class="n">net</span><span class="o">::</span><span class="n">ResourceRequest</span><span class="p">{</span><span class="n">resource_url</span><span class="p">}.</span><span class="n">WithTimeout</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">Seconds</span><span class="p">(</span><span class="mi">5</span><span class="p">)),</span>
+<span class="w">      </span><span class="n">base</span><span class="o">::</span><span class="n">BindOnce</span><span class="p">(</span><span class="o">&amp;</span><span class="n">OnResponse</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">OnResponse</span><span class="p">(</span><span class="n">base</span><span class="o">::</span><span class="n">net</span><span class="o">::</span><span class="n">ResourceResponse</span><span class="w"> </span><span class="n">response</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Check response status and other metadata</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>For a full example of <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::SimpleUrlLoader</span></code> usage, refer to
+<a class="reference internal" href="../examples/networking.html"><span class="doc">Networking example</span></a>.</p>
+</section>
+<section id="base-net-urlrequest">
+<h2><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::UrlRequest</span></code><a class="headerlink" href="#base-net-urlrequest" title="Link to this heading"></a></h2>
+<p>This class provides similar functionality to <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::SimpleUrlLoader</span></code>
+but provides much more control over the process. Instead of calling a function
+and passing a callback that will be executed when the request finishes and
+provide all metadata and data from the response, this class is used by creating
+an instance of it and storing it for the duration of the request during which it
+will perform calls to specified <em>client</em>.</p>
+<p>To create it, you need to pass a pointer to an instance of
+<code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::UrlRequest::Client</span></code> interface that will receive calls
+marking of a progress on the request such as:</p>
+<ul>
+<li><dl>
+<dt><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::net::UrlRequest::Client::OnResponseStarted()</span></code></dt><dd><p>This method will be called with metadata (such as request status code,
+final URL - if there were any redirects, and received headers) when the
+connection will be established and those metadata received.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>If the request fails before connection was established, this method will
+<strong>not</strong> be called therefore users must <strong>not</strong> design logic to depend on
+it being called at least once.</p>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::net::UrlRequest::Client::OnWriteData()</span></code></dt><dd><p>This method will be called every time new chunk of data will be received by
+<code class="docutils literal notranslate"><span class="pre">libbase</span></code> network stack. User is expected to process or buffer this data
+on their own as it will not be buffered and sent all-in-one call later.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Same as with the previous method - if the request fails before any
+response data (body) will be received, this function may not be called
+even once. Furthermore, if the request was made with <code class="docutils literal notranslate"><span class="pre">headers_only</span></code> set
+to <code class="docutils literal notranslate"><span class="pre">true</span></code>, this method will not be called even for a successful
+requests.</p>
+<p>Users however can depend on it never being called before/without a call to
+<code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::net::UrlRequest::Client::OnResponseStarted()</span></code> method.</p>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::net::UrlRequest::Client::OnRequestFinished()</span></code></dt><dd><p>This member function will be called when processing of that network request
+will finish. Users should inspect returned <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::Result</span></code>
+parameter to know if the request has finished or not.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This callback is guaranteed to be called exactly once when the request
+will finish, unless the <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::UrlRequest</span></code> was cancelled
+(either by calling the <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::net::UrlRequest::Cancel()</span></code> method or by
+destroying the object itself) in which case the callback will <strong>not</strong> be
+executed.</p>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Be aware that unless an explicit timeout was specified when making the
+request, the request can still take arbitrary amount of time until it
+finishes. If the request has to finish within certain amount of time,
+please either provide a timeout or monitor and cancel it manually.</p>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Once <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::UrlRequest</span></code> is created and you are ready to perform the
+request, you should call <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::net::UrlRequest::Start()</span></code> and provide
+details about the network request to be made.</p>
+<p>After the request processing has been started, you may call
+<code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">base::net::UrlRequest::Cancel()</span></code> method at any moment or destroy the
+underlying <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::UrlRequest</span></code> object to cancel the request. Once
+either of these are done, it is guaranteed that there will be no more calls to
+any of the methods on the provided client and the request will be asynchronously
+cancelled.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You can perform only one network request at a time with a single instance of
+<code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::UrlRequest</span></code>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To perform multiple request at the same time you can create a separate
+instances of this class for each request you want to start in parallel. You
+can then compare provided pointers to <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::UrlRequest</span></code> objects
+(which are first arguments in each method in the
+<code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">base::net::UrlRequest::Client</span></code> interface) to know for which request
+the calls are made.</p>
+</div>
+<p>For a full example on how to use this class, please refer to the
+<a class="reference internal" href="../examples/networking.html"><span class="doc">Networking example</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tracing.html" class="btn btn-neutral float-left" title="Tracing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="integrations.html" class="btn btn-neutral float-right" title="Integrations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Damian Dyńdo.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: develop
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="networking.html">develop</a></dd><br />
+      <dd><a href="../../master/features/networking.html">master</a></dd><br />
+    </dl>
+    <dl>
+      <dt>Tags</dt>
+      <dd><a href="../../v1.0.0/index.html">v1.0.0</a></dd><br>
+      <dd><a href="../../v1.0.1/index.html">v1.0.1</a></dd><br>
+      <dd><a href="../../v1.1.0/features/networking.html">v1.1.0</a></dd><br>
+      <dd><a href="../../v1.1.1/features/networking.html">v1.1.1</a></dd><br>
+      <dd><a href="../../v1.1.2/features/networking.html">v1.1.2</a></dd><br>
+    </dl>
+  </div>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    // $(".admonition-example-code > *:not(div .admonition-title)").hide();
+
+    $(".admonition-example-code > .admonition-title").click(function () {
+      $(this).parent().children().not(".admonition-title").slideToggle();
+      $(this).parent().children(".admonition-title").toggleClass("open");
+    });
+  });
+</script>
+
+
+</body>
+</html>
