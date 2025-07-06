@@ -29,7 +29,7 @@ endif()
 #
 
 project(libbase
-        VERSION 1.1.1
+        VERSION 1.1.2
         LANGUAGES CXX)
 
 include(ProjectIsTopLevel)
