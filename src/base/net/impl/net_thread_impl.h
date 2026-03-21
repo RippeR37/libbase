@@ -12,6 +12,7 @@
 #include "base/net/resource_request.h"
 #include "base/net/resource_response.h"
 #include "base/net/result.h"
+#include "base/threading/thread.h"
 
 #include "curl/curl.h"
 
@@ -26,10 +27,6 @@ class NetThread::NetThreadImpl {
   void Start();
   void Stop();
 
-  void EnqueueDownload(ResourceRequest request,
-                       std::optional<size_t> max_response_size_bytes,
-                       RequestCancellationToken cancellation_token,
-                       OnceCallback<void(ResourceResponse)> on_done_callback);
   void EnqueueDownload(
       ResourceRequest request,
       std::optional<size_t> max_response_size_bytes,
@@ -75,7 +72,7 @@ class NetThread::NetThreadImpl {
   std::map<CURL*, DownloadInfo> active_downloads_;
 
   // Accessible on IoThread owner thread
-  std::unique_ptr<std::thread> thread_;
+  base::Thread thread_;
 };
 
 }  // namespace net

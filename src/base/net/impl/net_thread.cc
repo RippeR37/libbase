@@ -35,21 +35,6 @@ void NetThread::Stop() {
 RequestCancellationToken NetThread::EnqueueDownload(
     ResourceRequest request,
     std::optional<size_t> max_response_size_bytes,
-    OnceCallback<void(ResourceResponse)> on_done_callback) {
-  DCHECK(impl_);
-
-  RequestCancellationToken cancellation_token{
-      g_request_id_counter_.fetch_add(1)};
-
-  impl_->EnqueueDownload(std::move(request), std::move(max_response_size_bytes),
-                         cancellation_token, std::move(on_done_callback));
-
-  return cancellation_token;
-}
-
-RequestCancellationToken NetThread::EnqueueDownload(
-    ResourceRequest request,
-    std::optional<size_t> max_response_size_bytes,
     OnceCallback<void(int, std::string, std::map<std::string, std::string>)>
         on_response_started,
     RepeatingCallback<void(std::vector<uint8_t>)> on_write_data,
