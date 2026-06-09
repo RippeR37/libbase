@@ -97,6 +97,23 @@ See ``options`` and ``default_options`` attributes in ``conanfile.py`` for
 available build options.
 
 
+Installing libbase with Conan
+-----------------------------
+
+As an alternative to building the library from source, you can also install
+``libbase`` with ``Conan`` package manager. To do this, simply execute:
+
+.. code-block:: console
+
+   $ conan install --requires="ripper37-libbase/[*]" --build=missing
+
+This will install the latest available version of ``libbase`` from the Conan Center repository.
+
+The ``libbase`` Conan  package in Conan Center is maintained by
+[ConanCenterIndex](https://github.com/conan-io/conan-center-index) community.
+If the version is out of date or the package does not work,
+please create an issue or pull request on the [Conan Center Index repository](https://github.com/conan-io/conan-center-index).
+
 Configuration
 -------------
 
